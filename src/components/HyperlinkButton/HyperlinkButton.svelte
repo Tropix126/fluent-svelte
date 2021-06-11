@@ -1,0 +1,63 @@
+<script>
+    export let href = undefined;
+    export let disabled = false;
+</script>
+
+<template>
+    <a
+        class={"hyperlink-button" + ($$props.class ?? "")}
+        class:disabled
+        on:click
+        on:keypress
+        on:keydown
+        on:focus
+        on:blur
+        href={(href && !disabled) ? href : undefined}
+        {...$$restProps}
+    >
+        <slot />
+    </a>
+</template>
+
+<style lang="scss">
+    /*
+     * HyperlinkButton Element
+     */
+    
+    .hyperlink-button {
+        user-select: none;
+        display: inline-flex;
+        align-items: center;
+        text-align: left;
+        word-break: break-word;
+        color: var(--accent-text-default);
+        background-color: var(--SubtleFillColorTransparent);
+        border-radius: var(--control-corner-radius);
+        padding: 5px 11px 6px 11px;
+        transition: 83ms ease background-color;
+        text-decoration: none;
+        font: {
+            size: var(--control-font-size);
+            family: var(--control-font-family);
+            weight: normal;
+        }
+
+        // Interaction states
+        // Hover state
+        &:hover {
+            background-color: var(--SubtleFillColorSecondary);
+        }
+
+        // Active (pressed) state
+        &:active {
+            color: var(--accent-text-tertiary);
+            background-color: var(--SubtleFillColorTertiary);
+        }
+
+        // Disabled state
+        &.disabled {
+            pointer-events: none;
+            color: var(--accent-text-disabled);
+        }
+    }
+</style>
