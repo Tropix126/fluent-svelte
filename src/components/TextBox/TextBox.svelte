@@ -3,7 +3,6 @@
 
     export let type = "text";
     export let value = "";
-    export let autoSuggest = [];
     export let clearButton = true;
     export let searchButton = true;
     export let revealButton = true;
@@ -226,17 +225,5 @@
             width: 14px;
             height: auto;
         }
-    }
-
-    .textbox-autosuggest {
-        z-index: 10;
-        position: absolute;
-        margin: 0;
-        padding: 0;
-        left: 0;
-        top: 100%;
-        width: 100%;
-        background-color: var(--background-quarternary);
-        border-radius: 0 0 var(--overlay-corner-radius) var(--overlay-corner-radius);
     }
 </style>
