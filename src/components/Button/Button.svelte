@@ -66,14 +66,14 @@
                 // Active (pressed) state
                 &:active {
                     background-color: var(--ControlFillColorTertiary);
-                    border-color: var(--ControlStrokeColorSecondary);
+                    border-color: var(--ControlStrokeColorDefault);
                     color: var(--text-color-secondary);
                 }
 
                 // Disabled state
                 &:disabled {
                     background-color: var(--ControlFillColorDisabled);
-                    box-shadow: var(--control-elevation-border-secondary);
+                    border-color: var(--ControlStrokeColorDefault);
                     color: var(--text-color-disabled);
                 }
             }
@@ -115,13 +115,8 @@
      * slightly different on light theme and
      * therefore must be styled accordingly.
      */
-    :global {
-        .theme-light .button.style-default {
-            border-color: var(--ControlStrokeColorDefault);
-            border-bottom-color: var(--ControlStrokeColorSecondary);
-            &:active {
-                border-color: var(--ControlStrokeColorDefault);
-            }
-        }
+    :global(.theme-light .button.style-default) {
+        border-color: var(--ControlStrokeColorDefault);
+        border-bottom-color: var(--ControlStrokeColorSecondary);
     }
 </style>

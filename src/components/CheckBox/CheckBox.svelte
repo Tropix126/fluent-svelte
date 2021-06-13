@@ -65,7 +65,7 @@
 
             // Unhide and transition the checkmark glyph
             + .checkbox-glyph .path-checkmark {
-                transition: 142ms linear stroke-dashoffset;
+                transition: 266ms cubic-bezier(0.55, 0, 0, 1) stroke-dashoffset;
                 stroke-dashoffset: 0;
             }
         }
@@ -141,7 +141,7 @@
 
         // Inner glyph <path> element
         path {
-            transform: scale(0.675);
+            transform: scale(0.7);
             transform-origin: center;
             stroke: currentColor;
             stroke-linecap: round;

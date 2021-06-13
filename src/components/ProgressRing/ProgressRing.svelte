@@ -23,7 +23,7 @@
         width="32"
         height="32" 
         viewBox="0 0 16 16"
-        aria-role="progressbar"
+        role="progressbar"
         aria-valuemin={value ? 0 : undefined}
         aria-valuemax={value ? 100 : undefined}
         aria-valuenow={value}

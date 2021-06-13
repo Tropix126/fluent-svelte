@@ -36,6 +36,9 @@
     </section>
     <section>
         <TextBox placeholder="TextBox" />
+        <TextBox placeholder="Searchable TextBox" type="search" />
+        <TextBox placeholder="Password TextBox" type="password" />
+        <TextBox placeholder="Disabled TextBox" disabled />
     </section>
 </template>
 
@@ -142,7 +145,7 @@
 
         // Corner Radius
         --control-corner-radius: 4px;
-        --OverlayCornerRadius: 8px 8px 8px 8px;
+        --overlay-corner-radius: 8px 8px 8px 8px;
 
         // Control Text
         --control-font-family: "Segoe UI", sans-serif;
@@ -233,6 +236,8 @@
         --LayerFillColorAlt: #FFFFFF;
         --LayerOnAcrylicFillColorDefault: #FFFFFF40;
         --LayerOnAccentAcrylicFillColorDefault: #FFFFFF40;
+
+        --TextFillColorDisabled: #0101015C;
 
         --background-base: #F3F3F3;
         --background-secondary: #EEEEEE;
@@ -340,6 +345,8 @@
         --LayerFillColorAlt: #FFFFFF0D;
         --LayerOnAcrylicFillColorDefault: #FFFFFF09;
         --LayerOnAccentAcrylicFillColorDefault: #FFFFFF09;
+
+        --TextFillColorDisabled: #FEFEFE5D;
 
         --background-base: #202020;
         --background-secondary: #1C1C1C;
