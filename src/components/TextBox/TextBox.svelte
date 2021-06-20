@@ -12,7 +12,6 @@
 
     const dispatch = createEventDispatcher();
     const TEXT_TYPES = ["text", "search", "tel", "email", "url", "password"];
-    const CLEAR_BUTTON_TYPES = ["text", "search", "tel", "email", "url"];
 
     function updateValue() {
         value = input.value;
@@ -46,6 +45,8 @@
     }
 </script>
 
+<style lang="scss" src="./TextBox.scss"></style>
+
 <template>
     <div class="textbox-underline-frame">
         <div class="textbox-container" class:disabled>
@@ -61,7 +62,7 @@
             />
             <div class="textbox-buttons">
                 <slot name="buttons" />
-                {#if CLEAR_BUTTON_TYPES.includes(type) && clearButton && value}
+                {#if clearButton && value}
                     <button class="textbox-button textbox-clear-button" tabindex="-1" on:click={clear}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
                             <path d="M7.2001 7.22848C7.68826 6.74033 8.47971 6.74033 8.96787 7.22848L23.9996 22.2602L39.0313 7.22848C39.5194 6.74033 40.3109 6.74033 40.799 7.22848C41.2872 7.71664 41.2872 8.50809 40.799 8.99625L25.7673 24.0279L40.7431 39.0038C41.2313 39.4919 41.2313 40.2834 40.7431 40.7715C40.255 41.2597 39.4635 41.2597 38.9754 40.7715L23.9996 25.7957L9.02376 40.7715C8.5356 41.2597 7.74415 41.2597 7.25599 40.7715C6.76784 40.2834 6.76784 39.4919 7.25599 39.0038L22.2318 24.0279L7.2001 8.99625C6.71195 8.50809 6.71195 7.71664 7.2001 7.22848Z" fill="currentColor"/>
@@ -95,135 +96,3 @@
         </div>
     </div>
 </template>
-
-<style lang="scss">
-    .textbox-underline-frame {
-        width: 100%;
-        position: relative;
-        overflow: hidden;
-        border-radius: var(--control-corner-radius);
-        &:focus-within .textbox-underline {
-            border-radius: 0;
-            border-bottom: 2px solid var(--accent-color-default);
-        }
-    }
-
-    .textbox-container {
-        display: flex;
-        align-items: center;
-        border-radius: var(--control-corner-radius);
-        border: 1px solid var(--ControlStrokeColorDefault);
-        background-color: var(--ControlFillColorDefault);
-        background-clip: padding-box;
-        &:hover {
-            background-color: var(--ControlFillColorSecondary);
-        }
-        &:focus-within {
-            border-color: var(--ControlStrokeColorDefault);
-            background-color: var(--ControlFillColorInputActive);
-        }
-        &.disabled {
-            pointer-events: none;
-            background-color: var(--ControlFillColorDisabled);
-            + .textbox-underline {
-                display: none;
-            }
-        }
-    }
-
-    .textbox {
-        border: none;
-        outline: none;
-        padding: 6px 6px 5px 10px;
-        width: 100%;
-        min-height: 30px;
-        color: var(--text-color-primary);
-        background-color: transparent;
-        font: {
-            family: var(--control-font-family);
-            size: 14px;
-            weight: 400;
-        }
-        &::-webkit-search-decoration,
-        &::-webkit-search-cancel-button,
-        &::-webkit-search-results-button,
-        &::-webkit-search-results-decoration {
-            -webkit-appearance:none;
-        }
-        &::placeholder {
-            user-select: none;
-            color: var(--text-color-secondary);
-        }
-        &:focus {
-            &::placeholder {
-                color: var(--text-color-tertiary);
-            }
-            ~ .textbox-buttons {
-                .textbox-clear-button,
-                .textbox-reveal-button {
-                    display: flex;
-                }
-            }
-        }
-        &:disabled {
-            pointer-events: none;
-            color: var(--TextFillColorDisabled);
-            &::placeholder {
-                color: var(--TextFillColorDisabled);
-            }
-        }
-    }
-
-    .textbox-underline {
-        pointer-events: none;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border-bottom: 1px solid var(--ControlStrongStrokeColorDefault);
-        border-radius: calc(var(--control-corner-radius) - 0.75px);
-    }
-
-    .textbox-buttons {
-        display: flex;
-        align-items: center;
-    }
-
-    .textbox-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: none;
-        width: 30px;
-        padding: 4px 0;
-        margin-right: 4px;
-        border-radius: var(--control-corner-radius);
-        background-color: transparent;
-        &:hover {
-            background-color: var(--SubtleFillColorSecondary);
-        }
-        &:active {
-            background-color: var(--SubtleFillColorTertiary);
-            svg {
-                color: var(--text-color-tertiary);
-            }
-        }
-        &.textbox-clear-button,
-        &.textbox-reveal-button {
-            display: none;
-            &:active {
-                display: flex;
-            }
-        }
-        &.textbox-clear-button svg {
-            width: 12px;
-            height: auto;
-        }
-        svg {
-            color: var(--text-color-secondary);
-            width: 14px;
-            height: auto;
-        }
-    }
-</style>

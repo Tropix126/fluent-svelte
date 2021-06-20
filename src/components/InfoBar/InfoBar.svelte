@@ -22,31 +22,4 @@
 </template>
 
 <style lang="scss">
-    .info-bar {
-        display: flex;
-        align-items: center;
-        padding: 14px 16px;
-        border-radius: var(--control-corner-radius);
-        &.severity- {
-            &informational {
-                border: 1px solid var(--CardStrokeColorDefault);
-                background-color: var(--system-background-attention);
-            }
-            &success {
-
-            }
-            &warning {
-
-            }
-            &error {
-
-            }
-        }
-    }
-
-    .info-bar-icon {
-        width: 16px;
-        height: 16px;
-        color: var(--system-color-neutral);
-    }
 </style>

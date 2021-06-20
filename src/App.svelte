@@ -5,8 +5,11 @@
     import { ProgressRing } from "./components/ProgressRing";
     import { ToggleSwitch } from "./components/ToggleSwitch";
     import { TextBox } from "./components/TextBox";
+    import { RadioButton } from "./components/RadioButton";
 
     let progressRingValue = Math.floor(Math.random() * 100) + 1;
+
+    let group = 1;
 </script>
 
 <template>
@@ -34,21 +37,23 @@
         <ToggleSwitch>ToggleSwitch</ToggleSwitch>
         <ToggleSwitch disabled>Disabled ToggleSwitch</ToggleSwitch>
     </section>
-    <section>
+    <section style="max-width:200px">
         <TextBox placeholder="TextBox" />
         <TextBox placeholder="Searchable TextBox" type="search" />
         <TextBox placeholder="Password TextBox" type="password" />
         <TextBox placeholder="Disabled TextBox" disabled />
     </section>
+    <section>
+        <RadioButton value={1} bind:group>Option 1</RadioButton>
+        <RadioButton value={2} bind:group>Option 2</RadioButton>
+        <RadioButton value={3} bind:group>Option 1</RadioButton>
+        <RadioButton value={4} disabled bind:group>Disabled Option</RadioButton>
+    </section>
 </template>
 
 <style lang="scss" global>
 
-    section, body {display: flex;gap: 12px;}body {flex-direction: column;}
-
-    html {
-        background-color: var(--background-base);
-    }
+    section,body{display:flex;gap:12px;flex-wrap:wrap}body{flex-direction:column}html{background-color:var(--background-base)}
 
     *, *::before, *::after {
         box-sizing: border-box;
