@@ -7,32 +7,37 @@
     import { onMount } from "svelte";
     
     export let src = "";
+    export let filetype = "svelte"; 
     
     let frame;
+    let file;
     let container;
-    let rawCode;
+    let rawCode = "";
     
     onMount(async () => {
-        await fetch(`https://api.github.com/repos/tropix126/fluent-svelte/contents/site/src/routes/examples/${src}`);
+        file = await fetch(`https://api.github.com/repos/tropix126/fluent-svelte/contents/site/src/routes/examples/${src}.${filetype}`).then(response => response.json());
+        rawCode = file.encoding === "base64" ? atob(file.content) : file;
     });
     
     function copy() {
-        navigator.clipboard.writeText(code.trim());
+        navigator.clipboard.writeText(rawCode.trim());
     }
-</script>t
+</script>
 <template>
     <div class="CodeView" bind:this={container}>
         <div class="CodeView-preview">
             <iframe bind:this={frame} src="../examples/{src}"></iframe>
         </div>
-        {#if rawCode}
-            <HighlightSvelte code={rawCode}/>
-            {:else}
-            <ProgressRing/>
-        {/if}
+        <div class="CodeView-body">
+            {#if rawCode}
+                <HighlightSvelte code={rawCode}/>
+                {:else}
+                <ProgressRing/>
+            {/if}
+        </div>
         <footer class="CodeView-footer">
             <div class="CodeView-footer-left">
-                <HyperlinkButton>View Raw</HyperlinkButton>
+                <HyperlinkButton href={file?.html_url ?? undefined}>Source</HyperlinkButton>
             </div>
             <Button class="CodeView-copy-button" on:click={copy}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -58,9 +63,8 @@
         flex-direction: column;
         &-preview,
         &-footer,
-        :global(code) {
+        &-body {
             padding: 16px;
-            display: block;
             background-clip: padding-box;
         }
         &-preview {
@@ -70,7 +74,27 @@
             max-height: 500px;
             background-color: var(--CardBackgroundFillColorDefault);
             iframe {
+                width: 100%;
                 border: none;
+            }
+        }
+        &-body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: auto;
+            border-top: 1px solid var(--CardStrokeColorDefault);
+            background-color: var(--CardBackgroundFillColorSecondary);
+        }
+        &-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--CardBackgroundFillColorSecondary);
+            border-top: 1px solid var(--CardStrokeColorDefault);
+            &-left {
+                display: flex;
+                align-items: center;
             }
         }
         :global {
@@ -87,20 +111,6 @@
                 letter-spacing: 0.32px;
                 font-family: "Cascadia Code", "Consolas", "Courier New", Courier, monospace;
                 font-size: 14px;
-                overflow: auto;
-                border-top: 1px solid var(--CardStrokeColorDefault);
-                background-color: var(--CardBackgroundFillColorSecondary);
-            }
-        }
-        &-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: var(--CardBackgroundFillColorSecondary);
-            border-top: 1px solid var(--CardStrokeColorDefault);
-            &-left {
-                display: flex;
-                align-items: center;
             }
         }
     }

@@ -30,19 +30,22 @@
         &:hover {
             background-color: var(--accent-color-secondary);
             &::before {
-                width: 13px;
-                height: 13px;
+                width: 14px;
+                height: 14px;
             }
         }
         &:active {
             background-color: var(--accent-color-tertiary);
         }
-        &::before,
-        &:active::before {
-            width: 10.5px;
-            height: 10.5px;
+        &::before {
+            width: 12px;
+            height: 12px;
             visibility: visible;
             transition: 250ms cubic-bezier(0, 0, 0, 1);
+        }
+        &:active::before {
+            width: 10px;
+            height: 10px;
         }
     }
     &::before {
