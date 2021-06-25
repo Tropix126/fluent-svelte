@@ -4,6 +4,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
+import { mdsvex } from "mdsvex";
 import sveltePreprocess from 'svelte-preprocess';
 
 const production = !process.env.ROLLUP_WATCH;
@@ -39,21 +40,29 @@ export default {
 	},
 	plugins: [
 		svelte({
+            extensions: [
+                '.svelte',
+                '.svx'
+            ],
+            
 			compilerOptions: {
 				// enable run-time checks when not in production
 				dev: !production,
 			},
 
             // https://github.com/sveltejs/svelte-preprocess
-            preprocess: sveltePreprocess({
-                sourceMap: !production,
-                defaults: {
-                    style: 'scss'
-                },
-                postcss: {
-                    plugins: [require('autoprefixer')()]
-                }
-            })
+            preprocess: [
+                mdsvex(),
+                sveltePreprocess({
+                    sourceMap: !production,
+                    defaults: {
+                        style: 'scss'
+                    },
+                    postcss: {
+                        plugins: [require('autoprefixer')()]
+                    }
+                })
+            ]
 		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance

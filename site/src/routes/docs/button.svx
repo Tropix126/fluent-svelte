@@ -1,0 +1,19 @@
+<script>
+    import CodeView from "$components/CodeView.svelte";
+    import { Button } from "$fluent/Button";
+</script>
+
+<template>
+
+    # Button
+
+    A button gives the user a way to trigger an immediate action. Some buttons are specialized for particular tasks, such as navigation, repeated actions, or presenting menus.
+
+    ### Implementations
+
+    <CodeView src="buttons"/>
+
+    ### Button styles
+
+    The `style` prop allows you to specify the styling of button you wish to use. Currently there are two styles -- `accent` and `default`. These two styles represent primary and secondary actions respectively and should be used accordingly.
+</template>

@@ -5,9 +5,7 @@
     "description": "A faithful implementation of Microsoft's Fluent Design System in Svelte.",
     "homepage": "http://github.com/tropix126/fluent-svelte",
     "license": "MIT",
-    "files": [
-        "src"
-    ],
+    "files": ["src"],
     "author": {
         "name": "tropix126",
         "url": "https://github.com/tropix126/"
@@ -47,7 +45,6 @@
         "@rollup/plugin-commonjs": "^17.0.0",
         "@rollup/plugin-node-resolve": "^11.0.0",
         "autoprefixer": "^10.2.6",
-        "mdsvex": "^0.9.7",
         "postcss": "^8.3.0",
         "rollup": "^2.51.0",
         "rollup-plugin-css-only": "^3.1.0",
@@ -59,8 +56,6 @@
         "svelte-preprocess": "^4.7.3"
     },
     "dependencies": {
-        "highlightjs-line-numbers.js": "^2.8.0",
-        "sirv-cli": "^1.0.12",
-        "svelte-highlight": "^3.0.0"
+        "sirv-cli": "^1.0.12"
     }
-}
+  }
