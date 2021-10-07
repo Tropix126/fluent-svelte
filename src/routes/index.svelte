@@ -48,6 +48,9 @@
 	<Fluent.ProgressRing bind:value />
 	<Fluent.Button on:click={() => value = Math.floor(Math.random() * 101)}>Randomize Value</Fluent.Button>
 </div>
+<div>
+	<Fluent.ProgressRing size={60} />
+</div>
 
 <style lang="scss">
 	@use "src/lib/mixins" as *;
