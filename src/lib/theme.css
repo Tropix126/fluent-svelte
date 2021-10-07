@@ -1,0 +1,208 @@
+/* Global Variables */
+:root {
+	/* Accent Colors */
+	--accent-light-3: 154, 236, 254;
+	--accent-light-2: 96, 204, 254;
+	--accent-light-1: 0, 147, 249;
+	--accent-base: 0, 120, 212;
+	--accent-dark-1: 0, 94, 183;
+	--accent-dark-2: 0, 61, 146;
+	--accent-dark-3: 0, 25, 104;
+
+	/* Font Families */
+	--font-family-fallback: "Segoe UI", system-ui, sans-serif;
+	--font-family-text: "Segoe UI Variable Text", "Seoge UI Variable Static Text",
+		var(--font-family-fallback);
+	--font-family-small: "Segoe UI Variable Small", "Seoge UI Variable Static Small",
+		var(--font-family-fallback);
+	--font-family-display: "Segoe UI Variable Display", "Seoge UI Variable Static Display",
+		var(--font-family-fallback);
+
+	/* Font Size */
+	--control-font-size: 14px;
+
+	/* Roundness */
+	--control-corner-radius: 4px;
+	--overlay-corner-radius: 8px;
+
+	/* Duration */
+	--control-normal-duration: 250ms;
+	--control-fast-duration: 167ms;
+	/* --control-fast-after-duration: 168ms; */
+	--control-faster-duration: 83ms;
+
+	/* Easing */
+	--control-fast-out-slow-in-easing: cubic-bezier(0, 0, 0, 1);
+
+	/* Focus Stroke */
+	--focus-stroke: 0 0 0 1px var(--focus-stroke-inner), 0 0 0 3px var(--focus-stroke-outer);
+}
+
+/* Light Theme Colors */
+/* @media (prefers-color-scheme: light) { */
+:root {
+	/* Text */
+	--text-primary: rgba(0, 0, 0, 89.56%);
+	--text-secondary: rgba(0, 0, 0, 60.63%);
+	--text-tertiary: rgba(0, 0, 0, 44.58%);
+	--text-disabled: rgba(0, 0, 0, 36.14%);
+
+	/* Accent */
+	--accent-default: rgb(var(--accent-dark-1));
+	--accent-secondary: rgb(var(--accent-dark-1), 90%);
+	--accent-tertiary: rgb(var(--accent-dark-1), 80%);
+	--accent-disabled: rgba(0, 0, 0, 21.69%);
+
+	/* Accent Text */
+	--accent-text-primary: rgb(var(--accent-dark-2));
+	--accent-text-secondary: rgb(var(--accent-dark-3));
+	--accent-text-tertiary: rgb(var(--accent-dark-1));
+	--accent-text-disabled: rgba(0, 0, 0, 36.14%);
+
+	/* Text on Accent */
+	--text-on-accent-primary: #ffffff;
+	--text-on-accent-secondary: rgba(255, 255, 255, 70%);
+	--text-on-accent-disabled: var(--text-on-accent-secondary);
+	--text-on-accent-selected: var(--text-on-accent-primary);
+
+	/* Control Fill */
+	--control-fill-transparent: transparent;
+	--control-fill-default: rgba(255, 255, 255, 70%);
+	--control-fill-secondary: rgba(249, 249, 249, 50%);
+	--control-fill-tertiary: rgba(249, 249, 249, 30%);
+	--control-fill-disabled: var(--control-tertiary);
+	--control-fill-input-active: #ffffff;
+
+	/* Control Strong Fill */
+	--control-strong-fill-default: rgba(0, 0, 0, 44.58%);
+	--control-strong-fill-disabled: rgba(0, 0, 0, 31.73%);
+
+	/* Control Solid Fill */
+	--control-solid-fill-default: #ffffff;
+
+	/* Control Alt Fill */
+	--control-alt-fill-transparent: transparent;
+	--control-alt-fill-default: rgba(0, 0, 0, 2.41%);
+	--control-alt-fill-tertiary: rgba(0, 0, 0, 5.78%);
+	--control-alt-fill-quarternary: rgba(0, 0, 0, 9.24%);
+	--control-alt-fill-disabled: var(--control-alt-transparent);
+
+	/* Control on Image Fill */
+	--control-on-image-fill-default: rgba(255, 255, 255, 79%);
+	--control-on-image-fill-secondary: #f3f3f3;
+	--control-on-image-fill-tertiary: #ebebeb;
+	--control-on-image-fill-disabled: transparent;
+
+	/* Subtle Fill */
+	--subtle-fill-transparent: transparent;
+	--subtle-fill-secondary: rgba(0, 0, 0, 3.73%);
+	--subtle-fill-tertiary: rgba(0, 0, 0, 2.41%);
+	--subtle-fill-disabled: var(--subtle-transparent);
+
+	/* Control Stroke */
+	--control-stroke-default: rgba(0, 0, 0, 5.78%);
+	--control-stroke-secondary: rgba(0, 0, 0, 16.22%);
+
+	/* Control Strong Stroke */
+	--control-strong-stroke-default: rgba(0, 0, 0, 44.58%);
+	--control-strong-stroke-disabled: rgba(0, 0, 0, 21.69%);
+
+	/* Control Stroke on Accent */
+	--control-stroke-on-accent-default: rgba(255, 255, 255, 8%);
+	--control-stroke-on-accent-secondary: rgba(0, 0, 0, 40%);
+	--control-stroke-on-accent-tertiary: rgba(0, 0, 0, 21.69%);
+	--control-stroke-on-accent-disabled: var(--control-stroke-on-accent-default);
+
+	/* Control Strong Stroke on Image */
+	--control-strong-stroke-on-image-default: rgba(255, 255, 255, 35%);
+
+	/* Card Stroke */
+	--card-stroke-default: rgba(0, 0, 0, 5.78%);
+	--card-stroke-default-solid: #ebebeb;
+
+	/* Surface Stroke */
+	--surface-stroke-default: rgba(117, 117, 117, 40%);
+	--surface-stroke-flyout: rgba(0, 0, 0, 5.78%);
+
+	/* Divider Stroke */
+	--divider-stroke-default: rgba(0, 0, 0, 8.03%);
+
+	/* Focus Stroke */
+	--focus-stroke-outer: rgba(0, 0, 0, 89.56%);
+	--focus-stroke-inner: #ffffff;
+
+	/* Card Background */
+	--card-background-default: rgba(255, 255, 255, 70%);
+	--card-background-secondary: rgba(246, 246, 246, 50%);
+	--card-background-tertiary: #ffffff;
+
+	/* Smoke Background */
+	--smoke-background-default: rgba(0, 0, 0, 30%);
+
+	/* Layer */
+	--layer-background-default: rgba(255, 255, 255, 50%);
+	--layer-background-alt: #ffffff;
+
+	/* Layer on Acrylic */
+	--layer-on-acrylic-background-default: rgba(255, 255, 255, 25%);
+	--layer-on-accent-acrylic-background-default: var(--layer-on-acrylic-background-default);
+
+	/* Solid Background */
+	--solid-background-base: #f3f3f3;
+	--solid-background-secondary: #eeeeee;
+	--solid-background-tertiary: #f9f9f9;
+	--solid-background-quarternary: #ffffff;
+
+	/* Mica Background */
+	/* --mica-background-base: linear-gradient(0deg, rgba(243, 243, 243, 0.5), rgba(243, 243, 243, 0.5)), #F3F3F3; */
+
+	/* Acrylic Background */
+	/* --acrylic-background-base: url(NoiseAsset_256.png), rgba(243, 243, 243, 90%); */
+	/* --acrylic-background-default: url(NoiseAsset_256.png), rgba(252, 252, 252, 85%); */
+
+	/* Accent Acrylic Background */
+	/* --accent-acrylic-background-base: url(NoiseAsset_256.png), linear-gradient(0deg, rgba(153, 235, 255, 80%), rgba(153, 235, 255, 80%)), rgba(153, 235, 255, 90%); */
+	/* --accent-acrylic-background-default: url(NoiseAsset_256.png), linear-gradient(0deg, rgba(153, 235, 255, 80%), rgba(153, 235, 255, 80%)), rgba(153, 235, 255, 90%); */
+
+	/* System */
+	--system-attention: #005fb7;
+	--system-success: #0f7b0f;
+	--system-caution: #9d5d00;
+	--system-critical: #c42b1c;
+	--system-neutral: rgba(0, 0, 0, 44.58%);
+
+	/* System Solid */
+	--system-solid-neutral: #8a8a8a;
+
+	/* System Background */
+	--system-background-attention: rgba(246, 246, 246, 50%);
+	--system-background-success: #dff6dd;
+	--system-background-caution: #fff4ce;
+	--system-background-critical: #fde7e9;
+
+	/* System Background Solid */
+	--system-background-solid-attention: #f7f7f7;
+	--system-background-solid-neutral: #f3f3f3;
+
+	/* Borders */
+	--control-border-default: var(--control-stroke-default) var(--control-stroke-default)
+		var(--control-stroke-secondary) var(--control-stroke-default);
+
+	/* Shadows */
+	--card-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+	--tooltip-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14);
+	--flyout-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
+	--dialog-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
+
+	/* Shell Shadows */
+	--inactive-window-shadow: 0px 16px 32px rgba(0, 0, 0, 0.1876),
+		0px 2px 10.67px rgba(0, 0, 0, 0.1474);
+	--active-window-shadow: 0px 32px 64px rgba(0, 0, 0, 0.28), 0px 2px 21px rgba(0, 0, 0, 0.22);
+}
+/* } */
+
+/* Dark Theme Colors */
+@media (prefers-color-scheme: dark) {
+	:root {
+	}
+}
