@@ -1,8 +1,8 @@
 <script lang="ts">
-    /** Determines a completion amount in percentage */
+	/** Determines a completion amount in percentage */
 	export let value: number = undefined;
 
-    /** Determines the size of the ring in pixels */
+	/** Determines the size of the ring in pixels */
 	export let size = 32;
 
 	/** Specifies a custom class name for the ring */
@@ -19,42 +19,40 @@
 	}
 </script>
 
-<template>
-	<svg
-		on:click
-		on:blur
-		on:focus
-		on:dblclick
-		on:contextmenu
-		on:mousedown
-		on:mouseup
-		on:mouseover
-		on:mouseout
-		on:mouseleave
-		on:keypress
-		on:keydown
-		on:keyup
-        tabindex="-1"
-		class="progress-ring {className || ''}"
-		class:indeterminate={!value}
-		width={size}
-		height={size}
-		viewBox="0 0 16 16"
-		role={value ? "progressbar" : "status"}
-		aria-valuemin={value ? 0 : undefined}
-		aria-valuemax={value ? 100 : undefined}
-		aria-valuenow={value}
-		{...$$restProps}
-	>
-		<circle
-			bind:this={circle}
-			cx="50%"
-			cy="50%"
-			r="7"
-			stroke-dasharray="3"
-			stroke-dashoffset={((100 - value) / 100) * circumference}
-		/>
-	</svg>
-</template>
+<svg
+	{...$$restProps}
+	aria-valuemax={value ? 100 : undefined}
+	aria-valuemin={value ? 0 : undefined}
+	aria-valuenow={value}
+	class="progress-ring{` ${className}` || ''}"
+	class:indeterminate={!value}
+	height={size}
+	on:blur
+	on:click
+	on:contextmenu
+	on:dblclick
+	on:focus
+	on:keydown
+	on:keypress
+	on:keyup
+	on:mousedown
+	on:mouseleave
+	on:mouseout
+	on:mouseover
+	on:mouseup
+	role={value ? "progressbar" : "status"}
+	tabindex="-1"
+	viewBox="0 0 16 16"
+	width={size}
+>
+	<circle
+		bind:this={circle}
+		cx="50%"
+		cy="50%"
+		r="7"
+		stroke-dasharray="3"
+		stroke-dashoffset={((100 - value) / 100) * circumference}
+	/>
+</svg>
 
 <style lang="scss" src="./ProgressRing.scss"></style>

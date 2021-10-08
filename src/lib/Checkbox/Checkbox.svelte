@@ -34,7 +34,7 @@
 			on:keypress
 			on:keydown
 			on:keyup
-			class="checkbox {className || ''}"
+			class="checkbox{` ${className}` || ''}"
 			type="checkbox"
 			bind:checked
 			bind:indeterminate

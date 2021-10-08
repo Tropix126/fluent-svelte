@@ -2,78 +2,96 @@
 
 .checkbox {
 	margin: 0;
-	appearance: none;
-	outline: none;
-	width: 20px;
-	height: 20px;
-	border-radius: var(--control-corner-radius);
-	background-color: var(--control-alt-secondary);
 	border: 1px solid var(--control-strong-stroke-default);
+	border-radius: var(--control-corner-radius);
+	outline: none;
+	background: var(--control-alt-secondary);
+	appearance: none;
+	inline-size: 20px;
+	block-size: 20px;
+
 	&:focus-visible {
 		box-shadow: var(--focus-stroke);
 	}
+
 	&:hover {
-		background-color: var(--control-alt-fill-tertiary);
+		background: var(--control-alt-fill-tertiary);
 	}
+
 	&:active {
-		background-color: var(--control-alt-fill-quarternary);
 		border-color: var(--control-strong-stroke-disabled);
+		background: var(--control-alt-fill-quarternary);
 	}
+
 	&:disabled {
-		pointer-events: none;
 		border-color: var(--control-strong-stroke-disabled);
-		background-color: var(--control-alt-fill-disabled);
+		background: var(--control-alt-fill-disabled);
+		pointer-events: none;
 	}
+
 	&:checked,
 	&:indeterminate {
-		background-color: var(--accent-default);
 		border-color: transparent;
+		background: var(--accent-default);
+
 		&:hover {
-			background-color: var(--accent-secondary);
+			background: var(--accent-secondary);
 		}
+
 		&:active {
-			background-color: var(--accent-tertiary);
+			background: var(--accent-tertiary);
 		}
+
 		&:disabled {
 			border-color: var(--control-strong-stroke-disabled);
-			background-color: var(--accent-disabled);
+			background: var(--accent-disabled);
 		}
+
 		+ .checkbox-glyph .path-checkmark {
 			transition: var(--control-normal-duration) cubic-bezier(0.55, 0, 0, 1) stroke-dashoffset;
 			stroke-dashoffset: 0;
 		}
 	}
+
 	&-container {
 		@include flex($inline: true, $align: center);
 		@include control-typography;
-		min-height: 32px;
 		color: var(--text-primary);
+		min-block-size: 32px;
+
 		> span {
-			padding-left: 8px;
+			padding-inline-start: 8px;
 		}
 	}
+
 	&-inner {
 		@include flex($align: center, $justify: center);
 		position: relative;
 	}
+
 	&-glyph {
-		color: var(--text-on-accent-primary);
 		position: absolute;
-		width: 12px;
-		height: 12px;
+		color: var(--text-on-accent-primary);
+		inline-size: 12px;
+		block-size: 12px;
+
 		path {
 			transform-origin: center;
 		}
+
 		.path- {
 			&checkmark {
 				transform: scale(1.2);
 				stroke: currentColor;
-				stroke-linecap: round;
-				stroke-linejoin: round;
-				stroke-width: 2;
-				stroke-dasharray: 20.5;
-				stroke-dashoffset: 20.5;
+				stroke: {
+					width: 2;
+					linecap: round;
+					linejoin: round;
+					dasharray: 20.5;
+					dashoffset: 20.5;
+				}
 			}
+
 			&indeterminate {
 				transform: scale(calc(2 / 3)) translateX(80px) translateY(240px);
 				fill: currentColor;

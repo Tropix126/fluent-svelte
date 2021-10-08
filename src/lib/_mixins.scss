@@ -76,8 +76,8 @@
 }
 
 @mixin icon($size: var(--control-font-size)) {
-	width: $size;
-	height: auto;
+	inline-size: $size;
+	block-size: auto;
 	fill: currentColor;
 }
 

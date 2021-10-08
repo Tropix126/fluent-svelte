@@ -1,22 +1,22 @@
 /* Global Variables */
 :root {
 	/* Accent Colors */
-	--accent-light-3: 154, 236, 254;
-	--accent-light-2: 96, 204, 254;
-	--accent-light-1: 0, 147, 249;
-	--accent-base: 0, 120, 212;
-	--accent-dark-1: 0, 94, 183;
-	--accent-dark-2: 0, 61, 146;
-	--accent-dark-3: 0, 25, 104;
+	--accent-light-3: 191, 98%, 80%;
+	--accent-light-2: 199, 99%, 69%;
+	--accent-light-1: 205, 100%, 49%;
+	--accent-base: 206, 100%, 42%;
+	--accent-dark-1: 209, 100%, 36%;
+	--accent-dark-2: 215, 100%, 29%;
+	--accent-dark-3: 226, 100%, 20%;
 
 	/* Font Families */
 	--font-family-fallback: "Segoe UI", system-ui, sans-serif;
 	--font-family-text: "Segoe UI Variable Text", "Seoge UI Variable Static Text",
-		var(--font-family-fallback);
+	var(--font-family-fallback);
 	--font-family-small: "Segoe UI Variable Small", "Seoge UI Variable Static Small",
-		var(--font-family-fallback);
+	var(--font-family-fallback);
 	--font-family-display: "Segoe UI Variable Display", "Seoge UI Variable Static Display",
-		var(--font-family-fallback);
+	var(--font-family-fallback);
 
 	/* Font Size */
 	--control-font-size: 14px;
@@ -42,162 +42,161 @@
 /* @media (prefers-color-scheme: light) { */
 :root {
 	/* Text */
-	--text-primary: rgba(0, 0, 0, 89.56%);
-	--text-secondary: rgba(0, 0, 0, 60.63%);
-	--text-tertiary: rgba(0, 0, 0, 44.58%);
-	--text-disabled: rgba(0, 0, 0, 36.14%);
+	--text-primary: hsl(0, 0%, 0%, 89.56%);
+	--text-secondary: hsl(0, 0%, 0%, 60.63%);
+	--text-tertiary: hsl(0, 0%, 0%, 44.58%);
+	--text-disabled: hsl(0, 0%, 0%, 36.14%);
 
 	/* Accent */
-	--accent-default: rgb(var(--accent-dark-1));
-	--accent-secondary: rgb(var(--accent-dark-1), 90%);
-	--accent-tertiary: rgb(var(--accent-dark-1), 80%);
-	--accent-disabled: rgba(0, 0, 0, 21.69%);
+	--accent-default: hsl(var(--accent-dark-1));
+	--accent-secondary: hsl(var(--accent-dark-1), 90%);
+	--accent-tertiary: hsl(var(--accent-dark-1), 80%);
+	--accent-disabled: hsl(0, 0%, 0%, 21.69%);
 
 	/* Accent Text */
-	--accent-text-primary: rgb(var(--accent-dark-2));
-	--accent-text-secondary: rgb(var(--accent-dark-3));
-	--accent-text-tertiary: rgb(var(--accent-dark-1));
-	--accent-text-disabled: rgba(0, 0, 0, 36.14%);
+	--accent-text-primary: hsl(var(--accent-dark-2));
+	--accent-text-secondary: hsl(var(--accent-dark-3));
+	--accent-text-tertiary: hsl(var(--accent-dark-1));
+	--accent-text-disabled: hsl(0, 0%, 0%, 36.14%);
 
 	/* Text on Accent */
-	--text-on-accent-primary: #ffffff;
-	--text-on-accent-secondary: rgba(255, 255, 255, 70%);
+	--text-on-accent-primary: white;
+	--text-on-accent-secondary: hsl(0, 0%, 100%, 70%);
 	--text-on-accent-disabled: var(--text-on-accent-secondary);
 	--text-on-accent-selected: var(--text-on-accent-primary);
 
 	/* Control Fill */
 	--control-fill-transparent: transparent;
-	--control-fill-default: rgba(255, 255, 255, 70%);
-	--control-fill-secondary: rgba(249, 249, 249, 50%);
-	--control-fill-tertiary: rgba(249, 249, 249, 30%);
-	--control-fill-disabled: var(--control-tertiary);
-	--control-fill-input-active: #ffffff;
+	--control-fill-default: hsla(0, 0%, 100%, 0.7);
+	--control-fill-secondary: hsla(0, 0%, 98%, 0.5);
+	--control-fill-tertiary: hsla(0, 0%, 98%, 0.3);
+	--control-fill-disabled: var(--control-fill-tertiary);
+	--control-fill-input-active: white;
 
 	/* Control Strong Fill */
-	--control-strong-fill-default: rgba(0, 0, 0, 44.58%);
-	--control-strong-fill-disabled: rgba(0, 0, 0, 31.73%);
+	--control-strong-fill-default: hsl(0, 0%, 0%, 44.58%);
+	--control-strong-fill-disabled: hsl(0, 0%, 0%, 31.73%);
 
 	/* Control Solid Fill */
-	--control-solid-fill-default: #ffffff;
+	--control-solid-fill-default: white;
 
 	/* Control Alt Fill */
 	--control-alt-fill-transparent: transparent;
-	--control-alt-fill-default: rgba(0, 0, 0, 2.41%);
-	--control-alt-fill-tertiary: rgba(0, 0, 0, 5.78%);
-	--control-alt-fill-quarternary: rgba(0, 0, 0, 9.24%);
-	--control-alt-fill-disabled: var(--control-alt-transparent);
+	--control-alt-fill-default: hsl(0, 0%, 0%, 2.41%);
+	--control-alt-fill-tertiary: hsl(0, 0%, 0%, 5.78%);
+	--control-alt-fill-quarternary: hsl(0, 0%, 0%, 9.24%);
+	--control-alt-fill-disabled: var(--control-alt-fill-transparent);
 
 	/* Control on Image Fill */
-	--control-on-image-fill-default: rgba(255, 255, 255, 79%);
-	--control-on-image-fill-secondary: #f3f3f3;
-	--control-on-image-fill-tertiary: #ebebeb;
+	--control-on-image-fill-default: hsl(0, 0%, 100%, 79%);
+	--control-on-image-fill-secondary: hsl(0, 0%, 95%);
+	--control-on-image-fill-tertiary: hsl(0, 0%, 92%);
 	--control-on-image-fill-disabled: transparent;
 
 	/* Subtle Fill */
 	--subtle-fill-transparent: transparent;
-	--subtle-fill-secondary: rgba(0, 0, 0, 3.73%);
-	--subtle-fill-tertiary: rgba(0, 0, 0, 2.41%);
-	--subtle-fill-disabled: var(--subtle-transparent);
+	--subtle-fill-secondary: hsl(0, 0%, 0%, 3.73%);
+	--subtle-fill-tertiary: hsl(0, 0%, 0%, 2.41%);
+	--subtle-fill-disabled: var(--subtle-fill-transparent);
 
 	/* Control Stroke */
-	--control-stroke-default: rgba(0, 0, 0, 5.78%);
-	--control-stroke-secondary: rgba(0, 0, 0, 16.22%);
+	--control-stroke-default: hsl(0, 0%, 0%, 5.78%);
+	--control-stroke-secondary: hsl(0, 0%, 0%, 16.22%);
 
 	/* Control Strong Stroke */
-	--control-strong-stroke-default: rgba(0, 0, 0, 44.58%);
-	--control-strong-stroke-disabled: rgba(0, 0, 0, 21.69%);
+	--control-strong-stroke-default: hsl(0, 0%, 0%, 44.58%);
+	--control-strong-stroke-disabled: hsl(0, 0%, 0%, 21.69%);
 
 	/* Control Stroke on Accent */
-	--control-stroke-on-accent-default: rgba(255, 255, 255, 8%);
-	--control-stroke-on-accent-secondary: rgba(0, 0, 0, 40%);
-	--control-stroke-on-accent-tertiary: rgba(0, 0, 0, 21.69%);
+	--control-stroke-on-accent-default: hsl(0, 0%, 100%, 0.08);
+	--control-stroke-on-accent-secondary: hsla(0, 0%, 0%, 0.4);
+	--control-stroke-on-accent-tertiary: hsl(0, 0%, 0%, 21.69%);
 	--control-stroke-on-accent-disabled: var(--control-stroke-on-accent-default);
 
 	/* Control Strong Stroke on Image */
-	--control-strong-stroke-on-image-default: rgba(255, 255, 255, 35%);
+	--control-strong-stroke-on-image-default: hsla(0, 0%, 100%, 0.35);
 
 	/* Card Stroke */
-	--card-stroke-default: rgba(0, 0, 0, 5.78%);
-	--card-stroke-default-solid: #ebebeb;
+	--card-stroke-default: hsl(0, 0%, 0%, 5.78%);
+	--card-stroke-default-solid: hsl(0, 0%, 92%);
 
 	/* Surface Stroke */
-	--surface-stroke-default: rgba(117, 117, 117, 40%);
-	--surface-stroke-flyout: rgba(0, 0, 0, 5.78%);
+	--surface-stroke-default: hsla(0, 0%, 46%, 0.4);
+	--surface-stroke-flyout: hsl(0, 0%, 0%, 5.78%);
 
 	/* Divider Stroke */
-	--divider-stroke-default: rgba(0, 0, 0, 8.03%);
+	--divider-stroke-default: hsl(0, 0%, 0%, 8.03%);
 
 	/* Focus Stroke */
-	--focus-stroke-outer: rgba(0, 0, 0, 89.56%);
-	--focus-stroke-inner: #ffffff;
+	--focus-stroke-outer: hsl(0, 0%, 0%, 89.56%);
+	--focus-stroke-inner: white;
 
 	/* Card Background */
-	--card-background-default: rgba(255, 255, 255, 70%);
-	--card-background-secondary: rgba(246, 246, 246, 50%);
-	--card-background-tertiary: #ffffff;
+	--card-background-default: hsla(0, 0%, 100%, 0.7);
+	--card-background-secondary: hsla(0, 0%, 96%, 0.5);
+	--card-background-tertiary: white;
 
 	/* Smoke Background */
-	--smoke-background-default: rgba(0, 0, 0, 30%);
+	--smoke-background-default: hsla(0, 0%, 0%, 0.3);
 
 	/* Layer */
-	--layer-background-default: rgba(255, 255, 255, 50%);
-	--layer-background-alt: #ffffff;
+	--layer-background-default: hsla(0, 0%, 100%, 0.5);
+	--layer-background-alt: white;
 
 	/* Layer on Acrylic */
-	--layer-on-acrylic-background-default: rgba(255, 255, 255, 25%);
+	--layer-on-acrylic-background-default: hsla(0, 0%, 100%, 0.25);
 	--layer-on-accent-acrylic-background-default: var(--layer-on-acrylic-background-default);
 
 	/* Solid Background */
-	--solid-background-base: #f3f3f3;
-	--solid-background-secondary: #eeeeee;
-	--solid-background-tertiary: #f9f9f9;
-	--solid-background-quarternary: #ffffff;
+	--solid-background-base: hsl(0, 0%, 95%);
+	--solid-background-secondary: hsl(0, 0%, 93%);
+	--solid-background-tertiary: hsl(0, 0%, 98%);
+	--solid-background-quarternary: white;
 
 	/* Mica Background */
-	/* --mica-background-base: linear-gradient(0deg, rgba(243, 243, 243, 0.5), rgba(243, 243, 243, 0.5)), #F3F3F3; */
+	/* --mica-background-base: linear-gradient(0deg, rgb(243, 243, 243, 0.5), rgb(243, 243, 243, 0.5)), #F3F3F3; */
 
 	/* Acrylic Background */
-	/* --acrylic-background-base: url(NoiseAsset_256.png), rgba(243, 243, 243, 90%); */
-	/* --acrylic-background-default: url(NoiseAsset_256.png), rgba(252, 252, 252, 85%); */
+	/* --acrylic-background-base: url(NoiseAsset_256.png), rgb(243, 243, 243, 90%); */
+	/* --acrylic-background-default: url(NoiseAsset_256.png), rgb(252, 252, 252, 85%); */
 
 	/* Accent Acrylic Background */
-	/* --accent-acrylic-background-base: url(NoiseAsset_256.png), linear-gradient(0deg, rgba(153, 235, 255, 80%), rgba(153, 235, 255, 80%)), rgba(153, 235, 255, 90%); */
-	/* --accent-acrylic-background-default: url(NoiseAsset_256.png), linear-gradient(0deg, rgba(153, 235, 255, 80%), rgba(153, 235, 255, 80%)), rgba(153, 235, 255, 90%); */
+	/* --accent-acrylic-background-base: url(NoiseAsset_256.png), linear-gradient(0deg, rgb(153, 235, 255, 80%), rgb(153, 235, 255, 80%)), rgb(153, 235, 255, 90%); */
+	/* --accent-acrylic-background-default: url(NoiseAsset_256.png), linear-gradient(0deg, rgb(153, 235, 255, 80%), rgb(153, 235, 255, 80%)), rgb(153, 235, 255, 90%); */
 
 	/* System */
-	--system-attention: #005fb7;
-	--system-success: #0f7b0f;
-	--system-caution: #9d5d00;
-	--system-critical: #c42b1c;
-	--system-neutral: rgba(0, 0, 0, 44.58%);
+	--system-attention: hsl(209, 100%, 36%);
+	--system-success: hsl(120, 78%, 27%);
+	--system-caution: hsl(36, 100%, 31%);
+	--system-critical: hsl(5, 75%, 44%);
+	--system-neutral: hsl(0, 0%, 0%, 44.58%);
 
 	/* System Solid */
-	--system-solid-neutral: #8a8a8a;
+	--system-solid-neutral: hsl(0, 0%, 54%);
 
 	/* System Background */
-	--system-background-attention: rgba(246, 246, 246, 50%);
-	--system-background-success: #dff6dd;
-	--system-background-caution: #fff4ce;
-	--system-background-critical: #fde7e9;
+	--system-background-attention: hsl(0, 0%, 96%, 0.5);
+	--system-background-success: hsl(115, 58%, 92%);
+	--system-background-caution: hsl(47, 100%, 90%);
+	--system-background-critical: hsl(355, 85%, 95%);
 
 	/* System Background Solid */
-	--system-background-solid-attention: #f7f7f7;
-	--system-background-solid-neutral: #f3f3f3;
+	--system-background-solid-attention: hsl(0, 0%, 97%);
+	--system-background-solid-neutral: hsl(0, 0%, 95%);
 
 	/* Borders */
-	--control-border-default: var(--control-stroke-default) var(--control-stroke-default)
-		var(--control-stroke-secondary) var(--control-stroke-default);
+	--control-border-default: var(--control-stroke-default) var(--control-stroke-default) var(--control-stroke-secondary) var(--control-stroke-default);
 
 	/* Shadows */
-	--card-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
-	--tooltip-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14);
-	--flyout-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
-	--dialog-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
+	--card-shadow: 0px 2px 4px hsla(0, 0%, 0%, 0.04);
+	--tooltip-shadow: 0px 4px 8px hsla(0, 0%, 0%, 0.14);
+	--flyout-shadow: 0px 8px 16px hsla(0, 0%, 0%, 0.14);
+	--dialog-shadow: 0px 32px 64px hsla(0, 0%, 0%, 0.1876), 0px 2px 21px hsla(0, 0%, 0%, 0.1474);
 
 	/* Shell Shadows */
-	--inactive-window-shadow: 0px 16px 32px rgba(0, 0, 0, 0.1876),
-		0px 2px 10.67px rgba(0, 0, 0, 0.1474);
-	--active-window-shadow: 0px 32px 64px rgba(0, 0, 0, 0.28), 0px 2px 21px rgba(0, 0, 0, 0.22);
+	--inactive-window-shadow: 0px 16px 32px hsl(0, 0%, 0%, 0.1876),
+	0px 2px 10.67px hsla(0, 0%, 0%, 0.1474);
+	--active-window-shadow: 0px 32px 64px hsla(0, 0%, 0%, 0.28), 0px 2px 21px hsla(0, 0%, 0%, 0.22);
 }
 /* } */
 
