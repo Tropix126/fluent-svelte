@@ -1,12 +1,12 @@
 @use "../mixins" as *;
 
-.toggle-switch {
-	@include flex($inline: true, $align: center);
+.radio-button {
+	@include flex($inline: true, $align: center, $justify: center);
 	position: relative;
 	appearance: none;
 	outline: none;
 	margin: 0;
-	width: 40px;
+	width: 20px;
 	height: 20px;
 	border-radius: 20px;
 	background-color: var(--control-alt-fill-secondary);
@@ -14,68 +14,62 @@
 	&::before {
 		content: "";
 		position: absolute;
-		left: 3px;
-		width: 12px;
-		height: 12px;
-		background-color: var(--text-secondary);
-		border-radius: 7px;
-		transition: var(--control-fast-duration) ease-in-out transform,
-			var(--control-fast-duration) var(--control-fast-out-slow-in-easing) height,
-			var(--control-fast-duration) var(--control-fast-out-slow-in-easing) width,
-			var(--control-fast-duration) var(--control-fast-out-slow-in-easing) margin,
-			var(--control-faster-duration) linear background-color;
+		width: 4px;
+		height: 4px;
+		visibility: hidden;
+		border-radius: 12px;
+		transition: var(--control-normal-duration) var(--control-fast-out-slow-in-easing);
+		background-color: var(--text-on-accent-primary);
 	}
 	&:focus-visible {
 		box-shadow: var(--focus-stroke);
 	}
 	&:hover {
 		background-color: var(--control-alt-fill-tertiary);
-		&::before {
-			width: 14px;
-			height: 14px;
-		}
 	}
 	&:active {
 		background-color: var(--control-alt-fill-quarternary);
 		border-color: var(--control-strong-stroke-disabled);
 		&::before {
-			width: 17px;
-			height: 14px;
+			width: 10px;
+			height: 10px;
+			visibility: visible;
 		}
 	}
 	&:disabled {
 		border-color: var(--control-strong-stroke-disabled);
 		background-color: var(--control-alt-fill-disabled);
-		&::before {
-			margin: 0 !important;
-			width: 12px;
-			height: 12px;
-			box-shadow: none;
-			background-color: var(--text-disabled);
-		}
 	}
 	&:checked {
 		background-color: var(--accent-default);
 		border-color: transparent;
 		&::before {
+			width: 12px;
+			height: 12px;
 			box-shadow: 0 0 0 1px var(--control-stroke-default);
-			background-color: var(--text-on-accent-primary);
-			transform: translateX(20px);
+			visibility: visible;
 		}
 		&:hover {
 			background-color: var(--accent-secondary);
 			&::before {
-				margin-left: -1px;
+				width: 14px;
+				height: 14px;
 			}
 		}
 		&:active {
 			background-color: var(--accent-tertiary);
 			&::before {
-				margin-left: -4px;
+				width: 10px;
+				height: 10px;
 			}
 		}
 		&:disabled {
 			background-color: var(--accent-disabled);
+			&::before {
+				width: 12px;
+				height: 12px;
+				box-shadow: none;
+			}
 		}
 	}
 	&-container {

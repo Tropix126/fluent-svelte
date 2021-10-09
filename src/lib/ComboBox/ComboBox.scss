@@ -1,0 +1,74 @@
+@use "../mixins" as *;
+
+@keyframes menu-in {
+	0% {
+		clip-path: var(--grow-clip-path);
+	}
+	100% {
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+	}
+}
+
+@keyframes shadow-in {
+	0% {
+		box-shadow: none;
+	}
+	100% {
+		box-shadow: var(--flyout-shadow);
+	}
+}
+
+.combo-box {
+	user-select: none;
+	display: inline-flex;
+	position: relative;
+	:global(.button) {
+		flex: 1 1 auto;
+	}
+	&-label {
+		flex: 1 1 auto;
+		text-align: left;
+		min-height: 20px;
+		&.placeholder {
+			color: var(--text-secondary);
+		}
+	}
+	&-icon {
+		margin-left: 8px;
+		width: 12px;
+		height: 12px;
+	}
+	&-dropdown {
+		max-height: 504px;
+		overflow: auto;
+		overflow: overlay;
+		animation: menu-in var(--control-normal-duration) var(--control-fast-out-slow-in-easing),
+			shadow-in var(--control-normal-duration) var(--control-fast-out-slow-in-easing)
+				var(--control-normal-duration);
+		box-sizing: border-box;
+		background-clip: padding-box;
+		border: 1px solid var(--surface-stroke-flyout);
+		background-color: var(--solid-background-tertiary);
+		border-radius: var(--overlay-corner-radius);
+		box-shadow: var(--flyout-shadow);
+		top: var(--menu-offset, 0);
+		left: 0;
+		margin: 0;
+		margin-top: -6px;
+		margin-left: -5px;
+		padding: 1px;
+		width: calc(100% + 8px);
+		position: absolute;
+		&.direction- {
+			&top {
+				--grow-clip-path: polygon(0 0, 100% 0, 100% 25%, 0 25%);
+			}
+			&center {
+				--grow-clip-path: polygon(0 25%, 100% 24%, 100% 75%, 0 75%);
+			}
+			&bottom {
+				--grow-clip-path: polygon(0 75%, 100% 75%, 100% 100%, 0 100%);
+			}
+		}
+	}
+}

@@ -3,6 +3,9 @@
 	import "$lib/theme.css";
 
 	let value = Math.floor(Math.random() * 101);
+
+	let normalRadioGroup = 0;
+	let disabledRadioGroup = 0;
 </script>
 
 <h1>fluent-svelte test page</h1>
@@ -42,11 +45,73 @@
 	<Fluent.ToggleSwitch disabled checked>Switch</Fluent.ToggleSwitch>
 </div>
 
+<h2>Radio Button</h2>
+<div>
+	<Fluent.RadioButton bind:group={normalRadioGroup} value={0}>Switch</Fluent.RadioButton>
+	<Fluent.RadioButton bind:group={normalRadioGroup} value={1}>Switch</Fluent.RadioButton>
+</div>
+<div>
+	<Fluent.RadioButton disabled bind:group={disabledRadioGroup} value={0}
+		>Switch</Fluent.RadioButton
+	>
+	<Fluent.RadioButton disabled bind:group={disabledRadioGroup} value={1}
+		>Switch</Fluent.RadioButton
+	>
+</div>
+
+<h2>ComboBox</h2>
+<Fluent.ComboBox
+	placeholder="ComboBox"
+	items={[
+		{
+			name: "Item 1",
+			value: 0
+		},
+		{
+			name: "Item 2",
+			value: 1
+		},
+		{
+			name: "Item 3",
+			value: 2
+		},
+		{
+			name: "Item 4",
+			value: 3
+		}
+	]}
+/>
+
+<Fluent.ComboBox
+	placeholder="ComboBox"
+	disabled
+	items={[
+		{
+			name: "Item 1",
+			value: 0
+		},
+		{
+			name: "Item 2",
+			value: 1
+		},
+		{
+			name: "Item 3",
+			value: 2
+		},
+		{
+			name: "Item 4",
+			value: 3
+		}
+	]}
+/>
+
 <h2>Progress Ring</h2>
 <div>
 	<Fluent.ProgressRing />
 	<Fluent.ProgressRing bind:value />
-	<Fluent.Button on:click={() => value = Math.floor(Math.random() * 101)}>Randomize Value</Fluent.Button>
+	<Fluent.Button on:click={() => (value = Math.floor(Math.random() * 101))}
+		>Randomize Value</Fluent.Button
+	>
 </div>
 <div>
 	<Fluent.ProgressRing size={60} />

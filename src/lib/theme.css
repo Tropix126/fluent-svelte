@@ -70,7 +70,7 @@
 	--control-fill-default: rgba(255, 255, 255, 70%);
 	--control-fill-secondary: rgba(249, 249, 249, 50%);
 	--control-fill-tertiary: rgba(249, 249, 249, 30%);
-	--control-fill-disabled: var(--control-tertiary);
+	--control-fill-disabled: var(--control-fill-tertiary);
 	--control-fill-input-active: #ffffff;
 
 	/* Control Strong Fill */
@@ -82,7 +82,7 @@
 
 	/* Control Alt Fill */
 	--control-alt-fill-transparent: transparent;
-	--control-alt-fill-default: rgba(0, 0, 0, 2.41%);
+	--control-alt-fill-secondary: rgba(0, 0, 0, 2.41%);
 	--control-alt-fill-tertiary: rgba(0, 0, 0, 5.78%);
 	--control-alt-fill-quarternary: rgba(0, 0, 0, 9.24%);
 	--control-alt-fill-disabled: var(--control-alt-transparent);
