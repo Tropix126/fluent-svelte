@@ -1,0 +1,84 @@
+@use "../mixins" as *;
+
+.radio-button {
+	@include flex($inline: true, $align: center, $justify: center);
+	position: relative;
+	appearance: none;
+	outline: none;
+	margin: 0;
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	background-color: var(--control-alt-fill-secondary);
+	border: 1px solid var(--control-strong-stroke-default);
+	&::before {
+		content: "";
+		position: absolute;
+		width: 4px;
+		height: 4px;
+		visibility: hidden;
+		border-radius: 12px;
+		transition: var(--control-normal-duration) var(--control-fast-out-slow-in-easing);
+		background-color: var(--text-on-accent-primary);
+	}
+	&:focus-visible {
+		box-shadow: var(--focus-stroke);
+	}
+	&:hover {
+		background-color: var(--control-alt-fill-tertiary);
+	}
+	&:active {
+		background-color: var(--control-alt-fill-quarternary);
+		border-color: var(--control-strong-stroke-disabled);
+		&::before {
+			width: 10px;
+			height: 10px;
+			visibility: visible;
+		}
+	}
+	&:disabled {
+		border-color: var(--control-strong-stroke-disabled);
+		background-color: var(--control-alt-fill-disabled);
+	}
+	&:checked {
+		background-color: var(--accent-default);
+		border-color: transparent;
+		&::before {
+			width: 12px;
+			height: 12px;
+			box-shadow: 0 0 0 1px var(--control-stroke-default);
+			visibility: visible;
+		}
+		&:hover {
+			background-color: var(--accent-secondary);
+			&::before {
+				width: 14px;
+				height: 14px;
+			}
+		}
+		&:active {
+			background-color: var(--accent-tertiary);
+			&::before {
+				width: 10px;
+				height: 10px;
+			}
+		}
+		&:disabled {
+			background-color: var(--accent-disabled);
+			&::before {
+				width: 12px;
+				height: 12px;
+				box-shadow: none;
+			}
+		}
+	}
+	&-container {
+		@include flex($inline: true, $align: center);
+		@include control-typography;
+		min-height: 32px;
+		color: var(--text-primary);
+		> span {
+			padding-left: 8px;
+		}
+	}
+}

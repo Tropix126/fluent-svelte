@@ -20,30 +20,30 @@
 </script>
 
 <svg
-	{...$$restProps}
-	aria-valuemax={value ? 100 : undefined}
-	aria-valuemin={value ? 0 : undefined}
-	aria-valuenow={value}
-	class="progress-ring{` ${className}` || ''}"
-	class:indeterminate={!value}
-	height={size}
-	on:blur
 	on:click
-	on:contextmenu
-	on:dblclick
+	on:blur
 	on:focus
-	on:keydown
-	on:keypress
-	on:keyup
+	on:dblclick
+	on:contextmenu
 	on:mousedown
-	on:mouseleave
-	on:mouseout
-	on:mouseover
 	on:mouseup
-	role={value ? "progressbar" : "status"}
+	on:mouseover
+	on:mouseout
+	on:mouseleave
+	on:keypress
+	on:keydown
+	on:keyup
 	tabindex="-1"
-	viewBox="0 0 16 16"
+	class="progress-ring {className || ''}"
+	class:indeterminate={!value}
 	width={size}
+	height={size}
+	viewBox="0 0 16 16"
+	role={value ? "progressbar" : "status"}
+	aria-valuemin={value ? 0 : undefined}
+	aria-valuemax={value ? 100 : undefined}
+	aria-valuenow={value}
+	{...$$restProps}
 >
 	<circle
 		bind:this={circle}

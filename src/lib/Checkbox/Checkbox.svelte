@@ -5,6 +5,9 @@
 	/** Controls whether the checkbox is in the indeterminate state */
 	export let indeterminate = false;
 
+	/** Specifies the input's native value attribute */
+	export let value = undefined;
+
 	/** Controls whether the checkbox is disabled */
 	export let disabled = false;
 

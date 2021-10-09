@@ -67,9 +67,9 @@
 
 	/* Control Fill */
 	--control-fill-transparent: transparent;
-	--control-fill-default: hsla(0, 0%, 100%, 0.7);
-	--control-fill-secondary: hsla(0, 0%, 98%, 0.5);
-	--control-fill-tertiary: hsla(0, 0%, 98%, 0.3);
+	--control-fill-default: hsl(0, 0%, 100%, 0.7);
+	--control-fill-secondary: hsl(0, 0%, 98%, 0.5);
+	--control-fill-tertiary: hsl(0, 0%, 98%, 0.3);
 	--control-fill-disabled: var(--control-fill-tertiary);
 	--control-fill-input-active: white;
 
@@ -121,7 +121,7 @@
 	--card-stroke-default-solid: hsl(0, 0%, 92%);
 
 	/* Surface Stroke */
-	--surface-stroke-default: hsla(0, 0%, 46%, 0.4);
+	--surface-stroke-default: hsl(0, 0%, 46%, 0.4);
 	--surface-stroke-flyout: hsl(0, 0%, 0%, 5.78%);
 
 	/* Divider Stroke */
@@ -132,15 +132,15 @@
 	--focus-stroke-inner: white;
 
 	/* Card Background */
-	--card-background-default: hsla(0, 0%, 100%, 0.7);
-	--card-background-secondary: hsla(0, 0%, 96%, 0.5);
+	--card-background-default: hsl(0, 0%, 100%, 0.7);
+	--card-background-secondary: hsl(0, 0%, 96%, 0.5);
 	--card-background-tertiary: white;
 
 	/* Smoke Background */
-	--smoke-background-default: hsla(0, 0%, 0%, 0.3);
+	--smoke-background-default: hsl(0, 0%, 0%, 0.3);
 
 	/* Layer */
-	--layer-background-default: hsla(0, 0%, 100%, 0.5);
+	--layer-background-default: hsl(0, 0%, 100%, 0.5);
 	--layer-background-alt: white;
 
 	/* Layer on Acrylic */
@@ -188,15 +188,15 @@
 	--control-border-default: var(--control-stroke-default) var(--control-stroke-default) var(--control-stroke-secondary) var(--control-stroke-default);
 
 	/* Shadows */
-	--card-shadow: 0px 2px 4px hsla(0, 0%, 0%, 0.04);
-	--tooltip-shadow: 0px 4px 8px hsla(0, 0%, 0%, 0.14);
-	--flyout-shadow: 0px 8px 16px hsla(0, 0%, 0%, 0.14);
-	--dialog-shadow: 0px 32px 64px hsla(0, 0%, 0%, 0.1876), 0px 2px 21px hsla(0, 0%, 0%, 0.1474);
+	--card-shadow: 0px 2px 4px hsl(0, 0%, 0%, 0.04);
+	--tooltip-shadow: 0px 4px 8px hsl(0, 0%, 0%, 0.14);
+	--flyout-shadow: 0px 8px 16px hsl(0, 0%, 0%, 0.14);
+	--dialog-shadow: 0px 32px 64px hsl(0, 0%, 0%, 0.1876), 0px 2px 21px hsl(0, 0%, 0%, 0.1474);
 
 	/* Shell Shadows */
 	--inactive-window-shadow: 0px 16px 32px hsl(0, 0%, 0%, 0.1876),
-	0px 2px 10.67px hsla(0, 0%, 0%, 0.1474);
-	--active-window-shadow: 0px 32px 64px hsla(0, 0%, 0%, 0.28), 0px 2px 21px hsla(0, 0%, 0%, 0.22);
+	0px 2px 10.67px hsl(0, 0%, 0%, 0.1474);
+	--active-window-shadow: 0px 32px 64px hsl(0, 0%, 0%, 0.28), 0px 2px 21px hsl(0, 0%, 0%, 0.22);
 }
 /* } */
 

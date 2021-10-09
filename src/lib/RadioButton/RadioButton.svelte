@@ -1,19 +1,21 @@
-<script>
-	/** Controls whether the switch is toggled or not */
-	export let checked = false;
+<script lang="ts">
+	/** Value representing a group of radios that the inputs will be bound to */
+	export let group: any = [];
 
-	/** Controls whether the checkbox is disabled */
+	/** Specifies whether the radio is disabled */
 	export let disabled = false;
 
 	/** Specifies the input's native value attribute */
 	export let value = undefined;
 
-	/** Specifies a custom class name for the switch */
+	/** Specifies a custom class name for the outer combobox container */
 	let className = "";
 	export { className as class };
+
+	$: checked = group === value;
 </script>
 
-<label class="toggle-switch-container" class:disabled>
+<label class="radio-button-container">
 	<input
 		on:change
 		on:input
@@ -31,20 +33,19 @@
 		on:keypress
 		on:keydown
 		on:keyup
-		class="toggle-switch {className || ''}"
-		type="checkbox"
-		bind:checked
+		type="radio"
+		aria-selected={checked}
+		class="radio-button {className || ''}"
+		bind:group
 		{value}
 		{disabled}
 		{...$$restProps}
 	/>
-	{#if $$slots.default}
-		<span>
-			<slot />
-		</span>
-	{/if}
+	<span>
+		<slot />
+	</span>
 </label>
 
 <style lang="scss">
-	@use "./ToggleSwitch";
+	@use "./RadioButton";
 </style>

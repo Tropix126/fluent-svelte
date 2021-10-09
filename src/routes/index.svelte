@@ -1,9 +1,12 @@
 <script>
 	// this doesn't use the Fluent namespace because WebStorm
-	import { Button, Checkbox, ProgressRing, ToggleSwitch } from "$lib";
+	import { Button, Checkbox, ProgressRing, ToggleSwitch, RadioButton, ComboBox } from "$lib";
 	import "$lib/theme.css";
 
 	let value = Math.floor(Math.random() * 101);
+
+	let normalRadioGroup = 0;
+	let disabledRadioGroup = 0;
 </script>
 
 <h1>fluent-svelte test page</h1>
@@ -42,6 +45,66 @@
 	<ToggleSwitch disabled>Switch</ToggleSwitch>
 	<ToggleSwitch checked disabled>Switch</ToggleSwitch>
 </div>
+
+<h2>Radio Button</h2>
+<div>
+	<RadioButton bind:group={normalRadioGroup} value={0}>Switch</RadioButton>
+	<RadioButton bind:group={normalRadioGroup} value={1}>Switch</RadioButton>
+</div>
+<div>
+	<RadioButton disabled bind:group={disabledRadioGroup} value={0}>
+    Switch
+  </RadioButton>
+	<RadioButton disabled bind:group={disabledRadioGroup} value={1}>
+    Switch
+  </RadioButton>
+</div>
+
+<h2>ComboBox</h2>
+<ComboBox
+	placeholder="ComboBox"
+	items={[
+		{
+			name: "Item 1",
+			value: 0
+		},
+		{
+			name: "Item 2",
+			value: 1
+		},
+		{
+			name: "Item 3",
+			value: 2
+		},
+		{
+			name: "Item 4",
+			value: 3
+		}
+	]}
+/>
+
+<ComboBox
+	placeholder="ComboBox"
+	disabled
+	items={[
+		{
+			name: "Item 1",
+			value: 0
+		},
+		{
+			name: "Item 2",
+			value: 1
+		},
+		{
+			name: "Item 3",
+			value: 2
+		},
+		{
+			name: "Item 4",
+			value: 3
+		}
+	]}
+/>
 
 <h2>Progress Ring</h2>
 <div>
