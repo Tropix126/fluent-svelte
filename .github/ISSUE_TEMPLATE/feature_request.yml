@@ -1,14 +1,14 @@
 name: Bug Report
 description: Create a bug report to help improve the Files website
-labels: [bug]
+labels: [feature_request]
 body:
   - type: checkboxes
     attributes:
       label: Before you start...
       options:
-        - label: Have you refreshed the page? You might be using an old version of the site.
+        - label: Have you updated your dependencies? You might be using an old version of the library.
           required: true
-        - label: Have you checked for an existing feature request on this topic? If there is one, post a comment on it instead.
+        - label: Have you checked if someone already requested this feature? If they have, post a comment with your use case instead.
           required: true
   - type: textarea
     attributes:
