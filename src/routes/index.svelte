@@ -117,7 +117,7 @@
 
 	:global(body) {
 		font-family: var(--font-family-text);
-		background-color: var(--solid-background-base);
+		background: var(--solid-background-base);
 		color: var(--text-primary);
 	}
 

@@ -7,7 +7,7 @@
 	border: 1px solid var(--control-strong-stroke-default);
 	border-radius: 20px;
 	outline: none;
-	background-color: var(--control-alt-fill-secondary);
+	background: var(--control-alt-fill-secondary);
 	appearance: none;
 	inline-size: 40px;
 	block-size: 20px;
@@ -16,7 +16,7 @@
 		content: "";
 		position: absolute;
 		border-radius: 7px;
-		background-color: var(--text-secondary);
+		background: var(--text-secondary);
 		transition: var(--control-fast-duration) ease-in-out transform,
 			var(--control-fast-duration) var(--control-fast-out-slow-in-easing) height,
 			var(--control-fast-duration) var(--control-fast-out-slow-in-easing) width,
@@ -32,7 +32,7 @@
 	}
 
 	&:hover {
-		background-color: var(--control-alt-fill-tertiary);
+		background: var(--control-alt-fill-tertiary);
 
 		&::before {
 			inline-size: 14px;
@@ -41,7 +41,7 @@
 	}
 
 	&:active {
-		background-color: var(--control-alt-fill-quarternary);
+		background: var(--control-alt-fill-quarternary);
 
 		&::before {
 			inline-size: 17px;
@@ -51,11 +51,11 @@
 
 	&:disabled {
 		border-color: var(--control-strong-stroke-disabled);
-		background-color: var(--control-alt-fill-disabled);
+		background: var(--control-alt-fill-disabled);
 
 		&::before {
 			margin: 0 !important;
-			background-color: var(--text-disabled);
+			background: var(--text-disabled);
 			box-shadow: none;
 			inline-size: 12px;
 			block-size: 12px;
@@ -64,16 +64,16 @@
 
 	&:checked {
 		border: none;
-		background-color: var(--accent-default);
+		background: var(--accent-default);
 
 		&::before {
-			background-color: var(--text-on-accent-primary);
+			background: var(--text-on-accent-primary);
 			box-shadow: 0 0 0 1px solid var(--control-stroke-default);
 			transform: translateX(20px);
 		}
 
 		&:hover {
-			background-color: var(--accent-secondary);
+			background: var(--accent-secondary);
 
 			&::before {
 				margin-inline-start: -1px;
@@ -81,7 +81,7 @@
 		}
 
 		&:active {
-			background-color: var(--accent-tertiary);
+			background: var(--accent-tertiary);
 
 			&::before {
 				margin-inline-start: -4px;
@@ -89,10 +89,10 @@
 		}
 
 		&:disabled {
-			background-color: var(--accent-disabled);
+			background: var(--accent-disabled);
 			&::before {
 				box-shadow: none;
-				background-color: var(--text-on-accent-disabled);
+				background: var(--text-on-accent-disabled);
 			}
 		}
 	}
