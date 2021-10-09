@@ -11,7 +11,7 @@
 	padding: 0 11px;
 	border-radius: var(--control-corner-radius);
 	outline: none;
-	background: var(--subtle-fill-transparent);
+	background-color: var(--subtle-fill-transparent);
 	color: var(--text-primary);
 	text-decoration: none;
 	cursor: default;
@@ -22,7 +22,7 @@
 		content: "";
 		position: absolute;
 		border-radius: 3px;
-		background: var(--accent-default);
+		background-color: var(--accent-default);
 		transition: transform var(--control-fast-duration) var(--control-fast-out-slow-in-easing);
 		opacity: 0;
 		inset-inline-start: 0;
@@ -36,11 +36,11 @@
 
 	&:hover,
 	&.selected {
-		background: var(--subtle-fill-secondary);
+		background-color: var(--subtle-fill-secondary);
 	}
 
 	&:active {
-		background: var(--subtle-fill-tertiary);
+		background-color: var(--subtle-fill-tertiary);
 		color: var(--text-secondary);
 
 		&::before {
@@ -49,7 +49,7 @@
 	}
 
 	&.disabled {
-		background: var(--subtle-fill-transparent);
+		background-color: var(--subtle-fill-transparent);
 		color: var(--text-disabled);
 		pointer-events: none;
 	}

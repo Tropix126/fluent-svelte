@@ -48,25 +48,25 @@
 	let menuOffset =
 		itemHeight * -(selection ? items.indexOf(selection) : Math.floor(items.length / 2));
 
-	const updateOffset = (target: HTMLElement) => {
+	function updateOffset(target: HTMLElement) {
 		menuOffset = -(
 			target.offsetTop - parseInt(getComputedStyle(target).getPropertyValue("margin-top"))
 		);
-	};
+	}
 
-	const selectItem = (item: Item) => {
+	function selectItem(item: Item) {
 		value = item.value;
 		open = false;
 		if (container) (container.children[0] as HTMLElement).focus();
-	};
+	}
 
-	const openMenu = async () => {
+	async function openMenu() {
 		open = !open;
 		await tick();
 		if (menu && selection) updateOffset(menu.children[items.indexOf(selection)]);
-	};
+	}
 
-	const handleArrowKeys = (event: KeyboardEvent) => {
+	function handleArrowKeys(event: KeyboardEvent) {
 		const { key } = event;
 
 		if (key === "ArrowDown" || key === "ArrowUp") event.preventDefault();
@@ -78,13 +78,14 @@
 			event.preventDefault();
 			selectItem(selection);
 		} else if (!menu && selection && key === "Enter") openMenu();
-	};
+	}
 </script>
 
 <svelte:window on:click={() => (open = false)} />
 
 <div
 	class="combo-box {className || 'class'}"
+	class:disabled
 	on:click={e => e.stopPropagation()}
 	bind:this={container}
 	{...$$restProps}

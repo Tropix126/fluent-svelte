@@ -1,6 +1,6 @@
 @keyframes progress-ring-indeterminate {
 	0% {
-		stroke-dasharray: .01px 43.97px;
+		stroke-dasharray: 0.01px 43.97px;
 		transform: rotate(0deg);
 	}
 	50% {
@@ -8,7 +8,7 @@
 		transform: rotate(450deg);
 	}
 	100% {
-		stroke-dasharray: .01px 43.97px;
+		stroke-dasharray: 0.01px 43.97px;
 		transform: rotate(1080deg);
 	}
 }

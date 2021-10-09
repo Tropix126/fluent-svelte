@@ -5,7 +5,8 @@
 	border: 1px solid var(--control-strong-stroke-default);
 	border-radius: var(--control-corner-radius);
 	outline: none;
-	background: var(--control-alt-secondary);
+	background-clip: padding-box;
+	background-color: var(--control-alt-fill-secondary);
 	appearance: none;
 	inline-size: 20px;
 	block-size: 20px;
@@ -15,36 +16,42 @@
 	}
 
 	&:hover {
-		background: var(--control-alt-fill-tertiary);
+		background-color: var(--control-alt-fill-tertiary);
 	}
 
 	&:active {
 		border-color: var(--control-strong-stroke-disabled);
-		background: var(--control-alt-fill-quarternary);
+		background-color: var(--control-alt-fill-quarternary);
+		+ .checkbox-glyph {
+			color: var(--text-on-accent-secondary);
+		}
 	}
 
 	&:disabled {
 		border-color: var(--control-strong-stroke-disabled);
-		background: var(--control-alt-fill-disabled);
+		background-color: var(--control-alt-fill-disabled);
 		pointer-events: none;
 	}
 
 	&:checked,
 	&:indeterminate {
-		border-color: transparent;
-		background: var(--accent-default);
+		border: none;
+		background-color: var(--accent-default);
 
 		&:hover {
-			background: var(--accent-secondary);
+			background-color: var(--accent-secondary);
 		}
 
 		&:active {
-			background: var(--accent-tertiary);
+			background-color: var(--accent-tertiary);
 		}
 
 		&:disabled {
 			border-color: var(--control-strong-stroke-disabled);
-			background: var(--accent-disabled);
+			background-color: var(--accent-disabled);
+			+ .checkbox-glyph {
+				color: var(--text-on-accent-disabled);
+			}
 		}
 
 		+ .checkbox-glyph .path-checkmark {
@@ -71,6 +78,7 @@
 
 	&-glyph {
 		position: absolute;
+		color: inherit;
 		color: var(--text-on-accent-primary);
 		inline-size: 12px;
 		block-size: 12px;

@@ -52,12 +52,8 @@
 	<RadioButton bind:group={normalRadioGroup} value={1}>Switch</RadioButton>
 </div>
 <div>
-	<RadioButton disabled bind:group={disabledRadioGroup} value={0}>
-    Switch
-  </RadioButton>
-	<RadioButton disabled bind:group={disabledRadioGroup} value={1}>
-    Switch
-  </RadioButton>
+	<RadioButton disabled bind:group={disabledRadioGroup} value={0}>Switch</RadioButton>
+	<RadioButton disabled bind:group={disabledRadioGroup} value={1}>Switch</RadioButton>
 </div>
 
 <h2>ComboBox</h2>
@@ -110,7 +106,7 @@
 <div>
 	<ProgressRing />
 	<ProgressRing bind:value />
-	<Button on:click={() => value = Math.floor(Math.random() * 101)}>Randomize Value</Button>
+	<Button on:click={() => (value = Math.floor(Math.random() * 101))}>Randomize Value</Button>
 </div>
 <div>
 	<ProgressRing size={60} />
@@ -136,7 +132,7 @@
 	}
 
 	div {
-			@include flex($gap: 12px);
-			margin-block-end: 12px;
-		}
+		@include flex($gap: 12px);
+		margin-block-end: 12px;
+	}
 </style>
