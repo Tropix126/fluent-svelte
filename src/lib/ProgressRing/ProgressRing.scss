@@ -1,32 +1,32 @@
 @keyframes progress-ring-indeterminate {
-    0% {
-        stroke-dasharray: 0.01px 43.97px;
-        transform: rotate(0deg);
-    }
-    50% {
-        transform: rotate(450deg);
-        stroke-dasharray: 21.99px 21.99px;
-    }
-    100% {
-        stroke-dasharray: 0.01px 43.97px;
-        transform: rotate(1080deg);
-    }
+	0% {
+		stroke-dasharray: 0.01px 43.97px;
+		transform: rotate(0deg);
+	}
+	50% {
+		transform: rotate(450deg);
+		stroke-dasharray: 21.99px 21.99px;
+	}
+	100% {
+		stroke-dasharray: 0.01px 43.97px;
+		transform: rotate(1080deg);
+	}
 }
 
 .progress-ring {
-    min-width: 16px;
-    min-height: 16px;
-    circle {
-        fill: none;
-        transform: rotate(-90deg);
-        transition: all var(--control-normal-duration) linear;
-        stroke: var(--accent-default);
-        stroke-width: 1.5;
-        stroke-linecap: round;
-        stroke-dasharray: 43.75;
-        transform-origin: 50% 50%;
-    }
-    &.indeterminate circle {
-        animation: progress-ring-indeterminate 2s linear infinite;
-    }
+	min-width: 16px;
+	min-height: 16px;
+	circle {
+		fill: none;
+		transform: rotate(-90deg);
+		transition: all var(--control-normal-duration) linear;
+		stroke: var(--accent-default);
+		stroke-width: 1.5;
+		stroke-linecap: round;
+		stroke-dasharray: 43.75;
+		transform-origin: 50% 50%;
+	}
+	&.indeterminate circle {
+		animation: progress-ring-indeterminate 2s linear infinite;
+	}
 }

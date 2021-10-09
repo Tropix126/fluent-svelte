@@ -1,0 +1,72 @@
+@use "../mixins" as *;
+
+.combo-box-item {
+	@include flex($align: center);
+	@include control-typography;
+	position: relative;
+	box-sizing: border-box;
+	flex: 0 0 auto;
+	outline: none;
+	height: 32px;
+	margin: 4px;
+	padding: 0 11px;
+	background-color: var(--subtle-fill-transparent);
+	border-radius: var(--control-corner-radius);
+	color: var(--text-primary);
+	text-decoration: none;
+	cursor: default;
+	user-select: none;
+
+	&::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		width: 3px;
+		height: 0;
+		border-radius: 3px;
+		background-color: var(--accent-default);
+		transition: transform var(--control-fast-duration) var(--control-fast-out-slow-in-easing);
+		opacity: 0;
+	}
+
+	&:focus-visible {
+		box-shadow: 0 0 0 1px var(--focus-stroke-inner), 0 0 0 3px var(--focus-stroke-outer);
+	}
+
+	&:hover,
+	&.selected {
+		background-color: var(--subtle-fill-secondary);
+	}
+
+	&:active {
+		background-color: var(--subtle-fill-tertiary);
+		color: var(--text-secondary);
+		&::before {
+			transform: scaleY(0.625);
+		}
+	}
+
+	&.disabled {
+		pointer-events: none;
+		background-color: var(--subtle-fill-transparent);
+		color: var(--text-disabled);
+	}
+
+	&.selected::before {
+		height: 16px;
+		opacity: 1;
+	}
+
+	> span {
+		flex: 1 1 auto;
+		max-width: 100%;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
+	> :global(svg) {
+		@include icon($size: 16px);
+		margin-right: 16px;
+	}
+}
