@@ -1,5 +1,5 @@
-name: Bug Report
-description: Create a bug report to help improve the Files website
+name: Feature Request
+description: Request a new feature in the Fluent Svelte library.
 labels: [feature_request]
 body:
   - type: checkboxes
