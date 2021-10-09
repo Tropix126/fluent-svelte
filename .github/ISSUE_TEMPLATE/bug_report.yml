@@ -1,12 +1,12 @@
 name: Bug Report
-description: Create a bug report to help improve the Files website
+description: Create a bug report to help improve the Fluent Svelte library
 labels: [bug]
 body:
   - type: checkboxes
     attributes:
       label: Before you start...
       options:
-        - label: Have you refreshed the page? You might be using an old version of the site.
+        - label: Have you updated your dependencies? You might be using an old version of the library.
           required: true
         - label: Have you checked for an existing issue on this topic? If there is one, post a comment on it instead.
           required: true
