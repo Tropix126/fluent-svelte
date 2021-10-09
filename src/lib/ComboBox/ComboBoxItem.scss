@@ -3,30 +3,31 @@
 .combo-box-item {
 	@include flex($align: center);
 	@include control-typography;
+
 	position: relative;
 	box-sizing: border-box;
 	flex: 0 0 auto;
-	outline: none;
-	height: 32px;
 	margin: 4px;
 	padding: 0 11px;
-	background-color: var(--subtle-fill-transparent);
 	border-radius: var(--control-corner-radius);
+	outline: none;
+	background: var(--subtle-fill-transparent);
 	color: var(--text-primary);
 	text-decoration: none;
 	cursor: default;
 	user-select: none;
+	block-size: 32px;
 
 	&::before {
 		content: "";
 		position: absolute;
-		left: 0;
-		width: 3px;
-		height: 0;
 		border-radius: 3px;
-		background-color: var(--accent-default);
+		background: var(--accent-default);
 		transition: transform var(--control-fast-duration) var(--control-fast-out-slow-in-easing);
 		opacity: 0;
+		inset-inline-start: 0;
+		inline-size: 3px;
+		block-size: 0;
 	}
 
 	&:focus-visible {
@@ -35,38 +36,39 @@
 
 	&:hover,
 	&.selected {
-		background-color: var(--subtle-fill-secondary);
+		background: var(--subtle-fill-secondary);
 	}
 
 	&:active {
-		background-color: var(--subtle-fill-tertiary);
+		background: var(--subtle-fill-tertiary);
 		color: var(--text-secondary);
+
 		&::before {
 			transform: scaleY(0.625);
 		}
 	}
 
 	&.disabled {
-		pointer-events: none;
-		background-color: var(--subtle-fill-transparent);
+		background: var(--subtle-fill-transparent);
 		color: var(--text-disabled);
+		pointer-events: none;
 	}
 
 	&.selected::before {
-		height: 16px;
 		opacity: 1;
+		block-size: 16px;
 	}
 
 	> span {
 		flex: 1 1 auto;
-		max-width: 100%;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
+		max-inline-size: 100%;
 	}
 
 	> :global(svg) {
 		@include icon($size: 16px);
-		margin-right: 16px;
+		margin-inline-end: 16px;
 	}
 }

@@ -2,89 +2,107 @@
 
 .toggle-switch {
 	@include flex($inline: true, $align: center);
+
 	position: relative;
-	appearance: none;
-	outline: none;
 	margin: 0;
-	width: 40px;
-	height: 20px;
-	border-radius: 20px;
-	background-color: var(--control-alt-fill-secondary);
 	border: 1px solid var(--control-strong-stroke-default);
+	border-radius: 20px;
+	outline: none;
+	background: var(--control-alt-secondary);
+	appearance: none;
+	inline-size: 40px;
+	block-size: 20px;
+
 	&::before {
 		content: "";
 		position: absolute;
-		left: 3px;
-		width: 12px;
-		height: 12px;
-		background-color: var(--text-secondary);
 		border-radius: 7px;
+		background: var(--text-secondary);
 		transition: var(--control-fast-duration) ease-in-out transform,
-			var(--control-fast-duration) var(--control-fast-out-slow-in-easing) height,
-			var(--control-fast-duration) var(--control-fast-out-slow-in-easing) width,
-			var(--control-fast-duration) var(--control-fast-out-slow-in-easing) margin,
-			var(--control-faster-duration) linear background-color;
+		var(--control-fast-duration) var(--control-fast-out-slow-in-easing) height,
+		var(--control-fast-duration) var(--control-fast-out-slow-in-easing) width,
+		var(--control-fast-duration) var(--control-fast-out-slow-in-easing) margin,
+		var(--control-faster-duration) linear background;
+		inset-inline-start: 2px;
+		inline-size: 12px;
+		block-size: 12px;
 	}
+
 	&:focus-visible {
 		box-shadow: var(--focus-stroke);
 	}
+
 	&:hover {
-		background-color: var(--control-alt-fill-tertiary);
+		background: var(--control-alt-fill-tertiary);
+
 		&::before {
-			width: 14px;
-			height: 14px;
+			inline-size: 14px;
+			block-size: 14px;
 		}
 	}
+
 	&:active {
-		background-color: var(--control-alt-fill-quarternary);
 		border-color: var(--control-strong-stroke-disabled);
+		background: var(--control-alt-fill-quarternary);
+
 		&::before {
-			width: 17px;
-			height: 14px;
+			inline-size: 17px;
+			block-size: 14px;
 		}
 	}
+
 	&:disabled {
 		border-color: var(--control-strong-stroke-disabled);
-		background-color: var(--control-alt-fill-disabled);
+		background: var(--control-alt-fill-disabled);
+
 		&::before {
 			margin: 0 !important;
-			width: 12px;
-			height: 12px;
+			background: var(--text-disabled);
 			box-shadow: none;
-			background-color: var(--text-disabled);
+			inline-size: 12px;
+			block-size: 12px;
 		}
 	}
+
 	&:checked {
-		background-color: var(--accent-default);
 		border-color: transparent;
+		background: var(--accent-default);
+
 		&::before {
-			box-shadow: 0 0 0 1px var(--control-stroke-default);
-			background-color: var(--text-on-accent-primary);
+			background: var(--text-on-accent-primary);
+			box-shadow: 0 0 0 1px solid var(--control-stroke-default);
 			transform: translateX(20px);
 		}
+
 		&:hover {
-			background-color: var(--accent-secondary);
+			background: var(--accent-secondary);
+
 			&::before {
-				margin-left: -1px;
+				margin-inline-start: -1px;
 			}
 		}
+
 		&:active {
-			background-color: var(--accent-tertiary);
+			background: var(--accent-tertiary);
+
 			&::before {
-				margin-left: -4px;
+				margin-inline-start: -4px;
 			}
 		}
+
 		&:disabled {
-			background-color: var(--accent-disabled);
+			background: var(--accent-disabled);
 		}
 	}
+
 	&-container {
 		@include flex($inline: true, $align: center);
 		@include control-typography;
-		min-height: 32px;
 		color: var(--text-primary);
+		min-block-size: 32px;
+
 		> span {
-			padding-left: 8px;
+			padding-inline-start: 8px;
 		}
 	}
 }

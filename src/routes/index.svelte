@@ -1,5 +1,6 @@
 <script>
-	import * as Fluent from "$lib";
+	// this doesn't use the Fluent namespace because WebStorm
+	import { Button, Checkbox, ProgressRing, ToggleSwitch, RadioButton, ComboBox } from "$lib";
 	import "$lib/theme.css";
 
 	let value = Math.floor(Math.random() * 101);
@@ -13,54 +14,54 @@
 
 <h2>Buttons</h2>
 <div>
-	<Fluent.Button>Button</Fluent.Button>
-	<Fluent.Button variant="accent">Button</Fluent.Button>
-	<Fluent.Button variant="hyperlink">Button</Fluent.Button>
+	<Button>Button</Button>
+	<Button variant="accent">Button</Button>
+	<Button variant="hyperlink">Button</Button>
 </div>
 <div>
-	<Fluent.Button disabled>Button</Fluent.Button>
-	<Fluent.Button disabled variant="accent">Button</Fluent.Button>
-	<Fluent.Button disabled variant="hyperlink">Button</Fluent.Button>
+	<Button disabled>Button</Button>
+	<Button disabled variant="accent">Button</Button>
+	<Button disabled variant="hyperlink">Button</Button>
 </div>
 
 <h2>Checkboxes</h2>
 <div>
-	<Fluent.Checkbox>Checkbox</Fluent.Checkbox>
-	<Fluent.Checkbox checked>Checkbox</Fluent.Checkbox>
-	<Fluent.Checkbox indeterminate checked>Checkbox</Fluent.Checkbox>
+	<Checkbox>Checkbox</Checkbox>
+	<Checkbox checked>Checkbox</Checkbox>
+	<Checkbox checked indeterminate>Checkbox</Checkbox>
 </div>
 <div>
-	<Fluent.Checkbox disabled>Checkbox</Fluent.Checkbox>
-	<Fluent.Checkbox disabled checked>Checkbox</Fluent.Checkbox>
-	<Fluent.Checkbox disabled indeterminate checked>Checkbox</Fluent.Checkbox>
+	<Checkbox disabled>Checkbox</Checkbox>
+	<Checkbox checked disabled>Checkbox</Checkbox>
+	<Checkbox checked disabled indeterminate>Checkbox</Checkbox>
 </div>
 
 <h2>Switches</h2>
 <div>
-	<Fluent.ToggleSwitch>Switch</Fluent.ToggleSwitch>
-	<Fluent.ToggleSwitch checked>Switch</Fluent.ToggleSwitch>
+	<ToggleSwitch>Switch</ToggleSwitch>
+	<ToggleSwitch checked>Switch</ToggleSwitch>
 </div>
 <div>
-	<Fluent.ToggleSwitch disabled>Switch</Fluent.ToggleSwitch>
-	<Fluent.ToggleSwitch disabled checked>Switch</Fluent.ToggleSwitch>
+	<ToggleSwitch disabled>Switch</ToggleSwitch>
+	<ToggleSwitch checked disabled>Switch</ToggleSwitch>
 </div>
 
 <h2>Radio Button</h2>
 <div>
-	<Fluent.RadioButton bind:group={normalRadioGroup} value={0}>Switch</Fluent.RadioButton>
-	<Fluent.RadioButton bind:group={normalRadioGroup} value={1}>Switch</Fluent.RadioButton>
+	<RadioButton bind:group={normalRadioGroup} value={0}>Switch</RadioButton>
+	<RadioButton bind:group={normalRadioGroup} value={1}>Switch</RadioButton>
 </div>
 <div>
-	<Fluent.RadioButton disabled bind:group={disabledRadioGroup} value={0}
-		>Switch</Fluent.RadioButton
-	>
-	<Fluent.RadioButton disabled bind:group={disabledRadioGroup} value={1}
-		>Switch</Fluent.RadioButton
-	>
+	<RadioButton disabled bind:group={disabledRadioGroup} value={0}>
+    Switch
+  </RadioButton>
+	<RadioButton disabled bind:group={disabledRadioGroup} value={1}>
+    Switch
+  </RadioButton>
 </div>
 
 <h2>ComboBox</h2>
-<Fluent.ComboBox
+<ComboBox
 	placeholder="ComboBox"
 	items={[
 		{
@@ -82,7 +83,7 @@
 	]}
 />
 
-<Fluent.ComboBox
+<ComboBox
 	placeholder="ComboBox"
 	disabled
 	items={[
@@ -107,14 +108,12 @@
 
 <h2>Progress Ring</h2>
 <div>
-	<Fluent.ProgressRing />
-	<Fluent.ProgressRing bind:value />
-	<Fluent.Button on:click={() => (value = Math.floor(Math.random() * 101))}
-		>Randomize Value</Fluent.Button
-	>
+	<ProgressRing />
+	<ProgressRing bind:value />
+	<Button on:click={() => value = Math.floor(Math.random() * 101)}>Randomize Value</Button>
 </div>
 <div>
-	<Fluent.ProgressRing size={60} />
+	<ProgressRing size={60} />
 </div>
 
 <style lang="scss">
@@ -137,7 +136,7 @@
 	}
 
 	div {
-		@include flex($gap: 12px);
-		margin-bottom: 12px;
-	}
+			@include flex($gap: 12px);
+			margin-block-end: 12px;
+		}
 </style>

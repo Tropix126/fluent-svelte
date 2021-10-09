@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { tick, createEventDispatcher } from "svelte";
+	import { createEventDispatcher, tick } from "svelte";
 
 	import Button from "../Button/Button.svelte";
 	import ComboBoxItem from "./ComboBoxItem.svelte";
@@ -28,11 +28,11 @@
 
 	const dispatch = createEventDispatcher();
 
+	$: selection = items.find(i => i.value === value);
 	$: if (menu && menu.children.length > 0) {
 		if (selection) (menu.children[items.indexOf(selection)] as HTMLLIElement).focus();
 		else (menu.children[0] as HTMLLIElement).focus();
 	}
-	$: selection = items.find(i => i.value === value);
 	$: dispatch("select", selection);
 	$: menuGrowDirection =
 		!selection || items[items.indexOf(selection)] === items[Math.floor(items.length / 2)]
@@ -48,26 +48,26 @@
 	let menuOffset =
 		itemHeight * -(selection ? items.indexOf(selection) : Math.floor(items.length / 2));
 
-	function updateOffset(target) {
+	const updateOffset = (target: HTMLElement) => {
 		menuOffset = -(
 			target.offsetTop - parseInt(getComputedStyle(target).getPropertyValue("margin-top"))
 		);
-	}
+	};
 
-	function selectItem(item) {
+	const selectItem = (item: Item) => {
 		value = item.value;
 		open = false;
 		if (container) (container.children[0] as HTMLElement).focus();
-	}
+	};
 
-	async function openMenu() {
+	const openMenu = async () => {
 		open = !open;
 		await tick();
 		if (menu && selection) updateOffset(menu.children[items.indexOf(selection)]);
-	}
+	};
 
-	function handleArrowKeys() {
-		const { key } = event as KeyboardEvent;
+	const handleArrowKeys = (event: KeyboardEvent) => {
+		const { key } = event;
 
 		if (key === "ArrowDown" || key === "ArrowUp") event.preventDefault();
 		if (key === "ArrowDown" && !(items.indexOf(selection) >= items.length - 1)) {
@@ -78,7 +78,7 @@
 			event.preventDefault();
 			selectItem(selection);
 		} else if (!menu && selection && key === "Enter") openMenu();
-	}
+	};
 </script>
 
 <svelte:window on:click={() => (open = false)} />
