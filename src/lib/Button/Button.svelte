@@ -28,7 +28,7 @@
 		on:keypress
 		on:keydown
 		on:keyup
-		class="button style-{variant} {className || ''}"
+		class="button style-{variant} {className ?? ''}"
 		class:disabled
 		{href}
 		{...$$restProps}
@@ -50,7 +50,7 @@
 		on:keypress
 		on:keydown
 		on:keyup
-		class="button style-{variant} {className || ''}"
+		class="button style-{variant} {className ?? ''}"
 		class:disabled
 		{disabled}
 		{...$$restProps}

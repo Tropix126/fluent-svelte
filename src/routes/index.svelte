@@ -1,12 +1,28 @@
 <script>
 	// this doesn't use the Fluent namespace because WebStorm
-	import { Button, Checkbox, ProgressRing, ToggleSwitch, RadioButton, ComboBox } from "$lib";
+	import {
+		Button,
+		Checkbox,
+		ProgressRing,
+		ToggleSwitch,
+		RadioButton,
+		ComboBox,
+		InfoBadge,
+		Flyout,
+		InfoBar
+	} from "$lib";
 	import "$lib/theme.css";
 
 	let value = Math.floor(Math.random() * 101);
 
 	let normalRadioGroup = 0;
 	let disabledRadioGroup = 0;
+
+	let nonClosableFlyoutOpen = false;
+	let flyoutTopOpen = false;
+	let flyoutBottomOpen = false;
+	let flyoutLeftOpen = false;
+	let flyoutRightOpen = false;
 </script>
 
 <h1>fluent-svelte test page</h1>
@@ -52,12 +68,8 @@
 	<RadioButton bind:group={normalRadioGroup} value={1}>Switch</RadioButton>
 </div>
 <div>
-	<RadioButton disabled bind:group={disabledRadioGroup} value={0}>
-    Switch
-  </RadioButton>
-	<RadioButton disabled bind:group={disabledRadioGroup} value={1}>
-    Switch
-  </RadioButton>
+	<RadioButton disabled bind:group={disabledRadioGroup} value={0}>Switch</RadioButton>
+	<RadioButton disabled bind:group={disabledRadioGroup} value={1}>Switch</RadioButton>
 </div>
 
 <h2>ComboBox</h2>
@@ -110,10 +122,87 @@
 <div>
 	<ProgressRing />
 	<ProgressRing bind:value />
-	<Button on:click={() => value = Math.floor(Math.random() * 101)}>Randomize Value</Button>
+	<Button on:click={() => (value = Math.floor(Math.random() * 101))}>Randomize Value</Button>
 </div>
 <div>
 	<ProgressRing size={60} />
+</div>
+
+<h2>InfoBadge</h2>
+<div>
+	<InfoBadge severity="attention" />
+	<InfoBadge severity="success" />
+	<InfoBadge severity="caution" />
+	<InfoBadge severity="critical" />
+	<InfoBadge severity="information" />
+</div>
+<div>
+	<InfoBadge severity="attention">{Math.floor(Math.random() * 10)}</InfoBadge>
+	<InfoBadge severity="success">{Math.floor(Math.random() * 10)}</InfoBadge>
+	<InfoBadge severity="caution">{Math.floor(Math.random() * 10)}</InfoBadge>
+	<InfoBadge severity="critical">{Math.floor(Math.random() * 10)}</InfoBadge>
+	<InfoBadge severity="information">{Math.floor(Math.random() * 10)}</InfoBadge>
+</div>
+
+<h2>Flyout</h2>
+<div style="display: flex; justify-content: center;">
+	<Flyout closable={false} bind:open={nonClosableFlyoutOpen}>
+		<Button variant="accent">Non-closasble Flyout</Button>
+		<svelte:fragment slot="flyout">
+			You can't close me >:)
+		</svelte:fragment>
+	</Flyout>
+</div>
+<div style="display: flex; justify-content: center; align-items: center;">
+	<Flyout position="top" bind:open={flyoutTopOpen}>
+		<Button variant="accent">Top Flyout</Button>
+		<svelte:fragment slot="flyout">
+			Flyout Content
+		</svelte:fragment>
+	</Flyout>
+	<Flyout position="bottom" bind:open={flyoutBottomOpen}>
+		<Button variant="accent">Bottom Flyout</Button>
+		<svelte:fragment slot="flyout">
+			Flyout Content
+		</svelte:fragment>
+	</Flyout>
+	<Flyout position="left" bind:open={flyoutLeftOpen}>
+		<Button variant="accent">Left Flyout</Button>
+		<svelte:fragment slot="flyout">
+			Flyout Content
+		</svelte:fragment>
+	</Flyout>
+	<Flyout position="right" bind:open={flyoutRightOpen}>
+		<Button variant="accent">Right Flyout</Button>
+		<svelte:fragment slot="flyout">
+			Flyout Content
+		</svelte:fragment>
+	</Flyout>
+</div>
+
+<h2>Info Bar</h2>
+<div style="flex-direction: column">
+	<InfoBar
+		closable={false}
+		severity="information"
+		description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna."
+	>
+		Info
+		<svelte:fragment slot="action">
+			<Button variant="accent">Action</Button>
+		</svelte:fragment>
+	</InfoBar>
+	<InfoBar severity="attention" description="Something is happening.">
+		Attention
+		<svelte:fragment slot="action">
+			<Button>Action</Button>
+		</svelte:fragment>
+	</InfoBar>
+	<InfoBar severity="success" description="Nothing bad happened!">Success</InfoBar>
+	<InfoBar severity="caution" description="Don't do this or something bad will happen."
+		>Warning</InfoBar
+	>
+	<InfoBar severity="critical" description="Something bad happened :(">Error</InfoBar>
 </div>
 
 <style lang="scss">
@@ -136,7 +225,7 @@
 	}
 
 	div {
-			@include flex($gap: 12px);
-			margin-block-end: 12px;
-		}
+		@include flex($gap: 12px);
+		margin-block-end: 12px;
+	}
 </style>

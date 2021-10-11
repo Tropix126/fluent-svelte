@@ -1,0 +1,9 @@
+.flyout {
+	padding: 16px;
+	min-width: 320px;
+	border-radius: var(--overlay-corner-radius);
+	border: 1px solid var(--surface-stroke-flyout);
+	background-clip: padding-box;
+	background-color: var(--flyout-fallback-background-default);
+	box-shadow: var(--flyout-shadow);
+}

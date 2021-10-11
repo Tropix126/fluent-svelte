@@ -31,7 +31,7 @@
 		on:keypress
 		on:keydown
 		on:keyup
-		class="toggle-switch {className || ''}"
+		class="toggle-switch {className ?? ''}"
 		type="checkbox"
 		bind:checked
 		{value}

@@ -1,207 +1,374 @@
 /* Global Variables */
 :root {
 	/* Accent Colors */
-	--accent-light-3: 191, 98%, 80%;
-	--accent-light-2: 199, 99%, 69%;
-	--accent-light-1: 205, 100%, 49%;
-	--accent-base: 206, 100%, 42%;
-	--accent-dark-1: 209, 100%, 36%;
-	--accent-dark-2: 215, 100%, 29%;
-	--accent-dark-3: 226, 100%, 20%;
+	--fds-accent-light-3: 191, 98%, 80%;
+	--fds-accent-light-2: 199, 99%, 69%;
+	--fds-accent-light-1: 205, 100%, 49%;
+	--fds-accent-base: 206, 100%, 42%;
+	--fds-accent-dark-1: 209, 100%, 36%;
+	--fds-accent-dark-2: 215, 100%, 29%;
+	--fds-accent-dark-3: 226, 100%, 20%;
 
 	/* Font Families */
-	--font-family-fallback: "Segoe UI", system-ui, sans-serif;
-	--font-family-text: "Segoe UI Variable Text", "Seoge UI Variable Static Text",
-	var(--font-family-fallback);
-	--font-family-small: "Segoe UI Variable Small", "Seoge UI Variable Static Small",
-	var(--font-family-fallback);
-	--font-family-display: "Segoe UI Variable Display", "Seoge UI Variable Static Display",
-	var(--font-family-fallback);
+	--fds-font-family-fallback: "Segoe UI", system-ui, sans-serif;
+	--fds-font-family-text: "Segoe UI Variable Text", "Seoge UI Variable Static Text",
+		var(--fds-font-family-fallback);
+	--fds-font-family-small: "Segoe UI Variable Small", "Seoge UI Variable Static Small",
+		var(--fds-font-family-fallback);
+	--fds-font-family-display: "Segoe UI Variable Display", "Seoge UI Variable Static Display",
+		var(--fds-font-family-fallback);
 
 	/* Font Size */
-	--control-font-size: 14px;
+	--fds-control-font-size: 14px;
+	--fds-caption-font-size: 12px;
 
 	/* Roundness */
-	--control-corner-radius: 4px;
-	--overlay-corner-radius: 8px;
+	--fds-control-corner-radius: 4px;
+	--fds-overlay-corner-radius: 8px;
 
 	/* Duration */
-	--control-normal-duration: 250ms;
-	--control-fast-duration: 167ms;
-	/* --control-fast-after-duration: 168ms; */
-	--control-faster-duration: 83ms;
+	--fds-control-normal-duration: 250ms;
+	--fds-control-fast-duration: 167ms;
+	/* --fds-control-fast-after-duration: 168ms; */
+	--fds-control-faster-duration: 83ms;
 
 	/* Easing */
-	--control-fast-out-slow-in-easing: cubic-bezier(0, 0, 0, 1);
+	--fds-control-fast-out-slow-in-easing: cubic-bezier(0, 0, 0, 1);
 
 	/* Focus Stroke */
-	--focus-stroke: 0 0 0 1px var(--focus-stroke-inner), 0 0 0 3px var(--focus-stroke-outer);
+	--fds-focus-stroke: 0 0 0 1px var(--fds-focus-stroke-inner), 0 0 0 3px var(--fds-focus-stroke-outer);
 }
 
 /* Light Theme Colors */
-/* @media (prefers-color-scheme: light) { */
-:root {
-	/* Text */
-	--text-primary: hsl(0, 0%, 0%, 89.56%);
-	--text-secondary: hsl(0, 0%, 0%, 60.63%);
-	--text-tertiary: hsl(0, 0%, 0%, 44.58%);
-	--text-disabled: hsl(0, 0%, 0%, 36.14%);
+@media (prefers-color-scheme: light) {
+	:root {
+		/* Text */
+		--fds-text-primary: hsla(0, 0%, 0%, 89.56%);
+		--fds-text-secondary: hsla(0, 0%, 0%, 60.63%);
+		--fds-text-tertiary: hsla(0, 0%, 0%, 44.58%);
+		--fds-text-disabled: hsla(0, 0%, 0%, 36.14%);
 
-	/* Accent */
-	--accent-default: hsl(var(--accent-dark-1));
-	--accent-secondary: hsl(var(--accent-dark-1), 90%);
-	--accent-tertiary: hsl(var(--accent-dark-1), 80%);
-	--accent-disabled: hsl(0, 0%, 0%, 21.69%);
+		/* Accent */
+		--fds-accent-default: hsl(var(--fds-accent-dark-1));
+		--fds-accent-secondary: hsla(var(--fds-accent-dark-1), 90%);
+		--fds-accent-tertiary: hsla(var(--fds-accent-dark-1), 80%);
+		--fds-accent-disabled: hsla(0, 0%, 0%, 21.69%);
 
-	/* Accent Text */
-	--accent-text-primary: hsl(var(--accent-dark-2));
-	--accent-text-secondary: hsl(var(--accent-dark-3));
-	--accent-text-tertiary: hsl(var(--accent-dark-1));
-	--accent-text-disabled: hsl(0, 0%, 0%, 36.14%);
+		/* Accent Text */
+		--fds-accent-text-primary: hsl(var(--fds-accent-dark-2));
+		--fds-accent-text-secondary: hsl(var(--fds-accent-dark-3));
+		--fds-accent-text-tertiary: hsl(var(--fds-accent-dark-1));
+		--fds-accent-text-disabled: hsla(0, 0%, 0%, 36.14%);
 
-	/* Text on Accent */
-	--text-on-accent-primary: white;
-	--text-on-accent-secondary: hsl(0, 0%, 100%, 70%);
-	--text-on-accent-disabled: var(--text-on-accent-secondary);
-	--text-on-accent-selected: var(--text-on-accent-primary);
+		/* Text on Accent */
+		--fds-text-on-accent-primary: hsl(0, 0%, 100%);
+		--fds-text-on-accent-secondary: hsla(0, 0%, 100%, 70%);
+		--fds-text-on-accent-disabled: var(--fds-text-on-accent-secondary);
+		--fds-text-on-accent-selected: var(--fds-text-on-accent-primary);
 
-	/* Control Fill */
-	--control-fill-transparent: transparent;
-	--control-fill-default: hsl(0, 0%, 100%, 0.7);
-	--control-fill-secondary: hsl(0, 0%, 98%, 0.5);
-	--control-fill-tertiary: hsl(0, 0%, 98%, 0.3);
-	--control-fill-disabled: var(--control-fill-tertiary);
-	--control-fill-input-active: white;
+		/* Control Fill */
+		--fds-control-fill-transparent: transparent;
+		--fds-control-fill-default: hsla(0, 0%, 100%, 70%);
+		--fds-control-fill-secondary: hsla(0, 0%, 98%, 50%);
+		--fds-control-fill-tertiary: hsla(0, 0%, 98%, 30%);
+		--fds-control-fill-disabled: var(--fds-control-fill-tertiary);
+		--fds-control-fill-input-active: hsl(0, 0%, 100%);
 
-	/* Control Strong Fill */
-	--control-strong-fill-default: hsl(0, 0%, 0%, 44.58%);
-	--control-strong-fill-disabled: hsl(0, 0%, 0%, 31.73%);
+		/* Control Strong Fill */
+		--fds-control-strong-fill-default: hsla(0, 0%, 0%, 44.58%);
+		--fds-control-strong-fill-disabled: hsla(0, 0%, 0%, 31.73%);
 
-	/* Control Solid Fill */
-	--control-solid-fill-default: white;
+		/* Control Solid Fill */
+		--fds-control-solid-fill-default: hsl(0, 0%, 100%);
 
-	/* Control Alt Fill */
-	--control-alt-fill-transparent: transparent;
-	--control-alt-fill-default: hsl(0, 0%, 0%, 2.41%);
-	--control-alt-fill-tertiary: hsl(0, 0%, 0%, 5.78%);
-	--control-alt-fill-quarternary: hsl(0, 0%, 0%, 9.24%);
-	--control-alt-fill-disabled: var(--control-alt-fill-transparent);
+		/* Control Alt Fill */
+		--fds-control-alt-fill-transparent: transparent;
+		--fds-control-alt-fill-secondary: hsla(0, 0%, 0%, 2.41%);
+		--fds-control-alt-fill-tertiary: hsla(0, 0%, 0%, 5.78%);
+		--fds-control-alt-fill-quarternary: hsla(0, 0%, 0%, 9.24%);
+		--fds-control-alt-fill-disabled: var(--fds-control-alt-fill-transparent);
 
-	/* Control on Image Fill */
-	--control-on-image-fill-default: hsl(0, 0%, 100%, 79%);
-	--control-on-image-fill-secondary: hsl(0, 0%, 95%);
-	--control-on-image-fill-tertiary: hsl(0, 0%, 92%);
-	--control-on-image-fill-disabled: transparent;
+		/* Control on Image Fill */
+		--fds-control-on-image-fill-default: hsla(0, 0%, 100%, 79%);
+		--fds-control-on-image-fill-secondary: hsl(0, 0%, 95%);
+		--fds-control-on-image-fill-tertiary: hsl(0, 0%, 92%);
+		--fds-control-on-image-fill-disabled: transparent;
 
-	/* Subtle Fill */
-	--subtle-fill-transparent: transparent;
-	--subtle-fill-secondary: hsl(0, 0%, 0%, 3.73%);
-	--subtle-fill-tertiary: hsl(0, 0%, 0%, 2.41%);
-	--subtle-fill-disabled: var(--subtle-fill-transparent);
+		/* Subtle Fill */
+		--fds-subtle-fill-transparent: transparent;
+		--fds-subtle-fill-secondary: hsla(0, 0%, 0%, 3.73%);
+		--fds-subtle-fill-tertiary: hsla(0, 0%, 0%, 2.41%);
+		--fds-subtle-fill-disabled: var(--fds-subtle-fill-transparent);
 
-	/* Control Stroke */
-	--control-stroke-default: hsl(0, 0%, 0%, 5.78%);
-	--control-stroke-secondary: hsl(0, 0%, 0%, 16.22%);
+		/* Control Stroke */
+		--fds-control-stroke-default: hsla(0, 0%, 0%, 5.78%);
+		--fds-control-stroke-secondary: hsla(0, 0%, 0%, 16.22%);
 
-	/* Control Strong Stroke */
-	--control-strong-stroke-default: hsl(0, 0%, 0%, 44.58%);
-	--control-strong-stroke-disabled: hsl(0, 0%, 0%, 21.69%);
+		/* Control Strong Stroke */
+		--fds-control-strong-stroke-default: hsla(0, 0%, 0%, 44.58%);
+		--fds-control-strong-stroke-disabled: hsla(0, 0%, 0%, 21.69%);
 
-	/* Control Stroke on Accent */
-	--control-stroke-on-accent-default: hsl(0, 0%, 100%, 0.08);
-	--control-stroke-on-accent-secondary: hsla(0, 0%, 0%, 0.4);
-	--control-stroke-on-accent-tertiary: hsl(0, 0%, 0%, 21.69%);
-	--control-stroke-on-accent-disabled: var(--control-stroke-on-accent-default);
+		/* Control Stroke on Accent */
+		--fds-control-stroke-on-accent-default: hsla(0, 0%, 100%, 8%);
+		--fds-control-stroke-on-accent-secondary: hsla(0, 0%, 0%, 40%);
+		--fds-control-stroke-on-accent-tertiary: hsla(0, 0%, 0%, 21.69%);
+		--fds-control-stroke-on-accent-disabled: var(--fds-control-stroke-on-accent-default);
 
-	/* Control Strong Stroke on Image */
-	--control-strong-stroke-on-image-default: hsla(0, 0%, 100%, 0.35);
+		/* Control Strong Stroke on Image */
+		--fds-control-strong-stroke-on-image-default: hsla(0, 0%, 100%, 35%);
 
-	/* Card Stroke */
-	--card-stroke-default: hsl(0, 0%, 0%, 5.78%);
-	--card-stroke-default-solid: hsl(0, 0%, 92%);
+		/* Card Stroke */
+		--fds-card-stroke-default: hsla(0, 0%, 0%, 5.78%);
+		--fds-card-stroke-default-solid: hsl(0, 0%, 92%);
 
-	/* Surface Stroke */
-	--surface-stroke-default: hsl(0, 0%, 46%, 0.4);
-	--surface-stroke-flyout: hsl(0, 0%, 0%, 5.78%);
+		/* Surface Stroke */
+		--fds-surface-stroke-default: hsla(0, 0%, 46%, 40%);
+		--fds-surface-stroke-flyout: hsla(0, 0%, 0%, 5.78%);
 
-	/* Divider Stroke */
-	--divider-stroke-default: hsl(0, 0%, 0%, 8.03%);
+		/* Divider Stroke */
+		--fds-divider-stroke-default: hsla(0, 0%, 0%, 8.03%);
 
-	/* Focus Stroke */
-	--focus-stroke-outer: hsl(0, 0%, 0%, 89.56%);
-	--focus-stroke-inner: white;
+		/* Focus Stroke */
+		--fds-focus-stroke-outer: hsla(0, 0%, 0%, 89.56%);
+		--fds-focus-stroke-inner: hsl(0, 0%, 100%);
 
-	/* Card Background */
-	--card-background-default: hsl(0, 0%, 100%, 0.7);
-	--card-background-secondary: hsl(0, 0%, 96%, 0.5);
-	--card-background-tertiary: white;
+		/* Card Background */
+		--fds-card-background-default: hsla(0, 0%, 100%, 70%);
+		--fds-card-background-secondary: hsla(0, 0%, 96%, 50%);
+		/* --fds-card-background-tertiary: hsl(0, 0%, 100%); */
 
-	/* Smoke Background */
-	--smoke-background-default: hsl(0, 0%, 0%, 0.3);
+		/* Smoke Background */
+		--fds-smoke-background-default: hsla(0, 0%, 0%, 30%);
 
-	/* Layer */
-	--layer-background-default: hsl(0, 0%, 100%, 0.5);
-	--layer-background-alt: white;
+		/* Layer */
+		--fds-layer-background-default: hsla(0, 0%, 100%, 50%);
+		--fds-layer-background-alt: hsl(0, 0%, 100%);
 
-	/* Layer on Acrylic */
-	--layer-on-acrylic-background-default: hsla(0, 0%, 100%, 0.25);
-	--layer-on-accent-acrylic-background-default: var(--layer-on-acrylic-background-default);
+		/* Layer on Acrylic */
+		--fds-layer-on-acrylic-background-default: hsla(0, 0%, 100%, 25%);
+		--fds-layer-on-accent-acrylic-background-default: var(--fds-layer-on-acrylic-background-default);
 
-	/* Solid Background */
-	--solid-background-base: hsl(0, 0%, 95%);
-	--solid-background-secondary: hsl(0, 0%, 93%);
-	--solid-background-tertiary: hsl(0, 0%, 98%);
-	--solid-background-quarternary: white;
+		/* Solid Background */
+		--fds-solid-background-base: hsl(0, 0%, 95%);
+		--fds-solid-background-secondary: hsl(0, 0%, 93%);
+		--fds-solid-background-tertiary: hsl(0, 0%, 98%);
+		--fds-solid-background-quarternary: hsl(0, 0%, 100%);
 
-	/* Mica Background */
-	/* --mica-background-base: linear-gradient(0deg, rgb(243, 243, 243, 0.5), rgb(243, 243, 243, 0.5)), #F3F3F3; */
+		/* Flyout Fallback Background */
+		--fds-flyout-fallback-background-default: hsl(0, 0%, 98%);
 
-	/* Acrylic Background */
-	/* --acrylic-background-base: url(NoiseAsset_256.png), rgb(243, 243, 243, 90%); */
-	/* --acrylic-background-default: url(NoiseAsset_256.png), rgb(252, 252, 252, 85%); */
+		/* Mica Background */
+		/* --fds-mica-background-base: linear-gradient(0deg, hsla(0, 0%, 95%, 0.5), hsla(0, 0%, 95%, 0.5)), hsl(0, 0%, 95%); */
 
-	/* Accent Acrylic Background */
-	/* --accent-acrylic-background-base: url(NoiseAsset_256.png), linear-gradient(0deg, rgb(153, 235, 255, 80%), rgb(153, 235, 255, 80%)), rgb(153, 235, 255, 90%); */
-	/* --accent-acrylic-background-default: url(NoiseAsset_256.png), linear-gradient(0deg, rgb(153, 235, 255, 80%), rgb(153, 235, 255, 80%)), rgb(153, 235, 255, 90%); */
+		/* Acrylic Background */
+		/* --fds-acrylic-background-default: url("NoiseAsset_256.png"), transparent, rgba(252, 252, 252, 85%); */
+		/* --fds-acrylic-background-base: url("NoiseAsset_256.png"), transparent, rgba(243, 243, 243, 90%); */
 
-	/* System */
-	--system-attention: hsl(209, 100%, 36%);
-	--system-success: hsl(120, 78%, 27%);
-	--system-caution: hsl(36, 100%, 31%);
-	--system-critical: hsl(5, 75%, 44%);
-	--system-neutral: hsl(0, 0%, 0%, 44.58%);
+		/* Accent Acrylic Background */
+		/* --fds-accent-acrylic-background-base: url("NoiseAsset_256.png"), linear-gradient(0deg, rgba(153, 235, 255, 80%), rgba(153, 235, 255, 80%)), rgba(153, 235, 255, 90%); */
+		/* --fds-accent-acrylic-background-default: url("NoiseAsset_256.png"), linear-gradient(0deg, rgba(153, 235, 255, 80%), rgba(153, 235, 255, 80%)), rgba(153, 235, 255, 90%); */
 
-	/* System Solid */
-	--system-solid-neutral: hsl(0, 0%, 54%);
+		/* System */
+		--fds-system-attention: hsl(209, 100%, 36%);
+		--fds-system-success: hsl(120, 78%, 27%);
+		--fds-system-caution: hsl(36, 100%, 31%);
+		--fds-system-critical: hsl(5, 75%, 44%);
+		--fds-system-neutral: hsla(0, 0%, 0%, 44.58%);
 
-	/* System Background */
-	--system-background-attention: hsl(0, 0%, 96%, 0.5);
-	--system-background-success: hsl(115, 58%, 92%);
-	--system-background-caution: hsl(47, 100%, 90%);
-	--system-background-critical: hsl(355, 85%, 95%);
+		/* System Solid */
+		--fds-system-solid-neutral: hsl(0, 0%, 54%);
 
-	/* System Background Solid */
-	--system-background-solid-attention: hsl(0, 0%, 97%);
-	--system-background-solid-neutral: hsl(0, 0%, 95%);
+		/* System Background */
+		--fds-system-background-attention: hsla(0, 0%, 96%, 50%);
+		--fds-system-background-success: hsl(115, 58%, 92%);
+		--fds-system-background-caution: hsl(47, 100%, 90%);
+		--fds-system-background-critical: hsl(355, 85%, 95%);
 
-	/* Borders */
-	--control-border-default: var(--control-stroke-default) var(--control-stroke-default) var(--control-stroke-secondary) var(--control-stroke-default);
+		/* System Background Solid */
+		--fds-system-background-solid-attention: hsl(0, 0%, 97%);
+		--fds-system-background-solid-neutral: hsl(0, 0%, 95%);
 
-	/* Shadows */
-	--card-shadow: 0px 2px 4px hsl(0, 0%, 0%, 0.04);
-	--tooltip-shadow: 0px 4px 8px hsl(0, 0%, 0%, 0.14);
-	--flyout-shadow: 0px 8px 16px hsl(0, 0%, 0%, 0.14);
-	--dialog-shadow: 0px 32px 64px hsl(0, 0%, 0%, 0.1876), 0px 2px 21px hsl(0, 0%, 0%, 0.1474);
+		/* Borders */
+		--fds-control-border-default: var(--fds-control-stroke-default) var(--fds-control-stroke-default)
+			var(--fds-control-stroke-secondary) var(--fds-control-stroke-default);
 
-	/* Shell Shadows */
-	--inactive-window-shadow: 0px 16px 32px hsl(0, 0%, 0%, 0.1876),
-	0px 2px 10.67px hsl(0, 0%, 0%, 0.1474);
-	--active-window-shadow: 0px 32px 64px hsl(0, 0%, 0%, 0.28), 0px 2px 21px hsl(0, 0%, 0%, 0.22);
+		/* Shadows */
+		--fds-card-shadow: 0px 2px 4px hsla(0, 0%, 0%, 4%);
+		--fds-tooltip-shadow: 0px 4px 8px hsla(0, 0%, 0%, 14%);
+		--fds-flyout-shadow: 0px 8px 16px hsla(0, 0%, 0%, 14%);
+		--fds-dialog-shadow: 0px 32px 64px hsla(0, 0%, 0%, 18.76%), 0px 2px 21px hsl(0, 0%, 0%, 14.74%);
+
+		/* Shell Shadows */
+		--fds-inactive-window-shadow: 0px 16px 32px hsla(0, 0%, 0%, 18, 76%),
+			0px 2px 10.67px hsla(0, 0%, 0%, 0.1474);
+		--fds-active-window-shadow: 0px 32px 64px hsla(0, 0%, 0%, 28%),
+			0px 2px 21px hsla(0, 0%, 0%, 22%);
+	}
 }
-/* } */
 
 /* Dark Theme Colors */
 @media (prefers-color-scheme: dark) {
 	:root {
+		/* Text */
+		--fds-text-primary: hsla(0, 0%, 100%, 100%);
+		--fds-text-secondary: hsla(0, 0%, 100%, 78.6%);
+		--fds-text-tertiary: hsla(0, 0%, 100%, 54.42%);
+		--fds-text-disabled: hsla(0, 0%, 100%, 36.28%);
+
+		/* Accent */
+		--fds-accent-default: hsla(var(--fds-accent-light-2));
+		--fds-accent-secondary: hsla(var(--fds-accent-light-2), 90%);
+		--fds-accent-tertiary: hsla(var(--fds-accent-light-2), 80%);
+		--fds-accent-disabled: hsla(0, 0%, 100%, 15.81%);
+
+		/* Accent Text */
+		--fds-accent-text-primary: hsl(var(--fds-accent-light-3));
+		--fds-accent-text-secondary: hsl(var(--fds-accent-light-3));
+		--fds-accent-text-tertiary: hsl(var(--fds-accent-light-2));
+		--fds-accent-text-disabled: hsla(0, 0%, 100%, 36.28%);
+
+		/* Text on Accent */
+		--fds-text-on-accent-primary: hsl(0, 0%, 0%);
+		--fds-text-on-accent-secondary: hsla(0, 0%, 0%, 0.5);
+		--fds-text-on-accent-disabled: hsla(0, 0%, 100%, 0.53);
+		--fds-text-on-accent-selected: hsl(0, 0%, 100%);
+
+		/* Control Fill */
+		--fds-control-fill-transparent: transparent;
+		--fds-control-fill-default: hsla(0, 0%, 100%, 0.061);
+		--fds-control-fill-secondary: hsla(0, 0%, 100%, 0.084);
+		--fds-control-fill-tertiary: hsla(0, 0%, 100%, 0.033);
+		--fds-control-fill-disabled: hsla(0, 0%, 100%, 0.042);
+		--fds-control-fill-input-active: hsla(0, 0, 12%, 70%);
+
+		/* Control Strong Fill */
+		--fds-control-strong-fill-default: hsla(0, 0%, 100%, 0.544);
+		--fds-control-strong-fill-disabled: hsla(0, 0%, 0%, 0.1);
+
+		/* Control Solid Fill */
+		--fds-control-solid-fill-default: hsl(0, 0%, 27%);
+
+		/* Control Alt Fill */
+		--fds-control-alt-fill-transparent: transparent;
+		--fds-control-alt-fill-secondary: hsla(0, 0%, 0%, 0.1);
+		--fds-control-alt-fill-tertiary: hsla(0, 0%, 100%, 0.042);
+		--fds-control-alt-fill-quarternary: hsla(0, 0%, 100%, 0.07);
+		--fds-control-alt-fill-disabled: var(--fds-control-fill-transparent);
+
+		/* Control on Image Fill */
+		--fds-control-on-image-fill-default: hsla(0, 0%, 11%, 70%);
+		--fds-control-on-image-fill-secondary: hsl(0, 0%, 10%);
+		--fds-control-on-image-fill-tertiary: hsl(0, 0%, 7%);
+		--fds-control-on-image-fill-disabled: transparent;
+
+		/* Subtle Fill */
+		--fds-subtle-fill-transparent: transparent;
+		--fds-subtle-fill-secondary: hsla(0, 0%, 100%, 6.05%);
+		--fds-subtle-fill-tertiary: hsla(0, 0%, 100%, 4.19%);
+		--fds-subtle-fill-disabled: var(--fds-subtle-fill-transparent);
+
+		/* Control Stroke */
+		--fds-control-stroke-default: hsla(0, 0%, 100%, 6.98%);
+		--fds-control-stroke-secondary: hsla(0, 0%, 100%, 9.3%);
+
+		/* Control Strong Stroke */
+		--fds-control-strong-stroke-default: hsla(0, 0%, 100%, 54.42%);
+		--fds-control-strong-stroke-disabled: hsla(0, 0%, 100%, 15.81%);
+
+		/* Control Stroke on Accent */
+		--fds-control-stroke-on-accent-default: hsla(0, 0%, 100%, 8%);
+		--fds-control-stroke-on-accent-secondary: hsla(0, 0%, 0%, 14%);
+		--fds-control-stroke-on-accent-tertiary: hsla(0, 0%, 0%, 21.69%);
+		--fds-control-stroke-on-accent-disabled: hsla(0, 0%, 0%, 20%);
+
+		/* Control Strong Stroke on Image */
+		--fds-control-strong-stroke-on-image-default: hsla(0, 0%, 0%, 42%);
+
+		/* Card Stroke */
+		--fds-card-stroke-default: hsla(0, 0%, 0%, 10%);
+		--fds-card-stroke-default-solid: hsl(0, 0%, 11%);
+
+		/* Surface Stroke */
+		--fds-surface-stroke-default: hsla(0, 0%, 46%, 40%);
+		--fds-surface-stroke-flyout: hsla(0, 0%, 0%, 20%);
+
+		/* Divider Stroke */
+		--fds-divider-stroke-default: hsla(0, 0%, 100%, 8.37%);
+
+		/* Focus Stroke */
+		--fds-focus-stroke-outer: hsl(0, 0%, 100%);
+		--fds-focus-stroke-inner: hsla(0, 0%, 0%, 70%);
+
+		/* Card Background */
+		--fds-card-background-default: hsla(0, 0%, 100%, 5.12%);
+		--fds-card-background-secondary: hsla(0, 0%, 100%, 3.26%);
+		/* --fds-card-background-tertiary: unset; */
+
+		/* Smoke Background */
+		--fds-smoke-background-default: hsla(0, 0%, 0%, 30%);
+
+		/* Layer */
+		--fds-layer-background-default: hsla(0, 0%, 23%, 30%);
+		--fds-layer-background-alt: hsla(0, 0, 100%, 5.38%);
+
+		/* Layer on Acrylic */
+		--fds-layer-on-acrylic-background-default: hsla(0, 0%, 100%, 3.59%);
+		--fds-layer-on-accent-background-default: var(--fds-layer-on-acrylic-background-default);
+
+		/* Solid Background */
+		--fds-solid-background-base: hsl(0, 0%, 13%);
+		--fds-solid-background-secondary: hsl(0, 0%, 11%);
+		--fds-solid-background-tertiary: hsl(0, 0%, 16%);
+		--fds-solid-background-quarternary: hsl(0, 0%, 17%);
+
+		/* Flyout Fallback Background */
+		--fds-flyout-fallback-background-default: var(--fds-solid-background-quarternary);
+
+		/* Mica Background */
+		/* --fds-mica-background-base: linear-gradient(0deg, rgb(32, 32, 32, 0.8), rgb(32, 32, 32, 0.8)), #202020; */
+
+		/* Acrylic Background */
+		/* --fds-acrylic-background-default: url("NoiseAsset_256.png"), rgb(44, 44, 44, 96%), linear-gradient(0deg, rgb(44, 44, 44, 15%), rgb(44, 44, 44, 15%)); */
+		/* --fds-acrylic-background-base: url("NoiseAsset_256.png"), rgb(32, 32, 32, 96%), linear-gradient(0deg, rgb(32, 32, 32, 50%), rgb(32, 32, 32, 50%)); */
+
+		/* Accent Acrylic Background */
+		/* --fds-accent-acrylic-background-default: url("NoiseAsset_256.png"), linear-gradient(0deg, rgb(0, 120, 212, 80%), rgb(0, 120, 212, 80%)), rgb(0, 120, 212, 80%); */
+		/* --fds-accent-acrylic-background-base: url("NoiseAsset_256.png"), linear-gradient(0deg, rgba(0, 63, 255, 80%), rgba(0, 63, 255, 80%)), rgb(0, 63, 255, 80%); */
+
+		/* System */
+		--fds-system-attention: hsl(199, 100%, 69%);
+		--fds-system-success: hsl(113, 51%, 58%);
+		--fds-system-caution: hsl(54, 100%, 49%);
+		--fds-system-critical: hsl(354, 100%, 80%);
+		--fds-system-neutral: hsla(0, 0%, 100%, 54.42%);
+
+		/* System Solid */
+		--fds-system-solid-neutral: hsl(0, 0%, 62%);
+
+		/* System Background */
+		--fds-system-background-attention: hsla(0, 0%, 100%, 3.26%);
+		--fds-system-background-success: hsl(67, 39%, 17%);
+		--fds-system-background-caution: hsl(40, 46%, 18%);
+		--fds-system-background-critical: hsl(2, 28%, 21%);
+
+		/* System Background Solid */
+		--fds-system-background-solid-attention: hsl(0, 0%, 18%);
+		--fds-system-background-solid-neutral: hsl(0, 0%, 62%);
+
+		/* Borders */
+		--fds-control-border-default: var(--fds-control-stroke-secondary) var(--fds-control-stroke-default)
+			var(--fds-control-stroke-default) var(--fds-control-stroke-default);
+
+		/* Shadows */
+		--fds-card-shadow: 0px 2px 4px hsla(0, 0%, 0%, 0.13);
+		--fds-tooltip-shadow: 0px 4px 8px hsla(0, 0%, 0%, 0.26);
+		--fds-flyout-shadow: 0px 8px 16px hsla(0, 0%, 0%, 0.14);
+		--fds-dialog-shadow: 0px 32px 64px hsla(0, 0%, 0%, 0.37), 0px 2px 21px hsla(0, 0%, 0%, 0.37);
+
+		/* Shell Shadows */
+		--fds-inactive-window-shadow: 0px 16px 32px hsla(0, 0%, 0%, 0.37),
+			0px 2px 10.67px hsla(0, 0%, 0%, 0.37);
+		--fds-active-window-shadow: 0px 32px 64px hsla(0, 0%, 0%, 0.56),
+			0px 2px 21px hsla(0, 0%, 0%, 0.55);
 	}
 }
