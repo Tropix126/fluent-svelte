@@ -34,7 +34,7 @@
 	on:keydown
 	on:keyup
 	tabindex="-1"
-	class="progress-ring {className || ''}"
+	class="progress-ring {className ?? ''}"
 	class:indeterminate={!value}
 	width={size}
 	height={size}

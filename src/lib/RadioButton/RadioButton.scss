@@ -8,7 +8,7 @@
 	border-radius: 20px;
 	outline: none;
 	background-clip: padding-box;
-	background: var(--control-alt-fill-secondary);
+	background-color: var(--control-alt-fill-secondary);
 	appearance: none;
 	inline-size: 20px;
 	block-size: 20px;
@@ -20,7 +20,7 @@
 		visibility: hidden;
 		position: absolute;
 		border-radius: 12px;
-		background: var(--text-on-accent-primary);
+		background-color: var(--text-on-accent-primary);
 	}
 
 	&:focus-visible {
@@ -28,12 +28,12 @@
 	}
 
 	&:hover {
-		background: var(--control-alt-fill-tertiary);
+		background-color: var(--control-alt-fill-tertiary);
 	}
 
 	&:active {
 		border-color: var(--control-strong-stroke-disabled);
-		background: var(--control-alt-fill-quarternary);
+		background-color: var(--control-alt-fill-quarternary);
 
 		&::before {
 			transition: var(--control-normal-duration) var(--control-fast-out-slow-in-easing);
@@ -45,7 +45,7 @@
 
 	&:disabled {
 		border-color: var(--control-strong-stroke-disabled);
-		background: var(--control-alt-fill-disabled);
+		background-color: var(--control-alt-fill-disabled);
 		&::before {
 			visibility: hidden;
 		}
@@ -53,7 +53,7 @@
 
 	&:checked {
 		border: none;
-		background: var(--accent-default);
+		background-color: var(--accent-default);
 
 		&::before {
 			visibility: visible;
@@ -64,7 +64,7 @@
 		}
 
 		&:hover {
-			background: var(--accent-secondary);
+			background-color: var(--accent-secondary);
 
 			&::before {
 				inline-size: 14px;
@@ -73,7 +73,7 @@
 		}
 
 		&:active {
-			background: var(--accent-tertiary);
+			background-color: var(--accent-tertiary);
 
 			&::before {
 				inline-size: 10px;
@@ -82,7 +82,7 @@
 		}
 
 		&:disabled {
-			background: var(--accent-disabled);
+			background-color: var(--accent-disabled);
 
 			&::before {
 				box-shadow: none;

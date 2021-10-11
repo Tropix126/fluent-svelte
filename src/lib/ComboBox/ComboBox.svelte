@@ -63,7 +63,7 @@
 	async function openMenu() {
 		open = !open;
 		await tick();
-		if (menu && selection) updateOffset(menu.children[items.indexOf(selection)]);
+		if (menu && selection) updateOffset((menu.children[items.indexOf(selection)] as HTMLElement));
 	}
 
 	function handleArrowKeys(event: KeyboardEvent) {
@@ -84,7 +84,7 @@
 <svelte:window on:click={() => (open = false)} />
 
 <div
-	class="combo-box {className || 'class'}"
+	class="combo-box {className ?? ''}"
 	class:disabled
 	on:click={e => e.stopPropagation()}
 	bind:this={container}

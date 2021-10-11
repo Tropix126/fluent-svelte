@@ -35,7 +35,7 @@
 		on:keyup
 		type="radio"
 		aria-selected={checked}
-		class="radio-button {className || ''}"
+		class="radio-button {className ?? ''}"
 		bind:group
 		{value}
 		{disabled}

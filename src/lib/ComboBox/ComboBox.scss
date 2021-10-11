@@ -56,7 +56,7 @@
 		padding: 1px;
 		border: 1px solid var(--surface-stroke-flyout);
 		border-radius: var(--overlay-corner-radius);
-		background: var(--flyout-fallback-background-default);
+		background-color: var(--flyout-fallback-background-default);
 		background-clip: padding-box;
 		box-shadow: var(--flyout-shadow);
 		animation: menu-in var(--control-normal-duration) var(--control-fast-out-slow-in-easing),

@@ -20,63 +20,62 @@
 		&standard {
 			border: 1px solid;
 			border-color: var(--control-border-default);
-			background: var(--control-fill-default);
+			background-color: var(--control-fill-default);
 			color: var(--text-primary);
 			background-clip: padding-box;
 
 			&:hover {
-				background: var(--control-fill-secondary);
+				background-color: var(--control-fill-secondary);
 			}
 
 			&:active {
 				border-color: var(--control-stroke-default);
-				background: var(--control-fill-tertiary);
+				background-color: var(--control-fill-tertiary);
 				color: var(--text-secondary);
 			}
 
 			&.disabled {
 				border-color: var(--control-stroke-default);
-				background: var(--control-fill-disabled);
+				background-color: var(--control-fill-disabled);
 				color: var(--text-disabled);
-				background-clip: padding-box;
 			}
 		}
 
 		&accent {
 			border: 1px solid var(--control-stroke-on-accent-default);
 			border-bottom-color: var(--control-stroke-on-accent-secondary);
-			background: var(--accent-default);
+			background-color: var(--accent-default);
 			color: var(--text-on-accent-primary);
 			transition: var(--control-faster-duration) ease border-color;
 
 			&:hover {
-				background: var(--accent-secondary);
+				background-color: var(--accent-secondary);
 			}
 
 			&:active {
 				border-color: transparent;
-				background: var(--accent-tertiary);
+				background-color: var(--accent-tertiary);
 				color: var(--text-on-accent-secondary);
 			}
 
 			&.disabled {
 				border-color: transparent;
-				background: var(--accent-disabled);
+				background-color: var(--accent-disabled);
 				color: var(--text-on-accent-disabled);
 			}
 		}
 
 		&hyperlink {
-			background: var(--subtle-fill-transparent);
+			background-color: var(--subtle-fill-transparent);
 			color: var(--accent-text-primary);
 			cursor: pointer;
 
 			&:hover {
-				background: var(--subtle-fill-secondary);
+				background-color: var(--subtle-fill-secondary);
 			}
 
 			&:active {
-				background: var(--subtle-fill-tertiary);
+				background-color: var(--subtle-fill-tertiary);
 				color: var(--accent-text-tertiary);
 			}
 
