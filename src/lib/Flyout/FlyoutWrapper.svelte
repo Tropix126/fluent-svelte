@@ -33,7 +33,7 @@
 	<slot />
 
 	{#if open}
-		<div class="flyout-anchor position-{position}" style="--flyout-gap: {gap}px">
+		<div class="flyout-anchor position-{position}" style="--fds-flyout-gap: {gap}px">
 			<FlyoutSurface {...$$restProps}>
 				<slot name="flyout" />
 			</FlyoutSurface>

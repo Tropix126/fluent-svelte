@@ -132,7 +132,7 @@
 				bind:this={menu}
 				role="menu"
 				class="combo-box-dropdown direction-{menuGrowDirection || 'center'}"
-				style="--menu-offset: {menuOffset}px;"
+				style="--fds-menu-offset: {menuOffset}px;"
 			>
 				{#each items as item}
 					<ComboBoxItem
