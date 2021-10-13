@@ -1,0 +1,27 @@
+@use "../mixins" as *;
+
+.text-box-button {
+	@include flex($align: center, $justify: center);
+	outline: none;
+	border: none;
+	inline-size: 26px;
+	block-size: 22px;
+	color: var(--text-secondary);
+	border-radius: var(--control-corner-radius);
+	background-color: var(--subtle-fill-transparent);
+	&:focus-visible {
+		box-shadow: var(--focus-stroke);
+	}
+	&:hover {
+		background-color: var(--subtle-fill-secondary);
+	}
+	&:active {
+		color: var(--text-tertiary);
+		background-color: var(--subtle-fill-tertiary);
+	}
+	:global(svg) {
+		inline-size: 10px;
+		block-size: 10px;
+		fill: currentColor;
+	}
+}

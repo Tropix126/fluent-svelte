@@ -7,3 +7,4 @@ export { default as ComboBox } from "./ComboBox/ComboBox.svelte";
 export { default as InfoBadge } from "./InfoBadge/InfoBadge.svelte";
 export { default as Flyout } from "./Flyout/FlyoutWrapper.svelte";
 export { default as InfoBar } from "./InfoBar/InfoBar.svelte";
+export { default as TextBox } from "./TextBox/TextBox.svelte";

@@ -41,6 +41,7 @@
 			type="checkbox"
 			bind:checked
 			bind:indeterminate
+			{value}
 			{disabled}
 			{...$$restProps}
 		/>

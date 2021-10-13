@@ -8,6 +8,7 @@
 	box-sizing: border-box;
 	user-select: none;
 	background-clip: padding-box;
+	font-family: var(--font-family-text);
 	border: 1px solid var(--card-stroke-default);
 	border-radius: var(--control-corner-radius);
 	&.severity- {

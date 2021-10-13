@@ -34,16 +34,27 @@
 
 	{#if open}
 		<div class="flyout-anchor position-{position}" style="--fds-flyout-gap: {gap}px">
-			<FlyoutSurface {...$$restProps}>
+			<FlyoutSurface
+				on:click
+				on:blur
+				on:focus
+				on:dblclick
+				on:contextmenu
+				on:mousedown
+				on:mouseup
+				on:mouseover
+				on:mouseout
+				on:mouseleave
+				on:keypress
+				on:keydown
+				on:keyup
+				{...$$restProps}
+			>
 				<slot name="flyout" />
 			</FlyoutSurface>
 		</div>
 
-		<div
-			aria-hidden="true"
-			class="flyout-backdrop"
-			on:mousedown={closeFlyout}
-		/>
+		<div aria-hidden="true" class="flyout-backdrop" on:mousedown={closeFlyout} />
 	{/if}
 </div>
 

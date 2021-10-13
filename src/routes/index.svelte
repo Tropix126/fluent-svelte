@@ -9,11 +9,12 @@
 		ComboBox,
 		InfoBadge,
 		Flyout,
-		InfoBar
+		InfoBar,
+		TextBox
 	} from "$lib";
 	import "$lib/theme.css";
 
-	let value = Math.floor(Math.random() * 101);
+	let progressRingValue = Math.floor(Math.random() * 101);
 
 	let normalRadioGroup = 0;
 	let disabledRadioGroup = 0;
@@ -23,6 +24,8 @@
 	let flyoutBottomOpen = false;
 	let flyoutLeftOpen = false;
 	let flyoutRightOpen = false;
+
+	let value;
 </script>
 
 <h1>fluent-svelte test page</h1>
@@ -97,6 +100,29 @@
 
 <ComboBox
 	placeholder="ComboBox"
+	editable
+	items={[
+		{
+			name: "Item 1",
+			value: 0
+		},
+		{
+			name: "Item 2",
+			value: 1
+		},
+		{
+			name: "Item 3",
+			value: 2
+		},
+		{
+			name: "Item 4",
+			value: 3
+		}
+	]}
+/>
+
+<ComboBox
+	placeholder="ComboBox"
 	disabled
 	items={[
 		{
@@ -121,7 +147,7 @@
 <h2>Progress Ring</h2>
 <div>
 	<ProgressRing />
-	<ProgressRing bind:value />
+	<ProgressRing bind:value={progressRingValue} />
 	<Button on:click={() => (value = Math.floor(Math.random() * 101))}>Randomize Value</Button>
 </div>
 <div>
@@ -148,35 +174,25 @@
 <div style="display: flex; justify-content: center;">
 	<Flyout closable={false} bind:open={nonClosableFlyoutOpen}>
 		<Button variant="accent">Non-closasble Flyout</Button>
-		<svelte:fragment slot="flyout">
-			You can't close me >:)
-		</svelte:fragment>
+		<svelte:fragment slot="flyout">You can't close me >:)</svelte:fragment>
 	</Flyout>
 </div>
 <div style="display: flex; justify-content: center; align-items: center;">
 	<Flyout position="top" bind:open={flyoutTopOpen}>
 		<Button variant="accent">Top Flyout</Button>
-		<svelte:fragment slot="flyout">
-			Flyout Content
-		</svelte:fragment>
+		<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
 	</Flyout>
 	<Flyout position="bottom" bind:open={flyoutBottomOpen}>
 		<Button variant="accent">Bottom Flyout</Button>
-		<svelte:fragment slot="flyout">
-			Flyout Content
-		</svelte:fragment>
+		<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
 	</Flyout>
 	<Flyout position="left" bind:open={flyoutLeftOpen}>
 		<Button variant="accent">Left Flyout</Button>
-		<svelte:fragment slot="flyout">
-			Flyout Content
-		</svelte:fragment>
+		<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
 	</Flyout>
 	<Flyout position="right" bind:open={flyoutRightOpen}>
 		<Button variant="accent">Right Flyout</Button>
-		<svelte:fragment slot="flyout">
-			Flyout Content
-		</svelte:fragment>
+		<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
 	</Flyout>
 </div>
 
@@ -203,6 +219,14 @@
 		>Warning</InfoBar
 	>
 	<InfoBar severity="critical" description="Something bad happened :(">Error</InfoBar>
+</div>
+
+<h2>Text Box</h2>
+<div>
+	<TextBox bind:value placeholder="TextBox" />
+	<TextBox disabled placeholder="TextBox" />
+	<TextBox type="password" placeholder="TextBox" />
+	<TextBox type="search" placeholder="TextBox" />
 </div>
 
 <style lang="scss">

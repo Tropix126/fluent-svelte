@@ -14,11 +14,7 @@ const config = {
 		}),
 		preprocess({
 			postcss: {
-				plugins: [
-					autoprefixer(),
-					cssnano(),
-					prefixer({ prefix: "fds-" })
-				]
+				plugins: [autoprefixer(), cssnano(), prefixer({ prefix: "fds-" })]
 			}
 		})
 	],
