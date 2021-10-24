@@ -21,6 +21,10 @@
 	/* Font Size */
 	--fds-control-font-size: 14px;
 	--fds-caption-font-size: 12px;
+	--fds-subtitle-font-size: 20px;
+	--fds-title-font-size: 28px;
+	--fds-title-large-font-size: 52px;
+	--fds-display-font-size: 68px;
 
 	/* Roundness */
 	--fds-control-corner-radius: 4px;
@@ -244,7 +248,7 @@
 		--fds-control-fill-secondary: hsla(0, 0%, 100%, 0.084);
 		--fds-control-fill-tertiary: hsla(0, 0%, 100%, 0.033);
 		--fds-control-fill-disabled: hsla(0, 0%, 100%, 0.042);
-		--fds-control-fill-input-active: hsla(0, 0, 12%, 70%);
+		--fds-control-fill-input-active: hsla(0, 0%, 12%, 70%);
 
 		/* Control Strong Fill */
 		--fds-control-strong-fill-default: hsla(0, 0%, 100%, 0.544);
@@ -314,7 +318,7 @@
 
 		/* Layer */
 		--fds-layer-background-default: hsla(0, 0%, 23%, 30%);
-		--fds-layer-background-alt: hsla(0, 0, 100%, 5.38%);
+		--fds-layer-background-alt: hsla(0, 0%, 100%, 5.38%);
 
 		/* Layer on Acrylic */
 		--fds-layer-on-acrylic-background-default: hsla(0, 0%, 100%, 3.59%);

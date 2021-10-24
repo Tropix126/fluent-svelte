@@ -10,8 +10,13 @@
 		InfoBadge,
 		Flyout,
 		InfoBar,
-		TextBox
+		TextBox,
+		NumberBox,
+		PersonPicture,
+		Tooltip,
+		ContentDialog
 	} from "$lib";
+
 	import "$lib/theme.css";
 
 	let progressRingValue = Math.floor(Math.random() * 101);
@@ -24,6 +29,9 @@
 	let flyoutBottomOpen = false;
 	let flyoutLeftOpen = false;
 	let flyoutRightOpen = false;
+
+	let dialogOpen = false;
+	let dialogResult = "";
 
 	let value;
 </script>
@@ -64,43 +72,19 @@
 	<ToggleSwitch disabled>Switch</ToggleSwitch>
 	<ToggleSwitch checked disabled>Switch</ToggleSwitch>
 </div>
-
 <h2>Radio Button</h2>
 <div>
-	<RadioButton bind:group={normalRadioGroup} value={0}>Switch</RadioButton>
-	<RadioButton bind:group={normalRadioGroup} value={1}>Switch</RadioButton>
+	<RadioButton bind:group={normalRadioGroup} value={0}>Option</RadioButton>
+	<RadioButton bind:group={normalRadioGroup} value={1}>Option</RadioButton>
 </div>
 <div>
-	<RadioButton disabled bind:group={disabledRadioGroup} value={0}>Switch</RadioButton>
-	<RadioButton disabled bind:group={disabledRadioGroup} value={1}>Switch</RadioButton>
+	<RadioButton disabled bind:group={disabledRadioGroup} value={0}>Option</RadioButton>
+	<RadioButton disabled bind:group={disabledRadioGroup} value={1}>Option</RadioButton>
 </div>
 
 <h2>ComboBox</h2>
 <ComboBox
 	placeholder="ComboBox"
-	items={[
-		{
-			name: "Item 1",
-			value: 0
-		},
-		{
-			name: "Item 2",
-			value: 1
-		},
-		{
-			name: "Item 3",
-			value: 2
-		},
-		{
-			name: "Item 4",
-			value: 3
-		}
-	]}
-/>
-
-<ComboBox
-	placeholder="ComboBox"
-	editable
 	items={[
 		{
 			name: "Item 1",
@@ -148,7 +132,9 @@
 <div>
 	<ProgressRing />
 	<ProgressRing bind:value={progressRingValue} />
-	<Button on:click={() => (value = Math.floor(Math.random() * 101))}>Randomize Value</Button>
+	<Button on:click={() => (progressRingValue = Math.floor(Math.random() * 101))}
+		>Randomize Value</Button
+	>
 </div>
 <div>
 	<ProgressRing size={60} />
@@ -229,23 +215,151 @@
 	<TextBox type="search" placeholder="TextBox" />
 </div>
 
+<h2>Number Box</h2>
+<div>
+	<NumberBox value={1} min={0} max={10} placeholder="NumberBox" />
+	<NumberBox size={50} placeholder="NumberBox" inline />
+</div>
+
+<h2>Tooltip</h2>
+<div>
+	<Tooltip text="hiii">
+		<div
+			style="width: 80px; height: 80px; border: 2px dotted var(--fds-divider-stroke-default); margin: 0;"
+		/>
+	</Tooltip>
+	<Tooltip followCursor text="hiii">
+		<div
+			style="width: 80px; height: 80px; border: 2px dotted var(--fds-divider-stroke-default); margin: 0;"
+		/>
+	</Tooltip>
+	<Tooltip alignment="top" text="hiii">
+		<div
+			style="width: 80px; height: 80px; border: 2px dotted var(--fds-divider-stroke-default); margin: 0;"
+		/>
+	</Tooltip>
+	<Tooltip alignment="bottom" text="hiii">
+		<div
+			style="width: 80px; height: 80px; border: 2px dotted var(--fds-divider-stroke-default); margin: 0;"
+		/>
+	</Tooltip>
+	<Tooltip alignment="left" text="hiii">
+		<div
+			style="width: 80px; height: 80px; border: 2px dotted var(--fds-divider-stroke-default); margin: 0;"
+		/>
+	</Tooltip>
+	<Tooltip alignment="right" text="hiii">
+		<div
+			style="width: 80px; height: 80px; border: 2px dotted var(--fds-divider-stroke-default); margin: 0;"
+		/>
+	</Tooltip>
+</div>
+
+<h2>Person Picture</h2>
+<div>
+	<PersonPicture size={24}>
+		{Math.random()
+			.toString(36)
+			.replace(/[^a-z]+/g, "")
+			.toUpperCase()
+			.substr(0, 2)}
+	</PersonPicture>
+	<PersonPicture src="https://thispersondoesnotexist.com/image" size={32}>
+		{Math.random()
+			.toString(36)
+			.replace(/[^a-z]+/g, "")
+			.toUpperCase()
+			.substr(0, 2)}
+	</PersonPicture>
+	<PersonPicture size={48}>
+		{Math.random()
+			.toString(36)
+			.replace(/[^a-z]+/g, "")
+			.toUpperCase()
+			.substr(0, 2)}
+
+		<svelte:fragment slot="badge">
+			<InfoBadge>1</InfoBadge>
+		</svelte:fragment>
+	</PersonPicture>
+	<PersonPicture alt="a a a a" size={96} />
+</div>
+
+<h2>Dialog</h2>
+<div>
+	<Button on:click={() => (dialogOpen = true)}>Open</Button>
+	<ContentDialog bind:open={dialogOpen} title="Add new alarm">
+		<div style="display: flex; flex-direction: column; gap: 12px; margin: 0;">
+			<TextBox placeholder="Alarm name" />
+			<ComboBox
+				value={1}
+				items={[
+					{
+						name: "Disabled",
+						value: 0
+					},
+					{
+						name: "10 minutes",
+						value: 1
+					},
+					{
+						name: "20 minutes",
+						value: 2
+					},
+					{
+						name: "30 minutes",
+						value: 3
+					},
+					{
+						name: "1 hour",
+						value: 4
+					}
+				]}
+			/>
+			<Checkbox>Repeat alarm</Checkbox>
+		</div>
+		<svelte:fragment slot="footer">
+			<Button
+				variant="accent"
+				on:click={() => {
+					dialogOpen = false;
+					dialogResult = "Save";
+				}}>Save</Button
+			>
+			<Button
+				on:click={() => {
+					dialogOpen = false;
+					dialogResult = "Cancel";
+				}}>Cancel</Button
+			>
+		</svelte:fragment>
+	</ContentDialog>
+</div>
+<p>Result: {dialogResult}</p>
+
 <style lang="scss">
 	@use "src/lib/mixins" as *;
 
-	:global(body) {
-		font-family: var(--font-family-text);
-		background-color: var(--solid-background-base);
-		color: var(--text-primary);
+	:global {
+		body {
+			font-family: var(--font-family-text);
+			background-color: var(--solid-background-base);
+			color: var(--text-primary);
+			margin: 24px;
+		}
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-family: var(--font-family-display);
+			font-weight: 600;
+		}
 	}
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		font-family: var(--font-family-display);
-		font-weight: 600;
+	a {
+		color: var(--accent-default);
 	}
 
 	div {

@@ -9,8 +9,11 @@
 	let className = "";
 	export { className as class };
 
+	let element: SVGElement;
 	let circle: SVGCircleElement;
 	let circumference: number;
+
+	export const getElement = () => element;
 
 	$: if (circle) {
 		circumference = Math.PI * (parseInt(circle.getAttribute("r")) * 2);
@@ -29,6 +32,7 @@
 	on:mouseup
 	on:mouseover
 	on:mouseout
+	on:mouseenter
 	on:mouseleave
 	on:keypress
 	on:keydown

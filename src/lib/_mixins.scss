@@ -1,3 +1,11 @@
+@use "sass:selector";
+
+@mixin unify-parent($child) {
+	@at-root #{selector.unify(&, $child)} {
+		@content;
+	}
+}
+
 @mixin flex(
 	$direction: false,
 	$justify: false,

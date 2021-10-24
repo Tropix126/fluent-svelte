@@ -1,7 +1,14 @@
-<script lang="ts"></script>
+<script lang="ts">
+	let className = "";
+	export { className as class };
+
+	let element: HTMLDivElement;
+
+	export const getElement = () => element;
+</script>
 
 <div
-	class="flyout"
+	class="flyout {className ?? ''}"
 	on:click
 	on:blur
 	on:focus
@@ -11,10 +18,12 @@
 	on:mouseup
 	on:mouseover
 	on:mouseout
+	on:mouseenter
 	on:mouseleave
 	on:keypress
 	on:keydown
 	on:keyup
+	bind:this={element}
 >
 	<slot />
 </div>

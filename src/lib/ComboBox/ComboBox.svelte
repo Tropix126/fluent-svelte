@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { createEventDispatcher, tick } from "svelte";
 
+	import { externalMouseEvents } from "../internal";
+
 	import Button from "../Button/Button.svelte";
 	import ComboBoxItem from "./ComboBoxItem.svelte";
 
@@ -48,6 +50,8 @@
 	let menuOffset =
 		itemHeight * -(selection ? items.indexOf(selection) : Math.floor(items.length / 2));
 
+	export const getElement = () => container;
+
 	function updateOffset(target: HTMLElement) {
 		menuOffset = -(
 			target.offsetTop - parseInt(getComputedStyle(target).getPropertyValue("margin-top"))
@@ -63,12 +67,13 @@
 	async function openMenu() {
 		open = !open;
 		await tick();
-		if (menu && selection) updateOffset((menu.children[items.indexOf(selection)] as HTMLElement));
+		if (menu && selection) updateOffset(menu.children[items.indexOf(selection)] as HTMLElement);
 	}
 
 	function handleArrowKeys(event: KeyboardEvent) {
 		const { key } = event;
 
+		if (key === "Tab" || key === "Esc" || key === "Escape") open = false;
 		if (key === "ArrowDown" || key === "ArrowUp") event.preventDefault();
 		if (key === "ArrowDown" && !(items.indexOf(selection) >= items.length - 1)) {
 			value = items[items.indexOf(selection) + 1].value;
@@ -81,12 +86,13 @@
 	}
 </script>
 
-<svelte:window on:click={() => (open = false)} />
-
 <div
 	class="combo-box {className ?? ''}"
 	class:disabled
-	on:click={e => e.stopPropagation()}
+	use:externalMouseEvents={{ type: "mousedown" }}
+	on:outermousedown={() => {
+		if (open) open = false;
+	}}
 	bind:this={container}
 	{...$$restProps}
 >
@@ -104,6 +110,7 @@
 		on:mouseup
 		on:mouseover
 		on:mouseout
+		on:mouseenter
 		on:mouseleave
 		on:keypress
 		on:keyup
@@ -123,15 +130,14 @@
 				d="M8.36612 16.1161C7.87796 16.6043 7.87796 17.3957 8.36612 17.8839L23.1161 32.6339C23.6043 33.122 24.3957 33.122 24.8839 32.6339L39.6339 17.8839C40.122 17.3957 40.122 16.6043 39.6339 16.1161C39.1457 15.628 38.3543 15.628 37.8661 16.1161L24 29.9822L10.1339 16.1161C9.64573 15.628 8.85427 15.628 8.36612 16.1161Z"
 			/>
 		</svg>
-		<slot name="button" />
 	</Button>
-
-	{#if !disabled}
+	{#if !disabled && items}
 		{#if open}
 			<ul
 				bind:this={menu}
+				on:blur={() => (open = false)}
 				role="menu"
-				class="combo-box-dropdown direction-{menuGrowDirection || 'center'}"
+				class="combo-box-dropdown direction-{menuGrowDirection ?? 'center'}"
 				style="--fds-menu-offset: {menuOffset}px;"
 			>
 				{#each items as item}

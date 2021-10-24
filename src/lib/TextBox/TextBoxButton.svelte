@@ -3,9 +3,14 @@
 
 	let className = "";
 	export { className as class };
+
+	let element: HTMLInputElement;
+
+	export const getElement = () => element;
 </script>
 
 <button
+	bind:this={element}
 	class="text-box-button {className ?? ''}"
 	{type}
 	{...$$restProps}
@@ -18,6 +23,7 @@
 	on:mouseup
 	on:mouseover
 	on:mouseout
+	on:mouseenter
 	on:mouseleave
 	on:keypress
 	on:keydown

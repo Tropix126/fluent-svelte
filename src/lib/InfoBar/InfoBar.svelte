@@ -24,7 +24,10 @@
 
 	let wrapped = false;
 	let action: HTMLDivElement;
+	let element: HTMLDivElement;
 	let clientHeight = 0;
+
+	export const getElement = () => element;
 
 	$: if (action && description && clientHeight) wrapped = action.offsetTop > 0;
 
@@ -37,6 +40,7 @@
 {#if open}
 	<div
 		bind:clientHeight
+		bind:this={element}
 		class="info-bar severity-{severity} {className ?? ''}"
 		role="alert"
 		{...$$restProps}
@@ -49,6 +53,7 @@
 		on:mouseup
 		on:mouseover
 		on:mouseout
+		on:mouseenter
 		on:mouseleave
 		on:keypress
 		on:keydown

@@ -18,6 +18,7 @@
 	on:mouseup
 	on:mouseover
 	on:mouseout
+	on:mouseenter
 	on:mouseleave
 	on:keypress
 	on:keydown

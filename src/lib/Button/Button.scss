@@ -4,6 +4,7 @@
 	@include flex($inline: true, $align: center, $justify: center);
 	@include control-typography;
 
+	position: relative;
 	box-sizing: border-box;
 	padding-block: 4px 6px;
 	padding-inline: 11px;

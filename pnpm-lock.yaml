@@ -5,6 +5,7 @@ specifiers:
     "@sveltejs/kit": ^1.0.0-next.180
     "@sveltejs/svelte-repl": ^0.2.2
     autoprefixer: ^10.3.7
+    bezier-easing: ^2.1.0
     cssnano: ^5.0.8
     mdsvex: ^0.9.8
     postcss: ^8.3.9
@@ -19,8 +20,11 @@ specifiers:
     tslib: ^2.3.1
     typescript: ^4.4.3
 
+dependencies:
+    bezier-easing: 2.1.0
+
 devDependencies:
-    "@sveltejs/adapter-vercel": 1.0.0-next.30
+    "@sveltejs/adapter-vercel": 1.0.0-next.31
     "@sveltejs/kit": 1.0.0-next.180_sass@1.42.1+svelte@3.43.1
     "@sveltejs/svelte-repl": 0.2.2
     autoprefixer: 10.3.7_postcss@8.3.9
@@ -80,10 +84,10 @@ packages:
             picomatch: 2.3.0
         dev: true
 
-    /@sveltejs/adapter-vercel/1.0.0-next.30:
+    /@sveltejs/adapter-vercel/1.0.0-next.31:
         resolution:
             {
-                integrity: sha512-6QEwOEPXX36AmsveQFNwo+omluptsdnmXrISXc1ZNiT+rPaVHRXqp5aNPn9uB9SNKXnc1eEmmor5sIJFUqR10g==
+                integrity: sha512-W8p/U00B6ihVrDpwMkgEexfVUzaLmn4MRtXj//Gw4NDFfsrZR4P5wBidrOAIkCYBMvqCOHD+vbAvIiAMOaN23g==
             }
         dependencies:
             esbuild: 0.13.4
@@ -240,6 +244,10 @@ packages:
                 integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
             }
         dev: true
+
+    /bezier-easing/2.1.0:
+        resolution: { integrity: sha1-wE3+i5JtbsrKGBPWn/F5t8ICXYY= }
+        dev: false
 
     /binary-extensions/2.2.0:
         resolution:

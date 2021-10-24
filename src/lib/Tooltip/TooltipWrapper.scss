@@ -1,0 +1,36 @@
+.tooltip- {
+	&wrapper {
+		position: relative;
+		display: block;
+	}
+	&anchor {
+		pointer-events: none;
+		position: absolute;
+		z-index: 100;
+		&.alignment- {
+			&top,
+			&bottom,
+			&auto {
+				transform: translateX(-50%);
+				left: 50%;
+			}
+			&left,
+			&right {
+				transform: translateY(-50%);
+				top: 50%;
+			}
+			&top {
+				top: calc(var(--tooltip-offset) * -1);
+			}
+			&bottom {
+				bottom: calc(var(--tooltip-offset) * -1);
+			}
+			&left {
+				left: calc(var(--tooltip-offset) * -1);
+			}
+			&right {
+				right: calc(var(--tooltip-offset) * -1);
+			}
+		}
+	}
+}

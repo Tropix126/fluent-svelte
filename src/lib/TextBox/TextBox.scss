@@ -4,7 +4,7 @@
 	@include control-typography;
 	box-sizing: border-box;
 	outline: none;
-    cursor: unset;
+	cursor: unset;
 	flex: 1 1 auto;
 	min-block-size: 30px;
 	padding-inline: 10px;
@@ -22,6 +22,9 @@
 	&::-webkit-search-results-decoration {
 		-webkit-appearance: none;
 	}
+	&::-ms-reveal {
+		display: none;
+	}
 	&:disabled {
 		color: var(--text-disabled);
 
@@ -31,8 +34,9 @@
 	}
 	&-container {
 		@include flex($align: center);
-        cursor: text;
+		cursor: text;
 		position: relative;
+		inline-size: 100%;
 		border-radius: var(--control-corner-radius);
 		background-clip: padding-box;
 		background-color: var(--control-fill-default);
@@ -81,13 +85,16 @@
 	}
 	&-buttons {
 		@include flex($align: center);
+		cursor: default;
 		flex: 0 0 auto;
-		margin-inline-end: 4px;
 		:global {
-			.text-box-button {
+			> .text-box-button {
 				margin-inline-start: 6px;
-				&:first-child {
+				&:first-of-type {
 					margin-inline-start: 0;
+				}
+				&:last-of-type {
+					margin-inline-end: 4px;
 				}
 			}
 			.text-box-clear-button {
