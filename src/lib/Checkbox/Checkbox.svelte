@@ -51,7 +51,11 @@
 			{disabled}
 			{...$$restProps}
 		/>
-		<svg class="checkbox-glyph" viewBox={indeterminate ? "171 470 683 85" : "0 0 24 24"}>
+		<svg
+			aria-hidden="true"
+			class="checkbox-glyph"
+			viewBox={indeterminate ? "171 470 683 85" : "0 0 24 24"}
+		>
 			{#if indeterminate && checked}
 				<path
 					class="path-indeterminate"

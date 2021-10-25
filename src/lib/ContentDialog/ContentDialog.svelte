@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
 	import { fade, scale } from "svelte/transition";
+	import { uid } from "../internal";
 
 	import BezierEasing from "bezier-easing";
 
@@ -30,6 +31,9 @@
 	let element: HTMLElement;
 
 	export const getElement = () => element;
+
+	const labelId = uid("fds-dialog-label-");
+	const describedId = uid("fds-dialog-described-");
 
 	function mountDialog(node: HTMLDivElement) {
 		if (append) append.appendChild(node);
@@ -78,11 +82,15 @@
 			transition:scale={{ duration: 167, start: 1.05, easing: BezierEasing(0, 0, 0, 1) }}
 			role="dialog"
 			aria-modal="true"
+			aria-labelledby={labelId}
+			aria-describedby={describedId}
 			{...$$restProps}
 		>
-			<div class="content-dialog-body">
+			<div class="content-dialog-body" id={describedId}>
 				{#if title}
-					<h2 class="content-dialog-title">{title}</h2>
+					<h2 id={labelId} class="content-dialog-title">
+						{title}
+					</h2>
 				{/if}
 				<slot />
 			</div>

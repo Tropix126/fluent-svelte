@@ -335,6 +335,7 @@
 		</svelte:fragment>
 	</ContentDialog>
 </div>
+
 <p>Result: {dialogResult}</p>
 
 <style lang="scss">

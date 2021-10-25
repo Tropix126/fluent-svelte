@@ -90,6 +90,9 @@
 	class="combo-box {className ?? ''}"
 	class:disabled
 	use:externalMouseEvents={{ type: "mousedown" }}
+	aria-expanded={open}
+	aria-haspopup={open ? "listbox" : undefined}
+	role="combobox"
 	on:outermousedown={() => {
 		if (open) open = false;
 	}}
@@ -119,6 +122,7 @@
 			{selection?.name || placeholder}
 		</span>
 		<svg
+			aria-hidden="true"
 			class="combo-box-icon"
 			xmlns="http://www.w3.org/2000/svg"
 			width="48"
@@ -136,13 +140,13 @@
 			<ul
 				bind:this={menu}
 				on:blur={() => (open = false)}
-				role="menu"
+				role="listbox"
 				class="combo-box-dropdown direction-{menuGrowDirection ?? 'center'}"
 				style="--fds-menu-offset: {menuOffset}px;"
 			>
 				{#each items as item}
 					<ComboBoxItem
-						role="menuitem"
+						role="option"
 						selected={item.value === value}
 						on:keydown={handleArrowKeys}
 						on:click={() => selectItem(item)}
