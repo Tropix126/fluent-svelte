@@ -3,7 +3,7 @@
 .flyout {
 	@include control-typography;
 	padding: 16px;
-	min-width: 320px;
+	min-inline-size: 320px;
 	color: var(--text-primary);
 	border-radius: var(--overlay-corner-radius);
 	border: 1px solid var(--surface-stroke-flyout);

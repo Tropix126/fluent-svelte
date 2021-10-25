@@ -4,7 +4,7 @@
 	@include flex($inline: true, $align: center, $justify: center);
 	@include control-typography;
 	box-sizing: border-box;
-	max-width: 320px;
+	max-inline-size: 320px;
 	padding-inline: 8px;
 	padding-block: 5px 7px;
 	background-clip: padding-box;

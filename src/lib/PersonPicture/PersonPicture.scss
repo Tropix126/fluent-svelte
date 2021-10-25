@@ -5,8 +5,8 @@
 	user-select: none;
 	text-align: center;
 	overflow: hidden;
-	width: 100%;
-	height: 100%;
+	inline-size: 100%;
+	block-size: 100%;
 	flex: 0 0 auto;
 	background-color: var(--control-alt-fill-quarternary);
 	border: 1px solid var(--card-stroke-default);
@@ -29,7 +29,7 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: 100%;
-		height: 100%;
+		inline-size: 100%;
+		block-size: 100%;
 	}
 }
