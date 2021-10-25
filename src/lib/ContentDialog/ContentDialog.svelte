@@ -32,8 +32,8 @@
 
 	export const getElement = () => element;
 
-	const labelId = uid("fds-dialog-label-");
-	const describedId = uid("fds-dialog-described-");
+	const titleId = uid("fds-dialog-title-");
+	const bodyId = uid("fds-dialog-body-");
 
 	function mountDialog(node: HTMLDivElement) {
 		if (append) append.appendChild(node);
@@ -82,13 +82,13 @@
 			transition:scale={{ duration: 167, start: 1.05, easing: BezierEasing(0, 0, 0, 1) }}
 			role="dialog"
 			aria-modal="true"
-			aria-labelledby={labelId}
-			aria-describedby={describedId}
+			aria-labelledby={titleId}
+			aria-describedby={bodyId}
 			{...$$restProps}
 		>
-			<div class="content-dialog-body" id={describedId}>
+			<div class="content-dialog-body" id={bodyId}>
 				{#if title}
-					<h2 id={labelId} class="content-dialog-title">
+					<h2 id={titleId} class="content-dialog-title">
 						{title}
 					</h2>
 				{/if}

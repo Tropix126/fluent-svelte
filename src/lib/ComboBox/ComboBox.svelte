@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher, tick } from "svelte";
 
-	import { externalMouseEvents } from "../internal";
+	import { externalMouseEvents, uid } from "../internal";
 
 	import Button from "../Button/Button.svelte";
 	import ComboBoxItem from "./ComboBoxItem.svelte";
@@ -29,6 +29,8 @@
 	export { className as class };
 
 	const dispatch = createEventDispatcher();
+	const buttonId = uid("fds-combo-box-button-");
+	const dropdownId = uid("fds-com-box-dropdown-");
 
 	$: selection = items.find(i => i.value === value);
 	$: if (menu && menu.children.length > 0) {
@@ -101,6 +103,8 @@
 >
 	<Button
 		{disabled}
+		id={buttonId}
+		aria-controls={dropdownId}
 		on:keydown={handleArrowKeys}
 		on:keydown
 		on:click={openMenu}
@@ -140,6 +144,8 @@
 			<ul
 				bind:this={menu}
 				on:blur={() => (open = false)}
+				id={dropdownId}
+				aria-labelledby={buttonId}
 				role="listbox"
 				class="combo-box-dropdown direction-{menuGrowDirection ?? 'center'}"
 				style="--fds-menu-offset: {menuOffset}px;"
