@@ -1,0 +1,105 @@
+@use "../mixins" as *;
+
+.text-box {
+	@include control-typography;
+	box-sizing: border-box;
+	outline: none;
+	cursor: unset;
+	flex: 1 1 auto;
+	min-block-size: 30px;
+	padding-inline: 10px;
+	border-radius: var(--control-corner-radius);
+	color: var(--text-primary);
+	background-color: transparent;
+	border: none;
+	&::placeholder {
+		user-select: none;
+		color: var(--text-secondary);
+	}
+	&::-webkit-search-decoration,
+	&::-webkit-search-cancel-button,
+	&::-webkit-search-results-button,
+	&::-webkit-search-results-decoration {
+		-webkit-appearance: none;
+	}
+	&::-ms-reveal {
+		display: none;
+	}
+	&:disabled {
+		color: var(--text-disabled);
+
+		&::placeholder {
+			color: var(--text-disabled);
+		}
+	}
+	&-container {
+		@include flex($align: center);
+		cursor: text;
+		position: relative;
+		inline-size: 100%;
+		border-radius: var(--control-corner-radius);
+		background-clip: padding-box;
+		background-color: var(--control-fill-default);
+		border: 1px solid var(--control-stroke-default);
+		&:hover {
+			background-color: var(--control-fill-secondary);
+		}
+		&.disabled {
+			cursor: default;
+			background-color: var(--control-fill-disabled);
+			.text-box-underline {
+				display: none;
+			}
+		}
+		&:focus-within {
+			background-color: var(--control-fill-input-active);
+			.text-box::placeholder {
+				color: var(--text-tertiary);
+			}
+			.text-box-underline::after {
+				border-bottom: 2px solid var(--accent-default);
+			}
+			:global(.text-box-clear-button) {
+				display: flex;
+			}
+		}
+	}
+	&-underline {
+		position: absolute;
+		top: -1px;
+		left: -1px;
+		inline-size: calc(100% + 2px);
+		block-size: calc(100% + 2px);
+		pointer-events: none;
+		border-radius: var(--control-corner-radius);
+		overflow: hidden;
+		&::after {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			inline-size: 100%;
+			block-size: 100%;
+			border-bottom: 1px solid var(--control-strong-stroke-default);
+		}
+	}
+	&-buttons {
+		@include flex($align: center);
+		cursor: default;
+		flex: 0 0 auto;
+		:global {
+			> .text-box-button {
+				margin-inline-start: 6px;
+				&:first-of-type {
+					margin-inline-start: 0;
+				}
+				&:last-of-type {
+					margin-inline-end: 4px;
+				}
+			}
+			.text-box-clear-button {
+				display: none;
+			}
+		}
+	}
+}

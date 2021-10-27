@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	/** Controls whether the switch is toggled or not */
 	export let checked = false;
 
@@ -6,11 +6,15 @@
 	export let disabled = false;
 
 	/** Specifies the input's native value attribute */
-	export let value = undefined;
+	export let value: any = undefined;
 
 	/** Specifies a custom class name for the switch */
 	let className = "";
 	export { className as class };
+
+	let element: HTMLInputElement;
+
+	export const getElement = () => element;
 </script>
 
 <label class="toggle-switch-container" class:disabled>
@@ -27,13 +31,15 @@
 		on:mouseup
 		on:mouseover
 		on:mouseout
+		on:mouseenter
 		on:mouseleave
 		on:keypress
 		on:keydown
 		on:keyup
-		class="toggle-switch {className || ''}"
+		class="toggle-switch {className ?? ''}"
 		type="checkbox"
 		bind:checked
+		bind:this={element}
 		{value}
 		{disabled}
 		{...$$restProps}

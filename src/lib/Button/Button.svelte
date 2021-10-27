@@ -11,10 +11,15 @@
 	/** Specifies a custom class name for the button */
 	let className = "";
 	export { className as class };
+
+	let element: HTMLButtonElement | HTMLAnchorElement;
+
+	export const getElement = () => element;
 </script>
 
 {#if href && !disabled}
 	<a
+		bind:this={element}
 		on:click
 		on:blur
 		on:focus
@@ -24,11 +29,12 @@
 		on:mouseup
 		on:mouseover
 		on:mouseout
+		on:mouseenter
 		on:mouseleave
 		on:keypress
 		on:keydown
 		on:keyup
-		class="button style-{variant} {className || ''}"
+		class="button style-{variant} {className ?? ''}"
 		class:disabled
 		{href}
 		{...$$restProps}
@@ -50,7 +56,7 @@
 		on:keypress
 		on:keydown
 		on:keyup
-		class="button style-{variant} {className || ''}"
+		class="button style-{variant} {className ?? ''}"
 		class:disabled
 		{disabled}
 		{...$$restProps}

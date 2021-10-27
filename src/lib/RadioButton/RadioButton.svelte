@@ -12,6 +12,10 @@
 	let className = "";
 	export { className as class };
 
+	let element: HTMLInputElement;
+
+	export const getElement = () => element;
+
 	$: checked = group === value;
 </script>
 
@@ -29,14 +33,16 @@
 		on:mouseup
 		on:mouseover
 		on:mouseout
+		on:mouseenter
 		on:mouseleave
 		on:keypress
 		on:keydown
 		on:keyup
 		type="radio"
 		aria-selected={checked}
-		class="radio-button {className || ''}"
+		class="radio-button {className ?? ''}"
 		bind:group
+		bind:this={element}
 		{value}
 		{disabled}
 		{...$$restProps}

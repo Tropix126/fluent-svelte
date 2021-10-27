@@ -7,20 +7,20 @@
 	border: 1px solid var(--control-strong-stroke-default);
 	border-radius: 20px;
 	outline: none;
-	background: var(--control-alt-fill-secondary);
+	background-clip: padding-box;
+	background-color: var(--control-alt-fill-secondary);
 	appearance: none;
 	inline-size: 20px;
 	block-size: 20px;
 
 	&::before {
 		content: "";
-		position: absolute;
-		visibility: hidden;
-		border-radius: 12px;
-		background: var(--text-on-accent-primary);
-		transition: var(--control-normal-duration) var(--control-fast-out-slow-in-easing);
 		inline-size: 4px;
 		block-size: 4px;
+		visibility: hidden;
+		position: absolute;
+		border-radius: 12px;
+		background-color: var(--text-on-accent-primary);
 	}
 
 	&:focus-visible {
@@ -28,14 +28,15 @@
 	}
 
 	&:hover {
-		background: var(--control-alt-fill-tertiary);
+		background-color: var(--control-alt-fill-tertiary);
 	}
 
 	&:active {
 		border-color: var(--control-strong-stroke-disabled);
-		background: var(--control-alt-fill-quarternary);
+		background-color: var(--control-alt-fill-quarternary);
 
 		&::before {
+			transition: var(--control-normal-duration) var(--control-fast-out-slow-in-easing);
 			visibility: visible;
 			inline-size: 10px;
 			block-size: 10px;
@@ -44,22 +45,26 @@
 
 	&:disabled {
 		border-color: var(--control-strong-stroke-disabled);
-		background: var(--control-alt-fill-disabled);
+		background-color: var(--control-alt-fill-disabled);
+		&::before {
+			visibility: hidden;
+		}
 	}
 
 	&:checked {
-		border-color: transparent;
-		background: var(--accent-default);
+		border: none;
+		background-color: var(--accent-default);
 
 		&::before {
 			visibility: visible;
+			transition: var(--control-normal-duration) var(--control-fast-out-slow-in-easing);
 			box-shadow: 0 0 0 1px var(--control-stroke-default);
 			inline-size: 12px;
 			block-size: 12px;
 		}
 
 		&:hover {
-			background: var(--accent-secondary);
+			background-color: var(--accent-secondary);
 
 			&::before {
 				inline-size: 14px;
@@ -68,7 +73,7 @@
 		}
 
 		&:active {
-			background: var(--accent-tertiary);
+			background-color: var(--accent-tertiary);
 
 			&::before {
 				inline-size: 10px;
@@ -77,7 +82,7 @@
 		}
 
 		&:disabled {
-			background: var(--accent-disabled);
+			background-color: var(--accent-disabled);
 
 			&::before {
 				box-shadow: none;

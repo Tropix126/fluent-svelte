@@ -1,12 +1,13 @@
 <script lang="ts">
-	export let selected = false;
-	export let disabled = false;
-
 	let className = "";
 	export { className as class };
+
+	let element: HTMLDivElement;
+
+	export const getElement = () => element;
 </script>
 
-<li
+<div
 	on:click
 	on:blur
 	on:focus
@@ -21,18 +22,14 @@
 	on:keypress
 	on:keydown
 	on:keyup
-	tabindex="0"
-	class="combo-box-item {className ?? ''}"
-	class:selected
-	class:disabled
+	bind:this={element}
+	class="tooltip {className ?? ''}"
+	role="tooltip"
 	{...$$restProps}
 >
-	<slot name="icon" />
-	<span>
-		<slot />
-	</span>
-</li>
+	<slot />
+</div>
 
 <style lang="scss">
-	@use "./ComboBoxItem";
+	@use "./TooltipSurface";
 </style>

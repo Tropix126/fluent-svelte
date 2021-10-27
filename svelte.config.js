@@ -1,7 +1,8 @@
-import path from "path";
 import preprocess from "svelte-preprocess";
-import adapter from "@sveltejs/adapter-vercel";
+import vercel from "@sveltejs/adapter-vercel";
+import cssnano from "cssnano";
 import autoprefixer from "autoprefixer";
+import prefixer from "postcss-variables-prefixer";
 
 import { mdsvex } from "mdsvex";
 
@@ -9,18 +10,18 @@ import { mdsvex } from "mdsvex";
 const config = {
 	preprocess: [
 		mdsvex({
-			extensions: [".svx"]
+			extensions: [".svx", ".md"]
 		}),
 		preprocess({
 			postcss: {
-				plugins: [autoprefixer()]
+				plugins: [autoprefixer(), cssnano(), prefixer({ prefix: "fds-" })]
 			}
 		})
 	],
 
 	kit: {
 		target: "body",
-		adapter: adapter()
+		adapter: vercel()
 	}
 };
 

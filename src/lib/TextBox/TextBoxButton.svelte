@@ -1,12 +1,19 @@
 <script lang="ts">
-	export let selected = false;
-	export let disabled = false;
+	export let type = "button";
 
 	let className = "";
 	export { className as class };
+
+	let element: HTMLInputElement;
+
+	export const getElement = () => element;
 </script>
 
-<li
+<button
+	bind:this={element}
+	class="text-box-button {className ?? ''}"
+	{type}
+	{...$$restProps}
 	on:click
 	on:blur
 	on:focus
@@ -21,18 +28,10 @@
 	on:keypress
 	on:keydown
 	on:keyup
-	tabindex="0"
-	class="combo-box-item {className ?? ''}"
-	class:selected
-	class:disabled
-	{...$$restProps}
 >
-	<slot name="icon" />
-	<span>
-		<slot />
-	</span>
-</li>
+	<slot /></button
+>
 
 <style lang="scss">
-	@use "./ComboBoxItem";
+	@use "./TextBoxButton";
 </style>

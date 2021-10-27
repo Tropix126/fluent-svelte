@@ -1,0 +1,31 @@
+@use "../mixins" as *;
+
+:global {
+	.number-box {
+		appearance: textfield;
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+			appearance: none;
+			margin: 0;
+		}
+	}
+}
+
+.number-box-spinner-flyout {
+	@include flex($direction: column);
+	border-radius: var(--overlay-corner-radius);
+	border: 1px solid var(--surface-stroke-flyout);
+	background-clip: padding-box;
+	box-sizing: border-box;
+	background-color: var(--flyout-fallback-background-default);
+	box-shadow: var(--flyout-shadow);
+	position: absolute;
+	padding: 2px 4px;
+	right: -16px;
+	z-index: 100;
+	:global(.number-box-spinner) {
+		margin: 2px 1px;
+		inline-size: 36px;
+		block-size: 36px;
+	}
+}

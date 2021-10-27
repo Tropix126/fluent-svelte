@@ -14,6 +14,10 @@
 	/** Specifies a custom class name for the checkbox */
 	let className = "";
 	export { className as class };
+
+	let element: HTMLInputElement;
+
+	export const getElement = () => element;
 </script>
 
 <!-- svelte-ignore a11y-label-has-associated-control -->
@@ -33,18 +37,25 @@
 			on:mouseup
 			on:mouseover
 			on:mouseout
+			on:mouseenter
 			on:mouseleave
 			on:keypress
 			on:keydown
 			on:keyup
-			class="checkbox{` ${className}` || ''}"
+			class="checkbox {className ?? ''}"
 			type="checkbox"
 			bind:checked
 			bind:indeterminate
+			bind:this={element}
+			{value}
 			{disabled}
 			{...$$restProps}
 		/>
-		<svg class="checkbox-glyph" viewBox={indeterminate ? "171 470 683 85" : "0 0 24 24"}>
+		<svg
+			aria-hidden="true"
+			class="checkbox-glyph"
+			viewBox={indeterminate ? "171 470 683 85" : "0 0 24 24"}
+		>
 			{#if indeterminate && checked}
 				<path
 					class="path-indeterminate"

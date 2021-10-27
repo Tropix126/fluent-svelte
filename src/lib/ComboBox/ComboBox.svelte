@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { createEventDispatcher, tick } from "svelte";
 
+	import { externalMouseEvents, uid } from "../internal";
+
 	import Button from "../Button/Button.svelte";
 	import ComboBoxItem from "./ComboBoxItem.svelte";
 
@@ -27,6 +29,8 @@
 	export { className as class };
 
 	const dispatch = createEventDispatcher();
+	const buttonId = uid("fds-combo-box-button-");
+	const dropdownId = uid("fds-com-box-dropdown-");
 
 	$: selection = items.find(i => i.value === value);
 	$: if (menu && menu.children.length > 0) {
@@ -48,27 +52,30 @@
 	let menuOffset =
 		itemHeight * -(selection ? items.indexOf(selection) : Math.floor(items.length / 2));
 
-	const updateOffset = (target: HTMLElement) => {
+	export const getElement = () => container;
+
+	function updateOffset(target: HTMLElement) {
 		menuOffset = -(
 			target.offsetTop - parseInt(getComputedStyle(target).getPropertyValue("margin-top"))
 		);
-	};
+	}
 
-	const selectItem = (item: Item) => {
+	function selectItem(item: Item) {
 		value = item.value;
 		open = false;
 		if (container) (container.children[0] as HTMLElement).focus();
-	};
+	}
 
-	const openMenu = async () => {
+	async function openMenu() {
 		open = !open;
 		await tick();
-		if (menu && selection) updateOffset(menu.children[items.indexOf(selection)]);
-	};
+		if (menu && selection) updateOffset(menu.children[items.indexOf(selection)] as HTMLElement);
+	}
 
-	const handleArrowKeys = (event: KeyboardEvent) => {
+	function handleArrowKeys(event: KeyboardEvent) {
 		const { key } = event;
 
+		if (key === "Tab" || key === "Esc" || key === "Escape") open = false;
 		if (key === "ArrowDown" || key === "ArrowUp") event.preventDefault();
 		if (key === "ArrowDown" && !(items.indexOf(selection) >= items.length - 1)) {
 			value = items[items.indexOf(selection) + 1].value;
@@ -78,19 +85,26 @@
 			event.preventDefault();
 			selectItem(selection);
 		} else if (!menu && selection && key === "Enter") openMenu();
-	};
+	}
 </script>
 
-<svelte:window on:click={() => (open = false)} />
-
 <div
-	class="combo-box {className || 'class'}"
-	on:click={e => e.stopPropagation()}
+	class="combo-box {className ?? ''}"
+	class:disabled
+	use:externalMouseEvents={{ type: "mousedown" }}
+	aria-expanded={open}
+	aria-haspopup={open ? "listbox" : undefined}
+	role="combobox"
+	on:outermousedown={() => {
+		if (open) open = false;
+	}}
 	bind:this={container}
 	{...$$restProps}
 >
 	<Button
 		{disabled}
+		id={buttonId}
+		aria-controls={dropdownId}
 		on:keydown={handleArrowKeys}
 		on:keydown
 		on:click={openMenu}
@@ -103,6 +117,7 @@
 		on:mouseup
 		on:mouseover
 		on:mouseout
+		on:mouseenter
 		on:mouseleave
 		on:keypress
 		on:keyup
@@ -111,6 +126,7 @@
 			{selection?.name || placeholder}
 		</span>
 		<svg
+			aria-hidden="true"
 			class="combo-box-icon"
 			xmlns="http://www.w3.org/2000/svg"
 			width="48"
@@ -122,20 +138,21 @@
 				d="M8.36612 16.1161C7.87796 16.6043 7.87796 17.3957 8.36612 17.8839L23.1161 32.6339C23.6043 33.122 24.3957 33.122 24.8839 32.6339L39.6339 17.8839C40.122 17.3957 40.122 16.6043 39.6339 16.1161C39.1457 15.628 38.3543 15.628 37.8661 16.1161L24 29.9822L10.1339 16.1161C9.64573 15.628 8.85427 15.628 8.36612 16.1161Z"
 			/>
 		</svg>
-		<slot name="button" />
 	</Button>
-
-	{#if !disabled}
+	{#if !disabled && items}
 		{#if open}
 			<ul
 				bind:this={menu}
-				role="menu"
-				class="combo-box-dropdown direction-{menuGrowDirection || 'center'}"
-				style="--menu-offset: {menuOffset}px;"
+				on:blur={() => (open = false)}
+				id={dropdownId}
+				aria-labelledby={buttonId}
+				role="listbox"
+				class="combo-box-dropdown direction-{menuGrowDirection ?? 'center'}"
+				style="--fds-menu-offset: {menuOffset}px;"
 			>
 				{#each items as item}
 					<ComboBoxItem
-						role="menuitem"
+						role="option"
 						selected={item.value === value}
 						on:keydown={handleArrowKeys}
 						on:click={() => selectItem(item)}

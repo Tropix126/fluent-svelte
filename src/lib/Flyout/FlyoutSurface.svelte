@@ -1,12 +1,14 @@
 <script lang="ts">
-	export let selected = false;
-	export let disabled = false;
-
 	let className = "";
 	export { className as class };
+
+	let element: HTMLDivElement;
+
+	export const getElement = () => element;
 </script>
 
-<li
+<div
+	class="flyout {className ?? ''}"
 	on:click
 	on:blur
 	on:focus
@@ -21,18 +23,11 @@
 	on:keypress
 	on:keydown
 	on:keyup
-	tabindex="0"
-	class="combo-box-item {className ?? ''}"
-	class:selected
-	class:disabled
-	{...$$restProps}
+	bind:this={element}
 >
-	<slot name="icon" />
-	<span>
-		<slot />
-	</span>
-</li>
+	<slot />
+</div>
 
 <style lang="scss">
-	@use "./ComboBoxItem";
+	@use "./FlyoutSurface";
 </style>

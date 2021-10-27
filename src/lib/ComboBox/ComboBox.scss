@@ -23,8 +23,35 @@
 	display: inline-flex;
 	user-select: none;
 
-	:global(.button) {
-		flex: 1 1 auto;
+	:global {
+		.button,
+		.text-box {
+			flex: 1 1 auto;
+		}
+
+		.text-box {
+			border-color: var(--control-border-default);
+			&-underline::after {
+				border-color: transparent;
+			}
+			&-container {
+				cursor: default;
+				&:focus-visible {
+					cursor: text;
+				}
+			}
+		}
+	}
+
+	&.editable {
+		.combo-box-dropdown {
+			--grow-clip-path: polygon(0 0, 100% 0, 100% 25%, 0 25%);
+			margin: 0;
+			top: 100%;
+			left: 0;
+			inline-size: 100%;
+			border-radius: 0 0 var(--overlay-corner-radius) var(--overlay-corner-radius);
+		}
 	}
 
 	&-label {
@@ -37,6 +64,10 @@
 		}
 	}
 
+	&.disabled .placeholder {
+		color: var(--text-disabled);
+	}
+
 	&-icon {
 		margin-inline-start: 8px;
 		inline-size: 12px;
@@ -44,6 +75,7 @@
 	}
 
 	&-dropdown {
+		z-index: 100;
 		position: absolute;
 		box-sizing: border-box;
 		margin: 0;
@@ -52,11 +84,12 @@
 		padding: 1px;
 		border: 1px solid var(--surface-stroke-flyout);
 		border-radius: var(--overlay-corner-radius);
-		background-color: var(--solid-background-tertiary);
+		background-color: var(--flyout-fallback-background-default);
 		background-clip: padding-box;
 		box-shadow: var(--flyout-shadow);
 		animation: menu-in var(--control-normal-duration) var(--control-fast-out-slow-in-easing),
-		shadow-in var(--control-normal-duration) var(--control-fast-out-slow-in-easing) var(--control-normal-duration);
+			shadow-in var(--control-normal-duration) var(--control-fast-out-slow-in-easing)
+				var(--control-normal-duration);
 		overflow: auto;
 		inline-size: calc(100% + 8px);
 		max-block-size: 504px;
