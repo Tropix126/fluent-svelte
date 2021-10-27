@@ -1,12 +1,12 @@
 <script>
 	// this doesn't use the Fluent namespace because WebStorm
-	import { Button, Checkbox, ProgressRing, ToggleSwitch, RadioButton, ComboBox } from "$lib";
-	import "$lib/theme.css";
+	import {Button, Checkbox, ComboBox, ProgressRing, RadioButton, Rating, ToggleSwitch} from "$lib"
+	import "$lib/theme.css"
 
-	let value = Math.floor(Math.random() * 101);
+	let value = Math.floor(Math.random() * 101)
 
-	let normalRadioGroup = 0;
-	let disabledRadioGroup = 0;
+	let normalRadioGroup = 0
+	let disabledRadioGroup = 0
 </script>
 
 <h1>fluent-svelte test page</h1>
@@ -108,12 +108,18 @@
 
 <h2>Progress Ring</h2>
 <div>
-	<ProgressRing />
-	<ProgressRing bind:value />
+	<ProgressRing/>
+	<ProgressRing bind:value/>
 	<Button on:click={() => value = Math.floor(Math.random() * 101)}>Randomize Value</Button>
 </div>
 <div>
-	<ProgressRing size={60} />
+	<ProgressRing size={60}/>
+</div>
+
+<h2>Rating</h2>
+<div>
+	<Rating id="big-rating" value={4}>Rating</Rating>
+	<Rating id="small-rating" stars={3} value={1}>Rating</Rating>
 </div>
 
 <style lang="scss">
