@@ -1,18 +1,23 @@
 <script>
 	// this doesn't use the Fluent namespace because WebStorm
-  import {
-	  Button,
-	  Checkbox,
-	  ComboBox, ContentDialog,
-	  Flyout,
-	  InfoBadge,
-	  InfoBar, NumberBox, PersonPicture,
-	  ProgressRing,
-	  RadioButton,
-	  Rating, TextBox,
-	  ToggleSwitch, Tooltip
-  } from "$lib"
-	import "$lib/theme.css"
+	import {
+		Button,
+		Checkbox,
+		ComboBox,
+		ContentDialog,
+		Flyout,
+		InfoBadge,
+		InfoBar,
+		NumberBox,
+		PersonPicture,
+		ProgressRing,
+		RadioButton,
+		Rating,
+		TextBox,
+		ToggleSwitch,
+		Tooltip
+	} from "$lib";
+	import "$lib/theme.css";
 
 	let progressRingValue = Math.floor(Math.random() * 101);
 
@@ -139,7 +144,11 @@
 <h2>Rating</h2>
 <div>
 	<Rating id="big-rating" value={4}>Rating</Rating>
-	<Rating id="small-rating" stars={3} value={1}>Rating</Rating>
+	<Rating id="small-rating" max={3} value={1} variant="user">Rating</Rating>
+</div>
+<div>
+	<Rating disabled id="big-rating-disabled" value={4}>Rating</Rating>
+	<Rating disabled id="small-rating-disabled" max={3} value={1} variant="user">Rating</Rating>
 </div>
 
 <h2>InfoBadge</h2>
@@ -192,20 +201,18 @@
 		description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna."
 	>
 		Info
-		<svelte:fragment slot="action">
-			<Button variant="accent">Action</Button>
-		</svelte:fragment>
+
+		<Button slot="action" variant="accent">Action</Button>
 	</InfoBar>
 	<InfoBar severity="attention" description="Something is happening.">
 		Attention
-		<svelte:fragment slot="action">
-			<Button>Action</Button>
-		</svelte:fragment>
+
+		<Button slot="action">Action</Button>
 	</InfoBar>
 	<InfoBar severity="success" description="Nothing bad happened!">Success</InfoBar>
-	<InfoBar severity="caution" description="Don't do this or something bad will happen."
-		>Warning</InfoBar
-	>
+	<InfoBar description="Don't do this or something bad will happen." severity="caution">
+		Warning
+	</InfoBar>
 	<InfoBar severity="critical" description="Something bad happened :(">Error</InfoBar>
 </div>
 
@@ -226,58 +233,44 @@
 <h2>Tooltip</h2>
 <div>
 	<Tooltip text="hiii">
-		<div style="width: 80px; height: 80px; border: 2px dotted var(--fds-divider-stroke-default); margin: 0;"></div>
+		<div class="tooltip-div">Hover for tooltip</div>
 	</Tooltip>
 	<Tooltip followCursor text="hiii">
-		<div style="width: 80px; height: 80px; border: 2px dotted var(--fds-divider-stroke-default); margin: 0;"></div>
+		<div class="tooltip-div">Hover for tooltip</div>
 	</Tooltip>
 	<Tooltip alignment="top" text="hiii">
-		<div style="width: 80px; height: 80px; border: 2px dotted var(--fds-divider-stroke-default); margin: 0;"></div>
+		<div class="tooltip-div">Hover for tooltip</div>
 	</Tooltip>
 	<Tooltip alignment="bottom" text="hiii">
-		<div style="width: 80px; height: 80px; border: 2px dotted var(--fds-divider-stroke-default); margin: 0;"></div>
+		<div class="tooltip-div">Hover for tooltip</div>
 	</Tooltip>
 	<Tooltip alignment="left" text="hiii">
-		<div style="width: 80px; height: 80px; border: 2px dotted var(--fds-divider-stroke-default); margin: 0;"></div>
+		<div class="tooltip-div">Hover for tooltip</div>
 	</Tooltip>
 	<Tooltip alignment="right" text="hiii">
-		<div style="width: 80px; height: 80px; border: 2px dotted var(--fds-divider-stroke-default); margin: 0;"></div>
+		<div class="tooltip-div">Hover for tooltip</div>
 	</Tooltip>
 </div>
 
 <h2>Person Picture</h2>
 <div>
 	<PersonPicture size={24}>
-		{Math.random()
-			.toString(36)
-			.replace(/[^a-z]+/g, "")
-			.toUpperCase()
-			.substr(0, 2)}
+		{Math.random().toString(36).replace(/[^a-z]+/g, "").toUpperCase().substr(0, 2)}
 	</PersonPicture>
 	<PersonPicture src="https://thispersondoesnotexist.com/image" size={32}>
-		{Math.random()
-			.toString(36)
-			.replace(/[^a-z]+/g, "")
-			.toUpperCase()
-			.substr(0, 2)}
+		{Math.random().toString(36).replace(/[^a-z]+/g, "").toUpperCase().substr(0, 2)}
 	</PersonPicture>
 	<PersonPicture size={48}>
-		{Math.random()
-			.toString(36)
-			.replace(/[^a-z]+/g, "")
-			.toUpperCase()
-			.substr(0, 2)}
+		{Math.random().toString(36).replace(/[^a-z]+/g, "").toUpperCase().substr(0, 2)}
 
-		<svelte:fragment slot="badge">
-			<InfoBadge>1</InfoBadge>
-		</svelte:fragment>
+		<InfoBadge slot="badge">1</InfoBadge>
 	</PersonPicture>
 	<PersonPicture alt="a a a a" size={96} />
 </div>
 
 <h2>Dialog</h2>
 <div>
-	<Button on:click={() => (dialogOpen = true)}>Open</Button>
+	<Button on:click={() => dialogOpen = true}>Open</Button>
 	<ContentDialog bind:open={dialogOpen} title="Add new alarm">
 		<div style="display: flex; flex-direction: column; gap: 12px; margin: 0;">
 			<TextBox placeholder="Alarm name" />
@@ -314,14 +307,16 @@
 				on:click={() => {
 					dialogOpen = false;
 					dialogResult = "Save";
-				}}>Save</Button
-			>
+				}}>
+				Save
+			</Button>
 			<Button
 				on:click={() => {
 					dialogOpen = false;
 					dialogResult = "Cancel";
-				}}>Cancel</Button
-			>
+				}}>
+				Cancel
+			</Button>
 		</svelte:fragment>
 	</ContentDialog>
 </div>
@@ -352,5 +347,16 @@
 	div {
 		@include flex($gap: 12px);
 		margin-block-end: 12px;
+	}
+
+	.tooltip-div {
+		@include control-typography;
+		display: grid;
+		align-content: center;
+		width: 80px;
+		height: 80px;
+		margin: 0;
+		border: 2px dotted var(--fds-divider-stroke-default);
+		text-align: center;
 	}
 </style>

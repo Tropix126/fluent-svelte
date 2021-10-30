@@ -1,90 +1,78 @@
 <script lang="ts">
-	export let value = 1
-	export let stars = 5
-	export let id: string
+	import RatingStar from "./RatingStar.svelte";
 
-	$: selectedStar = stars + 1 - value
+	export let value = 1;
+	export let max = 5;
+	export let id: string;
+	export let disabled = false;
+	export let variant: "default" | "user" = "default";
+
+	let previewValue = undefined;
+
+	const setValue = (i: number) => {
+		if (!disabled) value = i;
+	};
+
+	const setPreviewValue = (i: number) => {
+		if (!disabled) previewValue = i;
+	};
+
+	const handleKeyNav = (event: KeyboardEvent) => {
+		if (event.key === "ArrowUp" || event.key === "ArrowRight") {
+			event.preventDefault();
+			setValue(value + 1);
+		} else if (event.key === "ArrowDown" || event.key === "ArrowLeft") {
+			event.preventDefault();
+			setValue(value - 1);
+		}
+	};
 </script>
 
 <div class="rating" {id}>
-	<span class="rating-label">
-		<slot/>
+	<label class:disabled for="rating-{id}" on:keydown={handleKeyNav}
+	       tabindex={!disabled ? "0" : "-1"}>
+		{#each Array(max) as _, n}
+			<RatingStar filled={n < value && !previewValue} {disabled} accent={variant === 'user'}
+			            preview={!!previewValue && n < previewValue}
+			            on:click={() => setValue(n + 1)}
+			            on:mouseover={() => setPreviewValue(n + 1)}
+			            on:mouseleave={() => setPreviewValue(undefined)}
+			/>
+		{/each}
+		<input bind:value class:disabled {disabled}
+		       id="rating-{id}" max={max} min={1}
+		       name="rating-{id}" type="range"
+		/>
+	</label>
+	<span class="rating-label" class:disabled>
+		<slot />
 	</span>
-	{#each [...new Array(stars).keys()] as star}
-		<input type="radio" id="rating-{star}-{id}" bind:group={value} {value} name="rating-{id}"/>
-		<label for="rating-{star}-{id}">
-			<svg width="24" height="24" viewBox="0 0 24 24" class="rating-star"
-			     fill="none" xmlns="http://www.w3.org/2000/svg" tabindex="0">
-				<path
-						d="M10.7878 3.10263C11.283 2.09926 12.7138 2.09925 13.209 3.10263L15.567 7.88036L20.8395 8.6465C21.9468 8.8074 22.3889 10.1682 21.5877 10.9492L17.7724 14.6681L18.6731 19.9193C18.8622 21.0222 17.7047 21.8632 16.7143 21.3425L11.9984 18.8632L7.28252 21.3425C6.29213 21.8632 5.13459 21.0222 5.32374 19.9193L6.2244 14.6681L2.40916 10.9492C1.60791 10.1682 2.05005 8.8074 3.15735 8.6465L8.42988 7.88036L10.7878 3.10263ZM11.9984 4.03903L9.74008 8.61492C9.54344 9.01336 9.16332 9.28953 8.72361 9.35343L3.67382 10.0872L7.32788 13.649C7.64606 13.9592 7.79125 14.406 7.71614 14.844L6.85353 19.8734L11.3702 17.4988C11.7635 17.292 12.2333 17.292 12.6266 17.4988L17.1433 19.8734L16.2807 14.844C16.2056 14.406 16.3508 13.9592 16.6689 13.649L20.323 10.0872L15.2732 9.35343C14.8335 9.28953 14.4534 9.01336 14.2568 8.61492L11.9984 4.03903Z"
-						fill="var(--text-primary)"
-						class="rating-star-path"
-				/>
-			</svg>
-		</label>
-	{/each}
 </div>
 
 <style lang="scss">
 	@use "../mixins" as *;
 
-	@mixin previewed {
-		d: path("M10.7878 3.10263C11.283 2.09926 12.7138 2.09925 13.209 3.10263L15.567 7.88036L20.8395 8.6465C21.9468 8.8074 22.3889 10.1682 21.5877 10.9492L17.7724 14.6681L18.6731 19.9193C18.8622 21.0222 17.7047 21.8632 16.7143 21.3425L11.9984 18.8632L7.28252 21.3425C6.29213 21.8632 5.13459 21.0222 5.32374 19.9193L6.2244 14.6681L2.40916 10.9492C1.60791 10.1682 2.05005 8.8074 3.15735 8.6465L8.42988 7.88036L10.7878 3.10263Z");
-		fill: var(--accent-default);
-	}
-
-	@mixin selected {
-		d: path("M10.7878 3.10263C11.283 2.09926 12.7138 2.09925 13.209 3.10263L15.567 7.88036L20.8395 8.6465C21.9468 8.8074 22.3889 10.1682 21.5877 10.9492L17.7724 14.6681L18.6731 19.9193C18.8622 21.0222 17.7047 21.8632 16.7143 21.3425L11.9984 18.8632L7.28252 21.3425C6.29213 21.8632 5.13459 21.0222 5.32374 19.9193L6.2244 14.6681L2.40916 10.9492C1.60791 10.1682 2.05005 8.8074 3.15735 8.6465L8.42988 7.88036L10.7878 3.10263Z");
-		fill: var(--text-primary);
-	}
-
-	@mixin unselected {
-		d: path("M10.7878 3.10263C11.283 2.09926 12.7138 2.09925 13.209 3.10263L15.567 7.88036L20.8395 8.6465C21.9468 8.8074 22.3889 10.1682 21.5877 10.9492L17.7724 14.6681L18.6731 19.9193C18.8622 21.0222 17.7047 21.8632 16.7143 21.3425L11.9984 18.8632L7.28252 21.3425C6.29213 21.8632 5.13459 21.0222 5.32374 19.9193L6.2244 14.6681L2.40916 10.9492C1.60791 10.1682 2.05005 8.8074 3.15735 8.6465L8.42988 7.88036L10.7878 3.10263ZM11.9984 4.03903L9.74008 8.61492C9.54344 9.01336 9.16332 9.28953 8.72361 9.35343L3.67382 10.0872L7.32788 13.649C7.64606 13.9592 7.79125 14.406 7.71614 14.844L6.85353 19.8734L11.3702 17.4988C11.7635 17.292 12.2333 17.292 12.6266 17.4988L17.1433 19.8734L16.2807 14.844C16.2056 14.406 16.3508 13.9592 16.6689 13.649L20.323 10.0872L15.2732 9.35343C14.8335 9.28953 14.4534 9.01336 14.2568 8.61492L11.9984 4.03903Z");
-		fill: var(--text-primary);
-	}
-
 	.rating {
-		@include flex($direction: row-reverse, $justify: start, $align: center);
+		@include flex($justify: start, $align: center);
 
 		input {
-			@include unselected;
-
-			// preview star selection
-			&:hover, &:focus {
-				~ label svg .rating-star-path {
-					@include previewed;
-				}
-			}
-
-			// selected stars
-			&:where(:checked:not(:hover, :focus)) {
-				~ label svg .rating-star-path {
-					@include selected;
-				}
-			}
+			display: none;
+			visibility: hidden;
 		}
 
 		label {
 			cursor: pointer;
 
-			&:focus {
-				outline: none;
-			}
-
-			svg:focus {
-				outline: none;
-			}
+			//&:focus {	outline: none }
+			&.disabled { cursor: auto }
 		}
 
 		&-label {
 			@include control-typography;
 			margin-block-end: 4px;
 			margin-inline-start: 8px;
-			user-select: text;
-		}
 
-		input[type=radio] {
-			display: none;
+			&.disabled { color: var(--fds-text-disabled) }
 		}
 	}
 </style>

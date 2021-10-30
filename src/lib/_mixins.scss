@@ -92,8 +92,8 @@
 @mixin control-typography {
 	user-select: none;
 	font: {
-		family: var(--font-family-text);
-		size: var(--control-font-size);
+		family: var(--fds-font-family-text);
+		size: var(--fds-control-font-size);
 		weight: normal;
 	}
 	line-height: 20px;
