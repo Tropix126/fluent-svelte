@@ -77,7 +77,7 @@
 	&-action {
 		@include flex($align: center);
 		align-self: flex-start;
-		margin-right: 4px;
+		margin-inline-end: 4px;
 	}
 	&-close-button {
 		@include flex($align: center, $justify: center);

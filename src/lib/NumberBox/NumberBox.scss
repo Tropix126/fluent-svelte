@@ -21,7 +21,7 @@
 	box-shadow: var(--flyout-shadow);
 	position: absolute;
 	padding: 2px 4px;
-	right: -16px;
+	inset-inline-end: -16px;
 	z-index: 100;
 	:global(.number-box-spinner) {
 		margin: 2px 1px;

@@ -6,6 +6,7 @@
 	outline: none;
 	cursor: unset;
 	flex: 1 1 auto;
+	inline-size: 100%;
 	min-block-size: 30px;
 	padding-inline: 10px;
 	border-radius: var(--control-corner-radius);
@@ -66,8 +67,8 @@
 	}
 	&-underline {
 		position: absolute;
-		top: -1px;
-		left: -1px;
+		inset-inline-start: -1px;
+		inset-block-start: -1px;
 		inline-size: calc(100% + 2px);
 		block-size: calc(100% + 2px);
 		pointer-events: none;
@@ -75,9 +76,10 @@
 		overflow: hidden;
 		&::after {
 			content: "";
+			box-sizing: border-box;
 			position: absolute;
-			bottom: 0;
-			left: 0;
+			inset-block-end: 0;
+			inset-block-start: 0;
 			inline-size: 100%;
 			block-size: 100%;
 			border-bottom: 1px solid var(--control-strong-stroke-default);

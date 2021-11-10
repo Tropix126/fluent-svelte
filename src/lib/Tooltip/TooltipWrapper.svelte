@@ -10,7 +10,7 @@
 	export let offset = 48;
 
 	/** Direction the tooltip will appear from */
-	export let alignment: "auto" | "top" | "bottom" | "left" | "right" = "auto"; // TODO: start and end values for RTL
+	export let alignment: "auto" | "top" | "bottom" | "left" | "right" = "auto";
 
 	/** Allows the tooltip to follow the user's cursor if `alignment` is set to "auto" and persistent is true */
 	export let followCursor = false;
@@ -46,8 +46,10 @@
 	}
 
 	function updateTooltipPositionAuto(wrapperPosition) {
-		currentPosition.x = mousePosition.x - wrapperPosition.left;
-		currentPosition.y = mousePosition.y - wrapperPosition.top;
+		const { left, top } = wrapperPosition;
+
+		currentPosition.x = mousePosition.x - left;
+		currentPosition.y = mousePosition.y - top;
 	}
 
 	function mountTooltip() {

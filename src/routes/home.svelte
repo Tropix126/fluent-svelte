@@ -47,8 +47,8 @@
 
 	p {
 		margin: {
-			top: 12px;
-			bottom: 24px;
+			inset-inline-start: 12px;
+			inset-block-end: 24px;
 		}
 		color: var(--text-secondary);
 		font: {

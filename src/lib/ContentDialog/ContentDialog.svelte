@@ -15,7 +15,7 @@
 	export let size: "standard" | "max" | "min" = "standard";
 
 	/** Determines whether the dialog can be conventially closed using the escape key. */
-	export let closbale = true;
+	export let closable = true;
 
 	/** Determines the node the dialog should be appended to */
 	export let append: HTMLElement = undefined;
@@ -47,7 +47,7 @@
 	}
 
 	function handleEscapeKey(e: KeyboardEvent) {
-		if (e.key === "Escape" && open && closbale) close();
+		if (e.key === "Escape" && open && closable) close();
 	}
 </script>
 

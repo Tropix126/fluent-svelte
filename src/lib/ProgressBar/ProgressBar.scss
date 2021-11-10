@@ -1,0 +1,85 @@
+@use "../mixins" as *;
+
+@keyframes indeterminate-1 {
+	0% {
+		opacity: 1;
+		transform: translateX(-100%);
+	}
+	75% {
+		opacity: 1;
+		transform: translateX(300%);
+	}
+	75.01% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+		transform: translateX(300%);
+	}
+}
+@keyframes indeterminate-2 {
+	0% {
+		opacity: 0;
+		transform: translateX(-150%);
+	}
+	37.49% {
+		opacity: 0;
+	}
+	37.5% {
+		opacity: 1;
+		transform: translateX(-150%);
+	}
+	100% {
+		transform: translateX(166.66%);
+		opacity: 1;
+	}
+}
+
+.progress-bar {
+	@include flex($align: center);
+	width: 100%;
+	min-block-size: 3px;
+	&-track {
+		height: 3px;
+		max-width: 50%;
+		transition: var(--control-fast-duration) linear fill;
+		fill: var(--accent-default);
+	}
+	&-rail {
+		fill: var(--control-strong-stroke-default);
+		width: 100%;
+		height: 1px;
+	}
+	&.indeterminate {
+		.progress-bar- {
+			&rail {
+				display: none;
+			}
+			&track {
+				animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+				&:first-of-type {
+					width: 40%;
+					animation: 2s cubic-bezier(0.4, 0, 0.6, 1) 0s infinite normal none running
+						indeterminate-1;
+				}
+				&:nth-of-type(2) {
+					width: 60%;
+					animation: 2s cubic-bezier(0.4, 0, 0.6, 1) 0s infinite normal none running
+						indeterminate-2;
+				}
+			}
+		}
+	}
+	&.status- {
+		&paused {
+			.progress-bar-fill {
+				fill: var(--system-caution);
+			}
+		}
+		&error {
+			.progress-bar-fill {
+				fill: var(--system-critical);
+			}
+		}
+	}
+}
