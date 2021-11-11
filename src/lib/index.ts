@@ -14,3 +14,4 @@ export { default as NumberBox } from "./NumberBox/NumberBox.svelte";
 export { default as PersonPicture } from "./PersonPicture/PersonPicture.svelte";
 export { default as Tooltip } from "./Tooltip/TooltipWrapper.svelte";
 export { default as ContentDialog } from "./ContentDialog/ContentDialog.svelte";
+export { default as Expander } from "./Expander/Expander.svelte";

@@ -89,13 +89,13 @@
 		const { key } = event;
 
 		if (key === "ArrowDown" || key === "ArrowUp") event.preventDefault();
-		if (key === "ArrowLeft" || key === "ArrowDown") {
+		if (key === "ArrowLeft" || key === "ArrowDown" && !disabled) {
 			if (reverse) {
 				stepUp();
 			} else {
 				stepDown();
 			}
-		} else if (key === "ArrowRight" || key === "ArrowUp") {
+		} else if (key === "ArrowRight" || key === "ArrowUp" && !disabled) {
 			if (reverse) {
 				stepDown();
 			} else {
@@ -155,7 +155,7 @@
 	on:keyup
 	on:touchstart|preventDefault={() => (holding = true)}
 	on:keydown={handleArrowKeys}
-	tabindex="0"
+	tabindex={disabled ? -1 : 0}
 	style="--fds-slider-percentage: {percentage}%"
 	class="slider orientation-{orientation} {className ?? ''}"
 	class:disabled

@@ -1,0 +1,118 @@
+@use "../mixins" as *;
+
+.expander {
+    @include flex($direction: column);
+    border-radius: var(--control-corner-radius);
+    inline-size: 100%;
+    user-select: none;
+    &.direction- {
+        &down {
+            .expander-content {
+                border-top: none;
+                border-radius: 0 0  var(--control-corner-radius) var(--control-corner-radius);
+                transform: translateY(-100%);
+            }
+            &.expanded .expander-header {
+                border-radius: var(--control-corner-radius) var(--control-corner-radius) 0 0;
+            }
+        }
+        &up {
+            .expander-content {
+                border-bottom: none;
+                border-radius: var(--control-corner-radius) var(--control-corner-radius) 0 0 ;
+                transform: translateY(100%);
+                &-anchor {
+                    order: -1;
+                }
+            }
+            &.expanded .expander-header {
+                border-radius: 0 0 var(--control-corner-radius) var(--control-corner-radius);
+            }
+        }
+    }
+    &.expanded {
+        .expander {
+            &-content {
+                transform: none;
+                transition: 333ms var(--control-fast-out-slow-in-easing) transform;
+                &-anchor {
+                    max-block-size: 6.02e23vmax;
+                    transition: none;
+                }
+            }
+            &-chevron svg {
+                transform: rotate(180deg);
+            }
+        }
+    }
+    &-icon {
+        color: var(--text-primary);
+        inline-size: 16px;
+        block-size: 16px;
+        margin-inline-end: 16px;
+        > :global(svg) {
+            @include icon($size: 16px);
+        }
+    }
+    &-header {
+        @include flex($align: center);
+        @include control-typography;
+        outline: none;
+        box-sizing: border-box;
+        padding-inline-start: 16px;
+        padding: 8px;
+        background-clip: padding-box;
+        background-color: var(--card-background-default);
+        border: 1px solid var(--card-stroke-default);
+        border-radius: var(--control-corner-radius);
+        &-title {
+            flex: 1 1 auto;
+        }
+        &:focus-visible {
+            box-shadow: var(--focus-stroke);
+        }
+        &:hover .expander-chevron {
+            background-color: var(--subtle-fill-secondary);
+        }
+        &:active .expander-chevron {
+            color: var(--text-secondary);
+            background-color: var(--subtle-fill-tertiary);
+        }
+    }
+    &-chevron {
+        @include flex($align: center, $justify: center);
+		flex: 0 0 auto;
+        inline-size: 32px;
+        block-size: 32px;
+        margin-inline-start: 20px;
+		border: none;
+		outline: none;
+		appearance: none;
+		color: var(--text-primary);
+		border-radius: var(--control-corner-radius);
+		background-color: var(--subtle-fill-transparent);
+		&:focus-visible {
+			box-shadow: var(--focus-stroke);
+		}
+		svg {
+			inline-size: 12px;
+			block-size: 12px;
+			fill: currentColor;
+            transition: 100ms linear transform var(--control-faster-duration);
+		}
+    }
+    &-content {
+        @include control-typography;
+        background-clip: padding-box;
+        background-color: var(--card-background-secondary);
+        border: 1px solid var(--card-stroke-default);
+        padding: 16px;
+        transition: var(--control-fast-duration) cubic-bezier(1, 1, 0, 1) transform;
+        &-anchor {
+            max-height: 0;
+            position: relative;
+            overflow: hidden;
+            transition: 0ms linear 333ms max-height;
+        }
+    }
+}
