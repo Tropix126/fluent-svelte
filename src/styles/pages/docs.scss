@@ -20,22 +20,26 @@
 	}
 
 	.code-example {
-		display: flex;
-		align-items: center;
-		gap: 2rem;
+		@include flex($align: center, $gap: 2rem);
 
-		.example-tab {
+		.example {
 			width: fit-content;
-			padding: 2rem;
+			padding: 1.5rem;
 			border: 1px solid var(--fds-control-stroke-default);
+			border-radius: 1rem;
+			block-size: 100%;
+
+			&.code {
+				pre {
+					margin-block-end: 0;
+					border-radius: 1rem;
+					tab-size: 2;
+				}
+			}
 		}
 
-		.code-tab { display: none }
-
-		&.code-visible {
-			.preview-tab { display: none }
-
-			.code-tab { display: revert }
+		svg {
+			fill: var(--fds-text-primary);
 		}
 	}
 }

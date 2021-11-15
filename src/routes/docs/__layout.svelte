@@ -4,7 +4,7 @@
 
 	export const prerender = true;
 
-	export const load: Load = async ({ fetch, page }) => {
+	export const load: Load = async ({ page }) => {
 		const examples: DocsExamples[] = await loadExampleModules();
 
 		const path = page.path
@@ -25,17 +25,14 @@
 	import { Metadata } from "$sitelib";
 	import type { DocsExamples } from "$sitelib/data/examples";
 	import { page } from "$app/stores";
-	import { writable } from "svelte/store";
+	import ArrowRight from "@fluentui/svg-icons/icons/arrow_right_32_regular.svg?raw";
 
-	const currentPage = docsPages.find(p => p.path === $page.path.replace("/docs", ""));
+	const currentPage = docsPages.find(p => p.path === $page.path.replace("/docs", "").replace(/\/$/gi, ""));
 	export let examples: DocsExamples[] = [];
-
-	let examplesInCode = writable(new Map(examples.map(example => [example.path, false])));
-	console.log($examplesInCode);
 </script>
 
 <svelte:head>
-	<Metadata title={currentPage?.name} />
+	<Metadata title="Fluent Svelte - {currentPage?.name} - Docs" />
 </svelte:head>
 
 <div class="docs-page markdown-body">
@@ -60,20 +57,15 @@
 		<h2>Examples</h2>
 		{#each examples as example (example.path)}
 			<h3>{example.name}</h3>
-			<div class="code-example" class:code-visible={$examplesInCode[example.path]}>
-				<Button variant="accent"
-				        on:click={() => $examplesInCode[example.path] = !($examplesInCode[example.path])}>
-					{$examplesInCode[example.path] ? "Code" : "Preview"}
-				</Button>
-				<div class="example-tab preview-tab">
-					<svelte:component this={example.mod} />
+			<div class="code-example">
+				<div class="example code">
+					<pre><code>
+						{@html example.src}
+					</code></pre>
 				</div>
-				<div class="example-tab code-tab">
-					<pre>
-						<code class="language-svelte">
-							{example.src}
-						</code>
-					</pre>
+				{@html ArrowRight}
+				<div class="example preview">
+					<svelte:component this={example.mod} />
 				</div>
 			</div>
 		{/each}

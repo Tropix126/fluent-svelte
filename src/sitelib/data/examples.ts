@@ -1,3 +1,6 @@
+import Prism from "prismjs";
+import "prism-svelte";
+
 export type DocsExamples = {
 	path: string,
 	name: string,
@@ -23,14 +26,14 @@ export const loadExampleModules = async () => {
 				.replace(/([A-Z])/g, " $1").trim();
 
 			const src: string = (await import(/* @vite-ignore */ path + "?raw").then(x => x.default) as string)
-				.replace(`<script>\n\timport * as Fluent from '$lib';\n\n\n`, "")
+				.replace(`<script>\n\timport * as Fluent from '$lib';\n</script>\n\n`, "")
 				.trim();
 
 			return {
 				path: preparedPath,
 				name,
 				mod: await module().then(mod => mod.default),
-				src
+				src: Prism.highlight(src, Prism.languages.svelte, "svelte")
 			};
 		}));
 
