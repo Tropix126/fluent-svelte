@@ -2,7 +2,7 @@
 
 .button {
 	@include flex($inline: true, $align: center, $justify: center);
-	@include control-typography;
+	@include typography-body;
 
 	position: relative;
 	box-sizing: border-box;

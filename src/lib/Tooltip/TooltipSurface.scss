@@ -2,7 +2,7 @@
 
 .tooltip {
 	@include flex($inline: true, $align: center, $justify: center);
-	@include control-typography;
+	@include typography-body;
 	box-sizing: border-box;
 	max-inline-size: 320px;
 	padding-inline: 8px;

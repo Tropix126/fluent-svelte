@@ -1,4 +1,6 @@
 <script lang="ts">
+	import TextBlock from "../TextBlock/TextBlock.svelte";
+
 	/** Value representing a group of radios that the inputs will be bound to */
 	export let group: any = [];
 
@@ -47,9 +49,11 @@
 		{disabled}
 		{...$$restProps}
 	/>
-	<span>
-		<slot />
-	</span>
+	{#if $$slots.default}
+		<TextBlock>
+			<slot />
+		</TextBlock>
+	{/if}
 </label>
 
 <style lang="scss">

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import TextBlock from "../TextBlock/TextBlock.svelte";
+
 	/** Controls whether the checkbox is checked or not */
 	export let checked = false;
 
@@ -71,9 +73,9 @@
 		</svg>
 	</div>
 	{#if $$slots.default}
-		<span>
+		<TextBlock>
 			<slot />
-		</span>
+		</TextBlock>
 	{/if}
 </label>
 

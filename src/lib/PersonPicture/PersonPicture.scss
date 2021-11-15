@@ -27,8 +27,8 @@
 	&-badge {
 		@include flex($direction: column, $align: end);
 		position: absolute;
-		top: 0;
-		left: 0;
+		inset-inline-start: 0;
+		inset-block-start: 0;
 		inline-size: 100%;
 		block-size: 100%;
 	}

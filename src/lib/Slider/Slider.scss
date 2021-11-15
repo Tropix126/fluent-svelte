@@ -1,0 +1,215 @@
+@use "../mixins" as *;
+
+.slider {
+	@include flex($align: center, $justify: center);
+	position: relative;
+	border-radius: var(--control-corner-radius);
+	min-inline-size: 32px;
+	min-block-size: 32px;
+	&:focus-visible {
+		outline: none;
+		box-shadow: var(--focus-stroke);
+	}
+	&:active,
+	&:focus-visible {
+		:global(.slider-tooltip) {
+			opacity: 1;
+		}
+	}
+	&.orientation- {
+		&horizontal {
+			inline-size: 100%;
+			.slider- {
+				&rail {
+					justify-content: flex-start;
+					inline-size: 100%;
+					block-size: 4px;
+				}
+				&track {
+					inline-size: var(--slider-percentage);
+					block-size: 100%;
+				}
+				&thumb {
+					inset-inline-start: var(--slider-percentage);
+					transform: translateX(-50%);
+				}
+				&tick {
+					flex-direction: column;
+					height: 100%;
+					padding: 6px 0;
+					inset-inline-start: var(--slider-tick-percentage);
+					&::before,
+					&::after {
+						width: 1px;
+						height: 4px;
+						border-left: 1px solid var(--control-strong-fill-default);
+					}
+				}
+			}
+			&.reverse {
+				.slider- {
+					&rail {
+						justify-content: flex-end;
+					}
+					&thumb {
+						inset-inline-start: unset;
+						inset-inline-end: var(--slider-percentage);
+						transform: translateX(50%);
+					}
+					&tick {
+						inset-inline-start: unset;
+						inset-inline-end: var(--slider-tick-percentage);
+					}
+				}
+			}
+		}
+		&vertical {
+			block-size: 100%;
+			.slider- {
+				&rail {
+					align-items: flex-end;
+					block-size: 100%;
+					inline-size: 4px;
+				}
+				&track {
+					inline-size: 100%;
+					block-size: var(--slider-percentage);
+				}
+				&thumb {
+					inset-block-end: var(--slider-percentage);
+					transform: translateY(50%);
+				}
+				&tick {
+					width: 100%;
+					padding: 0 6px;
+					inset-block-end: var(--slider-tick-percentage);
+					&::before,
+					&::after {
+						width: 4px;
+						height: 1px;
+						border-top: 1px solid var(--control-strong-fill-default);
+					}
+				}
+			}
+			&.reverse {
+				.slider- {
+					&rail {
+						align-items: flex-start;
+					}
+					&thumb {
+						inset-block-end: unset;
+						inset-block-start: var(--slider-percentage);
+						transform: translateY(-50%);
+					}
+					&tick {
+						inset-block-end: unset;
+						inset-block-start: var(--slider-tick-percentage);
+					}
+				}
+			}
+		}
+	}
+	&.disabled {
+		.slider- {
+			&rail {
+				background-color: var(--control-strong-fill-disabled);
+			}
+			&track {
+				background-color: var(--accent-disabled);
+			}
+			&thumb::before {
+				background-color: var(--control-strong-fill-disabled);
+				transform: none;
+			}
+			&tick {
+				&::before,
+				&::after {
+					border-color: var(--control-fill-disabled);
+				}
+			}
+		}
+	}
+	&-rail {
+		@include flex($align: center);
+		overflow: hidden;
+		border-radius: 50px;
+		background-color: var(--control-strong-fill-default);
+	}
+	&-track {
+		background-color: var(--accent-default);
+	}
+	&-tick-bar {
+		position: absolute;
+		inset-block-start: 0;
+		inset-inline-start: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		&.placement- {
+			&before {
+				.slider-tick::after {
+					visibility: hidden;
+				}
+			}
+			&after {
+				.slider-tick::before {
+					visibility: hidden;
+				}
+			}
+		}
+	}
+	&-tick {
+		@include flex($justify: between, $align: center);
+		box-sizing: border-box;
+		position: absolute;
+		&::before,
+		&::after {
+			content: "";
+		}
+	}
+	&-thumb {
+		@include flex($justify: center, $align: center);
+		position: absolute;
+		z-index: 100;
+		inline-size: 20px;
+		block-size: 20px;
+		border-radius: 100%;
+		background-color: var(--control-solid-fill-default);
+		box-shadow: 0 0 0 1px var(--control-stroke-default);
+		&::before {
+			content: "";
+			inline-size: 12px;
+			block-size: 12px;
+			position: absolute;
+			border-radius: 100%;
+			background-color: var(--accent-default);
+			transition: var(--control-fast-duration) var(--control-fast-out-slow-in-easing)
+				transform;
+		}
+		&:hover {
+			&::before {
+				transform: scale(1.167);
+			}
+			:global(.slider-tooltip) {
+				transition-delay: 1s;
+				opacity: 1;
+			}
+		}
+		&:active::before {
+			background-color: var(--accent-tertiary);
+			transform: scale(0.833);
+		}
+	}
+	:global(.slider-tooltip) {
+		z-index: 100;
+		opacity: 0;
+		transition: var(--control-fast-duration) linear opacity;
+		transform: translateX(-50%);
+		inset-inline-start: 50%;
+		inset-block-end: calc(100% + 18px);
+		position: absolute;
+		pointer-events: none;
+		white-space: nowrap;
+		max-inline-size: unset;
+	}
+}

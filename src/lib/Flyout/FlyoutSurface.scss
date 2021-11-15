@@ -1,7 +1,7 @@
 @use "../mixins" as *;
 
 .flyout {
-	@include control-typography;
+	@include typography-body;
 	padding: 16px;
 	min-inline-size: 320px;
 	color: var(--text-primary);

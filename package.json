@@ -52,20 +52,19 @@
 		"cssnano": "^5.0.10",
 		"mdsvex": "^0.9.8",
 		"postcss": "^8.3.11",
+		"mousetrap": "^1.6.5",
 		"postcss-variables-prefixer": "^1.1.1",
 		"prettier": "^2.4.1",
 		"prettier-plugin-svelte": "^2.5.0",
 		"sass": "^1.43.4",
 		"svelte": "^3.44.1",
 		"svelte-check": "^2.2.8",
+		"svelte-focus-trap": "^1.2.0",
 		"svelte-preprocess": "^4.9.8",
 		"svelte2tsx": "^0.4.8",
 		"tslib": "^2.3.1",
 		"tsm": "^2.1.4",
 		"typescript": "^4.4.4"
 	},
-	"type": "module",
-	"dependencies": {
-		"bezier-easing": "^2.1.0"
-	}
+	"type": "module"
 }

@@ -2,7 +2,7 @@
 
 .combo-box-item {
 	@include flex($align: center);
-	@include control-typography;
+	@include typography-body;
 
 	position: relative;
 	box-sizing: border-box;

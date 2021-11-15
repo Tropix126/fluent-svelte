@@ -16,8 +16,8 @@
 	}
 	&backdrop {
 		position: fixed;
-		top: 0;
-		left: 0;
+		inset-inline-start: 0;
+		inset-block-start: 0;
 		inline-size: 100%;
 		block-size: 100%;
 		z-index: 100;
@@ -30,28 +30,28 @@
 		&.position- {
 			&top,
 			&bottom {
-				left: 50%;
+				inset-inline-start: 50%;
 				--flyout-position-transform: translateX(-50%);
 			}
 			&left,
 			&right {
-				top: 50%;
+				inset-block-start: 50%;
 				--flyout-position-transform: translateY(-50%);
 			}
 			&top {
-				bottom: calc(100% + var(--flyout-gap));
+				inset-block-end: calc(100% + var(--flyout-gap));
 				--flyout-animation-offset: translateY(12px);
 			}
 			&bottom {
-				top: calc(100% + var(--flyout-gap));
+				inset-block-start: calc(100% + var(--flyout-gap));
 				--flyout-animation-offset: translateY(-12px);
 			}
 			&left {
-				right: calc(100% + var(--flyout-gap));
+				inset-inline-end: calc(100% + var(--flyout-gap));
 				--flyout-animation-offset: translateX(12px);
 			}
 			&right {
-				left: calc(100% + var(--flyout-gap));
+				inset-inline-start: calc(100% + var(--flyout-gap));
 				--flyout-animation-offset: translateX(-12px);
 			}
 		}

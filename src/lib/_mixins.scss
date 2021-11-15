@@ -83,17 +83,17 @@
 	}
 }
 
-@mixin icon($size: var(--control-font-size)) {
+@mixin icon($size: var(--body-font-size)) {
 	inline-size: $size;
 	block-size: auto;
 	fill: currentColor;
 }
 
-@mixin control-typography {
+@mixin typography-body {
 	user-select: none;
 	font: {
-		family: var(--fds-font-family-text);
-		size: var(--fds-control-font-size);
+		family: var(--font-family-text);
+		size: var(--body-font-size);
 		weight: normal;
 	}
 	line-height: 20px;

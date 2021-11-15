@@ -19,11 +19,12 @@
 		var(--fds-font-family-fallback);
 
 	/* Font Size */
-	--fds-control-font-size: 14px;
 	--fds-caption-font-size: 12px;
+    --fds-body-font-size: 14px;
+    --fds-body-large-font-size: 18px;
 	--fds-subtitle-font-size: 20px;
 	--fds-title-font-size: 28px;
-	--fds-title-large-font-size: 52px;
+	--fds-title-large-font-size: 40px;
 	--fds-display-font-size: 68px;
 
 	/* Roundness */
