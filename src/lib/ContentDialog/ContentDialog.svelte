@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
 	import { fade, scale } from "svelte/transition";
+	import { circOut } from "svelte/easing";
 	import { uid } from "../internal";
 
-	import BezierEasing from "bezier-easing";
+	import { focusTrap } from "svelte-focus-trap";
+
 	import TextBlock from "../TextBlock/TextBlock.svelte";
 
 	/** Determines whether the dialog is open or not */
@@ -62,6 +64,7 @@
 		on:mousedown={e => dispatch("backdropmousedown", e)}
 		transition:fade={{ duration: 83 }}
 		use:mountDialog
+		use:focusTrap
 	>
 		<div
 			on:click
@@ -80,7 +83,7 @@
 			on:keyup
 			class="content-dialog size-{size} {className ?? ''}"
 			bind:this={element}
-			transition:scale={{ duration: 167, start: 1.05, easing: BezierEasing(0, 0, 0, 1) }}
+			transition:scale={{ duration: 167, start: 1.05, easing: circOut }}
 			role="dialog"
 			aria-modal="true"
 			aria-labelledby={titleId}

@@ -14,9 +14,7 @@
     export let className = "";
     export { className as class };
 
-
     let element: HTMLElement;
-    
 
     export const getElement = () => element;
 </script>
