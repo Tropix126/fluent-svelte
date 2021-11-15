@@ -74,6 +74,7 @@
 
 	function handleArrowKeys(event: KeyboardEvent) {
 		const { key } = event;
+		event.stopPropagation();
 
 		if (key === "Tab" || key === "Esc" || key === "Escape") open = false;
 		if (key === "ArrowDown" || key === "ArrowUp") event.preventDefault();
