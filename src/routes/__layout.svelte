@@ -10,9 +10,4 @@
 
 <style lang="scss">
 	@use "src/styles/global";
-
-	h1 {
-		font-weight: 500;
-		user-select: none;
-	}
 </style>

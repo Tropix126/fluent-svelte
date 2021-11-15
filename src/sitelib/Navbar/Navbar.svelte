@@ -50,4 +50,9 @@
 
 <style lang="scss">
 	@use "Navbar";
+
+	a.header {
+		font-weight: 500;
+		user-select: none;
+	}
 </style>
