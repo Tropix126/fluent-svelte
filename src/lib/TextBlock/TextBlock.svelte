@@ -1,4 +1,5 @@
 <script lang="ts">
+    /** Determines which preset text style should be used */
 	export let variant:
 		| "caption"
 		| "body"
@@ -8,6 +9,8 @@
 		| "title"
 		| "titleLarge"
 		| "display" = "body";
+
+    /** Specifies a custom class name for the text block */
     export let className = "";
     export { className as class };
 

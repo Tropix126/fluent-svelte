@@ -4,7 +4,7 @@
 	let className = "";
 	export { className as class };
 
-	let element: HTMLInputElement;
+	let element: HTMLButtonElement;
 
 	export const getElement = () => element;
 </script>
