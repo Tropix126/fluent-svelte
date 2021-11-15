@@ -89,13 +89,13 @@
 		const { key } = event;
 
 		if (key === "ArrowDown" || key === "ArrowUp") event.preventDefault();
-		if (key === "ArrowLeft" || key === "ArrowDown" && !disabled) {
+		if (key === "ArrowLeft" || (key === "ArrowDown" && !disabled)) {
 			if (reverse) {
 				stepUp();
 			} else {
 				stepDown();
 			}
-		} else if (key === "ArrowRight" || key === "ArrowUp" && !disabled) {
+		} else if (key === "ArrowRight" || (key === "ArrowUp" && !disabled)) {
 			if (reverse) {
 				stepDown();
 			} else {

@@ -62,11 +62,11 @@
 
 	&-container {
 		@include flex($inline: true, $align: center);
-		@include control-typography;
 		color: var(--text-primary);
+		user-select: none;
 		min-block-size: 32px;
 
-		> span {
+		> :global(.text-block) {
 			padding-inline-start: 8px;
 		}
 	}

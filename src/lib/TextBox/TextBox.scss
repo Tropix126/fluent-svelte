@@ -1,7 +1,7 @@
 @use "../mixins" as *;
 
 .text-box {
-	@include control-typography;
+	@include typography-body;
 	box-sizing: border-box;
 	outline: none;
 	cursor: unset;

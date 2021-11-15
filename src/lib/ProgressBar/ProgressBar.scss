@@ -1,40 +1,39 @@
 @use "../mixins" as *;
 
-    @keyframes indeterminate-1 {
-      0% {
-        opacity: 1;
-        transform: translateX(-100%);
-      }
-      75% {
-        opacity: 1;
-        transform: translateX(300%);
-      }
-      75.01% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 0;
-        transform: translateX(300%);
-      }
-    }
-    @keyframes indeterminate-2 {
-      0% {
-        opacity: 0;
-        transform: translateX(-150%);
-      }
-      37.49% {
-        opacity: 0;
-      }
-      37.5% {
-        opacity: 1;
-        transform: translateX(-150%);
-      }
-      100% {
-        transform: translateX(166.66%);
-        opacity: 1;
-      }
-    }
-
+@keyframes indeterminate-1 {
+	0% {
+		opacity: 1;
+		transform: translateX(-100%);
+	}
+	75% {
+		opacity: 1;
+		transform: translateX(300%);
+	}
+	75.01% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+		transform: translateX(300%);
+	}
+}
+@keyframes indeterminate-2 {
+	0% {
+		opacity: 0;
+		transform: translateX(-150%);
+	}
+	37.49% {
+		opacity: 0;
+	}
+	37.5% {
+		opacity: 1;
+		transform: translateX(-150%);
+	}
+	100% {
+		transform: translateX(166.66%);
+		opacity: 1;
+	}
+}
 
 .progress-bar {
 	@include flex($align: center);

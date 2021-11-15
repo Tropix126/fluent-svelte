@@ -15,3 +15,4 @@ export { default as PersonPicture } from "./PersonPicture/PersonPicture.svelte";
 export { default as Tooltip } from "./Tooltip/TooltipWrapper.svelte";
 export { default as ContentDialog } from "./ContentDialog/ContentDialog.svelte";
 export { default as Expander } from "./Expander/Expander.svelte";
+export { default as TextBlock } from "./TextBlock/TextBlock.svelte";

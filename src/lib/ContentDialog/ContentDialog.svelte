@@ -4,6 +4,7 @@
 	import { uid } from "../internal";
 
 	import BezierEasing from "bezier-easing";
+	import TextBlock from "../TextBlock/TextBlock.svelte";
 
 	/** Determines whether the dialog is open or not */
 	export let open: boolean = false;
@@ -88,9 +89,9 @@
 		>
 			<div class="content-dialog-body" id={bodyId}>
 				{#if title}
-					<h2 id={titleId} class="content-dialog-title">
+					<TextBlock variant="subtitle" class="content-dialog-title" id={titleId}>
 						{title}
-					</h2>
+					</TextBlock>
 				{/if}
 				<slot />
 			</div>

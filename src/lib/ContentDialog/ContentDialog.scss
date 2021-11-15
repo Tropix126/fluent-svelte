@@ -36,16 +36,9 @@
 		}
 	}
 
-	&-title {
-		margin: 0;
+	:global(.content-dialog-title) {
 		margin-bottom: 12px;
 		color: var(--text-primary);
-		font: {
-			family: var(--font-family-display);
-			size: var(--subtitle-font-size);
-			weight: 600;
-		}
-		line-height: 28px;
 	}
 
 	&-body,
@@ -54,7 +47,7 @@
 	}
 
 	&-body {
-		@include control-typography;
+		@include typography-body;
 		background-color: var(--layer-background-default);
 		color: var(--text-primary);
 	}

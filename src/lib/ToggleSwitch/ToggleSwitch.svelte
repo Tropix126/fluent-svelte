@@ -1,4 +1,6 @@
 <script lang="ts">
+	import TextBlock from "../TextBlock/TextBlock.svelte";
+
 	/** Controls whether the switch is toggled or not */
 	export let checked = false;
 
@@ -45,9 +47,9 @@
 		{...$$restProps}
 	/>
 	{#if $$slots.default}
-		<span>
+		<TextBlock>
 			<slot />
-		</span>
+		</TextBlock>
 	{/if}
 </label>
 
