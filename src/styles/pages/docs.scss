@@ -1,0 +1,41 @@
+@use "../_markdown";
+@use "src/lib/mixins" as *;
+
+.docs-page {
+	color: var(--fds-text-primary);
+	font-size: 1rem;
+	line-height: 1.45;
+
+	// Page header
+	header {
+		@include flex($align: center, $justify: space-between);
+		margin-block-end: -20px;
+		color: var(--fds-text-tertiary);
+		white-space: nowrap;
+
+		span {
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+	}
+
+	.code-example {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+
+		.example-tab {
+			width: fit-content;
+			padding: 2rem;
+			border: 1px solid var(--fds-control-stroke-default);
+		}
+
+		.code-tab { display: none }
+
+		&.code-visible {
+			.preview-tab { display: none }
+
+			.code-tab { display: revert }
+		}
+	}
+}

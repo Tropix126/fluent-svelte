@@ -1,3 +1,4 @@
+import path from "path";
 import preprocess from "svelte-preprocess";
 import vercel from "@sveltejs/adapter-vercel";
 import cssnano from "cssnano";
@@ -6,8 +7,9 @@ import prefixer from "postcss-variables-prefixer";
 
 import { mdsvex } from "mdsvex";
 
-/** @type {import('@sveltejs/kit').Config} */
+/** @type {import("@sveltejs/kit").Config} */
 const config = {
+	extensions: [".svelte", ".md", ".svx"],
 	preprocess: [
 		mdsvex({
 			extensions: [".svx", ".md"]
@@ -18,10 +20,17 @@ const config = {
 			}
 		})
 	],
-
 	kit: {
 		target: "body",
-		adapter: vercel()
+		adapter: vercel(),
+		vite: {
+			resolve: {
+				alias: {
+					$lib: path.resolve("src/lib"),
+					$sitelib: path.resolve("src/sitelib")
+				}
+			}
+		}
 	}
 };
 
