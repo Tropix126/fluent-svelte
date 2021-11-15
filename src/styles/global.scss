@@ -14,7 +14,7 @@
 	}
 
 	body {
-		@include control-typography;
+		@include typography-body;
 		height: 100vh;
 		margin: 0;
 		background: var(--fds-solid-background-base);
