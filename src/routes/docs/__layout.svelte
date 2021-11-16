@@ -1,19 +1,32 @@
 <script context="module" lang="ts">
 	import type { Load } from "@sveltejs/kit";
 	import { DocsExamples, loadExampleModules } from "$sitelib/data/examples";
+	import { docsPages } from "$sitelib/data/docs";
+	import { page } from "$app/stores";
 
 	export const prerender = true;
 
 	export const load: Load = async ({ page }) => {
-		const examples: DocsExamples[] = await loadExampleModules();
-
 		const path = page.path
 			.replace(/\/$/gi, "") // remove trailing slash
 			.replace("/docs", ""); // remove /docs
 
+		const currentPage = docsPages.find(p => p.path === path);
+
+		if (currentPage?.examples) {
+			const examples: DocsExamples[] = await loadExampleModules(currentPage.path);
+
+			return {
+				props: {
+					currentPage,
+					examples
+				}
+			};
+		}
+
 		return {
 			props: {
-				examples: examples.filter(example => example.path === path)
+				currentPage
 			}
 		};
 	};
@@ -21,13 +34,13 @@
 
 <script lang="ts">
 	import { Button } from "$lib";
-	import { docsPages } from "$sitelib/data/docs";
+	import { DocsMap } from "$sitelib/data/docs";
 	import { Metadata } from "$sitelib";
 	import type { DocsExamples } from "$sitelib/data/examples";
 	import { page } from "$app/stores";
 	import ArrowRight from "@fluentui/svg-icons/icons/arrow_right_32_regular.svg?raw";
 
-	const currentPage = docsPages.find(p => p.path === $page.path.replace("/docs", "").replace(/\/$/gi, ""));
+	export let currentPage: DocsMap;
 	export let examples: DocsExamples[] = [];
 </script>
 

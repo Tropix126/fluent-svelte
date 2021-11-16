@@ -8,7 +8,7 @@ export type DocsExamples = {
 	src: string,
 }
 
-export const loadExampleModules = async () => {
+export const loadExampleModules = async (path: string) => {
 	const componentFiles = import.meta.glob(`/src/sitelib/examples/**/*.svelte`);
 
 	const examples: DocsExamples[] = await Promise.all(Object.entries(componentFiles)
@@ -25,7 +25,7 @@ export const loadExampleModules = async () => {
 				// add spaces to the name, apparently import.meta.glob removes them
 				.replace(/([A-Z])/g, " $1").trim();
 
-			const src: string = (await import(/* @vite-ignore */ path + "?raw").then(x => x.default) as string)
+			const src = (await import(/* @vite-ignore */ path + "?raw").then(x => x.default) as string)
 				.replace(`<script>\n\timport * as Fluent from '$lib';\n</script>\n\n`, "")
 				.trim();
 
@@ -37,5 +37,5 @@ export const loadExampleModules = async () => {
 			};
 		}));
 
-	return examples;
+	return examples.filter(example => example.path === path);
 };
