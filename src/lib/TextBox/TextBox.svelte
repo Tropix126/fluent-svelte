@@ -22,6 +22,9 @@
 	/** Determines whether a password reveal button is present when `type` is set to "password" */
 	export let revealButton = true;
 
+	/** Determines whether the textbox can be typed in or not */
+	export let readonly = false;
+
 	/** Controls whether the textbox is disabled */
 	export let disabled = false;
 
@@ -72,6 +75,7 @@
 		{value}
 		{type}
 		{disabled}
+		{readonly}
 		{placeholder}
 		{...$$restProps}
 		bind:this={element}
@@ -96,7 +100,7 @@
 	/>
 	<div class="text-box-underline" />
 	<div class="text-box-buttons">
-		{#if clearButton && value}
+		{#if clearButton && value && readonly}
 			<TextBoxButton
 				aria-label="Clear value"
 				on:click={handleClear}

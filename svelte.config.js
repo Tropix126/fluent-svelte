@@ -27,7 +27,7 @@ const config = {
 			resolve: {
 				alias: {
 					$lib: path.resolve("src/lib"),
-					$sitelib: path.resolve("src/sitelib")
+					$site: path.resolve("src/site")
 				}
 			}
 		}

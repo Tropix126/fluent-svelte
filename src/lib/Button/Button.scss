@@ -8,9 +8,11 @@
 	box-sizing: border-box;
 	padding-block: 4px 6px;
 	padding-inline: 11px;
+	text-decoration: none;
 	border: none;
-	border-radius: var(--control-corner-radius);
 	outline: none;
+	cursor: default;
+	border-radius: var(--control-corner-radius);
 	transition: var(--control-faster-duration) ease background;
 
 	&:focus-visible {

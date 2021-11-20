@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	import type { Load } from "@sveltejs/kit";
-	import { DocsExamples, loadExampleModules } from "$sitelib/data/examples";
-	import { docsPages } from "$sitelib/data/docs";
+	import { DocsExamples, loadExampleModules } from "$site/data/examples";
+	import { docsPages } from "$site/data/docs";
 	import { page } from "$app/stores";
 
 	export const prerender = true;
@@ -34,9 +34,9 @@
 
 <script lang="ts">
 	import { Button } from "$lib";
-	import { DocsMap } from "$sitelib/data/docs";
-	import { Metadata } from "$sitelib";
-	import type { DocsExamples } from "$sitelib/data/examples";
+	import { DocsMap } from "$site/data/docs";
+	import { Metadata } from "$site/lib";
+	import type { DocsExamples } from "$site/data/examples";
 	import { page } from "$app/stores";
 	import ArrowRight from "@fluentui/svg-icons/icons/arrow_right_32_regular.svg?raw";
 
@@ -86,5 +86,5 @@
 </div>
 
 <style global lang="scss">
-	@use "src/styles/pages/docs";
+	@use "src/site/styles/pages/docs";
 </style>

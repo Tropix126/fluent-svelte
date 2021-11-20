@@ -29,11 +29,17 @@
 			"$lib/*": [
 				"src/lib/*"
 			],
-			"$sitelib": [
-				"src/sitelib"
+			"$site": [
+				"src/site"
 			],
-			"$sitelib/*": [
-				"src/sitelib/*"
+			"$site/*": [
+				"src/site/*"
+			],
+			"$site/lib": [
+				"src/site/lib"
+			],
+			"$site/lib/*": [
+				"src/site/lib/*"
 			]
 		}
 	},

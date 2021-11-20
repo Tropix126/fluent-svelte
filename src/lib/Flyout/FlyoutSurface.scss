@@ -4,6 +4,7 @@
 	@include typography-body;
 	padding: 16px;
 	min-inline-size: 320px;
+	box-sizing: border-box;
 	color: var(--text-primary);
 	border-radius: var(--overlay-corner-radius);
 	border: 1px solid var(--surface-stroke-flyout);

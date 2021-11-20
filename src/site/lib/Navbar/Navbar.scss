@@ -1,0 +1,84 @@
+@use "src/lib/mixins" as *;
+
+.navbar {
+	@include flex($align: center, $justify: center);
+	position: fixed;
+	inset-block-start: 0;
+	inset-inline-start: 0;
+	z-index: 1000;
+	inline-size: 100%;
+	min-block-size: 56px;
+	box-sizing: border-box;
+	border-bottom: 1px solid var(--fds-surface-stroke-flyout);
+	background-color: var(--fds-layer-background-default);
+	background-clip: padding-box;
+	box-shadow: var(--fds-card-shadow);
+	backdrop-filter: blur(60px);
+	transform: translateY(-100%);
+	transition: var(--fds-control-normal-duration) var(--fds-control-fast-out-slow-in-easing)
+		transform;
+	&.visible {
+		transform: none;
+	}
+	&-inner {
+		@include flex($align: center);
+		inline-size: 100%;
+		max-inline-size: 1024px;
+		padding-inline: 18px 12px;
+		margin: 0 auto;
+	}
+	a:focus-visible {
+		outline: none;
+		box-shadow: var(--fds-focus-stroke);
+	}
+	nav {
+		@include flex($align: center, $justify: center, $gap: 12px);
+		flex: 1 1 auto;
+		padding: 0 16px;
+		a {
+			@include flex($align: center, $justify: center);
+			border-radius: var(--fds-control-corner-radius);
+			position: relative;
+			text-decoration: none;
+			color: var(--fds-text-primary);
+			padding: 8px 16px;
+			&::after {
+				content: "";
+				position: absolute;
+				transform: scaleX(0);
+				width: calc(60% - 16px);
+				height: 3px;
+				bottom: 0;
+				border-radius: 50px;
+				background-color: var(--fds-accent-default);
+				transition: var(--fds-control-fast-duration)
+					var(--fds-control-fast-out-slow-in-easing);
+			}
+			&.selected::after {
+				transform: scaleX(1);
+			}
+			> :global(svg) {
+				@include icon($size: var(--fds-body-large-font-size));
+				margin-right: 12px;
+			}
+		}
+	}
+}
+
+.logo,
+.buttons {
+	flex: 0 0 auto;
+}
+
+.logo {
+    @include flex($justify: center, $align: center);
+    position: relative;
+    > img {
+        width: auto;
+        height: 32px;
+    }
+}
+
+.buttons {
+	@include flex($align: center, $gap: 8px);
+}

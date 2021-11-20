@@ -13,21 +13,18 @@
 		--font-family-monospace: "Cascadia Code", "Fira Code", "Consolas", monospace;
 	}
 
+	html {
+		font-size: 62.5%;
+	}
+
 	body {
 		@include typography-body;
 		height: 100vh;
 		margin: 0;
+		padding: 0;
 		background: var(--fds-solid-background-base);
 		color: var(--fds-text-primary);
 		user-select: revert;
-	}
-
-	main {
-		padding-inline: 1rem;
-	}
-
-	h1 {
-		font-weight: 500;
 	}
 
 	// Codeblock syntax highlighting
@@ -39,5 +36,4 @@
 			@include prism-vs-dark;
 		}
 	}
-
 }

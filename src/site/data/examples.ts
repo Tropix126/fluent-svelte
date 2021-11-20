@@ -9,13 +9,13 @@ export type DocsExamples = {
 }
 
 export const loadExampleModules = async (path: string) => {
-	const componentFiles = import.meta.glob(`/src/sitelib/examples/**/*.svelte`);
+	const componentFiles = import.meta.glob(`/src/site/examples/**/*.svelte`);
 
 	const examples: DocsExamples[] = await Promise.all(Object.entries(componentFiles)
 		.map(async ([path, module]) => {
 			const preparedPath = path
 				.substr(path.indexOf("/"), path.lastIndexOf("/"))
-				.replace("/src/sitelib/examples", "");
+				.replace("/src/site/examples", "");
 
 			const name = path
 				.substr(

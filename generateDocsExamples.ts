@@ -1,4 +1,4 @@
-import { docsPages } from "./src/sitelib/data/docs";
+import { docsPages } from "./src/site/data/docs";
 import * as fs from "fs";
 
 docsPages.filter(page => page?.examples).forEach(page => page.examples.forEach(example => {
@@ -9,7 +9,7 @@ docsPages.filter(page => page?.examples).forEach(page => page.examples.forEach(e
 ${ example.source }
 `;
 
-	const exampleFilePath = `src/sitelib/examples${ page.path }`;
+	const exampleFilePath = `src/site/examples${ page.path }`;
 	const exampleFileName = `${ exampleFilePath }/${ example.name.replace(/ /g, "") }.svelte`;
 
 	// write to file
