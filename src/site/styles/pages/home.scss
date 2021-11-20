@@ -5,7 +5,7 @@
     #hero-section {
         @include flex($direction: column, $justify: center, $align: center);
         position: relative;
-        min-block-size: 580px;
+        min-block-size: 596px;
         text-align: center;
         background: url("/hero-mica-light.png") center/170% no-repeat;
         @media (prefers-color-scheme: dark) {
@@ -15,6 +15,9 @@
             @include flex($direction: column, $align: center);
             position: relative;
             padding-block: 58px 128px;
+        }
+        h1 {
+            font-size: 5.4rem;
         }
         .hero-card {
             .text-box-container {
@@ -46,7 +49,7 @@
         position: absolute;
         display: grid;
         grid-gap: 24px;
-        bottom: -256px;
+        bottom: -286px;
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         inline-size: 100%;
     }

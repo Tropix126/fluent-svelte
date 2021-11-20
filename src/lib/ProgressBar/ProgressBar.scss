@@ -68,16 +68,16 @@
 			}
 		}
 	}
-	&.status- {
-		&paused {
-			.progress-bar-fill {
-				fill: var(--system-caution);
-			}
-		}
-		&error {
-			.progress-bar-fill {
-				fill: var(--system-critical);
-			}
-		}
-	}
+	// &.status- {
+	// 	&paused {
+	// 		.progress-bar-fill {
+	// 			fill: var(--system-caution);
+	// 		}
+	// 	}
+	// 	&error {
+	// 		.progress-bar-fill {
+	// 			fill: var(--system-critical);
+	// 		}
+	// 	}
+	// }
 }
