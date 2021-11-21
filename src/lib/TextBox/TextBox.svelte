@@ -100,7 +100,7 @@
 	/>
 	<div class="text-box-underline" />
 	<div class="text-box-buttons">
-		{#if clearButton && value && readonly}
+		{#if clearButton && value && !readonly}
 			<TextBoxButton
 				aria-label="Clear value"
 				on:click={handleClear}

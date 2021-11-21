@@ -1,0 +1,75 @@
+@use "../mixins" as *;
+
+.list-item {
+	@include flex($align: center);
+	@include typography-body;
+
+	inline-size: 100%;
+	position: relative;
+	box-sizing: border-box;
+	flex: 0 0 auto;
+	margin: 3px 5px;
+	padding-inline: 11px;
+	border-radius: var(--control-corner-radius);
+	outline: none;
+	background-color: var(--subtle-fill-transparent);
+	color: var(--text-primary);
+	text-decoration: none;
+	cursor: default;
+	user-select: none;
+	block-size: 34px;
+
+	&::before {
+		content: "";
+		position: absolute;
+		border-radius: 3px;
+		background-color: var(--accent-default);
+		transition: transform var(--control-fast-duration) var(--control-fast-out-slow-in-easing);
+		opacity: 0;
+		inset-inline-start: 0;
+		inline-size: 3px;
+		block-size: 0;
+	}
+
+	&:focus-visible {
+		box-shadow: 0 0 0 1px var(--focus-stroke-inner), 0 0 0 3px var(--focus-stroke-outer);
+	}
+
+	&:hover,
+	&.selected {
+		background-color: var(--subtle-fill-secondary);
+	}
+
+	&:active {
+		background-color: var(--subtle-fill-tertiary);
+		color: var(--text-secondary);
+
+		&::before {
+			transform: scaleY(0.625);
+		}
+	}
+
+	&.disabled {
+		background-color: var(--subtle-fill-transparent);
+		color: var(--text-disabled);
+		pointer-events: none;
+	}
+
+	&.selected::before {
+		opacity: 1;
+		block-size: 16px;
+	}
+
+	> span {
+		flex: 1 1 auto;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		max-inline-size: 100%;
+	}
+
+	> :global(svg) {
+		@include icon($size: 16px);
+		margin-inline-end: 16px;
+	}
+}
