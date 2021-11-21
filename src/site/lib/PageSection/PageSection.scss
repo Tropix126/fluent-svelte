@@ -3,7 +3,7 @@
 .page-section {
 	&-inner {
 		margin: 0 auto;
-        width: 100%;
+		width: 100%;
 		max-width: 1024px;
 		padding: 72px;
 	}
@@ -12,7 +12,7 @@
 		h2,
 		h3 {
 			margin: 0;
-            font-family: var(--fds-font-family-display);
+			font-family: var(--fds-font-family-display);
 			color: var(--fds-text-primary);
 			font-weight: 600;
 			line-height: normal;

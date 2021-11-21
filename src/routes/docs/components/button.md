@@ -3,7 +3,7 @@ The Button component is used to add a clickable element, which can either trigge
 ## Attributes
 
 |   Name   |                  Type                   | Default | Description                                                       |
-|:--------:|:---------------------------------------:|:-------:|-------------------------------------------------------------------|
+| :------: | :-------------------------------------: | :-----: | ----------------------------------------------------------------- |
 | variant  | `"standard"`, `"accent"`, `"hyperlink"` | primary | Specifies the visual styling of the button                        |
 |   href   |                `string`                 |    -    | Sets an href value and converts the button element into an anchor |
 | disabled |                `boolean`                |  false  | Controls whether the button is disabled                           |

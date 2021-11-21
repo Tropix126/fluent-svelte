@@ -25,9 +25,9 @@
 	on:keyup
 	bind:this={element}
 >
-    <header>
-        <slot name="header" />
-    </header>
+	<header>
+		<slot name="header" />
+	</header>
 	<slot />
 </div>
 

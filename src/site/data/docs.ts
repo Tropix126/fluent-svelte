@@ -2,8 +2,8 @@ export type DocsMap = {
 	name: string;
 	path?: string;
 	type?: "page" | "category";
-	pages?: DocsMap[],
-	examples?: Array<{ name: string, source: string }>
+	pages?: DocsMap[];
+	examples?: Array<{ name: string; source: string }>;
 };
 
 export const docsMap: DocsMap[] = [

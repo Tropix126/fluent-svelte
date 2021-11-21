@@ -56,12 +56,12 @@
 		</span>
 		<div class="header-right">
 			<Button
-				href="https://github.com/tropix126/fluent-svelte/edit/main/src/routes/docs{currentPage?.path || '/index'}.md"
+				href="https://github.com/tropix126/fluent-svelte/edit/main/src/routes/docs{currentPage?.path ||
+					'/index'}.md"
 				rel="noreferrer noopener"
 				target="_blank"
 				variant="hyperlink"
-			>
-			</Button>
+			/>
 		</div>
 	</header>
 	<h1>{currentPage?.name}</h1>

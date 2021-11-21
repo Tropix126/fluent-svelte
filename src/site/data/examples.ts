@@ -2,17 +2,17 @@ import Prism from "prismjs";
 import "prism-svelte";
 
 export type DocsExamples = {
-	path: string,
-	name: string,
-	mod: any,
-	src: string,
-}
+	path: string;
+	name: string;
+	mod: any;
+	src: string;
+};
 
 export const loadExampleModules = async (path: string) => {
 	const componentFiles = import.meta.glob(`/src/site/examples/**/*.svelte`);
 
-	const examples: DocsExamples[] = await Promise.all(Object.entries(componentFiles)
-		.map(async ([path, module]) => {
+	const examples: DocsExamples[] = await Promise.all(
+		Object.entries(componentFiles).map(async ([path, module]) => {
 			const preparedPath = path
 				.substr(path.indexOf("/"), path.lastIndexOf("/"))
 				.replace("/src/site/examples", "");
@@ -23,9 +23,12 @@ export const loadExampleModules = async (path: string) => {
 					/* remove file extension */ path.lastIndexOf(".") - path.lastIndexOf("/") - 1
 				)
 				// add spaces to the name, apparently import.meta.glob removes them
-				.replace(/([A-Z])/g, " $1").trim();
+				.replace(/([A-Z])/g, " $1")
+				.trim();
 
-			const src = (await import(/* @vite-ignore */ path + "?raw").then(x => x.default) as string)
+			const src = (
+				(await import(/* @vite-ignore */ path + "?raw").then(x => x.default)) as string
+			)
 				.replace(`<script>\n\timport * as Fluent from '$lib';\n</script>\n\n`, "")
 				.trim();
 
@@ -35,7 +38,8 @@ export const loadExampleModules = async (path: string) => {
 				mod: await module().then(mod => mod.default),
 				src: Prism.highlight(src, Prism.languages.svelte, "svelte")
 			};
-		}));
+		})
+	);
 
 	return examples.filter(example => example.path === path);
 };

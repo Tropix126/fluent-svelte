@@ -71,12 +71,12 @@
 }
 
 .logo {
-    @include flex($justify: center, $align: center);
-    position: relative;
-    > img {
-        width: auto;
-        height: 32px;
-    }
+	@include flex($justify: center, $align: center);
+	position: relative;
+	> img {
+		width: auto;
+		height: 32px;
+	}
 }
 
 .buttons {
