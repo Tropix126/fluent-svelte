@@ -1,4 +1,5 @@
 import { createFocusTrap } from "focus-trap";
+import type { Options as FocusTrapOptions } from "focus-trap";
 
 export { default as ComboBoxItem } from "./ComboBox/ComboBoxItem.svelte";
 export { default as FlyoutSurface } from "./Flyout/FlyoutSurface.svelte";
@@ -28,7 +29,7 @@ export function externalMouseEvents(node: HTMLElement, options = { type: "click"
 }
 
 // Basic wrapper action around focus-trap
-export function focusTrap(node: HTMLElement, options) {
+export function focusTrap(node: HTMLElement, options?: FocusTrapOptions) {
 	const trap = createFocusTrap(node, options);
 	trap.activate();
 
@@ -39,7 +40,7 @@ export function focusTrap(node: HTMLElement, options) {
 	}
 }
 
-// ID generator for handling WAI-ARIA attributes
+// ID generator for handling WAI-ARIA related attributes
 export function uid(prefix: string) {
 	return (
 		prefix +
@@ -47,4 +48,11 @@ export function uid(prefix: string) {
 		Math.random().toString(16).slice(2) +
 		Date.now().toString(16).slice(4)
 	);
+}
+
+// Returns a number representing the duration of a specified CSS custom property in ms
+export function getCSSDuration(property) {
+	const duration = window.getComputedStyle(document.documentElement).getPropertyValue(property);
+
+	return (parseFloat(duration) * (/\ds$/.test(duration) ? 1000 : 1) || 0);
 }

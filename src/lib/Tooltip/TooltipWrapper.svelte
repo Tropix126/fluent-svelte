@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { fade } from "svelte/transition";
+	import { getCSSDuration } from "../internal";
 
 	import TooltipSurface from "./TooltipSurface.svelte";
 
@@ -88,7 +89,7 @@
 				? `top: calc(${currentPosition.y}px - var(--fds-tooltip-offset));
 				   left: ${currentPosition.x}px;`
 				: ''} --fds-tooltip-offset: {offset}px"
-			transition:fade={{ duration: 167 }}
+			transition:fade={{ duration: getCSSDuration("--fds-control-fast-duration") }}
 		>
 			<TooltipSurface {...$$restProps}>
 				{text}

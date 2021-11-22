@@ -2,7 +2,7 @@
 	import { createEventDispatcher } from "svelte";
 	import { fade, scale } from "svelte/transition";
 	import { circOut } from "svelte/easing";
-	import { uid, focusTrap } from "../internal";
+	import { uid, focusTrap, getCSSDuration } from "../internal";
 
 	import TextBlock from "../TextBlock/TextBlock.svelte";
 
@@ -52,7 +52,9 @@
 	}
 </script>
 
-<svelte:window on:keydown={handleEscapeKey} />
+<svelte:window on:keydown={() => {
+	console.log(getCSSDuration("--fds-control-normal-duration"));
+}} on:keydown={handleEscapeKey} />
 
 {#if open}
 	<div
@@ -60,7 +62,7 @@
 		class:darken
 		on:click={e => dispatch("backdropclick", e)}
 		on:mousedown={e => dispatch("backdropmousedown", e)}
-		transition:fade={{ duration: 83 }}
+		transition:fade={{ duration: getCSSDuration("--fds-control-faster-duration")}}
 		use:mountDialog
 		use:focusTrap
 	>
@@ -81,7 +83,7 @@
 			on:keyup
 			class="content-dialog size-{size} {className ?? ''}"
 			bind:this={element}
-			transition:scale={{ duration: 167, start: 1.05, easing: circOut }}
+			transition:scale={{ duration: getCSSDuration("--fds-control-fast-duration"), start: 1.05, easing: circOut }}
 			role="dialog"
 			aria-modal="true"
 			aria-labelledby={titleId}

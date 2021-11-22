@@ -32,6 +32,7 @@
 	--fds-overlay-corner-radius: 8px;
 
 	/* Duration */
+	--fds-control-slow-duration: 333ms;
 	--fds-control-normal-duration: 250ms;
 	--fds-control-fast-duration: 167ms;
 	/* --fds-control-fast-after-duration: 168ms; */
@@ -43,6 +44,17 @@
 	/* Focus Stroke */
 	--fds-focus-stroke: 0 0 0 1px var(--fds-focus-stroke-inner),
 		0 0 0 3px var(--fds-focus-stroke-outer);
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+	:root {
+		--fds-control-slow-duration: 0ms;
+		--fds-control-normal-duration: 0ms;
+		--fds-control-fast-duration: 0ms;
+		/* --fds-control-fast-after-duration: 0ms; */
+		--fds-control-faster-duration: 0ms;
+	}
 }
 
 /* Light Theme Colors */
