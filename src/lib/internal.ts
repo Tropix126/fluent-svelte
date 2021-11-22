@@ -1,3 +1,5 @@
+import { createFocusTrap } from "focus-trap";
+
 export { default as ComboBoxItem } from "./ComboBox/ComboBoxItem.svelte";
 export { default as FlyoutSurface } from "./Flyout/FlyoutSurface.svelte";
 export { default as TextBoxButton } from "./TextBox/TextBoxButton.svelte";
@@ -23,6 +25,18 @@ export function externalMouseEvents(node: HTMLElement, options = { type: "click"
 			document.removeEventListener(type, handleEvent, true);
 		}
 	};
+}
+
+// Basic wrapper action around focus-trap
+export function focusTrap(node: HTMLElement, options) {
+	const trap = createFocusTrap(node, options);
+	trap.activate();
+
+	return {
+		destroy() {
+			trap.deactivate();
+		}
+	}
 }
 
 // ID generator for handling WAI-ARIA attributes

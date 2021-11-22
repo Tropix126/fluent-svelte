@@ -2,9 +2,7 @@
 	import { createEventDispatcher } from "svelte";
 	import { fade, scale } from "svelte/transition";
 	import { circOut } from "svelte/easing";
-	import { uid } from "../internal";
-
-	import { focusTrap } from "svelte-focus-trap";
+	import { uid, focusTrap } from "../internal";
 
 	import TextBlock from "../TextBlock/TextBlock.svelte";
 
