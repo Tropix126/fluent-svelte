@@ -52,9 +52,7 @@
 	}
 </script>
 
-<svelte:window on:keydown={() => {
-	console.log(getCSSDuration("--fds-control-normal-duration"));
-}} on:keydown={handleEscapeKey} />
+<svelte:window on:keydown={handleEscapeKey} />
 
 {#if open}
 	<div

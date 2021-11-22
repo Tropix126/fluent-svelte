@@ -49,9 +49,10 @@
 		position: absolute;
 		display: grid;
 		grid-gap: 24px;
-		bottom: -286px;
+		top: calc(100% - 48px);
 		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 		inline-size: 100%;
+		max-inline-size: 90vw;
 	}
 }
 
