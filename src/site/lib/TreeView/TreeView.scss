@@ -1,0 +1,21 @@
+@use "src/lib/mixins" as *;
+
+.tree-view {
+	@include flex($direction: column, $align: stretch);
+	block-size: 100%;
+
+	li, .subtree-items li {
+		//inline-size: ;
+	}
+
+	// Add padding to subtrees for the nesting effect
+	.subtree-items {
+		padding-inline-start: 24px;
+	}
+
+	@media only screen and (min-width: 648px) {
+		&:last-child {
+			margin-block-end: 1rem;
+		}
+	}
+}

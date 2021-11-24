@@ -15,11 +15,11 @@
 	let hashChanged = false;
 	let lastScroll = 0;
 
-	function handleScroll() {
+	const handleScroll = () => {
 		if (!hashChanged) visible = scrollY < 56 || scrollY < lastScroll;
 		lastScroll = scrollY;
 		hashChanged = false;
-	}
+	};
 </script>
 
 <svelte:window on:hashchange={() => (hashChanged = true)} on:scroll={handleScroll} bind:scrollY />

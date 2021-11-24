@@ -44,11 +44,11 @@
 			justify-content: flex-start;
 		} @else if $justify == end {
 			justify-content: flex-end;
-		} @else if $justify == between {
+		} @else if $justify == space-between {
 			justify-content: space-between;
 		} @else if $justify == around {
 			justify-content: space-around;
-		} @else if $justify == evenly {
+		} @else if $justify == space-evenly {
 			justify-content: space-evenly;
 		}
 	}

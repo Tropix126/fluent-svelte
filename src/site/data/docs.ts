@@ -3,7 +3,7 @@ export type DocsMap = {
 	path?: string;
 	type?: "page" | "category";
 	pages?: DocsMap[],
-	examples?: Array<{ name: string, source: string }>
+	examples?: Array<{ name: string, source: string, description: string, direction?: "row" | "column" }>
 };
 
 export const docsMap: DocsMap[] = [
@@ -21,8 +21,16 @@ export const docsMap: DocsMap[] = [
 				examples: [
 					{
 						name: "Simple Button",
-						source: "<Fluent.Button>Click Me!</Fluent.Button>"
-					}
+						source: "<Fluent.Button>Click Me!</Fluent.Button>",
+						description: "The default button component."
+					},
+					{
+						name: "Button Variants",
+						source: `<Fluent.Button>Standard</Fluent.Button>
+<Fluent.Button variant="accent">Accent</Fluent.Button>
+<Fluent.Button variant="hyperlink">Hyperlink</Fluent.Button>`,
+						description: "Buttons can have different variants: standard, accent, or hyperlink."
+					},
 				]
 			}
 		]

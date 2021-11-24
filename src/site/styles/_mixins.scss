@@ -1,11 +1,5 @@
 @use "src/lib/mixins";
 
-@mixin icon($size: 14px) {
-	width: $size;
-	height: auto;
-	fill: currentColor;
-}
-
 @mixin prism-vs-light {
 	& {
 		color: #393a34;

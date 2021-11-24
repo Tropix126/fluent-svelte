@@ -1,17 +1,20 @@
 import Prism from "prismjs";
 import "prism-svelte";
+import { docsPages } from "$site/data/docs";
 
-export type DocsExamples = {
+export type DocsExample = {
 	path: string,
 	name: string,
 	mod: any,
 	src: string,
+	description: string,
+	index: number
 }
 
 export const loadExampleModules = async (path: string) => {
 	const componentFiles = import.meta.glob(`/src/site/examples/**/*.svelte`);
 
-	const examples: DocsExamples[] = await Promise.all(Object.entries(componentFiles)
+	const examples: DocsExample[] = await Promise.all(Object.entries(componentFiles)
 		.map(async ([path, module]) => {
 			const preparedPath = path
 				.substr(path.indexOf("/"), path.lastIndexOf("/"))
@@ -25,17 +28,20 @@ export const loadExampleModules = async (path: string) => {
 				// add spaces to the name, apparently import.meta.glob removes them
 				.replace(/([A-Z])/g, " $1").trim();
 
-			const src = (await import(/* @vite-ignore */ path + "?raw").then(x => x.default) as string)
-				.replace(`<script>\n\timport * as Fluent from '$lib';\n</script>\n\n`, "")
-				.trim();
+			const docsPage = docsPages.find(page => page.path === preparedPath);
+			const example = docsPage.examples.find(e => e.name === name);
 
 			return {
-				path: preparedPath,
-				name,
+				path: docsPage.path,
+				name: example.name,
 				mod: await module().then(mod => mod.default),
-				src: Prism.highlight(src, Prism.languages.svelte, "svelte")
+				src: Prism.highlight(example.source, Prism.languages.svelte, "svelte"),
+				description: example.description,
+				index: docsPage.examples.findIndex(e => e.name === example.name)
 			};
 		}));
 
-	return examples.filter(example => example.path === path);
+	return examples
+		.filter(example => example.path === path)
+		.sort((a, b) => a.index - b.index);
 };

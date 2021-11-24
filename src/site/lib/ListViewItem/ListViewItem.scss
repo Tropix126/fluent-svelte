@@ -1,0 +1,94 @@
+@use "src/lib/mixins" as *;
+@use "src/site/styles/mixins" as *;
+
+.list-view-item {
+	@include flex($align: center);
+	position: relative;
+	flex: 0 0 auto;
+	height: 36px;
+	margin: 2px 4px;
+	padding: 0 11px;
+	border-radius: var(--fds-control-corner-radius);
+	color: var(--fds-text-primary);
+	font: {
+		size: 1rem;
+		weight: normal;
+	}
+	text-decoration: none;
+	cursor: default;
+	user-select: none;
+
+	&::before {
+		content: "";
+		position: absolute;
+		width: 3px;
+		height: 0;
+		border-radius: 3px;
+		background-color: var(--fds-accent-default);
+		transition: height 333ms cubic-bezier(0.1, 0.9, 0.2, 1);
+		opacity: 0;
+		inset-inline-start: 0;
+	}
+
+	&:hover,
+	&.selected {
+		background-color: var(--fds-subtle-fill-secondary);
+	}
+
+	&:active {
+		background-color: var(--fds-subtle-fill-tertiary);
+		color: var(--fds-text-secondary);
+	}
+
+	&.selected::before {
+		height: 16px;
+		opacity: 1;
+	}
+
+	&.type- {
+		&default.selected:active::before {
+			height: 10px;
+			opacity: 1;
+		}
+
+		&navigation.selected {
+			&:hover {
+				background-color: var(--fds-subtle-fill-tertiary);
+			}
+
+			&:active {
+				background-color: var(--fds-subtle-fill-secondary);
+			}
+		}
+	}
+
+	.expander-icon {
+		flex: 0 0 auto;
+		margin-inline-start: 1.5rem;
+
+		@media (prefers-reduced-motion: no-preference) {
+			transition: 166ms var(--fds-control-fast-out-slow-in-easing) transform;
+		}
+
+		&.expanded {
+			transform: rotate(180deg);
+		}
+
+		:global(svg) {
+			@include icon($size: 12px);
+		}
+	}
+
+	> span {
+		flex: 1 1 auto;
+		max-width: 100%;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
+	> :global(svg) {
+		@include icon($size: 16px);
+		margin-inline-end: 16px;
+	}
+}

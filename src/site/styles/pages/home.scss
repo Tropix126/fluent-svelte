@@ -1,134 +1,182 @@
 @use "src/lib/mixins" as *;
 @use "src/site/styles/mixins" as *;
 
+$background-light-gradient: radial-gradient(at 100% 57%, hsla(220, 11%, 89%, 1) 0, transparent 50%),
+radial-gradient(at 0% 0%, hsla(220, 12%, 89%, 1) 0, transparent 54%),
+radial-gradient(at 83% 33%, hsla(225, 48%, 86%, 1) 0, transparent 55%),
+radial-gradient(at 43% 63%, hsla(223, 39%, 87%, 1) 0, transparent 59%),
+radial-gradient(at 62% 14%, hsla(219, 35%, 88%, 1) 0, transparent 46%),
+radial-gradient(at 36% 92%, hsla(227, 48%, 86%, 1) 0, transparent 52%),
+radial-gradient(at 40% 47%, hsla(229, 46%, 86%, 1) 0, transparent 50%),
+radial-gradient(at 100% 98%, hsla(224, 20%, 88%, 1) 0, transparent 58%);
+
+$background-dark-gradient: radial-gradient(at 100% 57%, hsla(220, 11%, 11%, 1) 0, transparent 50%),
+	radial-gradient(at 0% 0%, hsla(220, 12%, 11%, 1) 0, transparent 54%),
+	radial-gradient(at 83% 33%, hsla(225, 48%, 14%, 1) 0, transparent 55%),
+	radial-gradient(at 43% 63%, hsla(223, 39%, 13%, 1) 0, transparent 59%),
+	radial-gradient(at 62% 14%, hsla(219, 35%, 12%, 1) 0, transparent 46%),
+	radial-gradient(at 36% 92%, hsla(227, 48%, 14%, 1) 0, transparent 52%),
+	radial-gradient(at 40% 47%, hsla(229, 46%, 14%, 1) 0, transparent 50%),
+	radial-gradient(at 100% 98%, hsla(224, 20%, 12%, 1) 0, transparent 58%);
+
 :global {
-    #hero-section {
-        @include flex($direction: column, $justify: center, $align: center);
-        position: relative;
-        min-block-size: 596px;
-        text-align: center;
-        background: url("/hero-mica-light.png") center/170% no-repeat;
-        @media (prefers-color-scheme: dark) {
-            background-image: url("/hero-mica-dark.png");
-        }
-        > .page-section-inner {
-            @include flex($direction: column, $align: center);
-            position: relative;
-            padding-block: 58px 128px;
-        }
-        h1 {
-            font-size: 5.4rem;
-        }
-        .hero-card {
-            .text-box-container {
-                margin-bottom: 14px;
-                margin-top: 4px;
-            }
-            .copy-box {
-                font-family: var(--font-family-monospace);
-            }
-            header > .icon-button {
-                position: absolute;
-                top: 6px;
-                right: 6px;
-            }
-        }
-        .buttons-spacer .button {
-            min-width: 128px;
-        }
-    }
+	#hero-section {
+		@include flex($direction: column, $justify: center, $align: center);
+		background: {
+			color: hsl(227, 16%, 89%);
+			image: $background-light-gradient;
+			position: center;
+			size: 170%;
+			repeat: no-repeat;
+		}
+		text-align: center;
+		min-block-size: fit-content;
+
+		@media (prefers-color-scheme: dark) {
+			background-color: hsl(227, 16%, 11%);
+			background-image: $background-dark-gradient;
+		}
+
+		> .page-section-inner {
+			@include flex(
+					$direction: column,
+					$align: center,
+					$justify: center,
+					$gap: 8.5rem
+			);
+			padding-block: 3.7rem .5rem;
+			padding-inline: 3rem;
+			margin-inline: 0;
+			max-inline-size: 100%;
+		}
+
+		h1 {
+			font-size: 3.3rem;
+		}
+
+		p {
+			font-size: 1rem;
+		}
+
+		.hero-card {
+			text-align: left;
+
+			.text-box-container {
+				margin-block: .25rem .9rem;
+			}
+
+			.copy-box {
+				font-family: var(--font-family-monospace);
+			}
+
+			header > .icon-button {
+				position: absolute;
+				top: 6px;
+				right: 6px;
+			}
+		}
+
+		.buttons-spacer .button {
+			min-width: 128px;
+		}
+	}
 }
 
-.hero- {
-    &contents,
-    &cards {
-        position: relative;
-    }
-    &cards {
-        text-align: left;
-        position: absolute;
-        display: grid;
-        grid-gap: 24px;
-        bottom: -286px;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        inline-size: 100%;
-    }
+.hero-cards {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(280px, 1fr));
+	justify-content: center;
+	gap: 1.5rem;
+	max-inline-size: 90vw;
+
+	@media screen and (max-width: 1000px) {
+		grid-template-columns: minmax(280px, 1fr);
+	}
 }
 
 .editor-body {
-    @include flex($direction: column);
-    flex: 1 1 auto;
-    max-height: 100%;
-    min-height: 0;
-    line-height: 18px;
-    font: {
-        size: var(--fds-body-font-size);
-        family: var(--font-family-monospace);
-    }
-    .editor-tabs {
-        @include flex($align: center);
-        flex: 0 0 auto;
-        margin: 0;
-        padding: 0;
-        li {
-            @include typography-body;
-            margin: 0;
-            border: 1px solid var(--fds-divider-stroke-default);
-            border-top: 2px solid #ff3e00;
-            border-bottom: none;
-            background-color: var(--fds-solid-background-base);
-            padding: 6px 12px;
-            list-style-type: none;
-        }
-    }
-    .editor {
-        @include prism-vs-light;
-        flex: 1 1 auto;
-        display: flex;
-        overflow: auto;
-        overflow: overlay;
-        max-height: 100%;
-        min-height: 0;
-        border-radius: var(--fds-control-corner-radius);
-        border-top-left-radius: 0;
-        background-color: var(--fds-solid-background-base);
-        border: 1px solid var(--fds-divider-stroke-default);
-        @media (prefers-color-scheme: dark) {
-            @include prism-vs-dark;
-            color-scheme: dark;
-        }
-        pre {
-            user-select: text;
-            padding: 4px;
-            margin: 0;
-            code {
-                line-height: inherit;
-            }
-        }
-    }
-    .line-numbers {
-        position: sticky;
-        align-self: flex-start;
-        z-index: 1;
-        left: 0;
-        font-weight: 400;
-        background-color: var(--fds-solid-background-base);
-        color: var(--fds-text-secondary);
-        padding: 4px 6px;
-        min-width: 32px;
-        text-align: right;
-        border-right: 1px solid var(--fds-divider-stroke-default);
-        span {
-            display: block;
-        }
-    }
+	@include flex($direction: column);
+	flex: 1 1 auto;
+	min-height: 0;
+	max-height: 100%;
+	font: {
+		size: var(--fds-body-font-size);
+		family: var(--font-family-monospace);
+	}
+	line-height: 18px;
+
+	.editor-tabs {
+		@include flex($align: center);
+		flex: 0 0 auto;
+		margin: 0;
+		padding: 0;
+
+		li {
+			@include typography-body;
+			margin: 0;
+			padding: 6px 12px;
+			border: 1px solid var(--fds-divider-stroke-default);
+			border-top: 2px solid #ff3e00;
+			border-bottom: none;
+			background-color: var(--fds-solid-background-base);
+			list-style-type: none;
+		}
+	}
+
+	.editor {
+		@include prism-vs-light;
+		display: flex;
+		flex: 1 1 auto;
+		min-height: 0;
+		max-height: 100%;
+		border: 1px solid var(--fds-divider-stroke-default);
+		border-radius: var(--fds-control-corner-radius);
+		border-top-left-radius: 0;
+		background-color: var(--fds-solid-background-base);
+		overflow: auto;
+		overflow: overlay;
+
+		@media (prefers-color-scheme: dark) {
+			@include prism-vs-dark;
+			color-scheme: dark;
+		}
+
+		pre {
+			margin: 0;
+			padding: 4px;
+			user-select: text;
+
+			code {
+				line-height: inherit;
+			}
+		}
+	}
+
+	.line-numbers {
+		position: sticky;
+		left: 0;
+		z-index: 1;
+		align-self: flex-start;
+		min-width: 32px;
+		padding: 4px 6px;
+		border-right: 1px solid var(--fds-divider-stroke-default);
+		background-color: var(--fds-solid-background-base);
+		color: var(--fds-text-secondary);
+		font-weight: 400;
+		text-align: right;
+
+		span {
+			display: block;
+		}
+	}
 }
 
 .example-app {
-    @include flex($direction: column, $align: center, $justify: center);
-    flex: 1 1 auto;
-    padding-bottom: 32px;
-    > div {
-        margin-top: 12px;
-    }
+	@include flex($direction: column, $align: center, $justify: center);
+	flex: 1 1 auto;
+	padding-bottom: 32px;
+
+	> div {
+		margin-top: 12px;
+	}
 }

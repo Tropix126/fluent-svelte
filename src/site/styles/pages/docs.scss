@@ -1,45 +1,36 @@
-@use "../_markdown";
+@use "../markdown";
 @use "src/lib/mixins" as *;
 
 .docs-page {
+	@include flex;
 	color: var(--fds-text-primary);
-	font-size: 1rem;
 	line-height: 1.45;
 
-	// Page header
-	header {
-		@include flex($align: center, $justify: space-between);
-		margin-block-end: -20px;
-		color: var(--fds-text-tertiary);
-		white-space: nowrap;
-
-		span {
-			text-overflow: ellipsis;
-			overflow: hidden;
+	@media screen and (max-width: 750px) {
+		.sidebar {
+			display: none;
 		}
 	}
 
-	.code-example {
-		@include flex($align: center, $gap: 2rem);
+	.markdown-body {
+		padding: 1rem;
+		margin-inline-end: 2ch;
 
-		.example {
-			width: fit-content;
-			padding: 1.5rem;
-			border: 1px solid var(--fds-control-stroke-default);
-			border-radius: 1rem;
-			block-size: 100%;
+		// Page header
+		header {
+			@include flex($align: center, $justify: space-between);
+			margin-block-end: -20px;
+			color: var(--fds-text-tertiary);
+			white-space: nowrap;
 
-			&.code {
-				pre {
-					margin-block-end: 0;
-					border-radius: 1rem;
-					tab-size: 2;
-				}
+			span {
+				text-overflow: ellipsis;
+				overflow: hidden;
 			}
 		}
 
-		svg {
-			fill: var(--fds-text-primary);
+		.examples {
+			@include flex($gap: 1.5rem, $wrap: true);
 		}
 	}
 }

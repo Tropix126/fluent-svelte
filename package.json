@@ -44,13 +44,13 @@
 		"generate": "tsm ./generateDocsExamples.ts"
 	},
 	"devDependencies": {
-		"@fluentui/svg-icons": "^1.1.150",
+		"@fluentui/svg-icons": "^1.1.152",
 		"@sveltejs/adapter-vercel": "next",
-		"@sveltejs/kit": "^1.0.0-next.196",
+		"@sveltejs/kit": "^1.0.0-next.199",
 		"@sveltejs/svelte-repl": "^0.2.2",
 		"@types/prismjs": "^1.16.6",
 		"autoprefixer": "^10.4.0",
-		"cssnano": "^5.0.10",
+		"cssnano": "^5.0.11",
 		"mdsvex": "^0.9.8",
 		"mousetrap": "^1.6.5",
 		"postcss": "^8.3.11",
@@ -60,14 +60,14 @@
 		"prism-svelte": "^0.4.7",
 		"prismjs": "^1.25.0",
 		"sass": "^1.43.4",
-		"svelte": "^3.44.1",
-		"svelte-check": "^2.2.9",
+		"svelte": "^3.44.2",
+		"svelte-check": "^2.2.10",
 		"svelte-focus-trap": "^1.2.0",
 		"svelte-preprocess": "^4.9.8",
-		"svelte2tsx": "^0.4.9",
+		"svelte2tsx": "^0.4.10",
 		"tslib": "^2.3.1",
 		"tsm": "^2.1.4",
-		"typescript": "^4.4.4"
+		"typescript": "4.4.4"
 	},
 	"type": "module"
 }

@@ -2,7 +2,7 @@
 
 .markdown-body {
 	color: var(--fds-text-primary);
-	font-size: 1.4rem;
+	font-size: 1rem;
 	line-height: 1.45;
 
 	// Spacing
@@ -210,7 +210,7 @@
 		border-radius: var(--fds-control-corner-radius);
 		border-collapse: collapse;
 		background-clip: padding-box;
-		overflow: hidden;
+		overflow: scroll;
 
 		th,
 		td {

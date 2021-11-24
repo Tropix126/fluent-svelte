@@ -28,27 +28,27 @@
         <slot />
     </h6>
     {:else if variant === "bodyStrong"}
-    <h6 class="text-block type-body-strong {className ?? ""}" bind:this={element} {...$$restProps}>
+    <h6 class="text-block type-body-strong {className ?? ''}" bind:this={element} {...$$restProps}>
         <slot />
     </h6>
     {:else if variant === "bodyLarge"}
-    <h5 class="text-block type-body-large {className ?? ""}" bind:this={element} {...$$restProps}>
+    <h5 class="text-block type-body-large {className ?? ''}" bind:this={element} {...$$restProps}>
         <slot />
     </h5>
     {:else if variant === "subtitle"}
-    <h4 class="text-block type-subtitle {className ?? ""}" bind:this={element} {...$$restProps}>
+    <h4 class="text-block type-subtitle {className ?? ''}" bind:this={element} {...$$restProps}>
         <slot />
     </h4>
     {:else if variant === "title"}
-    <h3 class="text-block type-title {className ?? ""}" bind:this={element} {...$$restProps}>
+    <h3 class="text-block type-title {className ?? ''}" bind:this={element} {...$$restProps}>
         <slot />
     </h3>
     {:else if variant === "titleLarge"}
-    <h2 class="text-block type-title-large {className ?? ""}" bind:this={element} {...$$restProps}>
+    <h2 class="text-block type-title-large {className ?? ''}" bind:this={element} {...$$restProps}>
         <slot />
     </h2>
     {:else if variant === "display"}
-    <h1 class="text-block type-display {className ?? ""}" bind:this={element} {...$$restProps}>
+    <h1 class="text-block type-display {className ?? ''}" bind:this={element} {...$$restProps}>
         <slot />
     </h1>
 {/if}

@@ -13,10 +13,6 @@
 		--font-family-monospace: "Cascadia Code", "Fira Code", "Consolas", monospace;
 	}
 
-	html {
-		font-size: 62.5%;
-	}
-
 	body {
 		@include typography-body;
 		height: 100vh;
