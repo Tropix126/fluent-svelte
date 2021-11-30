@@ -1,27 +1,22 @@
 <script lang="ts">
-	import { Button, TextBlock, IconButton } from "$lib";
-	import { PageSection, CopyBox, HeroCard, Metadata } from "$site/lib";
+	import { Button, IconButton, TextBlock } from "$lib";
+	import { CopyBox, HeroCard, Metadata, PageSection } from "$site/lib";
 	import { homeExampleSrc } from "$site/data/home";
-	import { onMount } from "svelte";
-	import Prism from "prismjs";
-	import "prism-svelte";
 	import Box from "@fluentui/svg-icons/icons/box_16_regular.svg?raw";
 	import Book from "@fluentui/svg-icons/icons/book_24_regular.svg?raw";
 	import Open from "@fluentui/svg-icons/icons/open_16_regular.svg?raw";
+	import Prism from "prismjs";
+	import "prism-svelte";
 
 	let exampleCount = 0;
 
-	let example = "";
-
-	onMount(() => {
-		example = Prism.highlight(homeExampleSrc, Prism.languages.svelte, "svelte")
-	})
+	let example = Promise.resolve(Prism.highlight(homeExampleSrc, Prism.languages.svelte, "svelte"));
 </script>
 
 <svelte:head>
 	<Metadata
-			title="Fluent Svelte"
-			description="A faithful implementation of Microsoft's Fluent Design System in Svelte"
+		description="A faithful implementation of Microsoft's Fluent Design System in Svelte"
+		title="Fluent Svelte"
 	/>
 </svelte:head>
 
@@ -68,16 +63,40 @@
 					<li>index.svelte</li>
 				</ul>
 				<div class="editor">
-					<aside class="line-numbers">
-						{#each example.split(/\r\n|\r|\n/) as line, i}
-							<span>{i + 1}</span>
-						{/each}
-					</aside>
-					<pre>
-						<code>
-							{@html example}
-						</code>
-					</pre>
+					{#await example}
+						<aside class="line-numbers">
+							{#each homeExampleSrc.split(/\r\n|\r|\n/) as line, i}
+								<span>{i + 1}</span>
+							{/each}
+						</aside>
+						<pre>
+							<code>
+								{homeExampleSrc}
+							</code>
+						</pre>
+					{:then rendered}
+						<aside class="line-numbers">
+							{#each rendered.split(/\r\n|\r|\n/) as line, i}
+								<span>{i + 1}</span>
+							{/each}
+						</aside>
+						<pre>
+							<code>
+								{@html rendered}
+							</code>
+						</pre>
+					{:catch _}
+						<aside class="line-numbers">
+							{#each homeExampleSrc.split(/\r\n|\r|\n/) as line, i}
+								<span>{i + 1}</span>
+							{/each}
+						</aside>
+						<pre>
+							<code>
+								{homeExampleSrc}
+							</code>
+						</pre>
+					{/await}
 				</div>
 			</div>
 		</HeroCard>

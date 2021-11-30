@@ -1,31 +1,64 @@
 @use "../markdown";
 @use "src/lib/mixins" as *;
 
+$divider: 1px solid var(--fds-divider-stroke-default);
+
 .docs-page {
 	@include flex;
+	flex: 1 1 auto;
 	color: var(--fds-text-primary);
 	line-height: 1.45;
 
-	@media screen and (max-width: 750px) {
-		.sidebar {
-			display: none;
+	.sidebar {
+		@include flex($direction: column, $justify: start, $gap: 1rem);
+		flex: none;
+		padding: .5rem .25rem;
+		inline-size: 20rem;
+		block-size: 100%;
+		border-inline-end: $divider;
+		border-block-end: $divider;
+
+		@media screen and (max-width: 750px) {
+			flex-basis: 100%;
+		}
+
+		.sidebar-top {
+			@include flex($align: center);
+			border-block-end: $divider;
+
+			:global {
+				.docs-searchbar {
+					flex-basis: 100%;
+				}
+
+				.shrink-sidebar-button {
+					margin-block-end: .45rem;
+				}
+			}
 		}
 	}
 
 	.markdown-body {
-		padding: 1rem;
+		flex-basis: 100%;
 		margin-inline-end: 2ch;
+		padding: 1rem;
+		padding-inline-start: 1.25rem;
 
 		// Page header
 		header {
 			@include flex($align: center, $justify: space-between);
-			margin-block-end: -20px;
+			padding-block-end: 1.3rem;
 			color: var(--fds-text-tertiary);
 			white-space: nowrap;
+			border-block-end: $divider;
 
 			span {
 				text-overflow: ellipsis;
 				overflow: hidden;
+			}
+
+			.header-right {
+				@include flex($align: center);
 			}
 		}
 

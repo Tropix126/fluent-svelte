@@ -107,7 +107,7 @@ $background-dark-gradient: radial-gradient(at 100% 57%, hsla(220, 11%, 11%, 1) 0
 
 	.editor-tabs {
 		@include flex($align: center);
-		flex: 0 0 auto;
+		flex: none;
 		margin: 0;
 		padding: 0;
 

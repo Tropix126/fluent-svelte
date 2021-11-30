@@ -4,14 +4,14 @@
 .list-view-item {
 	@include flex($align: center);
 	position: relative;
-	flex: 0 0 auto;
+	flex: none;
 	height: 36px;
 	margin: 2px 4px;
 	padding: 0 11px;
 	border-radius: var(--fds-control-corner-radius);
 	color: var(--fds-text-primary);
 	font: {
-		size: 1rem;
+		size: .9rem;
 		weight: normal;
 	}
 	text-decoration: none;
@@ -63,7 +63,7 @@
 	}
 
 	.expander-icon {
-		flex: 0 0 auto;
+		flex: none;
 		margin-inline-start: 1.5rem;
 
 		@media (prefers-reduced-motion: no-preference) {

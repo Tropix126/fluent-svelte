@@ -39,7 +39,7 @@ export const docsMap: DocsMap[] = [
 
 export const docsPages = filterPages(docsMap);
 
-export function filterPages(docsStructure: DocsMap[] | DocsMap): DocsMap[] {
+function filterPages(docsStructure: DocsMap[] | DocsMap): DocsMap[] {
 	if (Array.isArray(docsStructure)) {
 		// it's an array of pages/categories
 		return docsStructure
