@@ -6,14 +6,14 @@
 	box-sizing: border-box;
 	padding: 12px;
 	backdrop-filter: blur(60px) saturate(125%);
-	border-radius: var(--fds-overlay-corner-radius);
-	background-color: var(--fds-card-background-default);
-	border: 1px solid var(--fds-card-stroke-default);
+	border-radius: var(--overlay-corner-radius);
+	background-color: var(--card-background-default);
+	border: 1px solid var(--card-stroke-default);
 	background-clip: padding-box;
-	box-shadow: var(--fds-card-shadow);
-	transition: var(--fds-control-normal-duration) var(--fds-control-fast-out-slow-in-easing);
+	box-shadow: var(--card-shadow);
+	transition: var(--control-normal-duration) var(--control-fast-out-slow-in-easing);
 	&:hover {
-		box-shadow: var(--fds-flyout-shadow);
+		box-shadow: var(--flyout-shadow);
 		transform: translateY(-4px);
 	}
 	header {

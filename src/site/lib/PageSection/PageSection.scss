@@ -4,7 +4,7 @@
 	&-inner {
 		margin: 0 auto;
 		width: 100%;
-		max-width: 1024px;
+		max-width: 1440px;
 		padding: 72px;
 	}
 	:global {
@@ -12,8 +12,8 @@
 		h2,
 		h3 {
 			margin: 0;
-			font-family: var(--fds-font-family-display);
-			color: var(--fds-text-primary);
+			font-family: var(--font-family-display);
+			color: var(--text-primary);
 			font-weight: 600;
 			line-height: normal;
 		}
@@ -30,24 +30,24 @@
 			font-size: 3.2rem;
 		}
 
-		p {
+		p:not([class]) {
 			max-width: 65ch;
 			margin-block: 12px 24px;
-			color: var(--fds-text-secondary);
+			color: var(--text-secondary);
 			font: {
 				size: 1.6rem;
 				weight: 400;
 			}
 			line-height: 1.65;
 			@media (prefers-color-scheme: dark) {
-				color: var(--fds-text-tertiary);
+				color: var(--text-tertiary);
 			}
 		}
 
-		hr {
+		hr:not([class]) {
 			margin: 0 0 24px;
 			border: none;
-			border-block-start: 1px solid var(--fds-divider-default);
+			border-block-start: 1px solid var(--divider-default);
 		}
 
 		.buttons-spacer {

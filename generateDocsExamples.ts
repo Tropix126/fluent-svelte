@@ -6,7 +6,7 @@ docsPages
 	.forEach(page =>
 		page.examples.forEach(example => {
 			example.source = `<script>
-	import * as Fluent from '$lib';
+	import * as Fluent from "fluent-svelte";
 </script>
 
 ${example.source}

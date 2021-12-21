@@ -1,0 +1,18 @@
+@use "../mixins" as *;
+
+.menu-flyout {
+	@include typography-body;
+	@include flex($direction: column);
+	min-inline-size: 120px;
+	max-inline-size: 100%;
+	margin: 0;
+	padding: 0;
+	padding-block: 2px;
+	box-sizing: border-box;
+	color: var(--text-primary);
+	border-radius: var(--overlay-corner-radius);
+	border: 1px solid var(--surface-stroke-flyout);
+	background-clip: padding-box;
+	background-color: var(--flyout-fallback-background-default);
+	box-shadow: var(--flyout-shadow);
+}

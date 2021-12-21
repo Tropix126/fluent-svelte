@@ -1,7 +1,7 @@
 @use "./mixins" as *;
 
 .markdown-body {
-	color: var(--fds-text-primary);
+	color: var(--text-primary);
 	font-size: 1.4rem;
 	line-height: 1.45;
 
@@ -47,18 +47,19 @@
 		img {
 			max-width: 100%;
 			height: auto;
-			border: 1px solid var(--fds-card-stroke-default);
-			border-radius: var(--fds-overlay-corner-radius);
+			border: 1px solid var(--card-stroke-default);
+			border-radius: var(--overlay-corner-radius);
 		}
 
 		figcaption {
-			color: var(--fds-text-secondary);
+			color: var(--text-secondary);
 		}
 	}
 
 	// Header text (<h1> through <h6>)
 	h1,
 	h2 {
+		padding-block-start: 1.5em;
 		padding-block-end: 0.3em;
 	}
 
@@ -68,23 +69,24 @@
 	h4,
 	h5,
 	h6 {
+		font-family: var(--font-family-display);
 		margin-block-start: 24px;
 		margin-block-end: 16px;
-		color: var(--fds-text-primary);
+		color: var(--text-primary);
 		font-weight: 600;
 		line-height: 1.25;
 	}
 
 	h1 {
-		font-size: 2em;
+		font-size: var(--display-font-size);
 	}
 
 	h2 {
-		font-size: 1.5em;
+		font-size: var(--title-large-font-size);
 	}
 
 	h3 {
-		font-size: 1.25em;
+		font-size: var(--title-font-size);
 	}
 
 	h4 {
@@ -96,7 +98,7 @@
 	}
 
 	h6 {
-		color: var(--fds-text-tertiary);
+		color: var(--text-tertiary);
 		font-size: 0.85em;
 	}
 
@@ -133,9 +135,9 @@
 	kbd {
 		margin: 0;
 		padding: 0.2em 0.4em;
-		border: 1px solid var(--fds-card-stroke-default);
-		border-radius: var(--fds-control-corner-radius);
-		background-color: var(--fds-card-background-default);
+		border: 1px solid var(--card-stroke-default);
+		border-radius: var(--control-corner-radius);
+		background-color: var(--card-background-default);
 		background-clip: padding-box;
 		font-family: var(--font-family-monospace);
 		font-size: 85%;
@@ -145,7 +147,7 @@
 	kbd {
 		padding: 0.3em 0.4em;
 		color: hsl(70, 5%, 22%);
-		box-shadow: inset 0 -0.2em 0 var(--fds-subtle-fill-secondary);
+		box-shadow: inset 0 -0.2em 0 var(--subtle-fill-secondary);
 
 		@media (prefers-color-scheme: dark) {
 			color: hsl(0, 0%, 83%);
@@ -154,9 +156,9 @@
 
 	pre {
 		padding: 12px 16px;
-		border: 1px solid var(--fds-card-stroke-default);
-		border-radius: var(--fds-control-corner-radius);
-		background-color: var(--fds-card-background-default);
+		border: 1px solid var(--card-stroke-default);
+		border-radius: var(--control-corner-radius);
+		background-color: var(--card-background-default);
 		background-clip: padding-box;
 		font-size: 1em;
 		overflow: auto;
@@ -172,13 +174,13 @@
 	blockquote {
 		margin: 0;
 		padding: 0 1em;
-		color: var(--fds-text-disabled);
-		border-inline-start: 0.25em solid var(--fds-subtle-fill-secondary);
+		color: var(--text-disabled);
+		border-inline-start: 0.25em solid var(--subtle-fill-secondary);
 	}
 
 	// Anchors
-	a:not(.hyperlink-button) {
-		color: var(--fds-accent-text-primary);
+	a:not([class]) {
+		color: var(--accent-text-primary);
 		text-decoration: underline;
 		text-decoration-skip-ink: none;
 
@@ -188,51 +190,55 @@
 		}
 
 		&:hover {
-			color: var(--fds-accent-text-tertiary);
+			color: var(--accent-text-tertiary);
 		}
 
 		&:active {
-			color: var(--fds-accent-text-secondary);
+			color: var(--accent-text-secondary);
 		}
 	}
 
 	// Horizontal dividers
-	hr {
+	hr:not([class]) {
 		margin: 24px 0;
 		border: none;
-		border-block-start: 1px solid var(--fds-divider-stroke-default);
+		border-block-start: 1px solid var(--divider-stroke-default);
 	}
 
 	// Tables
 	table {
 		display: inline-block;
-		border: 1px solid var(--fds-control-stroke-default);
-		border-radius: var(--fds-control-corner-radius);
+		border: 1px solid var(--card-stroke-default);
+		border-radius: var(--control-corner-radius);
 		border-collapse: collapse;
 		background-clip: padding-box;
 		overflow: hidden;
+		text-align: left;
+
+		button {
+			width: 100%;
+		}
 
 		th,
 		td {
-			padding: 6px 13px;
-			border-inline-end: 1px solid var(--fds-control-stroke-default);
+			padding: 6px 12px;
+		}
 
-			&:last-of-type {
-				border-inline-end: none;
-			}
+		td {
+			border-block-start: 1px solid var(--card-stroke-default);
 		}
 
 		th {
-			background-color: var(--fds-subtle-fill-secondary);
+			background-color: var(--card-background-secondary);
 			font-weight: 600;
 		}
 
 		tr {
-			background-color: var(--fds-solid-background-quarternary);
-
-			&:nth-child(2n) {
-				background-color: transparent;
-			}
+			background-color: var(--card-background-default);
 		}
+	}
+
+	.info-bar {
+		margin-bottom: 24px;
 	}
 }

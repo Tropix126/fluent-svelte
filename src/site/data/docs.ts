@@ -2,14 +2,17 @@ export type DocsMap = {
 	name: string;
 	path?: string;
 	type?: "page" | "category";
+	icon?: string;
 	pages?: DocsMap[];
 	examples?: Array<{ name: string; source: string }>;
 };
 
+// SVG stuff is hopefully temporary
 export const docsMap: DocsMap[] = [
 	{
 		name: "Overview",
-		path: ""
+		path: "",
+		icon: `<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 7c.28 0 .5.22.5.5v3a.5.5 0 01-1 0v-3c0-.28.22-.5.5-.5z"/><path d="M8 6.25a.75.75 0 100-1.5.75.75 0 000 1.5z"/><path d="M2 8a6 6 0 1112 0A6 6 0 012 8zm6-5a5 5 0 100 10A5 5 0 008 3z"/></svg>`
 	},
 	{
 		type: "category",
@@ -18,10 +21,29 @@ export const docsMap: DocsMap[] = [
 			{
 				name: "Button",
 				path: "/components/button",
+				icon: `<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M1 5c0-1.1.9-2 2-2h10a2 2 0 012 2v5a2 2 0 01-1.16 1.82 1.5 1.5 0 00-.28-.38l-.45-.45A1 1 0 0014 10V5a1 1 0 00-1-1H3a1 1 0 00-1 1v5a1 1 0 001 1h4v1H3a2 2 0 01-2-2V5z"/><path d="M8.85 8.15A.5.5 0 008 8.5v6a.5.5 0 00.9.3l1.35-1.8h2.25a.5.5 0 00.35-.85l-4-4zM9 13V9.7l2.3 2.3H10a.5.5 0 00-.4.2L9 13z"/></svg>`,
 				examples: [
 					{
 						name: "Simple Button",
-						source: "<Fluent.Button>Click Me!</Fluent.Button>"
+						source: `<Fluent.Button>Click Me!</Fluent.Button>`
+					},
+					{
+						name: "Button Variants",
+						source: `<Fluent.Button variant="standard">
+	Standard Button
+</Fluent.Button>
+<Fluent.Button variant="accent">
+	Accent Button
+</Fluent.Button>
+<Fluent.Button variant="hyperlink">
+	Hyperlink Button
+</Fluent.Button>`
+					},
+					{
+						name: "Hyperlink Button (External)",
+						source: `<Fluent.Button variant="hyperlink" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noreferrer noopener">
+	Click Me!
+</Fluent.Button>`
 					}
 				]
 			}

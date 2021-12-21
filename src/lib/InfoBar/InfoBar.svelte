@@ -15,21 +15,27 @@
 	export let severity: "information" | "success" | "caution" | "critical" | "attention" =
 		"information";
 
-	/** Specifies the description text shown in the bar */
-	export let description = "";
+	/** Title of the Infobar */
+	export let title = "";
+
+	/** Description text shown next to or below the title */
+	export let message = "";
 
 	/** Specifies a custom class name for the bar */
 	let className = "";
 	export { className as class };
 
 	let wrapped = false;
-	let action: HTMLDivElement;
 	let element: HTMLDivElement;
-	let clientHeight = 0;
+	let clientHeight: number;
+	let messageElement: HTMLParagraphElement;
+	let titleElement: HTMLHeadingElement;
+	let actionElement: HTMLDivElement;
 
 	export const getElement = () => element;
 
-	$: if (action && description && clientHeight) wrapped = action.offsetTop > 0;
+	$: actionWrapped = clientHeight && actionElement?.offsetTop > 0;
+	$: messageWrapped = clientHeight && messageElement?.offsetTop > titleElement?.offsetTop;
 
 	function handleClose(event) {
 		open = false;
@@ -39,8 +45,8 @@
 
 {#if open}
 	<div
-		bind:clientHeight
 		bind:this={element}
+		bind:clientHeight
 		class="info-bar severity-{severity} {className ?? ''}"
 		role="alert"
 		{...$$restProps}
@@ -64,13 +70,26 @@
 				<InfoBadge {severity} />
 			</slot>
 		</div>
-		<div class="info-bar-content" class:action-wrapped={wrapped}>
-			<h5>
-				<slot />
-			</h5>
-			<p>{description}</p>
+		<div
+			class="info-bar-content"
+			class:wrapped
+			class:action-visible={$$slots.action}
+			class:action-wrapped={actionWrapped}
+			class:message-wrapped={messageWrapped}
+		>
+			{#if title}
+				<h5 bind:this={titleElement}>
+					{title}
+				</h5>
+			{/if}
+			{#if message || $$slots.default}
+				<p bind:this={messageElement}>
+					{message}
+					<slot />
+				</p>
+			{/if}
 			{#if $$slots.action}
-				<div class="info-bar-action" bind:this={action}>
+				<div class="info-bar-action" bind:this={actionElement}>
 					<slot name="action" />
 				</div>
 			{/if}

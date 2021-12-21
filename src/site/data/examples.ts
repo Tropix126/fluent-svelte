@@ -29,7 +29,6 @@ export const loadExampleModules = async (path: string) => {
 			const src = (
 				(await import(/* @vite-ignore */ path + "?raw").then(x => x.default)) as string
 			)
-				.replace(`<script>\n\timport * as Fluent from '$lib';\n</script>\n\n`, "")
 				.trim();
 
 			return {

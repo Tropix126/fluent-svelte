@@ -1,9 +1,11 @@
 <script lang="ts">
-	/** Sets an href value and converts the button element into an anchor */
-	export let href = "";
+	/** @restProps {button | a} */
 
 	/** Specifies the visual styling of the button */
 	export let variant: "standard" | "accent" | "hyperlink" = "standard";
+
+	/** Sets an href value and converts the button element into an anchor */
+	export let href = "";
 
 	/** Controls whether the button is disabled */
 	export let disabled = false;
@@ -17,6 +19,15 @@
 	export const getElement = () => element;
 </script>
 
+
+<!--
+@component
+A button gives the user a way to trigger an immediate action. Some buttons are specialized for particular tasks, such as navigation, repeated actions, or presenting menus.
+- Usage:
+    ```tsx
+    <Button>Click me!</Button>
+    ```
+-->
 {#if href && !disabled}
 	<a
 		bind:this={element}
@@ -43,6 +54,7 @@
 	</a>
 {:else}
 	<button
+		bind:this={element}
 		on:click
 		on:blur
 		on:focus

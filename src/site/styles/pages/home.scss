@@ -21,16 +21,16 @@
 		}
 		.hero-card {
 			.text-box-container {
-				margin-bottom: 14px;
-				margin-top: 4px;
+				margin-block-start: 4px;
+				margin-block-end: 14px;
 			}
 			.copy-box {
 				font-family: var(--font-family-monospace);
 			}
 			header > .icon-button {
 				position: absolute;
-				top: 6px;
-				right: 6px;
+				inset-block-start: 6px;
+				inset-inline-end: 6px;
 			}
 		}
 		.buttons-spacer .button {
@@ -45,14 +45,16 @@
 		position: relative;
 	}
 	&cards {
+		padding: 0 72px;
 		text-align: left;
 		position: absolute;
 		display: grid;
 		grid-gap: 24px;
-		top: calc(100% - 48px);
+		inset-block-start: calc(100% - 48px);
 		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 		inline-size: 100%;
-		max-inline-size: 90vw;
+		inline-size: 90vw;
+		max-inline-size: 1080px;
 	}
 }
 
@@ -63,7 +65,7 @@
 	min-height: 0;
 	line-height: 18px;
 	font: {
-		size: var(--fds-body-font-size);
+		size: var(--body-font-size);
 		family: var(--font-family-monospace);
 	}
 	.editor-tabs {
@@ -74,10 +76,10 @@
 		li {
 			@include typography-body;
 			margin: 0;
-			border: 1px solid var(--fds-divider-stroke-default);
-			border-top: 2px solid #ff3e00;
+			border: 1px solid var(--divider-stroke-default);
+			border-block-start: 2px solid #ff3e00;
 			border-bottom: none;
-			background-color: var(--fds-solid-background-base);
+			background-color: var(--solid-background-base);
 			padding: 6px 12px;
 			list-style-type: none;
 		}
@@ -90,10 +92,10 @@
 		overflow: overlay;
 		max-height: 100%;
 		min-height: 0;
-		border-radius: var(--fds-control-corner-radius);
+		border-radius: var(--control-corner-radius);
 		border-top-left-radius: 0;
-		background-color: var(--fds-solid-background-base);
-		border: 1px solid var(--fds-divider-stroke-default);
+		background-color: var(--solid-background-base);
+		border: 1px solid var(--divider-stroke-default);
 		@media (prefers-color-scheme: dark) {
 			@include prism-vs-dark;
 			color-scheme: dark;
@@ -112,13 +114,15 @@
 		align-self: flex-start;
 		z-index: 1;
 		left: 0;
+		flex: 0 0 auto;
 		font-weight: 400;
-		background-color: var(--fds-solid-background-base);
-		color: var(--fds-text-secondary);
+		background-color: var(--solid-background-base);
+		color: var(--text-secondary);
 		padding: 4px 6px;
-		min-width: 32px;
+		inline-size: fit-content;
+		min-inline-size: 32px;
 		text-align: right;
-		border-right: 1px solid var(--fds-divider-stroke-default);
+		border-inline-end: 1px solid var(--divider-stroke-default);
 		span {
 			display: block;
 		}

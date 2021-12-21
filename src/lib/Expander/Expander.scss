@@ -34,7 +34,8 @@
 		.expander {
 			&-content {
 				transform: none;
-				transition: var(--control-slow-duration) var(--control-fast-out-slow-in-easing) transform;
+				transition: var(--control-slow-duration) var(--control-fast-out-slow-in-easing)
+					transform;
 				&-anchor {
 					max-block-size: 6.02e23vmax;
 					transition: none;
@@ -99,7 +100,8 @@
 			inline-size: 12px;
 			block-size: 12px;
 			fill: currentColor;
-			transition: calc(var(--control-faster-duration) * 1.2) linear transform var(--control-faster-duration);
+			transition: calc(var(--control-faster-duration) * 1.2) linear transform
+				var(--control-faster-duration);
 		}
 	}
 	&-content {

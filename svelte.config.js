@@ -5,6 +5,12 @@ import cssnano from "cssnano";
 import autoprefixer from "autoprefixer";
 import prefixer from "postcss-variables-prefixer";
 
+import a11yEmoji from "@fec/remark-a11y-emoji";
+import slug from "rehype-slug";
+import github from "remark-github";
+
+import sveld from "vite-plugin-sveld";
+
 import { mdsvex } from "mdsvex";
 
 /** @type {import("@sveltejs/kit").Config} */
@@ -12,7 +18,9 @@ const config = {
 	extensions: [".svelte", ".md", ".svx"],
 	preprocess: [
 		mdsvex({
-			extensions: [".svx", ".md"]
+			extensions: [".svx", ".md"],
+			remarkPlugins: [github, a11yEmoji],
+			rehypePlugins: [slug]
 		}),
 		preprocess({
 			postcss: {
@@ -24,10 +32,12 @@ const config = {
 		target: "body",
 		adapter: vercel(),
 		vite: {
+			plugins: [sveld()],
 			resolve: {
+				extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json", "svg"],
 				alias: {
-					$lib: path.resolve("src/lib"),
-					$site: path.resolve("src/site")
+					"$site": path.resolve("src/site"),
+					"fluent-svelte": path.resolve("src/lib")
 				}
 			}
 		}

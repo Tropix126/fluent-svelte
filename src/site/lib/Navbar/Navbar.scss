@@ -9,57 +9,46 @@
 	inline-size: 100%;
 	min-block-size: 56px;
 	box-sizing: border-box;
-	border-bottom: 1px solid var(--fds-surface-stroke-flyout);
-	background-color: var(--fds-layer-background-default);
+	border-bottom: 1px solid var(--surface-stroke-flyout);
+	background-color: var(--layer-background-default);
 	background-clip: padding-box;
-	box-shadow: var(--fds-card-shadow);
 	backdrop-filter: blur(60px);
-	transform: translateY(-100%);
-	transition: var(--fds-control-normal-duration) var(--fds-control-fast-out-slow-in-easing)
-		transform;
-	&.visible {
-		transform: none;
-	}
 	&-inner {
 		@include flex($align: center);
 		inline-size: 100%;
-		max-inline-size: 1024px;
+		max-inline-size: 1440px;
 		padding-inline: 18px 12px;
 		margin: 0 auto;
 	}
 	a:focus-visible {
 		outline: none;
-		box-shadow: var(--fds-focus-stroke);
+		box-shadow: var(--focus-stroke);
 	}
 	nav {
-		@include flex($align: center, $justify: center, $gap: 12px);
+		@include flex($align: center, $justify: end, $gap: 12px);
 		flex: 1 1 auto;
 		padding: 0 16px;
 		a {
 			@include flex($align: center, $justify: center);
-			border-radius: var(--fds-control-corner-radius);
+			border-radius: var(--control-corner-radius);
 			position: relative;
 			text-decoration: none;
-			color: var(--fds-text-primary);
-			padding: 8px 16px;
-			&::after {
-				content: "";
-				position: absolute;
-				transform: scaleX(0);
-				width: calc(60% - 16px);
-				height: 3px;
-				bottom: 0;
-				border-radius: 50px;
-				background-color: var(--fds-accent-default);
-				transition: var(--fds-control-fast-duration)
-					var(--fds-control-fast-out-slow-in-easing);
+			color: var(--text-primary);
+			transition: var(--control-fast-duration) var(--control-fast-out-slow-in-easing);
+			padding: 5px 11px;
+			&:hover,
+			&.selected {
+				background-color: var(--subtle-fill-secondary);
 			}
-			&.selected::after {
-				transform: scaleX(1);
+			&:active {
+				background-color: var(--subtle-fill-tertiary);
+			}
+			&.selected {
+				color: var(--accent-text-primary);
 			}
 			> :global(svg) {
-				@include icon($size: var(--fds-body-large-font-size));
-				margin-right: 12px;
+				@include icon($size: calc(var(--body-font-size) + 2px));
+				margin-right: 8px;
 			}
 		}
 	}
@@ -72,8 +61,20 @@
 
 .logo {
 	@include flex($justify: center, $align: center);
+	text-decoration: none;
 	position: relative;
+	color: var(--text-primary);
+	transition: var(--control-fast-duration) var(--control-fast-out-slow-in-easing);
+	font: {
+		family: var(--fds-font-family-display);
+		size: 20px;
+		weight: 600;
+	}
+	&:hover {
+		color: var(--text-secondary);
+	}
 	> img {
+		margin-inline-end: 12px;
 		width: auto;
 		height: 32px;
 	}

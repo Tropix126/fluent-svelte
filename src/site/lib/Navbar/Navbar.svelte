@@ -9,25 +9,13 @@
 	}
 
 	export let items: Item[];
-
-	let scrollY: number;
-	let visible = true;
-	let hashChanged = false;
-	let lastScroll = 0;
-
-	function handleScroll() {
-		if (!hashChanged) visible = scrollY < 56 || scrollY < lastScroll;
-		lastScroll = scrollY;
-		hashChanged = false;
-	}
 </script>
 
-<svelte:window on:hashchange={() => (hashChanged = true)} on:scroll={handleScroll} bind:scrollY />
-
-<header class="navbar" class:visible>
+<header class="navbar">
 	<div class="navbar-inner">
 		<a class="logo" href="/">
 			<img src="/logo.svg" width="32" height="32" alt="Fluent Svelte logo" />
+			Fluent Svelte
 		</a>
 		<nav>
 			{#each items as { href, name, icon }}

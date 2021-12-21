@@ -10,6 +10,9 @@
 	/** Specifies the input's native value attribute */
 	export let value = undefined;
 
+	/** Determines if the radio is checked if `group` is not bound */
+	export let checked = false;
+
 	/** Specifies a custom class name for the outer combobox container */
 	let className = "";
 	export { className as class };
@@ -17,8 +20,6 @@
 	let element: HTMLInputElement;
 
 	export const getElement = () => element;
-
-	$: checked = group === value;
 </script>
 
 <label class="radio-button-container">
@@ -41,11 +42,12 @@
 		on:keydown
 		on:keyup
 		type="radio"
-		aria-selected={checked}
+		aria-selected={checked || group === value}
 		class="radio-button {className ?? ''}"
 		bind:group
 		bind:this={element}
 		{value}
+		{checked}
 		{disabled}
 		{...$$restProps}
 	/>

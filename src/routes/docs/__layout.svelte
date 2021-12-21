@@ -33,57 +33,72 @@
 </script>
 
 <script lang="ts">
-	import { Button } from "$lib";
-	import { DocsMap } from "$site/data/docs";
-	import { Metadata } from "$site/lib";
-	import type { DocsExamples } from "$site/data/examples";
+	import type { DocsExamples, DocsMap } from "$site/data/examples";
+
 	import { page } from "$app/stores";
+
+	import { Metadata, TreeView, Toc } from "$site/lib";
+	import { docsMap } from "$site/data/docs";
+
+	import { Button, TextBlock, TextBox } from "$lib";
+
 	import ArrowRight from "@fluentui/svg-icons/icons/arrow_right_32_regular.svg?raw";
 
 	export let currentPage: DocsMap;
 	export let examples: DocsExamples[] = [];
+
+	let article;
 </script>
 
 <svelte:head>
-	<Metadata title="Fluent Svelte - {currentPage?.name} - Docs" />
+	<Metadata title="Fluent Svelte - Docs - {currentPage?.name}" />
 </svelte:head>
 
-<div class="docs-page markdown-body">
-	<header>
-		<span>
-			{currentPage.path.split("/").join(" / ").substring(2)}
-			{currentPage.path === "" ? " / overview" : ""}
-		</span>
-		<div class="header-right">
-			<Button
-				href="https://github.com/tropix126/fluent-svelte/edit/main/src/routes/docs{currentPage?.path ||
-					'/index'}.md"
-				rel="noreferrer noopener"
-				target="_blank"
-				variant="hyperlink"
-			/>
-		</div>
-	</header>
-	<h1>{currentPage?.name}</h1>
-	<slot />
-	{#if currentPage?.examples}
-		<h2>Examples</h2>
-		{#each examples as example (example.path)}
-			<h3>{example.name}</h3>
-			<div class="code-example">
-				<div class="example code">
-					<pre><code>
-						{@html example.src}
-					</code></pre>
-				</div>
-				{@html ArrowRight}
-				<div class="example preview">
-					<svelte:component this={example.mod} />
-				</div>
+<main class="docs-container">
+	<div class="docs-container-inner">
+		<aside>
+			<div class="docs-search">
+				<TextBox type="search" placeholder="Search Docs" />
 			</div>
-		{/each}
-	{/if}
-</div>
+			<TreeView tree={docsMap} />
+		</aside>
+
+		<article class="markdown-body" bind:this={article}>
+			<header>
+				<h1>{currentPage?.name}</h1>
+				<Button
+					href="https://github.com/tropix126/fluent-svelte/edit/main/src/routes/docs{currentPage?.path ||
+						'/index'}.md"
+					rel="noreferrer noopener"
+					target="_blank"
+					variant="hyperlink">Edit This Page</Button
+				>
+			</header>
+			<slot />
+			{#if currentPage?.examples}
+				<h2>Examples</h2>
+				{#each examples as example (example.name)}
+					<h4>{example.name}</h4>
+					<div class="code-example">
+						<div class="example-preview">
+							<svelte:component this={example.mod} />
+						</div>
+						<pre>
+							<code>
+							{@html example.src}
+							</code>
+						</pre>
+					</div>
+				{/each}
+			{/if}
+		</article>
+
+		<aside>
+			<TextBlock variant="bodyStrong">On This Page</TextBlock>
+			<Toc target={article} />
+		</aside>
+	</div>
+</main>
 
 <style global lang="scss">
 	@use "src/site/styles/pages/docs";

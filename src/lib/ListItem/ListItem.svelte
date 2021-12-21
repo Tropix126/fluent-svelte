@@ -13,6 +13,10 @@
 	/** Specifies a custom class name for the list item */
 	let className = "";
 	export { className as class };
+
+	function handleKeyDown({ key, target }) {
+		if (key === "Enter") target.click();
+	}
 </script>
 
 {#if href && !disabled}
@@ -29,6 +33,7 @@
 		on:mouseenter
 		on:mouseleave
 		on:keypress
+		on:keydown={handleKeyDown}
 		on:keydown
 		on:keyup
 		tabindex={disabled ? -1 : 0}
@@ -57,6 +62,7 @@
 		on:mouseenter
 		on:mouseleave
 		on:keypress
+		on:keydown={handleKeyDown}
 		on:keydown
 		on:keyup
 		tabindex={disabled ? -1 : 0}

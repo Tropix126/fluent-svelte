@@ -20,13 +20,13 @@
 </script>
 
 {#if variant === "caption"}
-	<span class="text-block type-caption" bind:this={element} {...$$restProps}>
+	<span class="text-block type-caption {className ?? ''}" bind:this={element} {...$$restProps}>
 		<slot />
 	</span>
 {:else if variant === "body"}
-	<h6 class="text-block type-body" bind:this={element} {...$$restProps}>
+	<span class="text-block type-body {className ?? ''}" bind:this={element} {...$$restProps}>
 		<slot />
-	</h6>
+	</span>
 {:else if variant === "bodyStrong"}
 	<h6 class="text-block type-body-strong {className ?? ''}" bind:this={element} {...$$restProps}>
 		<slot />

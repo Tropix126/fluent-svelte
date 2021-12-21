@@ -2,13 +2,13 @@
 	let className = "";
 	export { className as class };
 
-	let element: HTMLDivElement;
+	let element: HTMLUListElement;
 
 	export const getElement = () => element;
 </script>
 
-<div
-	class="flyout {className ?? ''}"
+<ul
+	class="menu-flyout {className ?? ''}"
 	on:click
 	on:blur
 	on:focus
@@ -23,12 +23,13 @@
 	on:keypress
 	on:keydown
 	on:keyup
+	on:animationend
 	bind:this={element}
 	{...$$restProps}
 >
 	<slot />
-</div>
+</ul>
 
 <style lang="scss">
-	@use "./FlyoutSurface";
+	@use "./MenuFlyoutSurface";
 </style>

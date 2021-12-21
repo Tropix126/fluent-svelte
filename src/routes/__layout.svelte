@@ -2,33 +2,33 @@
 	import { Navbar } from "$site/lib";
 	import { IconButton, Tooltip } from "$lib";
 
+	import { dev } from "$app/env";
+
 	import "$lib/theme.css";
 
-	import Home from "@fluentui/svg-icons/icons/home_24_regular.svg?raw";
 	import News from "@fluentui/svg-icons/icons/news_24_regular.svg?raw";
 	import Wrench from "@fluentui/svg-icons/icons/wrench_24_regular.svg?raw";
-</script>
 
-<Navbar
-	items={[
-		{
-			name: "Home",
-			href: "/",
-			icon: Home
-		},
+	let items = [
 		{
 			name: "Docs",
 			href: "/docs",
 			icon: News
-		},
-		{
+		}
+	];
+
+	if (dev) {
+		items.push({
 			name: "test",
 			href: "/test",
 			icon: Wrench
-		}
-	]}
->
-	<Tooltip slot="buttons" alignment="left" text="View source on GitHub">
+		});
+		items = items;
+	}
+</script>
+
+<Navbar {items}>
+	<Tooltip slot="buttons" alignment="left" text="view github">
 		<IconButton>
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
 				<path

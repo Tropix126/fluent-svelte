@@ -1,0 +1,23 @@
+@use "../mixins" as *;
+
+.menu-bar-item {
+	@include typography-body;
+	@include flex($inline: true, $align: center);
+	padding: 5px 11px;
+	margin: 4px;
+	cursor: default;
+	color: var(--text-primary);
+	background-color: var(--subtle-fill-transparent);
+	border-radius: var(--control-corner-radius);
+	&:hover,
+	&.selected {
+		background-color: var(--subtle-fill-secondary);
+	}
+	&:active {
+		background-color: var(--subtle-fill-tertiary);
+	}
+	&:disabled {
+		color: var(--text-disabled);
+		background-color: var(--subtle-fill-disabled);
+	}
+}

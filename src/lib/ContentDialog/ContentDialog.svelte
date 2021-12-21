@@ -24,10 +24,11 @@
 	/** Determines if the dialog should darken the contents behind it */
 	export let darken = true;
 
-	const dispatch = createEventDispatcher();
-
+	/** Specifies a custom class name for the dialog */
 	let className = "";
 	export { className as class };
+
+	const dispatch = createEventDispatcher();
 
 	let element: HTMLElement;
 
@@ -47,8 +48,8 @@
 		dispatch("close");
 	}
 
-	function handleEscapeKey(e: KeyboardEvent) {
-		if (e.key === "Escape" && open && closable) close();
+	function handleEscapeKey({ key }: KeyboardEvent) {
+		if (key === "Escape" && open && closable) close();
 	}
 </script>
 
@@ -60,7 +61,7 @@
 		class:darken
 		on:click={e => dispatch("backdropclick", e)}
 		on:mousedown={e => dispatch("backdropmousedown", e)}
-		transition:fade={{ duration: getCSSDuration("--fds-control-faster-duration")}}
+		transition:fade={{ duration: getCSSDuration("--fds-control-faster-duration") }}
 		use:mountDialog
 		use:focusTrap
 	>
@@ -81,7 +82,11 @@
 			on:keyup
 			class="content-dialog size-{size} {className ?? ''}"
 			bind:this={element}
-			transition:scale={{ duration: getCSSDuration("--fds-control-fast-duration"), start: 1.05, easing: circOut }}
+			transition:scale={{
+				duration: getCSSDuration("--fds-control-fast-duration"),
+				start: 1.05,
+				easing: circOut
+			}}
 			role="dialog"
 			aria-modal="true"
 			aria-labelledby={titleId}

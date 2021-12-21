@@ -1,14 +1,16 @@
 @use "../mixins" as *;
 
-.combo-box-item {
+.menu-flyout-item {
 	@include flex($align: center);
 	@include typography-body;
 
+	inline-size: calc(100% - 8px);
 	position: relative;
 	box-sizing: border-box;
 	flex: 0 0 auto;
-	margin: 4px;
-	padding: 0 11px;
+	overflow: hidden;
+	margin: 2px 4px;
+	padding-inline: 12px;
 	border-radius: var(--control-corner-radius);
 	outline: none;
 	background-color: var(--subtle-fill-transparent);
@@ -16,7 +18,10 @@
 	text-decoration: none;
 	cursor: default;
 	user-select: none;
-	block-size: 32px;
+	block-size: 28px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-decoration: none;
 
 	&::before {
 		content: "";
@@ -41,7 +46,6 @@
 
 	&:active {
 		background-color: var(--subtle-fill-tertiary);
-		color: var(--text-secondary);
 
 		&::before {
 			transform: scaleY(0.625);
@@ -58,6 +62,9 @@
 				background-color: var(--accent-disabled);
 			}
 		}
+		> :global(.menu-flyout-item-hint) {
+			color: var(--text-disabled);
+		}
 	}
 
 	&.selected::before {
@@ -65,16 +72,55 @@
 		block-size: 16px;
 	}
 
-	> span {
-		flex: 1 1 auto;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		overflow: hidden;
-		max-inline-size: 100%;
+	&.indented {
+		padding-inline-start: 40px;
+	}
+
+	&-checkmark,
+	&-bullet {
+		visibility: hidden;
+		&.active {
+			visibility: visible;
+		}
+	}
+
+	& &-arrow {
+		box-sizing: content-box;
+		inline-size: 12px;
+		block-size: 12px;
+		margin-inline-end: 0;
+		margin-inline-start: auto;
+		padding-inline-start: 24px;
+	}
+
+	&-checkmark {
+		@include flex($align: center, $justify: center);
+		inline-size: 12px;
+		block-size: 12px;
+		margin-inline-start: 2px;
+		margin-inline-end: 14px;
+	}
+
+	&-bullet {
+		inline-size: 4px;
+		block-size: 4px;
+		border-radius: 4px;
+		margin-inline-start: 6px;
+		margin-inline-end: 18px;
+		background-color: currentColor;
 	}
 
 	> :global(svg) {
 		@include icon($size: 16px);
-		margin-inline-end: 16px;
+		margin-inline-end: 12px;
+	}
+
+	> :global(.menu-flyout-item-hint) {
+		flex: 1 1 auto;
+		text-align: right;
+		padding-left: 24px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color: var(--text-secondary);
 	}
 }

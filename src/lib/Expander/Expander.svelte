@@ -52,10 +52,10 @@
 	{...$$restProps}
 >
 	<div
-		class="expander-header"
 		on:keydown={handleKeydown}
-		tabindex="0"
 		on:click={() => (expanded = !expanded)}
+		class="expander-header"
+		tabindex="0"
 	>
 		{#if $$slots.icon}
 			<div class="expander-icon">

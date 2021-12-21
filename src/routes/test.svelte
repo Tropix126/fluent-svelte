@@ -20,12 +20,34 @@
 		Expander,
 		TextBlock,
 		IconButton,
-		ListItem
+		ListItem,
+		MenuBar,
+		MenuBarItem,
+		MenuFlyout,
+		MenuFlyoutItem,
+		MenuFlyoutDivider,
+		ContextMenu
 	} from "$lib";
+	
+	import { MenuFlyoutSurface } from "$lib/internal";
 
 	import { PageSection } from "$site/lib";
 
 	import "$lib/theme.css";
+
+	import ArrowLeft from "@fluentui/svg-icons/icons/arrow_left_16_regular.svg?raw";
+	import ArrowRight from "@fluentui/svg-icons/icons/arrow_right_16_regular.svg?raw";
+	import ArrowClockwise from "@fluentui/svg-icons/icons/arrow_clockwise_16_regular.svg?raw";
+	import SaveEdit from "@fluentui/svg-icons/icons/save_edit_20_regular.svg?raw";
+	import Print from "@fluentui/svg-icons/icons/print_16_regular.svg?raw";
+	import Cast from "@fluentui/svg-icons/icons/cast_20_regular.svg?raw";
+	import Send from "@fluentui/svg-icons/icons/send_16_regular.svg?raw";
+	import ScanTable from "@fluentui/svg-icons/icons/scan_table_24_regular.svg?raw";
+	import ReadAloud from "@fluentui/svg-icons/icons/read_aloud_16_regular.svg?raw";
+	import Collections from "@fluentui/svg-icons/icons/collections_20_regular.svg?raw";
+	import Share from "@fluentui/svg-icons/icons/share_16_regular.svg?raw";
+	import CopySelect from "@fluentui/svg-icons/icons/copy_select_20_regular.svg?raw";
+	import CameraEdit from "@fluentui/svg-icons/icons/camera_edit_20_regular.svg?raw";
 
 	let progressRingValue = Math.floor(Math.random() * 101);
 
@@ -42,6 +64,8 @@
 	let dialogResult = "";
 
 	let value;
+
+	let menuGroup = 0;
 </script>
 
 <div style="height: 56px;" />
@@ -207,24 +231,25 @@
 		<InfoBar
 			closable={false}
 			severity="information"
-			description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna."
+			title="Info"
+			message="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna."
 		>
-			Info
 			<svelte:fragment slot="action">
 				<Button variant="accent">Action</Button>
 			</svelte:fragment>
 		</InfoBar>
-		<InfoBar severity="attention" description="Something is happening.">
-			Attention
+		<InfoBar severity="attention" title="Attention" message="Something is happening.">
 			<svelte:fragment slot="action">
 				<Button>Action</Button>
 			</svelte:fragment>
 		</InfoBar>
-		<InfoBar severity="success" description="Nothing bad happened!">Success</InfoBar>
-		<InfoBar severity="caution" description="Don't do this or something bad will happen."
-			>Warning</InfoBar
-		>
-		<InfoBar severity="critical" description="Something bad happened :(">Error</InfoBar>
+		<InfoBar severity="success" title="Success" message="Nothing bad happened!" />
+		<InfoBar
+			severity="caution"
+			title="Caution"
+			message="Don't do this or something bad will happen."
+		/>
+		<InfoBar severity="critical" title="Error" message="Something bad happened :(" />
 	</div>
 
 	<h3>Text Box</h3>
@@ -467,6 +492,159 @@
 		<ListItem disabled>Hello World</ListItem>
 		<ListItem selected>Hello World</ListItem>
 	</div>
+
+	<h3>Menu Bar</h3>
+	<MenuBar>
+		<MenuBarItem>File</MenuBarItem>
+		<MenuBarItem>Edit</MenuBarItem>
+		<MenuBarItem>Format</MenuBarItem>
+		<MenuBarItem>View</MenuBarItem>
+		<MenuBarItem>Help</MenuBarItem>
+	</MenuBar>
+
+	<MenuFlyout>
+		<Button>Open</Button>
+		<svelte:fragment slot="flyout">
+			<MenuFlyoutItem>
+				<svg
+					slot="icon"
+					xmlns="http://www.w3.org/2000/svg"
+					height="16"
+					viewBox="0 0 1024 1024"
+					width="16"
+				>
+					<path
+						fill="currentColor"
+						d="M0,512C0,465 6.08333,419.667 18.25,376C30.4167,332.333 47.6667,291.583 70,253.75C92.3333,215.917 119.083,181.417 150.25,150.25C181.417,119.083 215.917,92.3334 253.75,70C291.583,47.6667 332.333,30.4167 376,18.25C419.667,6.08337 465,0 512,0C559,0 604.333,6.08337 648,18.25C691.667,30.4167 732.417,47.6667 770.25,70C808.083,92.3334 842.583,119.083 873.75,150.25C904.917,181.417 931.667,215.917 954,253.75C976.333,291.583 993.583,332.333 1005.75,376C1017.92,419.667 1024,465 1024,512C1024,559 1017.92,604.333 1005.75,648C993.583,691.667 976.333,732.417 954,770.25C931.667,808.083 904.917,842.583 873.75,873.75C842.583,904.917 808.083,931.667 770.25,954C732.417,976.333 691.667,993.583 648,1005.75C604.333,1017.92 559,1024 512,1024C465,1024 419.667,1017.92 376,1005.75C332.333,993.583 291.583,976.333 253.75,954C215.917,931.667 181.417,904.917 150.25,873.75C119.083,842.583 92.3333,808.083 70,770.25C47.6667,732.417 30.4167,691.667 18.25,648C6.08333,604.333 0,559 0,512ZM960,512C960,471 954.667,431.417 944,393.25C933.333,355.083 918.25,319.417 898.75,286.25C879.25,253.083 855.833,222.833 828.5,195.5C801.167,168.167 770.917,144.75 737.75,125.25C704.583,105.75 668.917,90.6667 630.75,80C592.583,69.3334 553,64.0001 512,64C470.667,64.0001 430.917,69.3334 392.75,80C354.583,90.6667 318.917,105.75 285.75,125.25C252.583,144.75 222.417,168.083 195.25,195.25C168.083,222.417 144.75,252.583 125.25,285.75C105.75,318.917 90.6667,354.583 80,392.75C69.3333,430.917 64,470.667 64,512C64,553.333 69.3333,593.083 80,631.25C90.6667,669.417 105.75,705.083 125.25,738.25C144.75,771.417 168.083,801.583 195.25,828.75C222.417,855.917 252.583,879.25 285.75,898.75C318.917,918.25 354.583,933.333 392.75,944C430.917,954.667 470.667,960 512,960C553.333,960 593.083,954.667 631.25,944C669.417,933.333 705.083,918.25 738.25,898.75C771.417,879.25 801.583,855.917 828.75,828.75C855.917,801.583 879.25,771.417 898.75,738.25C918.25,705.083 933.333,669.417 944,631.25C954.667,593.083 960,553.333 960,512Z"
+					/>
+				</svg>
+				Standard Option
+			</MenuFlyoutItem>
+			<MenuFlyoutDivider />
+			<MenuFlyoutItem indented hint="Ctrl + Z">
+				<svg
+					slot="icon"
+					xmlns="http://www.w3.org/2000/svg"
+					height="16"
+					viewBox="0 0 1024 1024"
+					width="16"
+				>
+					<path
+						fill="currentColor"
+						d="M0,512C0,465 6.08333,419.667 18.25,376C30.4167,332.333 47.6667,291.583 70,253.75C92.3333,215.917 119.083,181.417 150.25,150.25C181.417,119.083 215.917,92.3334 253.75,70C291.583,47.6667 332.333,30.4167 376,18.25C419.667,6.08337 465,0 512,0C559,0 604.333,6.08337 648,18.25C691.667,30.4167 732.417,47.6667 770.25,70C808.083,92.3334 842.583,119.083 873.75,150.25C904.917,181.417 931.667,215.917 954,253.75C976.333,291.583 993.583,332.333 1005.75,376C1017.92,419.667 1024,465 1024,512C1024,559 1017.92,604.333 1005.75,648C993.583,691.667 976.333,732.417 954,770.25C931.667,808.083 904.917,842.583 873.75,873.75C842.583,904.917 808.083,931.667 770.25,954C732.417,976.333 691.667,993.583 648,1005.75C604.333,1017.92 559,1024 512,1024C465,1024 419.667,1017.92 376,1005.75C332.333,993.583 291.583,976.333 253.75,954C215.917,931.667 181.417,904.917 150.25,873.75C119.083,842.583 92.3333,808.083 70,770.25C47.6667,732.417 30.4167,691.667 18.25,648C6.08333,604.333 0,559 0,512ZM960,512C960,471 954.667,431.417 944,393.25C933.333,355.083 918.25,319.417 898.75,286.25C879.25,253.083 855.833,222.833 828.5,195.5C801.167,168.167 770.917,144.75 737.75,125.25C704.583,105.75 668.917,90.6667 630.75,80C592.583,69.3334 553,64.0001 512,64C470.667,64.0001 430.917,69.3334 392.75,80C354.583,90.6667 318.917,105.75 285.75,125.25C252.583,144.75 222.417,168.083 195.25,195.25C168.083,222.417 144.75,252.583 125.25,285.75C105.75,318.917 90.6667,354.583 80,392.75C69.3333,430.917 64,470.667 64,512C64,553.333 69.3333,593.083 80,631.25C90.6667,669.417 105.75,705.083 125.25,738.25C144.75,771.417 168.083,801.583 195.25,828.75C222.417,855.917 252.583,879.25 285.75,898.75C318.917,918.25 354.583,933.333 392.75,944C430.917,954.667 470.667,960 512,960C553.333,960 593.083,954.667 631.25,944C669.417,933.333 705.083,918.25 738.25,898.75C771.417,879.25 801.583,855.917 828.75,828.75C855.917,801.583 879.25,771.417 898.75,738.25C918.25,705.083 933.333,669.417 944,631.25C954.667,593.083 960,553.333 960,512Z"
+					/>
+				</svg>
+				Standard Option (Indented)
+			</MenuFlyoutItem>
+			<MenuFlyoutItem indented selected>Standard Option (Selected)</MenuFlyoutItem>
+			<MenuFlyoutItem indented disabled selected
+				>Standard Option (Disabled Selected)</MenuFlyoutItem
+			>
+			<MenuFlyoutItem indented disabled>Standard Option Disabled</MenuFlyoutItem>
+			<MenuFlyoutDivider />
+			<MenuFlyoutItem variant="radio" bind:group={menuGroup} value={0}
+				>Radio Option 0</MenuFlyoutItem
+			>
+			<MenuFlyoutItem
+				selected
+				indented
+				disabled
+				variant="radio"
+				bind:group={menuGroup}
+				value={1}
+			>
+				<svg
+					slot="icon"
+					xmlns="http://www.w3.org/2000/svg"
+					height="16"
+					viewBox="0 0 1024 1024"
+					width="16"
+				>
+					<path
+						fill="currentColor"
+						d="M0,512C0,465 6.08333,419.667 18.25,376C30.4167,332.333 47.6667,291.583 70,253.75C92.3333,215.917 119.083,181.417 150.25,150.25C181.417,119.083 215.917,92.3334 253.75,70C291.583,47.6667 332.333,30.4167 376,18.25C419.667,6.08337 465,0 512,0C559,0 604.333,6.08337 648,18.25C691.667,30.4167 732.417,47.6667 770.25,70C808.083,92.3334 842.583,119.083 873.75,150.25C904.917,181.417 931.667,215.917 954,253.75C976.333,291.583 993.583,332.333 1005.75,376C1017.92,419.667 1024,465 1024,512C1024,559 1017.92,604.333 1005.75,648C993.583,691.667 976.333,732.417 954,770.25C931.667,808.083 904.917,842.583 873.75,873.75C842.583,904.917 808.083,931.667 770.25,954C732.417,976.333 691.667,993.583 648,1005.75C604.333,1017.92 559,1024 512,1024C465,1024 419.667,1017.92 376,1005.75C332.333,993.583 291.583,976.333 253.75,954C215.917,931.667 181.417,904.917 150.25,873.75C119.083,842.583 92.3333,808.083 70,770.25C47.6667,732.417 30.4167,691.667 18.25,648C6.08333,604.333 0,559 0,512ZM960,512C960,471 954.667,431.417 944,393.25C933.333,355.083 918.25,319.417 898.75,286.25C879.25,253.083 855.833,222.833 828.5,195.5C801.167,168.167 770.917,144.75 737.75,125.25C704.583,105.75 668.917,90.6667 630.75,80C592.583,69.3334 553,64.0001 512,64C470.667,64.0001 430.917,69.3334 392.75,80C354.583,90.6667 318.917,105.75 285.75,125.25C252.583,144.75 222.417,168.083 195.25,195.25C168.083,222.417 144.75,252.583 125.25,285.75C105.75,318.917 90.6667,354.583 80,392.75C69.3333,430.917 64,470.667 64,512C64,553.333 69.3333,593.083 80,631.25C90.6667,669.417 105.75,705.083 125.25,738.25C144.75,771.417 168.083,801.583 195.25,828.75C222.417,855.917 252.583,879.25 285.75,898.75C318.917,918.25 354.583,933.333 392.75,944C430.917,954.667 470.667,960 512,960C553.333,960 593.083,954.667 631.25,944C669.417,933.333 705.083,918.25 738.25,898.75C771.417,879.25 801.583,855.917 828.75,828.75C855.917,801.583 879.25,771.417 898.75,738.25C918.25,705.083 933.333,669.417 944,631.25C954.667,593.083 960,553.333 960,512Z"
+					/>
+				</svg>
+				Radio Option 1
+			</MenuFlyoutItem>
+			<MenuFlyoutDivider />
+			<MenuFlyoutItem checked variant="toggle">Toggle Option 0</MenuFlyoutItem>
+			<MenuFlyoutItem variant="toggle">Radio Option 1</MenuFlyoutItem>
+			<MenuFlyoutDivider />
+			<MenuFlyoutItem indented cascading hint="hi">cascading</MenuFlyoutItem>
+		</svelte:fragment>
+	</MenuFlyout>
+
+	<h3>Context Menu</h3>
+	<ContextMenu>
+		<div style="background-color: var(--fds-solid-background-secondary); width: 200px; height: 200px;" />
+		<svelte:fragment slot="menu">
+			<MenuFlyoutItem hint="Alt+Left arrow">
+				{@html ArrowLeft}
+				Back
+			</MenuFlyoutItem>
+			<MenuFlyoutItem hint="Alt+Left arrow">
+				{@html ArrowRight}
+				Forward
+			</MenuFlyoutItem>
+			<MenuFlyoutItem hint="Ctrl+R">
+				{@html ArrowClockwise}
+				Reload
+			</MenuFlyoutItem>
+			<MenuFlyoutDivider />
+			<MenuFlyoutItem hint="Ctrl+S">
+				{@html SaveEdit}
+				Save image as
+			</MenuFlyoutItem>
+			<MenuFlyoutItem hint="Ctrl+P">
+				{@html Print}
+				Print
+			</MenuFlyoutItem>
+			<MenuFlyoutItem>
+				{@html Cast}
+				Cast as media to device
+			</MenuFlyoutItem>
+			<MenuFlyoutDivider />
+			<MenuFlyoutItem cascading>
+				{@html Send}
+				Send page to your devices
+			</MenuFlyoutItem>
+			<MenuFlyoutItem>
+				{@html ScanTable}
+				Create QR Code for this page
+			</MenuFlyoutItem>
+			<MenuFlyoutDivider />
+			<MenuFlyoutItem hint="Ctrl+Shift+U">
+				{@html ReadAloud}
+				Read aloud
+			</MenuFlyoutItem>
+			<MenuFlyoutDivider />
+			<MenuFlyoutItem>
+				{@html Collections}
+				Add page to Collections
+			</MenuFlyoutItem>
+			<MenuFlyoutDivider />
+			<MenuFlyoutItem>
+				{@html Share}
+				Share
+			</MenuFlyoutItem>
+			<MenuFlyoutDivider />
+			<MenuFlyoutItem hint="Ctrl+Shift+X">
+				{@html CopySelect}
+				Web select
+			</MenuFlyoutItem>
+			<MenuFlyoutItem hint="Ctrl+S">
+				{@html CameraEdit}
+				Web capture
+			</MenuFlyoutItem>
+			<MenuFlyoutDivider />
+			<MenuFlyoutItem indented hint="Ctrl+U">View page source</MenuFlyoutItem>
+			<MenuFlyoutItem>
+				<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M1 5c0-1.1.9-2 2-2h10a2 2 0 012 2v5a2 2 0 01-1.16 1.82 1.5 1.5 0 00-.28-.38l-.45-.45A1 1 0 0014 10V5a1 1 0 00-1-1H3a1 1 0 00-1 1v5a1 1 0 001 1h4v1H3a2 2 0 01-2-2V5z"/><path d="M8.85 8.15A.5.5 0 008 8.5v6a.5.5 0 00.9.3l1.35-1.8h2.25a.5.5 0 00.35-.85l-4-4zM9 13V9.7l2.3 2.3H10a.5.5 0 00-.4.2L9 13z"/></svg>
+				Inspect
+			</MenuFlyoutItem>
+		</svelte:fragment>
+	</ContextMenu>
 </PageSection>
 
 <style lang="scss">

@@ -11,6 +11,9 @@
 
 	:root {
 		--font-family-monospace: "Cascadia Code", "Fira Code", "Consolas", monospace;
+		@media (prefers-color-scheme: dark) {
+			color-scheme: dark;
+		}
 	}
 
 	html {
@@ -22,9 +25,9 @@
 		height: 100vh;
 		margin: 0;
 		padding: 0;
-		background: var(--fds-solid-background-base);
-		color: var(--fds-text-primary);
+		color: var(--text-primary);
 		user-select: revert;
+		background-color: var(--solid-background-base);
 	}
 
 	// Codeblock syntax highlighting
