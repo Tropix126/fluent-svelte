@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { ParsedComponent, ForwardedEvent, DispatchedEvent } from "./ParsedComponent";
+    import type { ParsedComponent, ForwardedEvent, DispatchedEvent } from "./ParserComponent";
     
     import { InfoBar, Button } from "$lib";
 

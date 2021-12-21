@@ -37,7 +37,7 @@
 
 	import { page } from "$app/stores";
 
-	import { Metadata, TreeView, Toc } from "$site/lib";
+	import { Metadata, TreeView, Toc, DocsSearch } from "$site/lib";
 	import { docsMap } from "$site/data/docs";
 
 	import { Button, TextBlock, TextBox } from "$lib";
@@ -58,7 +58,7 @@
 	<div class="docs-container-inner">
 		<aside>
 			<div class="docs-search">
-				<TextBox type="search" placeholder="Search Docs" />
+				<DocsSearch type="search" placeholder="Search Docs" />
 			</div>
 			<TreeView tree={docsMap} />
 		</aside>

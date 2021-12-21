@@ -4,7 +4,7 @@ export type DocsMap = {
 	type?: "page" | "category";
 	icon?: string;
 	pages?: DocsMap[];
-	examples?: Array<{ name: string; source: string }>;
+	examples?: Array<{ name: string; source: string, description?: string }>;
 };
 
 // SVG stuff is hopefully temporary
@@ -53,7 +53,7 @@ export const docsMap: DocsMap[] = [
 
 export const docsPages = filterPages(docsMap);
 
-export function filterPages(docsStructure: DocsMap[] | DocsMap): DocsMap[] {
+function filterPages(docsStructure: DocsMap[] | DocsMap): DocsMap[] {
 	if (Array.isArray(docsStructure)) {
 		// it's an array of pages/categories
 		return docsStructure

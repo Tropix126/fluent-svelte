@@ -1,9 +1,7 @@
-.docs-searchbar {
+.docs-search {
 	z-index: 1;
-	margin: .75rem;
-	margin-block-start: .25rem;
-	background-color: var(--fds-solid-background-base);
-	inset-block-start: 0;
+    margin-block-end: 12px;
+    margin-inline: 4px;
 
 	.suggestions {
 		// Wrapper for positioning it
@@ -27,8 +25,4 @@
 			max-block-size: 350px;
 		}
 	}
-
-	@media screen and (max-width: 750px) {
-		margin-inline-end: .5rem;
-	}
-}
+}	
