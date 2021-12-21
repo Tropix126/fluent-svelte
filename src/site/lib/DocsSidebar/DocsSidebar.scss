@@ -1,0 +1,18 @@
+@use "src/lib/mixins" as *;
+
+.docs-sidebar {
+	@include flex($direction: column, $align: stretch);
+	flex-basis: 100%;
+	block-size: 100%;
+
+	// Add padding to subtrees for the nesting effect
+	.category-items {
+		padding-inline-start: 1.5rem;
+	}
+
+	@media only screen and (min-width: 648px) {
+		&:last-child {
+			margin-block-end: 1rem;
+		}
+	}
+}

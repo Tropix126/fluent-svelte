@@ -1,0 +1,34 @@
+.docs-searchbar {
+	z-index: 1;
+	margin: .75rem;
+	margin-block-start: .25rem;
+	background-color: var(--fds-solid-background-base);
+	inset-block-start: 0;
+
+	.suggestions {
+		// Wrapper for positioning it
+		// Both the flyout and the search box need to be contained within this
+		&-wrapper {
+			position: relative;
+		}
+
+		// suggestions flyout
+		&-flyout {
+			position: absolute;
+			z-index: 10;
+			padding: 2px 0;
+			border: 1px solid var(--fds-surface-stroke-flyout);
+			border-radius: 0 0 var(--fds-overlay-corner-radius) var(--fds-overlay-corner-radius);
+			background-color: var(--fds-solid-background-quarternary);
+			box-shadow: var(--fds-flyout-shadow);
+			inset-block-start: 100%;
+			inset-inline-start: 0;
+			inline-size: 100%;
+			max-block-size: 350px;
+		}
+	}
+
+	@media screen and (max-width: 750px) {
+		margin-inline-end: .5rem;
+	}
+}
