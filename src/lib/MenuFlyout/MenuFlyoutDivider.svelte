@@ -7,7 +7,12 @@
 	export const getElement = () => element;
 </script>
 
-<hr role="separator" class="menu-flyout-divider {className ?? ''}" bind:this={element} {...$$restProps} />
+<hr
+	role="separator"
+	class="menu-flyout-divider {className ?? ''}"
+	bind:this={element}
+	{...$$restProps}
+/>
 
 <style lang="scss">
 	@use "./MenuFlyoutDivider";

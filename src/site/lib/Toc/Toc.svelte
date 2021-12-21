@@ -33,7 +33,10 @@
 	<nav class="table-of-contents">
 		{#each headings as { tagName, innerText }, i}
 			<li style="--fds-depth: {+tagName[1] - 1};">
-				<ListItem on:click={e => handleSelect(i, e)} selected={activeHeading === headings[i]}>
+				<ListItem
+					on:click={e => handleSelect(i, e)}
+					selected={activeHeading === headings[i]}
+				>
 					{innerText}
 				</ListItem>
 			</li>

@@ -45,12 +45,12 @@
 	}
 
 	function mountMenu(node: HTMLDivElement) {
-        document.body.appendChild(node);
+		document.body.appendChild(node);
 		node.style.top = "0";
-        return {
-            destroy: () => node.remove()
-        }
-    }
+		return {
+			destroy: () => node.remove()
+		};
+	}
 
 	setContext("closeFlyout", () => {
 		dispatch("select");
@@ -60,7 +60,13 @@
 
 <svelte:window on:keydown={handleEscapeKey} />
 
-<div class="menu-flyout-wrapper" aria-expanded={open} aria-haspopup={open} aria-controls={menuId} on:click={() => (open = !open)}>
+<div
+	class="menu-flyout-wrapper"
+	aria-expanded={open}
+	aria-haspopup={open}
+	aria-controls={menuId}
+	on:click={() => (open = !open)}
+>
 	<slot />
 
 	{#if open}

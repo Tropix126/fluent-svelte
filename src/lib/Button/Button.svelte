@@ -19,7 +19,6 @@
 	export const getElement = () => element;
 </script>
 
-
 <!--
 @component
 A button gives the user a way to trigger an immediate action. Some buttons are specialized for particular tasks, such as navigation, repeated actions, or presenting menus.

@@ -9,4 +9,4 @@ export const homeExampleSrc = `<script>
 <div>
 	<Button variant="accent" on:click={() => count++}>Increase Counter</Button>
 	<Button on:click={() => count = 0}>Reset Counter</Button>
-</div>`
+</div>`;

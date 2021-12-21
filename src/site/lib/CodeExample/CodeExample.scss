@@ -41,7 +41,8 @@
 	}
 
 	@media screen and (max-width: 600px) {
-		:global(svg), .code {
+		:global(svg),
+		.code {
 			display: none;
 		}
 	}

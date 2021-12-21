@@ -36,7 +36,7 @@ const config = {
 			resolve: {
 				extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json", "svg"],
 				alias: {
-					"$site": path.resolve("src/site"),
+					$site: path.resolve("src/site"),
 					"fluent-svelte": path.resolve("src/lib")
 				}
 			}

@@ -38,7 +38,7 @@
 				? (mousePosition.y -= height)
 				: mousePosition.y;
 
-        if (menuPosition.y < 0) menuPosition.y = 0;
+		if (menuPosition.y < 0) menuPosition.y = 0;
 	}
 
 	async function handleContextMenu({ clientX, clientY }: MouseEvent) {
@@ -58,12 +58,12 @@
 		anchor.style.overflow = "visible";
 	}
 
-    function mountMenu(node: HTMLDivElement) {
-        document.body.appendChild(node);
-        return {
-            destroy: () => node.remove()
-        }
-    }
+	function mountMenu(node: HTMLDivElement) {
+		document.body.appendChild(node);
+		return {
+			destroy: () => node.remove()
+		};
+	}
 
 	setContext("closeFlyout", () => {
 		dispatch("select");
@@ -82,9 +82,9 @@
 	<slot />
 	{#if open}
 		<div
-            use:mountMenu
+			use:mountMenu
 			use:arrowNavigation={{ preventTab: true }}
-            use:externalMouseEvents={{ type: "mousedown" }}
+			use:externalMouseEvents={{ type: "mousedown" }}
 			on:contextmenu|stopPropagation={e => e.preventDefault()}
 			bind:this={anchor}
 			on:outermousedown={() => (open = false)}
@@ -122,8 +122,8 @@
 			overflow: hidden;
 			z-index: 10000;
 			> :global(.menu-flyout) {
-                max-block-size: 100vh;
-                overflow: auto;
+				max-block-size: 100vh;
+				overflow: auto;
 				animation: menu-open var(--control-normal-duration)
 					var(--control-fast-out-slow-in-easing);
 			}

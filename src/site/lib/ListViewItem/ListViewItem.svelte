@@ -5,7 +5,7 @@
 	export let group = undefined;
 	export let value = undefined;
 	export let selected = false;
-	export let expanded= false;
+	export let expanded = false;
 	export let type: "default" | "navigation" | "expander" = "default";
 	let className = "";
 	export { className as class };
@@ -52,14 +52,7 @@
 	{/if}
 {:else}
 	<label>
-		<input
-			bind:group
-			on:change
-			type="radio"
-			{value}
-			checked={selected}
-			hidden
-		/>
+		<input bind:group on:change type="radio" {value} checked={selected} hidden />
 		<svelte:self
 			on:click
 			{type}

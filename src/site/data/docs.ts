@@ -4,7 +4,7 @@ export type DocsMap = {
 	type?: "page" | "category";
 	icon?: string;
 	pages?: DocsMap[];
-	examples?: Array<{ name: string; source: string, description?: string }>;
+	examples?: Array<{ name: string; source: string; description?: string }>;
 };
 
 // SVG stuff is hopefully temporary

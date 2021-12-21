@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 	import { goto } from "$app/navigation";
-	
+
 	import { TextBox, ListItem } from "$lib";
-    import { externalMouseEvents } from "$lib/internal";
-	
+	import { externalMouseEvents } from "$lib/internal";
+
 	import { docsPages } from "$site/data/docs";
 
 	let value = "";
 	let searchFocused = false;
 	let autoSuggestVisible = false;
 	let selection = 0;
-    
+
 	// Determines if the auto-suggest flyout should be shown
 	$: if (value && searchFocused) autoSuggestVisible = true;
 
@@ -20,11 +20,8 @@
 		const { key } = e;
 		if (key === "ArrowUp" || key === "ArrowDown") e.preventDefault();
 		if (key === "Enter") {
-			if (
-				searchResults.length > 0 &&
-				$page.path !== `/docs${ searchResults[selection].path }`
-			)
-				goto(`/docs${ searchResults[selection].path }`, {
+			if (searchResults.length > 0 && $page.path !== `/docs${searchResults[selection].path}`)
+				goto(`/docs${searchResults[selection].path}`, {
 					keepfocus: true
 				});
 		} else if (key === "ArrowDown") {
@@ -55,8 +52,8 @@
 <div class="docs-search">
 	<div
 		class="suggestions-wrapper"
-        use:externalMouseEvents
-        on:outerclick={() => (autoSuggestVisible = false)}
+		use:externalMouseEvents
+		on:outerclick={() => (autoSuggestVisible = false)}
 	>
 		<TextBox
 			bind:this={searchBarInput}
@@ -66,12 +63,14 @@
 			on:focus={() => (searchFocused = true)}
 			on:keydown={handleSearchKeys}
 			on:search={() => {
-				if (searchResults.length > 0 &&	$page.path !== `/docs${searchResults[selection].path}`)
+				if (
+					searchResults.length > 0 &&
+					$page.path !== `/docs${searchResults[selection].path}`
+				)
 					goto(`/docs${searchResults[selection].path}`, {
 						keepfocus: true
 					});
-				}
-			}
+			}}
 			placeholder="Search Documentation"
 			type="search"
 		/>
@@ -93,4 +92,4 @@
 
 <style lang="scss">
 	@use "./DocsSearch";
-</style> 
+</style>
