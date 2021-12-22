@@ -3,10 +3,7 @@
 
 	import { InfoBar, Button } from "$lib";
 
-	// TODO: typedefs?
 	export let data: ParsedComponent;
-
-	console.log(data);
 
 	const forwardedEvents = <ForwardedEvent[]>data.events.filter(e => e.type === "forwarded");
 	const dispatchedEvents = <DispatchedEvent[]>data.events.filter(e => e.type === "dispatched");
@@ -121,7 +118,9 @@ and
 <h4>Forwarded Events</h4>
 {#if forwardedEvents.length > 0}
 	{#each forwardedEvents as { name }}
-		<code>{name}</code>
+		<code class="forwarded">
+			<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/{name}_event" target="_blank" rel="noreferrer noopener">{name.trim()}</a>
+		</code>
 	{/each}
 {:else}
 	None
@@ -157,3 +156,11 @@ and
 {:else}
 	None
 {/if}
+
+<style>
+	.forwarded {
+		display: inline-flex;
+		margin-inline-end: 4px;
+		margin-block-end: 4px;
+	}
+</style>

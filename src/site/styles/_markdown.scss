@@ -179,7 +179,7 @@
 	}
 
 	// Anchors
-	a:not([class]) {
+	a {
 		color: var(--accent-text-primary);
 		text-decoration: underline;
 		text-decoration-skip-ink: none;
