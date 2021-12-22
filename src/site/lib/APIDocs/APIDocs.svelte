@@ -32,13 +32,24 @@ and
 			{#each data.props as { name, type, value, description }}
 				<tr>
 					<td>
-						<code>{name ?? "Unknown"}</code>
+						{#if typeof name !== "undefined"}
+							<code>{name}</code>
+						{:else}
+							Unknown
+						{/if}
 					</td>
 					<td>
-						<code>{type ?? "Unknown"}</code>
-					</td>
+						{#if typeof type !== "undefined"}
+							<code>{type}</code>
+						{:else}
+							Unknown
+						{/if}					</td>
 					<td>
-						<code>{value ?? "Unknown"}</code>
+						{#if typeof value !== "undefined"}
+							<code>{value}</code>
+						{:else}
+							Unknown
+						{/if}
 					</td>
 					<td>{description ?? "None"}</td>
 				</tr>
@@ -77,7 +88,11 @@ and
 			{#each data.slots as { name, slot_props, fallback }}
 				<tr>
 					<td>
-						{@html `<code>${name}</code>` ?? "Unknown"}
+						{#if typeof name !== "undefined"}
+							<code>{name}</code>
+						{:else}
+							Unknown
+						{/if}
 					</td>
 					<td>
 						{#if Object.keys(slot_props).length > 0}
@@ -86,7 +101,13 @@ and
 							None
 						{/if}
 					</td>
-					{@html `<code>${fallback}</code>` ?? "None"}
+					<td>
+						{#if typeof fallback !== "undefined"}
+							<code>{fallback}</code>
+						{:else}
+							Empty
+						{/if}
+					</td>
 				</tr>
 			{/each}
 		</tbody>
@@ -100,7 +121,7 @@ and
 <h4>Forwarded Events</h4>
 {#if forwardedEvents.length > 0}
 	{#each forwardedEvents as { name }}
-		{@html `<code>${name}</code> `}
+		<code>{name}</code>
 	{/each}
 {:else}
 	None
@@ -116,10 +137,18 @@ and
 			{#each dispatchedEvents as { name, detail }}
 				<tr>
 					<td>
-						{@html `<code>${name}</code>` ?? "Unknown"}
+						{#if typeof name !== "undefined"}
+							<code>{name}</code>
+						{:else}
+							Unknown
+						{/if}
 					</td>
 					<td>
-						{@html `<code>${detail}</code>` ?? "None"}
+						{#if typeof detail !== "undefined"}
+							<code>{detail}</code>
+						{:else}
+							None
+						{/if}
 					</td>
 				</tr>
 			{/each}

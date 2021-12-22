@@ -1,6 +1,6 @@
 {
 	"name": "fluent-svelte",
-	"version": "1.0.91",
+	"version": "0.9.1",
 	"description": "A faithful implementation of Microsoft's Fluent Design System in Svelte.",
 	"homepage": "https://github.com/tropix126/fluent-svelte",
 	"author": {
