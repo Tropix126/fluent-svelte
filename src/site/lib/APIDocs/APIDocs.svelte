@@ -89,13 +89,13 @@ and
 				<tr>
 					<td>
 						{#if typeof name !== "undefined"}
-							<code>{name}</code>
+							<code>{name === "__default__" ? "Unnamed (Default)" : name}</code>
 						{:else}
 							Unknown
 						{/if}
 					</td>
 					<td>
-						{#if Object.keys(slot_props).length > 0}
+						{#if Object.keys(JSON.parse(slot_props)).length > 0}
 							<code>{slot_props}</code>
 						{:else}
 							None
