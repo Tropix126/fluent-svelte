@@ -1,22 +1,25 @@
 <script lang="ts">
-	/** @restProps {button | a} */
+	import { get_current_component } from "svelte/internal";
+	import { createEventForwarder } from "$lib/internal";
 
-	/** Specifies the visual styling of the button */
+	/** @restProps {button | a} */
+	/** Specifies the visual styling of the button. */
 	export let variant: "standard" | "accent" | "hyperlink" = "standard";
 
-	/** Sets an href value and converts the button element into an anchor */
+	/** Sets an href value and converts the button element into an anchor/ */
 	export let href = "";
 
-	/** Controls whether the button is disabled */
+	/** Controls whether the button is intended for user interaction, and styles it accordingly. */
 	export let disabled = false;
 
-	/** Specifies a custom class name for the button */
+	/** Specifies a custom class name for the button. */
 	let className = "";
 	export { className as class };
 
-	let element: HTMLButtonElement | HTMLAnchorElement;
+	/** Obtains a bound DOM reference to the button or anchor element. */
+	export let element: HTMLButtonElement | HTMLAnchorElement = null;
 
-	export const getElement = () => element;
+	const forwardEvents = createEventForwarder(get_current_component());
 </script>
 
 <!--
@@ -29,21 +32,8 @@ A button gives the user a way to trigger an immediate action. Some buttons are s
 -->
 {#if href && !disabled}
 	<a
+		use:forwardEvents
 		bind:this={element}
-		on:click
-		on:blur
-		on:focus
-		on:dblclick
-		on:contextmenu
-		on:mousedown
-		on:mouseup
-		on:mouseover
-		on:mouseout
-		on:mouseenter
-		on:mouseleave
-		on:keypress
-		on:keydown
-		on:keyup
 		class="button style-{variant} {className ?? ''}"
 		class:disabled
 		{href}
@@ -53,20 +43,8 @@ A button gives the user a way to trigger an immediate action. Some buttons are s
 	</a>
 {:else}
 	<button
+		use:forwardEvents
 		bind:this={element}
-		on:click
-		on:blur
-		on:focus
-		on:dblclick
-		on:contextmenu
-		on:mousedown
-		on:mouseup
-		on:mouseover
-		on:mouseout
-		on:mouseleave
-		on:keypress
-		on:keydown
-		on:keyup
 		class="button style-{variant} {className ?? ''}"
 		class:disabled
 		{disabled}
