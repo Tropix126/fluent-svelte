@@ -40,7 +40,6 @@
 	const menuId = uid("fds-menu-flyout-anchor-");
 	const handleSideNavigation = getContext<((event: Event, activeItem: HTMLElement) => void)>("sideNavigation");
 
-	$: dispatch(open ? "open" : "close");
 	$: if ($currentMenu !== menu) open = false;
 	$: if (!menu && element) element.focus();
 	$: if (menu) {
@@ -48,6 +47,13 @@
 		$currentMenu = menu;
 	} else {
 		$currentMenu = null;
+	}
+	$: if ($$slots.flyout && open && !disabled) {
+		if (open) {
+			dispatch("open");
+		} else {
+			dispatch("close");
+		}
 	}
 
 	function focusFirstItem() {
