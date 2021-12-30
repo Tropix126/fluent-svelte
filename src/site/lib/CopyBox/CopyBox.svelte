@@ -17,7 +17,7 @@
 </TextBox>
 
 <style lang="scss">
-	:global(.copy-box) {
+	:global(.copy-box input) {
 		padding: 8px 12px;
 	}
 </style>
