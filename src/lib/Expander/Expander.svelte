@@ -1,4 +1,6 @@
 <script lang="ts">
+	// TODO: progressively enhance this
+
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 	import { createEventForwarder, uid } from "$lib/internal";
@@ -13,8 +15,14 @@
 	let className = "";
 	export { className as class };
 
-	/** Obtains a bound DOM reference to the expander's element. */
-	export let element: HTMLElement = null;
+	/** Obtains a bound DOM reference to the expander's container element. */
+	export let containerElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the expander's header button element. */
+	export let headerElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the expander's content container. */
+	export let contentElement: HTMLDivElement = null;
 
 	const dispatch = createEventDispatcher();
 	const forwardEvents = createEventForwarder(get_current_component(), ["expand", "collapse"]);
@@ -29,7 +37,6 @@
 			expanded = !expanded;
 		}
 	}
-
 </script>
 
 <div
@@ -37,7 +44,7 @@
 	class="expander direction-{direction} {className ?? ''}"
 	role="region"
 	class:expanded
-	bind:this={element}
+	bind:this={containerElement}
 	{...$$restProps}
 >
 	<h3>
@@ -48,6 +55,7 @@
 			class="expander-header"
 			aria-expanded={expanded}
 			tabindex="0"
+			bind:this={headerElement}
 			on:keydown={handleKeydown}
 			on:click={() => (expanded = !expanded)}
 		>
@@ -77,7 +85,7 @@
 		</div>
 	</h3>
 	<div class="expander-content-anchor">
-		<div class="expander-content">
+		<div class="expander-content" bind:this={contentElement}>
 			<slot name="content" />
 		</div>
 	</div>
