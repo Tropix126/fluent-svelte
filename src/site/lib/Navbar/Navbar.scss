@@ -74,9 +74,15 @@
 		color: var(--text-secondary);
 	}
 	> img {
-		margin-inline-end: 12px;
+		margin-inline-end: 14px;
 		width: auto;
 		height: 32px;
+	}
+	:global(.text-block) {
+		color: var(--text-secondary);
+		margin-inline-start: 6px;
+		position: relative;
+		top: 1px;
 	}
 }
 
