@@ -2,33 +2,24 @@
 	let className = "";
 	export { className as class };
 
-	let element: HTMLUListElement;
+	export let element: HTMLUListElement = null;
 
-	export const getElement = () => element;
+	let animationComplete = false;
 </script>
 
-<ul
-	class="menu-flyout {className ?? ''}"
-	on:click
-	on:blur
-	on:focus
-	on:dblclick
-	on:contextmenu
-	on:mousedown
-	on:mouseup
-	on:mouseover
-	on:mouseout
-	on:mouseenter
-	on:mouseleave
-	on:keypress
-	on:keydown
-	on:keyup
-	on:animationend
-	bind:this={element}
-	{...$$restProps}
+<div
+	class="menu-flyout-surface-container"
+	style={animationComplete ? "overflow: visible;" : undefined}
 >
-	<slot />
-</ul>
+	<ul
+		on:animationend={() => (animationComplete = true)}
+		class="menu-flyout {className ?? ''}"
+		bind:this={element}
+		{...$$restProps}
+	>
+		<slot />
+	</ul>
+</div>
 
 <style lang="scss">
 	@use "./MenuFlyoutSurface";

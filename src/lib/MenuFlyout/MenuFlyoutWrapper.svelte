@@ -1,60 +1,66 @@
 <script lang="ts">
+	import type { SvelteComponentTyped } from "svelte";
+
 	import { tabbable } from "tabbable";
 
 	import { createEventDispatcher, setContext } from "svelte";
-	import { externalMouseEvents, arrowNavigation, uid } from "../internal";
+	import { arrowNavigation, uid } from "$lib/internal";
 
 	import MenuFlyoutSurface from "./MenuFlyoutSurface.svelte";
 
-	/** Determines the flyout's visibility */
+	/** Determines the flyout's visibility. */
 	export let open = false;
 
-	/** Determines whether the flyout can be closed by clicking the backdrop layer */
+	/** Determines if the flyout can be closed using conventional user interaction. */
 	export let closable = true;
 
-	export let closeonSelect = true;
+	/** Controls if the flyout will be closed when clicking a non-cascading item. Only applies if `closable` is set to `true`. */
+	export let closeOnSelect = true;
 
-	/** Distance of the flyout from the control button */
-	export let gap = 4;
+	/** Direction that the flyout will be opened from. */
+	export let placement: "top" | "bottom" | "left" | "right" = "top";
 
-	/** Direction the flyout will be opened from */
-	export let position: "top" | "bottom" | "left" | "right" = "top";
+	/** Alignment of the menu along the clickable target's given axis. */
+	export let alignment: "start" | "center" | "end" = "center";
 
-	/** Determines if a backdrop is present to catch click events behind the flyout */
-	export let backdrop = true;
+	/** Distance of the flyout from the control button in pixels. */
+	export let offset = 4;
 
-	/** Specifies a custom class name for the flyout */
+	/** Specifies a custom class name for the flyout. */
 	let className = "";
 	export { className as class };
+
+	/** Obtains a bound DOM reference to the content wrapper element. */
+	export let wrapperElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the menu's positioning anchor element. */
+	export let anchorElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the menu list element. */
+	export let menuElement: HTMLUListElement = null;
+
+	/** Obtains a bound DOM reference to the menu backdrop, which is present while the menu is `open`. */
+	export let backdropElement: HTMLDivElement = null;
 
 	const dispatch = createEventDispatcher();
 	const menuId = uid("fds-menu-flyout-anchor-");
 
-	let menu;
+	let menu: SvelteComponentTyped = null;
 
-	$: if (open) {
-		dispatch("open");
-	} else {
-		dispatch("close");
-	}
+	$: dispatch(open ? "open" : "close");
 
-	$: if (menu) tabbable(menu.getElement())[0].focus();
+	$: if (menu && tabbable(menu.getElement()).length > 0) tabbable(menu.getElement())[0].focus();
 
 	function handleEscapeKey({ key }: KeyboardEvent) {
-		if (key === "Escape") open = false;
+		if (key === "Escape" && closable) open = false;
 	}
 
-	function mountMenu(node: HTMLDivElement) {
-		document.body.appendChild(node);
-		node.style.top = "0";
-		return {
-			destroy: () => node.remove()
-		};
-	}
-
-	setContext("closeFlyout", () => {
+	setContext("closeFlyout", event => {
 		dispatch("select");
-		if (closeonSelect) open = false;
+		if (closeOnSelect && closable) {
+			event.stopPropagation();
+			open = false;
+		}
 	});
 </script>
 
@@ -66,46 +72,89 @@
 	aria-haspopup={open}
 	aria-controls={menuId}
 	on:click={() => (open = !open)}
+	bind:this={wrapperElement}
 >
 	<slot />
-
 	{#if open}
 		<div
-			class="menu-flyout-anchor position-{position}"
 			id={menuId}
-			style="--fds-menu-flyout-gap: {gap}px"
-			on:click={e => e.stopPropagation()}
-			use:mountMenu
-			use:externalMouseEvents={{ type: "mousedown" }}
+			class="menu-flyout-anchor placement-{placement} alignment-{alignment}"
+			style="--fds-menu-flyout-offset: {offset}px;"
+			bind:this={anchorElement}
 			use:arrowNavigation={{ preventTab: true }}
-			on:outermousedown={() => (open = false)}
+			on:click={e => e.stopPropagation()}
 		>
-			<slot name="override">
-				<MenuFlyoutSurface
-					class={className ?? ""}
-					on:click
-					on:blur
-					on:focus
-					on:dblclick
-					on:contextmenu
-					on:mousedown
-					on:mouseup
-					on:mouseover
-					on:mouseout
-					on:mouseenter
-					on:mouseleave
-					on:keypress
-					on:keydown
-					on:keyup
-					bind:this={menu}
-					{...$$restProps}
-				>
-					<slot name="flyout" />
-				</MenuFlyoutSurface>
-			</slot>
+			<MenuFlyoutSurface bind:element={menuElement} bind:this={menu} class={className ?? ""} {...$$restProps}>
+				<slot name="flyout" />
+			</MenuFlyoutSurface>
 		</div>
+		<div class="menu-flyout-backdrop" bind:this={backdropElement} on:mousedown={() => (open = false)} />
 	{/if}
 </div>
 
 <style lang="scss">
+	.menu-flyout- {
+		&wrapper {
+			display: inline-block;
+			height: auto;
+			position: relative;
+		}
+		&backdrop {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 9999;
+		}
+		&anchor {
+			position: absolute;
+			z-index: 10000;
+			&.placement- {
+				&top {
+					--fds-menu-flyout-transition-offset: 50%;
+					bottom: calc(100% + var(--menu-flyout-offset));
+				}
+				&bottom {
+					top: calc(100% + var(--menu-flyout-offset));
+				}
+				&left {
+					right: calc(100% + var(--menu-flyout-offset));
+				}
+				&right {
+					left: calc(100% + var(--menu-flyout-offset));
+				}
+				&top,
+				&bottom {
+					&.alignment- {
+						&start {
+							inset-inline-start: 0;
+						}
+						&end {
+							inset-inline-end: 0;
+						}
+						&center {
+							inset-inline-start: 50%;
+							transform: translateX(-50%);
+						}
+					}
+				}
+				&left,
+				&right {
+					&.alignment- {
+						&start {
+							inset-block-start: 0;
+						}
+						&end {
+							inset-block-end: 0;
+						}
+						&center {
+							inset-block-start: 50%;
+							transform: translateY(-50%);
+						}
+					}
+				}
+			}
+		}
+	}
 </style>

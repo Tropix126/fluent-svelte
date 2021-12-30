@@ -1,10 +1,10 @@
 <script lang="ts">
+	/** Specifies a custom class name for the divider. */
 	let className = "";
 	export { className as class };
 
-	let element: HTMLElement;
-
-	export const getElement = () => element;
+	/** Obtains a bound DOM reference to the divider's element. */
+	export let element: HTMLElement = null;
 </script>
 
 <hr

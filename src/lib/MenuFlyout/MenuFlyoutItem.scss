@@ -8,7 +8,7 @@
 	position: relative;
 	box-sizing: border-box;
 	flex: 0 0 auto;
-	overflow: hidden;
+	// overflow: hidden;
 	margin: 2px 4px;
 	padding-inline: 12px;
 	border-radius: var(--control-corner-radius);
@@ -40,8 +40,20 @@
 	}
 
 	&:hover,
+	&[aria-expanded="true"],
 	&.selected {
 		background-color: var(--subtle-fill-secondary);
+	}
+
+	&.checked {
+		:global {
+			.menu-flyout-item- {
+				&bullet,
+				&checkmark {
+					visibility: visible;
+				}
+			}
+		}
 	}
 
 	&:active {
@@ -79,9 +91,6 @@
 	&-checkmark,
 	&-bullet {
 		visibility: hidden;
-		&.active {
-			visibility: visible;
-		}
 	}
 
 	& &-arrow {
@@ -110,6 +119,10 @@
 		background-color: currentColor;
 	}
 
+	&-input-label {
+		display: contents;
+	}
+
 	> :global(svg) {
 		@include icon($size: 16px);
 		margin-inline-end: 12px;
@@ -123,4 +136,11 @@
 		text-overflow: ellipsis;
 		color: var(--text-secondary);
 	}
+}
+
+.menu-flyout-submenu-anchor {
+	z-index: 10000;
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline-start: 100%;
 }
