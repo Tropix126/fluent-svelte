@@ -1,55 +1,72 @@
 <script lang="ts">
-	import TooltipSurface from "../Tooltip/TooltipSurface.svelte";
+	import { createEventForwarder, TooltipSurface } from "$lib/internal";
+	import { get_current_component } from "svelte/internal";
 
-	/** The slider's current value */
+	/** The slider's current value. */
 	export let value = 0;
 
-	/** The minimum value of the slider */
+	/** The minimum value of the slider. */
 	export let min = 0;
 
-	/** The maximum value of the slider */
+	/** The maximum value of the slider. */
 	export let max = 100;
 
-	/** Determines how much the slider's value should increase per step */
+	/** Determines how much the slider's value should increase per step. */
 	export let step: number = 1;
 
-	/** Determines the position of slider ticks along the min and max of the track */
+	/** Determines the position of slider ticks along the min and max of the track. */
 	export let ticks: number[] = [];
 
-	/** Determines the placement of slider ticks around the track */
+	/** Determines the placement of slider ticks around the track. */
 	export let tickPlacement: "around" | "before" | "after" = "around";
 
-	/** Determines if the slider's value tooltip will be shown */
+	/** Determines if the slider's value tooltip will be shown. */
 	export let tooltip = true;
 
-	/** Text placed before the slider's value tooltip */
+	/** Text placed before the slider's value tooltip. */
 	export let prefix = "";
 
-	/** Text placed after the slider's value tooltip */
+	/** Text placed after the slider's value tooltip. */
 	export let suffix = "";
 
-	/** Determines if the slider's fill track will be visible or not */
+	/** Determines if the slider's fill track will be visible or not. */
 	export let track = true;
 
-	/** Determines the slider's orientation */
+	/** Determines the slider's orientation. */
 	export let orientation: "vertical" | "horizontal" = "horizontal";
 
-	/** Determines if the slider track will be in reverse direction */
+	/** Determines if the slider track will be in reverse direction. */
 	export let reverse = false;
 
-	/** Controls whether the slider is disabled */
+	/** Controls whether the slider is disabled. */
 	export let disabled = false;
 
-	/** Specifies a custom class name for the slider's container element */
+	/** Specifies a custom class name for the slider's container element. */
 	let className = "";
 	export { className as class };
 
-	let element: HTMLInputElement;
-	let rail: HTMLDivElement;
+	/** Obtains a bound DOM reference to the slider's input element. */
+	export let inputElement: HTMLInputElement = null;
+
+	/** Obtains a bound DOM reference to the slider's outer container element. */
+	export let containerElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the slider's tick container element. */
+	export let tickBarElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the slider's thumb element. */
+	export let thumbElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the slider's outer rail element. */
+	export let railElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the slider's track (fill) element. */
+	export let trackElement: HTMLDivElement = null;
+
 	let dragging = false;
 	let holding = false;
 
-	export const getElement = () => element;
+	const forwardEvents = createEventForwarder(get_current_component(), ["input", "change", "beforeinput"]);
 	const valueToPercentage = v => ((v - min) / (max - min)) * 100;
 
 	function cancelMove() {
@@ -62,8 +79,8 @@
 	}
 
 	function calculateValue(event) {
-		if (disabled || !rail) return;
-		const { top, bottom, left, right, width, height } = rail.getBoundingClientRect();
+		if (disabled || !railElement) return;
+		const { top, bottom, left, right, width, height } = railElement.getBoundingClientRect();
 		const percentageX = event.touches ? event.touches[0].clientX : event.clientX;
 		const percentageY = event.touches ? event.touches[0].clientY : event.clientY;
 
@@ -134,25 +151,20 @@
 	on:touchcancel={cancelMove}
 />
 
+<!--
+@component
+A slider is a control that lets the user select from a range of values by moving a thumb control along a track.
+- Usage:
+    ```tsx
+    <Slider bind:value min={0} max={100} step={1} ticks={[50]} />
+    ```
+-->
 <div
+	use:forwardEvents
 	on:mousedown={() => {
 		holding = true;
 		dragging = true;
 	}}
-	on:click
-	on:blur
-	on:focus
-	on:dblclick
-	on:contextmenu
-	on:mousedown
-	on:mouseup
-	on:mouseover
-	on:mouseout
-	on:mouseenter
-	on:mouseleave
-	on:keypress
-	on:keydown
-	on:keyup
 	on:touchstart|preventDefault={() => (holding = true)}
 	on:keydown={handleArrowKeys}
 	tabindex={disabled ? -1 : 0}
@@ -160,6 +172,7 @@
 	class="slider orientation-{orientation} {className ?? ''}"
 	class:disabled
 	class:reverse
+	bind:this={containerElement}
 	{...$$restProps}
 >
 	<div
@@ -168,6 +181,7 @@
 		aria-valuemin={min}
 		aria-valuemax={max}
 		aria-valuenow={value}
+		bind:this={thumbElement}
 	>
 		{#if tooltip && !disabled}
 			<TooltipSurface class="slider-tooltip">
@@ -177,14 +191,14 @@
 		{/if}
 	</div>
 
-	<div class="slider-rail" bind:this={rail}>
+	<div class="slider-rail" bind:this={railElement}>
 		{#if track}
-			<div class="slider-track" />
+			<div class="slider-track" bind:this={trackElement} />
 		{/if}
 	</div>
 
 	{#if ticks}
-		<div class="slider-tick-bar placement-{tickPlacement}">
+		<div class="slider-tick-bar placement-{tickPlacement}" bind:this={tickBarElement}>
 			{#each ticks as tick}
 				<div
 					class="slider-tick"
@@ -205,7 +219,7 @@
 		{step}
 		{disabled}
 		bind:value
-		bind:this={element}
+		bind:this={inputElement}
 	/>
 </div>
 

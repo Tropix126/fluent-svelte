@@ -112,13 +112,13 @@
 	&.disabled {
 		.slider- {
 			&rail {
-				background-color: var(--control-strong-fill-disabled);
+				background-color: var(--accent-disabled);
 			}
 			&track {
 				background-color: var(--accent-disabled);
 			}
 			&thumb::before {
-				background-color: var(--control-strong-fill-disabled);
+				background-color: var(--accent-disabled);
 				transform: none;
 			}
 			&tick {
