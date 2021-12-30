@@ -1,14 +1,10 @@
 @use "../mixins" as *;
 
 .menu-bar {
-	@include flex($align: center, $justify: between);
+	@include flex($align: center);
 	cursor: default;
 	user-select: none;
 	block-size: 40px;
 	margin: 0;
 	padding: 0;
-	> &-left,
-	> &-right {
-		@include flex($align: center);
-	}
 }

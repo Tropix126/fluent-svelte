@@ -36,7 +36,7 @@
 	/** Obtains a bound DOM reference to the menu's positioning anchor element. */
 	export let anchorElement: HTMLDivElement = null;
 
-	/** Obtains a bound DOM reference to the menu list element. */
+	/** Obtains a bound DOM reference to the inner menu element. */
 	export let menuElement: HTMLUListElement = null;
 
 	/** Obtains a bound DOM reference to the menu backdrop, which is present while the menu is `open`. */
