@@ -44,13 +44,46 @@
 	}
 
 	&.editable {
+		:global {
+			.combo-box-textbox:not(:focus-within) {
+				cursor: default;
+				border-color: var(--control-border-default);
+				.text-box-underline::after {
+					content: none;
+				}
+			}
+			&.combo-box-textbox.disabled {
+				border-color: var(--control-stroke-default);
+			}
+		}
+		&.open {
+			:global {
+				.combo-box-textbox {
+					cursor: text;
+					background-color: var(--control-fill-input-active);
+					.text-box-underline::after {
+						content: "";
+						border-bottom: 2px solid var(--fds-accent-default);
+					}
+					input::placeholder {
+						color: var(--text-tertiary);
+					}
+				}
+				.text-box-underline {
+					border-bottom-left-radius: 0;
+					border-bottom-right-radius: 0;
+				}
+			}
+		}
 		.combo-box-dropdown {
-			--grow-clip-path: polygon(0 0, 100% 0, 100% 25%, 0 25%);
 			margin: 0;
-			inset-inline-start: 100%;
-			inset-block-start: 0;
+			inset-inline-start: 0;
+			inset-block-start: 100%;
 			inline-size: 100%;
 			border-radius: 0 0 var(--overlay-corner-radius) var(--overlay-corner-radius);
+		}
+		.combo-box-icon {
+			margin: 0;
 		}
 	}
 
