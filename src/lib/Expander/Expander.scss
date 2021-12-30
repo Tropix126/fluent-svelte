@@ -2,6 +2,7 @@
 
 .expander {
 	@include flex($direction: column);
+	color: var(--text-primary);
 	border-radius: var(--control-corner-radius);
 	inline-size: 100%;
 	user-select: none;
@@ -46,6 +47,9 @@
 			}
 		}
 	}
+	> h3 {
+		display: contents;
+	}
 	&-icon {
 		flex: 0 0 auto;
 		color: var(--text-primary);
@@ -59,6 +63,7 @@
 	&-header {
 		@include flex($align: center);
 		@include typography-body;
+		text-align: left;
 		outline: none;
 		box-sizing: border-box;
 		padding-inline-start: 16px;
