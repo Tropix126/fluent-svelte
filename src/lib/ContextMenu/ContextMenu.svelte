@@ -1,23 +1,27 @@
 <script lang="ts">
 	import { createEventDispatcher, setContext } from "svelte";
 
-	import { externalMouseEvents, arrowNavigation } from "../internal";
+	import { MenuFlyoutSurface, externalMouseEvents, arrowNavigation } from "$lib/internal";
 	import { tabbable } from "tabbable";
 
-	import MenuFlyoutSurface from "../MenuFlyout/MenuFlyoutSurface.svelte";
+	/** Controls if the flyout will be closed when clicking a standard variant item. Only applies if `closable` is set to `true`. */
+	export let closeOnSelect = true;
 
-	export let closeonSelect = true;
-
+	/** The current visibility state of the context menu. */
 	export let open = false;
 
-	let element: HTMLElement;
+	/** Obtains a bound DOM reference to the content wrapper element. */
+	export let wrapperElement: HTMLDivElement = null;
 
-	export const getElement = () => element;
+	/** Obtains a bound DOM reference to the menu's positioning anchor element. */
+	export let anchorElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the menu list element. */
+	export let menuElement: HTMLUListElement = null;
 
 	const dispatch = createEventDispatcher();
 
 	let menu;
-	let anchor: HTMLDivElement;
 	let menuPosition = {
 		x: 0,
 		y: 0
@@ -28,9 +32,9 @@
 	};
 
 	$: dispatch(open ? "open" : "close");
-	$: if (menu) tabbable(menu.getElement())[0].focus();
-	$: if (anchor) {
-		const { width, height, top } = anchor.getBoundingClientRect();
+	$: if (menu && tabbable(menu.getElement()).length > 0) tabbable(menu.getElement())[0].focus();
+	$: if (anchorElement) {
+		const { width, height } = anchorElement.getBoundingClientRect();
 
 		menuPosition.x = Math.min(window.innerWidth - width, mousePosition.x);
 		menuPosition.y =
@@ -54,10 +58,6 @@
 		if (key === "Escape") open = false;
 	}
 
-	function setAnchorOverflow() {
-		anchor.style.overflow = "visible";
-	}
-
 	function mountMenu(node: HTMLDivElement) {
 		document.body.appendChild(node);
 		return {
@@ -65,9 +65,9 @@
 		};
 	}
 
-	setContext("closeFlyout", () => {
+	setContext("closeFlyout", event => {
 		dispatch("select");
-		if (closeonSelect) open = false;
+		if (closeOnSelect) open = false;
 	});
 </script>
 
@@ -77,7 +77,7 @@
 	class="context-menu-wrapper"
 	on:contextmenu|preventDefault={handleContextMenu}
 	on:contextmenu
-	bind:this={element}
+	bind:this={wrapperElement}
 >
 	<slot />
 	{#if open}
@@ -86,16 +86,12 @@
 			use:arrowNavigation={{ preventTab: true }}
 			use:externalMouseEvents={{ type: "mousedown" }}
 			on:contextmenu|stopPropagation={e => e.preventDefault()}
-			bind:this={anchor}
+			bind:this={anchorElement}
 			on:outermousedown={() => (open = false)}
 			class="context-menu-anchor"
 			style="top: {menuPosition.y}px; left: {menuPosition.x}px;"
 		>
-			<MenuFlyoutSurface
-				bind:this={menu}
-				on:animationend={setAnchorOverflow}
-				{...$$restProps}
-			>
+			<MenuFlyoutSurface bind:this={menu} bind:element={menuElement} {...$$restProps}>
 				<slot name="menu" />
 			</MenuFlyoutSurface>
 		</div>
@@ -103,30 +99,13 @@
 </div>
 
 <style lang="scss">
-	@keyframes menu-open {
-		from {
-			transform: translateY(-50%);
-			box-shadow: none;
-		}
-		to {
-			box-shadow: var(--flyout-shadow);
-		}
-	}
-
 	.context-menu- {
 		&wrapper {
 			display: contents;
 		}
 		&anchor {
 			position: fixed;
-			overflow: hidden;
 			z-index: 10000;
-			> :global(.menu-flyout) {
-				max-block-size: 100vh;
-				overflow: auto;
-				animation: menu-open var(--control-normal-duration)
-					var(--control-fast-out-slow-in-easing);
-			}
 		}
 	}
 </style>
