@@ -28,7 +28,13 @@
 		opacity: 0;
 		inset-inline-start: 0;
 		inline-size: 3px;
-		block-size: 0;
+		block-size: 16px;
+		transform: scaleY(0);
+	}
+
+	&.selected::before {
+		transform: scaleY(1);
+		opacity: 1;
 	}
 
 	&:focus-visible {
@@ -59,11 +65,6 @@
 				background-color: var(--accent-disabled);
 			}
 		}
-	}
-
-	&.selected::before {
-		opacity: 1;
-		block-size: 16px;
 	}
 
 	> :global(svg) {

@@ -1,18 +1,26 @@
 <script lang="ts">
-	import TextBlock from "../TextBlock/TextBlock.svelte";
+	import { TextBlock } from "$lib";
+	import { createEventForwarder } from "$lib/internal";
+	import { get_current_component } from "svelte/internal";
 
-	/** Controls whether the list item is selected or not */
+	/** @restProps {button | a} */
+	/** Controls whether the item is selected or not. */
 	export let selected = false;
 
-	/** Controls whether the button is disabled */
+	/** Controls whether the item is intended for user interaction, and styles it accordingly. */
 	export let disabled = false;
 
-	/** Sets an href value and converts the list element into an anchor */
+	/** Sets an href value and converts the list element into an anchor. */
 	export let href = "";
 
-	/** Specifies a custom class name for the list item */
+	/** Specifies a custom class name for the item. */
 	let className = "";
 	export { className as class };
+
+	/** Obtains a bound DOM reference to the item's element. */
+	export let element: HTMLAnchorElement | HTMLLIElement = null;
+
+	const forwardEvents = createEventForwarder(get_current_component());
 
 	function handleKeyDown({ key, target }) {
 		if (key === "Enter") target.click();
@@ -21,22 +29,11 @@
 
 {#if href && !disabled}
 	<a
-		on:click
-		on:blur
-		on:focus
-		on:dblclick
-		on:contextmenu
-		on:mousedown
-		on:mouseup
-		on:mouseover
-		on:mouseout
-		on:mouseenter
-		on:mouseleave
-		on:keypress
+		use:forwardEvents
 		on:keydown={handleKeyDown}
-		on:keydown
-		on:keyup
+		bind:this={element}
 		tabindex={disabled ? -1 : 0}
+		role="listitem"
 		class="list-item {className ?? ''}"
 		class:selected
 		class:disabled
@@ -50,21 +47,9 @@
 	</a>
 {:else}
 	<li
-		on:click
-		on:blur
-		on:focus
-		on:dblclick
-		on:contextmenu
-		on:mousedown
-		on:mouseup
-		on:mouseover
-		on:mouseout
-		on:mouseenter
-		on:mouseleave
-		on:keypress
+		use:forwardEvents
 		on:keydown={handleKeyDown}
-		on:keydown
-		on:keyup
+		bind:this={element}
 		tabindex={disabled ? -1 : 0}
 		class="list-item {className ?? ''}"
 		class:selected
