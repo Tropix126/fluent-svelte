@@ -1,36 +1,28 @@
 <script lang="ts">
-	/** Sets an href value and converts the icon button element into an anchor */
+	import { get_current_component } from "svelte/internal";
+	import { createEventForwarder } from "$lib/internal";
+
+	/** @restProps {button | a} */
+	/** Sets an href value and converts the button element into an anchor. */
 	export let href = "";
 
-	/** Controls whether the icon button is disabled */
+	/** Controls whether the button is intended for user interaction, and styles it accordingly. */
 	export let disabled = false;
 
-	/** Specifies a custom class name for the icon button */
+	/** Specifies a custom class name for the button. */
 	let className = "";
 	export { className as class };
 
-	let element: HTMLButtonElement | HTMLAnchorElement;
+	/** Obtains a bound DOM reference to the button or anchor element. */
+	export let element: HTMLButtonElement | HTMLAnchorElement = null;
 
-	export const getElement = () => element;
+	const forwardEvents = createEventForwarder(get_current_component());
 </script>
 
 {#if href && !disabled}
 	<a
+		use:forwardEvents
 		bind:this={element}
-		on:click
-		on:blur
-		on:focus
-		on:dblclick
-		on:contextmenu
-		on:mousedown
-		on:mouseup
-		on:mouseover
-		on:mouseout
-		on:mouseenter
-		on:mouseleave
-		on:keypress
-		on:keydown
-		on:keyup
 		class="icon-button {className ?? ''}"
 		class:disabled
 		{href}
@@ -40,19 +32,7 @@
 	</a>
 {:else}
 	<button
-		on:click
-		on:blur
-		on:focus
-		on:dblclick
-		on:contextmenu
-		on:mousedown
-		on:mouseup
-		on:mouseover
-		on:mouseout
-		on:mouseleave
-		on:keypress
-		on:keydown
-		on:keyup
+		use:forwardEvents
 		class="icon-button {className ?? ''}"
 		class:disabled
 		{disabled}
