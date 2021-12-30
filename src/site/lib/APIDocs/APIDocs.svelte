@@ -1,9 +1,10 @@
 <script lang="ts">
-	import type { ParsedComponent, ForwardedEvent, DispatchedEvent } from "./ParserComponent";
+	import type { ParsedComponent, ForwardedEvent, DispatchedEvent } from "./ParsedComponent";
 
 	import { InfoBar, Button } from "$lib";
 
 	export let data: ParsedComponent;
+	export let manualForward = false;
 
 	const forwardedEvents = <ForwardedEvent[]>data.events.filter(e => e.type === "forwarded");
 	const dispatchedEvents = <DispatchedEvent[]>data.events.filter(e => e.type === "dispatched");
@@ -27,29 +28,28 @@ and
 		</thead>
 		<tbody>
 			{#each data.props as { name, type, value, description }}
-				<tr>
-					<td>
-						{#if typeof name !== "undefined"}
-							<code>{name}</code>
-						{:else}
-							Unknown
-						{/if}
-					</td>
-					<td>
-						{#if typeof type !== "undefined"}
-							<code>{type}</code>
-						{:else}
-							Unknown
-						{/if}					</td>
-					<td>
-						{#if typeof value !== "undefined"}
-							<code>{value}</code>
-						{:else}
-							Unknown
-						{/if}
-					</td>
-					<td>{description ?? "None"}</td>
-				</tr>
+				{#if !name.startsWith("__")}
+					<tr>
+						<td>
+							{#if typeof name !== "undefined"}
+								<code>{name}</code>
+							{:else}
+								Unknown
+							{/if}
+						</td>
+						<td>
+							{#if typeof type !== "undefined"}
+								<code>{type}</code>
+							{:else}
+								Unknown
+							{/if}
+						</td>
+						<td>
+							<code>{value ?? "undefined"}</code>
+						</td>
+						<td>{description ?? "None"}</td>
+					</tr>
+				{/if}
 			{/each}
 		</tbody>
 	</table>
@@ -66,7 +66,8 @@ and
 					data.rest_props.name.split(" | ").map(name => `<code>${name}</code>`)
 			  )
 			: `<code>${data.rest_props.name}</code>`}
-		{data.rest_props.type.toLowerCase()}s as regular attributes.
+		{data.rest_props.type.toLowerCase()}{data.rest_props.name.includes(" | ") ? "s" : ""} as regular
+		attributes.
 		<Button
 			slot="action"
 			variant="accent"
@@ -115,15 +116,27 @@ and
 
 <h3>Events</h3>
 
-<h4>Forwarded Events</h4>
-{#if forwardedEvents.length > 0}
-	{#each forwardedEvents as { name }}
-		<code class="forwarded">
-			<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/{name}_event" target="_blank" rel="noreferrer noopener">{name.trim()}</a>
-		</code>
-	{/each}
+{#if manualForward}
+	<h4>Forwarded Events</h4>
+	{#if forwardedEvents.length > 0}
+		{#each forwardedEvents as { name }}
+			<code class="forwarded">
+				<a
+					href="https://developer.mozilla.org/en-US/docs/Web/API/Element/{name}_event"
+					target="_blank"
+					rel="noreferrer noopener">{name.trim()}</a
+				>
+			</code>
+		{/each}
+	{:else}
+		None
+	{/if}
 {:else}
-	None
+	<p>
+		All DOM events are forwarded to this component's respective elements by default. <a
+			href="#todo">Learn More</a
+		>
+	</p>
 {/if}
 
 <h4>Dispatched Events</h4>
@@ -154,7 +167,7 @@ and
 		</tbody>
 	</table>
 {:else}
-	None
+	<p>None</p>
 {/if}
 
 <style>
