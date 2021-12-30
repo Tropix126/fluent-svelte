@@ -28,7 +28,7 @@
 	export let element: HTMLLIElement = null;
 
 	/** Obtains a bound DOM reference to the menu's positioning anchor element. */
-	export let anchorElement: HTMLAnchorElement = null;
+	export let anchorElement: HTMLDivElement = null;
 
 	/** Obtains a bound DOM reference to the inner menu element. */
 	export let menuElement: HTMLUListElement = null;
