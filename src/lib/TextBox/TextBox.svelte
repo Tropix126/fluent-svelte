@@ -39,7 +39,7 @@
 	export let inputElement: HTMLInputElement = null;
 
 	const dispatch = createEventDispatcher();
-	const forwardEvents = createEventForwarder(get_current_component(), ["clear", "search", "reveal"]);
+	const forwardEvents = createEventForwarder(get_current_component(), ["clear", "search", "reveal", "outermousedown"]);
 
 	function handleClear(event) {
 		dispatch("clear", event);
