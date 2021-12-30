@@ -9,6 +9,7 @@ export { default as InfoBadge } from "./InfoBadge/InfoBadge.svelte";
 export { default as Flyout } from "./Flyout/FlyoutWrapper.svelte";
 export { default as InfoBar } from "./InfoBar/InfoBar.svelte";
 export { default as TextBox } from "./TextBox/TextBox.svelte";
+export { default as TextBoxButton } from "./TextBox/TextBoxButton.svelte";
 export { default as Slider } from "./Slider/Slider.svelte";
 export { default as NumberBox } from "./NumberBox/NumberBox.svelte";
 export { default as PersonPicture } from "./PersonPicture/PersonPicture.svelte";

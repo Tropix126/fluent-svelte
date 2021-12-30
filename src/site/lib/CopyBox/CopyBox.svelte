@@ -1,6 +1,6 @@
 <script>
 	import { TextBox } from "$lib";
-	import { TextBoxButton } from "$lib/internal";
+	import { TextBoxButton } from "$lib";
 
 	import Clipboard from "@fluentui/svg-icons/icons/clipboard_16_regular.svg?raw";
 
