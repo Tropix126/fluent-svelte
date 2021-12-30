@@ -7,9 +7,9 @@
 		position: relative;
 		min-block-size: 596px;
 		text-align: center;
-		background: url("/hero-mica-light.png") center/170% no-repeat;
+		background: url("/bloom-mica-light.png") center/170% no-repeat;
 		@media (prefers-color-scheme: dark) {
-			background-image: url("/hero-mica-dark.png");
+			background-image: url("/bloom-mica-dark.png");
 		}
 		> .page-section-inner {
 			@include flex($direction: column, $align: center);
@@ -54,7 +54,7 @@
 		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 		inline-size: 100%;
 		inline-size: 90vw;
-		max-inline-size: 1080px;
+		max-inline-size: 1160px;
 	}
 }
 

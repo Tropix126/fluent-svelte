@@ -4,9 +4,9 @@
 .docs- {
 	&container {
 		box-shadow: inset 0 0 0 100vmax var(--fds-card-background-secondary); // Temporary bodge for mica tinting
-		background: url("/hero-mica-light.png") center/170% no-repeat fixed;
+		background: url("/bloom-mica-light.png") center/170% no-repeat fixed;
 		@media (prefers-color-scheme: dark) {
-			background-image: url("/hero-mica-dark.png");
+			background-image: url("/bloom-mica-dark.png");
 		}
 		&-inner {
 			min-height: 100vh;

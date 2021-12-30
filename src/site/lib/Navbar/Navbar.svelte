@@ -15,7 +15,7 @@
 	<div class="navbar-inner">
 		<a class="logo" href="/">
 			<img src="/logo.svg" width="32" height="32" alt="Fluent Svelte logo" />
-			Fluent Svelte
+			Fluent Svelte <TextBlock variant="caption">ALPHA</TextBlock>
 		</a>
 		<nav>
 			{#each items as { href, name, icon }}
