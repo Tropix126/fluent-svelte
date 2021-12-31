@@ -5,7 +5,7 @@
 
 	import { tabbable } from "tabbable";
 	import { createEventDispatcher, getContext, setContext } from "svelte";
-	import { get_current_component, SvelteComponentTyped } from "svelte/internal";
+	import { get_current_component } from "svelte/internal";
 	import {
 		MenuFlyoutSurface,
 		createEventForwarder,
