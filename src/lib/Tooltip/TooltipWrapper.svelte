@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { fade } from "svelte/transition";
-	import { getCSSDuration } from "../internal";
+	import { getCSSDuration } from "$lib/internal";
 
 	import TooltipSurface from "./TooltipSurface.svelte";
 

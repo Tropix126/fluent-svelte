@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
-	import { externalMouseEvents, focusTrap } from "../internal";
+	import { externalMouseEvents, focusTrap } from "$lib/internal";
 
 	import FlyoutSurface from "./FlyoutSurface.svelte";
 

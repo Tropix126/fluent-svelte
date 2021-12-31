@@ -1,5 +1,5 @@
 <script lang="ts">
-	import TextBlock from "../TextBlock/TextBlock.svelte";
+	import { TextBlock } from "$lib";
 
 	/** Value representing a group of radios that the inputs will be bound to */
 	export let group: any = [];

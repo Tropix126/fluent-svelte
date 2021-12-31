@@ -1,5 +1,5 @@
 <script lang="ts">
-	import TextBlock from "../TextBlock/TextBlock.svelte";
+	import { TextBlock } from "$lib";
 
 	/** Controls whether the switch is toggled or not */
 	export let checked = false;
