@@ -1,42 +1,41 @@
 <script lang="ts">
-	/** Determines a completion amount in percentage */
+	import { createEventForwarder } from "$lib/internal";
+	import { createEventDispatcher } from "svelte";
+	import { get_current_component } from "svelte/internal";
+	
+	/** Determines a completion amount in percentage. */
 	export let value: number = undefined;
 
-	/** Determines the size of the ring in pixels */
+	/** The size (diameter) of the ring in pixels. */
 	export let size = 32;
 
-	/** Specifies a custom class name for the ring */
+	/** Specifies a custom class name for the ring. */
 	let className = "";
 	export { className as class };
 
-	let element: SVGElement;
-	let circle: SVGCircleElement;
+	/** Obtains a bound DOM reference to the ring's SVG element. */
+	export let element: SVGElement = null;
+
+	/** Obtains a bound DOM reference to the ring's fill circle element. */
+	export let circleElement: SVGCircleElement = null;
+
+	const forwardEvents = createEventForwarder(get_current_component(), ["change"]);
+	const dispatch = createEventDispatcher();
+
 	let circumference: number;
 
-	export const getElement = () => element;
-
-	$: if (circle) {
-		circumference = Math.PI * (parseInt(circle.getAttribute("r")) * 2);
-		if (value < 0) value = 0;
-		if (value > 100) value = 100;
+	$: dispatch("change", value);
+	$: if (circleElement) circumference = Math.PI * (+circleElement.r * 2);
+	$: if (value < 0) {
+		value = 0;
+	} else if (value > 100) {
+		value = 100;
 	}
 </script>
 
 <svg
-	on:click
-	on:blur
-	on:focus
-	on:dblclick
-	on:contextmenu
-	on:mousedown
-	on:mouseup
-	on:mouseover
-	on:mouseout
-	on:mouseenter
-	on:mouseleave
-	on:keypress
-	on:keydown
-	on:keyup
+	use:forwardEvents
+	bind:this={element}
 	tabindex="-1"
 	class="progress-ring {className ?? ''}"
 	class:indeterminate={!value}
@@ -50,7 +49,7 @@
 	{...$$restProps}
 >
 	<circle
-		bind:this={circle}
+		bind:this={circleElement}
 		cx="50%"
 		cy="50%"
 		r="7"

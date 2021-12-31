@@ -29,7 +29,7 @@
 		<p>A faithful implementation of Microsoft's Fluent Design System in Svelte.</p>
 		<div class="buttons-spacer">
 			<Button variant="accent" href="/docs">Get Started</Button>
-			<Button href="/docs">Source Code</Button>
+			<Button href="https://github.com/tropix126/fluent-svelte" target="_blank" rel="noreferrer noopener">Source Code</Button>
 		</div>
 	</div>
 
