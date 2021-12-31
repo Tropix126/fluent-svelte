@@ -24,7 +24,7 @@
 	const forwardEvents = createEventForwarder(get_current_component());
 </script>
 
-<label class="toggle-switch-container" class:disabled bind:this={containerElement}>
+<label class="toggle-switch-container" bind:this={containerElement}>
 	<input
 		use:forwardEvents
 		class="toggle-switch {className ?? ''}"

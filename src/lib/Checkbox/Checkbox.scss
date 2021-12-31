@@ -33,6 +33,10 @@
 		border-color: var(--control-strong-stroke-disabled);
 		background-color: var(--control-alt-fill-disabled);
 		pointer-events: none;
+
+		+ span {
+			color: var(--text-disabled);
+		}
 	}
 
 	&:checked,

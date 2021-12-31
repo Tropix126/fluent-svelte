@@ -62,6 +62,10 @@
 			inline-size: 12px;
 			block-size: 12px;
 		}
+
+		+ span {
+			color: var(--text-disabled);
+		}
 	}
 
 	&:checked {

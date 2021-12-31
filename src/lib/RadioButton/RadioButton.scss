@@ -46,8 +46,13 @@
 	&:disabled {
 		border-color: var(--control-strong-stroke-disabled);
 		background-color: var(--control-alt-fill-disabled);
+		
 		&::before {
 			visibility: hidden;
+		}
+		
+		+ span {
+			color: var(--text-disabled);
 		}
 	}
 
@@ -98,7 +103,7 @@
 		user-select: none;
 		min-block-size: 32px;
 
-		> :global(.text-block) {
+		> span {
 			padding-inline-start: 8px;
 		}
 	}
