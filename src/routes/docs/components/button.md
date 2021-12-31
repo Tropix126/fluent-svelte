@@ -2,7 +2,7 @@
     import { Button, InfoBar } from "$lib";
     import { Showcase, APIDocs } from "$site/lib";
 
-    import ButtonData from "$lib/Button/Button.svelte?sveld&raw";
+    import data from "$lib/Button/Button.svelte?sveld&raw";
 </script>
 
 A button gives the user a way to trigger an immediate action. Some buttons are specialized for particular tasks, such as navigation, repeated actions, or presenting menus.
@@ -36,8 +36,8 @@ Buttons come in three possible _variants_ - `standard`, `accent` and `hyperlink`
 
 ### Disabled Buttons
 
-If the button is not meant to be clicked, you can use the `disabled` prop to visually indicate this. If a button is disabled, the button will be unclickable and the `href` prop will be ignored.
+If the button is not meant to be clicked, you can use the `disabled` prop to visually indicate this. If a button is disabled, it will be unclickable and the `href` prop will be ignored.
 
 ## Component API
 
-<APIDocs data={ButtonData} />
+<APIDocs {data} />

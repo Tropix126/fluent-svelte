@@ -40,7 +40,10 @@ Fluent Svelte components use a set of common resources to style their elements. 
 </script>
 ```
 
-In some cases, your bundler may not have the capability to resolve CSS files. Both the default Svelte template and the SvelteKit starter project (Vite) have this ability, however you might need to install a [dedicated bundler plugin]() to import CSS.
+
+<InfoBar title="Bundler Support" severity="caution">
+    In some cases, your bundler may not have the capability to resolve CSS files. Both the default Svelte template and the SvelteKit starter project (Vite) have this ability, however you might need to install a <a href="https://gist.github.com/Tropix126/6306afeffbcc551425d5658b856e8c4c" target="_blank" rel="noreferrer noopener">dedicated bundler plugin</a> to import CSS.
+</InfoBar>
 
 Alternatively, you can import the theme file from a CDN (though this generally isn't recommended).
 ```html
@@ -49,12 +52,6 @@ Alternatively, you can import the theme file from a CDN (though this generally i
     /* ...or @import url("https://cdn.jsdelivr.net/npm/fluent-svelte/theme.css"); */
 </style>
 ```
-
-<style>
-    h3 {
-        margin-block-start: 72px !important;
-    }
-</style>
 
 ### Step 3: Importing a Component
 
@@ -96,7 +93,7 @@ In the REPL, packages are automatically installed by name when using an `import`
 <style>
     @import url("https://unpkg.com/fluent-svelte/theme.css");
 
-    /* Some base styles to get things working right. */
+    /* Some base styles to get things looking right. */
     :global(body) {
         background-color: var(--fds-solid-background-base);
         color: var(--fds-text-primary);
@@ -105,4 +102,14 @@ In the REPL, packages are automatically installed by name when using an `import`
 ```
 
 
-<Button variant="accent" href="https://svelte.dev/repl/2a30b6d202d24fb6b14783132b86b706">View this in the REPL</Button>
+<Button variant="hyperlink" href="https://svelte.dev/repl/2a30b6d202d24fb6b14783132b86b706" target="_blank" rel="noreferrer noopener">View this in the REPL</Button>
+
+<style>
+    h3 {
+        margin-block-start: 72px !important;
+    }
+
+    label {
+        font-weight: 600;
+    }
+</style>
