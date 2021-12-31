@@ -25,7 +25,7 @@
 	let circumference: number;
 
 	$: dispatch("change", value);
-	$: if (circleElement) circumference = Math.PI * (+circleElement.r * 2);
+	$: if (circleElement) circumference = Math.PI * (circleElement.r.baseVal.value * 2);
 	$: if (value < 0) {
 		value = 0;
 	} else if (value > 100) {
