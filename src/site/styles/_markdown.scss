@@ -32,7 +32,7 @@
 
 	// Images
 	figure {
-		margin: 16px 0;
+		margin-block: 16px;
 
 		&.margin- {
 			&top {
@@ -134,7 +134,8 @@
 	code,
 	kbd {
 		margin: 0;
-		padding: 0.2em 0.4em;
+		padding-inline: .4em;
+		padding-block: .2em;
 		border: 1px solid var(--card-stroke-default);
 		border-radius: var(--control-corner-radius);
 		background-color: var(--card-background-default);
@@ -145,7 +146,8 @@
 	}
 
 	kbd {
-		padding: 0.3em 0.4em;
+		padding-inline: .4em;
+		padding-block: .3em;
 		color: hsl(70, 5%, 22%);
 		box-shadow: inset 0 -0.2em 0 var(--subtle-fill-secondary);
 
@@ -155,7 +157,8 @@
 	}
 
 	pre {
-		padding: 12px 16px;
+		padding-inline: 16px;
+		padding-block: 12px;
 		border: 1px solid var(--card-stroke-default);
 		border-radius: var(--control-corner-radius);
 		background-color: var(--card-background-default);
@@ -221,7 +224,8 @@
 
 		th,
 		td {
-			padding: 6px 12px;
+			padding-inline: 12px;
+			padding-block: 6px;
 		}
 
 		td {
@@ -238,7 +242,16 @@
 		}
 	}
 
-	.info-bar {
-		margin-bottom: 24px;
+	.info-bar,
+	.copy-box {
+		margin-block-end: 24px;
+	}
+
+	.copy-box {
+		margin-block-start: 8px;
+	}
+	
+	label {
+		font-weight: 600;
 	}
 }
