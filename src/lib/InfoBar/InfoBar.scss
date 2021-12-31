@@ -58,15 +58,12 @@
 			p {
 				align-self: flex-start;
 			}
-		}
-		&.action-wrapped {
-			h5,
-			p {
-				inline-size: 100%;
-			}
 			.info-bar-action {
-				padding-block-start: 16px;
+				margin-inline-end: 50%;
 			}
+		}
+		&.action-wrapped .info-bar-action {
+			padding-block-start: 16px;
 		}
 	}
 	h5,
