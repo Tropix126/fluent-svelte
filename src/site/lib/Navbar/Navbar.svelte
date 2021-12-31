@@ -22,12 +22,12 @@
 				<a
 					{href}
 					sveltekit:prefetch
-					class:selected={$page.path === href ||
-						($page.path.split("/").length > 1 &&
+					class:selected={$page.url.pathname === href ||
+						($page.url.pathname.split("/").length > 1 &&
 							href.split("/").length > 1 &&
-							$page.path.startsWith(href) &&
+							$page.url.pathname.startsWith(href) &&
 							!(href === "" || href === "/")) ||
-						(href === "/" && $page.path === "")}
+						(href === "/" && $page.url.pathname === "")}
 				>
 					{#if icon}
 						{@html icon}

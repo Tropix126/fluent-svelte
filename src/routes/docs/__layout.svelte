@@ -6,8 +6,8 @@
 
 	export const prerender = true;
 
-	export const load: Load = async ({ page }) => {
-		const path = page.path
+	export const load: Load = async ({ url }) => {
+		const path = url.pathname
 			.replace(/\/$/gi, "") // remove trailing slash
 			.replace("/docs", ""); // remove /docs
 

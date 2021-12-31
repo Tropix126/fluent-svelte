@@ -20,7 +20,7 @@
 		const { key } = e;
 		if (key === "ArrowUp" || key === "ArrowDown") e.preventDefault();
 		if (key === "Enter") {
-			if (searchResults.length > 0 && $page.path !== `/docs${searchResults[selection].path}`)
+			if (searchResults.length > 0 && $page.url.pathname !== `/docs${searchResults[selection].path}`)
 				goto(`/docs${searchResults[selection].path}`, {
 					keepfocus: true
 				});
@@ -65,7 +65,7 @@
 			on:search={() => {
 				if (
 					searchResults.length > 0 &&
-					$page.path !== `/docs${searchResults[selection].path}`
+					$page.url.pathname !== `/docs${searchResults[selection].path}`
 				)
 					goto(`/docs${searchResults[selection].path}`, {
 						keepfocus: true
