@@ -9,24 +9,9 @@ docsPages
 			const exampleFileName = example.name.replace(/ /g, "");
 
 			example.source = `<script>import * as Fluent from '$lib';</script>
-<div class="example-${exampleFileName}">
+<div class="example">
 	${example.source}
-</div>
-
-<style>
-	.example-${exampleFileName} {
-		display :flex;
-		flex-direction: ${example.direction ?? "row"};
-		gap: 1rem;
-	}
-	
-	@media screen and (max-width: 650px) {
-		.example-${exampleFileName} {
-			flex-direction: column;
-		}
-	}
-</style>
-`;
+</div>`;
 
 			const exampleFileNameAndPath = `${exampleFilePath}/${exampleFileName}.svelte`;
 
