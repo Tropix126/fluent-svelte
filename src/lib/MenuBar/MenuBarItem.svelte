@@ -57,8 +57,8 @@
 	}
 
 	function focusFirstItem() {
-		if (open && menu && tabbable(menu.getElement()).length > 0)
-			tabbable(menu.getElement())[0].focus();
+		if (open && menu && tabbable(menuElement).length > 0)
+			tabbable(menuElement)[0].focus();
 	}
 
 	function handleEscapeKey({ key }: KeyboardEvent) {

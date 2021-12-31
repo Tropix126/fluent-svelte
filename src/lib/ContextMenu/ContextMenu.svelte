@@ -32,7 +32,7 @@
 	};
 
 	$: dispatch(open ? "open" : "close");
-	$: if (menu && tabbable(menu.getElement()).length > 0) tabbable(menu.getElement())[0].focus();
+	$: if (menu && tabbable(menuElement).length > 0) tabbable(menuElement)[0].focus();
 	$: if (anchorElement) {
 		const { width, height } = anchorElement.getBoundingClientRect();
 

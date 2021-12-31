@@ -55,7 +55,10 @@
 	export let inputLabelElement: HTMLLabelElement = null;
 
 	/** Obtains a bound DOM reference to the item's submenu anchor element, which is present if the item is cascading and the submenu is visible. */
-	export let submenuAnchorElement: HTMLDivElement = null;
+	export let subMenuAnchorElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the inner submenumenu element, which is present if the item is cascading and the submenu is visible. */
+	export let subMenuElement: HTMLUListElement = null;
 
 	const forwardEvents = createEventForwarder(get_current_component());
 	const dispatch = createEventDispatcher();
@@ -69,8 +72,8 @@
 	};
 
 	$: dispatch(open ? "open" : "close");
-	$: if (open && menu && tabbable(menu.getElement()).length > 0)
-		tabbable(menu.getElement())[0].focus();
+	$: if (open && menu && tabbable(subMenuElement).length > 0)
+		tabbable(subMenuElement)[0].focus();
 
 	function close(event) {
 		if (!cascading && closeFlyout && variant === "standard") closeFlyout(event);
@@ -151,12 +154,12 @@
 			</svg>
 			{#if open && $$slots.flyout && !disabled}
 				<div
-					bind:this={submenuAnchorElement}
+					use:arrowNavigation={{ preventTab: true, stopPropagation: true }}
+					bind:this={subMenuAnchorElement}
 					id={menuId}
 					class="menu-flyout-submenu-anchor"
-					use:arrowNavigation={{ preventTab: true, stopPropagation: true }}
 				>
-					<MenuFlyoutSurface bind:this={menu}>
+					<MenuFlyoutSurface bind:element={subMenuElement} bind:this={menu}>
 						<slot name="flyout" />
 					</MenuFlyoutSurface>
 				</div>

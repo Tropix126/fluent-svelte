@@ -42,7 +42,7 @@
 	function handleSearchKeybind(e: KeyboardEvent) {
 		if (e.key === "/" && !document.activeElement.className.includes("search-bar")) {
 			e.preventDefault();
-			searchBarInput.getElement().focus();
+			searchBarInput.focus();
 		}
 	}
 </script>
@@ -56,7 +56,7 @@
 		on:outerclick={() => (autoSuggestVisible = false)}
 	>
 		<TextBox
-			bind:this={searchBarInput}
+			bind:element={searchBarInput}
 			bind:value
 			class="search-bar"
 			flyoutVisible={autoSuggestVisible}
