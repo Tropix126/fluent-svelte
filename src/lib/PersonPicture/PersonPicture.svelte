@@ -1,21 +1,25 @@
 <script lang="ts">
-	/** Specifies the size of the picture in pixels */
+	/** The size of the picture in pixels. */
 	export let size = 72;
 
-	/** Source URL used for the picture */
+	/** Source URL used for the picture. */
 	export let src: string = undefined;
 
-	/** Defines the alt text used if an `src` attribute is specified. Also used as a fallback if no src or slots are provided. */
+	/** Defines the alt text used if an `src` attribute is specified. Also used as fallback text if no `src` or slot text is provided. */
 	export let alt: string = undefined;
 
-	/** Specifies a custom class name for the inner picture */
+	/** Specifies a custom class name for the inner picture. */
 	let className = "";
 	export { className as class };
 
-	let element: HTMLImageElement | HTMLDivElement;
+	/** Obtains a bound DOM reference to the inner picture element. */
+	export let element: HTMLImageElement | HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the outer picture container. */
+	export let containerElement: HTMLDivElement = null;
 </script>
 
-<div class="person-picture-container" style="--fds-person-picture-size: {size}px">
+<div class="person-picture-container" style="--fds-person-picture-size: {size}px" bind:this={containerElement}>
 	{#if src}
 		<img
 			bind:this={element}

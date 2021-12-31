@@ -182,7 +182,7 @@
 	}
 
 	// Anchors
-	a {
+	a:not(.icon-button):not(.button) {
 		color: var(--accent-text-primary);
 		text-decoration: underline;
 		text-decoration-skip-ink: none;
