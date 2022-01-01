@@ -84,6 +84,7 @@
 			id={menuId}
 			class="menu-flyout-anchor placement-{placement} alignment-{alignment}"
 			style="--fds-menu-flyout-offset: {offset}px;"
+            tabindex="-1"
 			bind:this={anchorElement}
 			use:arrowNavigation={{ preventTab: true }}
 			on:click={e => e.stopPropagation()}

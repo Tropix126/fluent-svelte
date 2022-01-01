@@ -121,7 +121,6 @@
 
 	<h3>ComboBox</h3>
 	<ComboBox
-		on:select={() => console.log("fired")}
 		placeholder="ComboBox"
 		items={[
 			{
@@ -146,7 +145,6 @@
 
 	<ComboBox
 		editable
-		on:keydown={() => console.log("editable fired")}
 		placeholder="ComboBox"
 		items={[
 			{
@@ -237,19 +235,19 @@
 		class="showcase-group"
 		style="display: flex; justify-content: center; align-items: center;"
 	>
-		<Flyout position="top" bind:open={flyoutTopOpen}>
+		<Flyout placement="top" bind:open={flyoutTopOpen}>
 			<Button variant="accent">Top Flyout</Button>
 			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
 		</Flyout>
-		<Flyout position="bottom" bind:open={flyoutBottomOpen}>
+		<Flyout placement="bottom" bind:open={flyoutBottomOpen}>
 			<Button variant="accent">Bottom Flyout</Button>
 			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
 		</Flyout>
-		<Flyout position="left" bind:open={flyoutLeftOpen}>
+		<Flyout placement="left" bind:open={flyoutLeftOpen}>
 			<Button variant="accent">Left Flyout</Button>
 			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
 		</Flyout>
-		<Flyout position="right" bind:open={flyoutRightOpen}>
+		<Flyout placement="right" bind:open={flyoutRightOpen}>
 			<Button variant="accent">Right Flyout</Button>
 			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
 		</Flyout>
@@ -712,10 +710,6 @@
 			</MenuFlyoutItem>
 		</svelte:fragment>
 	</ContextMenu>
-	<Checkbox bind:checked={test1}>toggle</Checkbox>
-	{#if test1}
-		<MenuFlyoutItem variant="toggle" checked>Status bar</MenuFlyoutItem>
-	{/if}
 </PageSection>
 
 <style lang="scss">
