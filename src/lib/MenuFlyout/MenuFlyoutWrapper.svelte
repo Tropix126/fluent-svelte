@@ -55,6 +55,10 @@
 		if (key === "Escape" && closable) open = false;
 	}
 
+    function closeFlyout() {
+        if (closable) open = false;
+    }
+
 	setContext("closeFlyout", event => {
 		dispatch("select");
 		if (closeOnSelect && closable) {
@@ -88,73 +92,10 @@
 				<slot name="flyout" />
 			</MenuFlyoutSurface>
 		</div>
-		<div class="menu-flyout-backdrop" bind:this={backdropElement} on:mousedown={() => (open = false)} />
+		<div class="menu-flyout-backdrop" bind:this={backdropElement} on:mousedown={closeFlyout} />
 	{/if}
 </div>
 
 <style lang="scss">
-	.menu-flyout- {
-		&wrapper {
-			display: inline-block;
-			height: auto;
-			position: relative;
-		}
-		&backdrop {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			z-index: 9999;
-		}
-		&anchor {
-			position: absolute;
-			z-index: 10000;
-			&.placement- {
-				&top {
-					--fds-menu-flyout-transition-offset: 50%;
-					bottom: calc(100% + var(--menu-flyout-offset));
-				}
-				&bottom {
-					top: calc(100% + var(--menu-flyout-offset));
-				}
-				&left {
-					right: calc(100% + var(--menu-flyout-offset));
-				}
-				&right {
-					left: calc(100% + var(--menu-flyout-offset));
-				}
-				&top,
-				&bottom {
-					&.alignment- {
-						&start {
-							inset-inline-start: 0;
-						}
-						&end {
-							inset-inline-end: 0;
-						}
-						&center {
-							inset-inline-start: 50%;
-							transform: translateX(-50%);
-						}
-					}
-				}
-				&left,
-				&right {
-					&.alignment- {
-						&start {
-							inset-block-start: 0;
-						}
-						&end {
-							inset-block-end: 0;
-						}
-						&center {
-							inset-block-start: 50%;
-							transform: translateY(-50%);
-						}
-					}
-				}
-			}
-		}
-	}
+    @use "./MenuFlyoutWrapper";
 </style>
