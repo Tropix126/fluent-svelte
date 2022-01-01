@@ -1,92 +1,81 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
-	import { externalMouseEvents, focusTrap } from "$lib/internal";
+	import { uid, focusTrap } from "$lib/internal";
 
-	import FlyoutSurface from "./FlyoutSurface.svelte";
+    import FlyoutSurface from "./FlyoutSurface.svelte";
 
-	/** Determines the flyout's visibility */
+	/** Determines the flyout's visibility. */
 	export let open = false;
 
-	/** Determines whether the flyout can be closed by clicking the backdrop layer */
+	/** Determines if the flyout can be closed using conventional user interaction. */
 	export let closable = true;
 
-	/** Distance of the flyout from the control button */
-	export let gap = 4;
+	/** Direction that the flyout will be opened from. */
+	export let placement: "top" | "bottom" | "left" | "right" = "top";
 
-	/** Direction the flyout will be opened from */
-	export let position: "top" | "bottom" | "left" | "right" = "top";
+	/** Alignment of the menu along the clickable target's given axis. */
+	export let alignment: "start" | "center" | "end" = "center";
 
-	/** Determines if a backdrop is present to catch click events behind the flyout */
-	export let backdrop = true;
+	/** Distance of the flyout from the control button in pixels. */
+	export let offset = 4;
 
-	/** Specifies a custom class name for the flyout */
+	/** Specifies a custom class name for the flyout. */
 	let className = "";
 	export { className as class };
 
+	/** Obtains a bound DOM reference to the content wrapper element. */
+	export let wrapperElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the menu's positioning anchor element. */
+	export let anchorElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the inner menu element. */
+	export let menuElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the menu backdrop, which is present while the menu is `open`. */
+	export let backdropElement: HTMLDivElement = null;
+
 	const dispatch = createEventDispatcher();
+	const menuId = uid("fds-flyout-anchor-");
 
-	let wrapper: HTMLDivElement;
-
-	$: if (open) dispatch("open");
-
-	function closeFlyout() {
-		if (closable) {
-			dispatch("close");
-			open = false;
-		}
-	}
+	$: dispatch(open ? "open" : "close");
 
 	function handleEscapeKey({ key }: KeyboardEvent) {
-		if (key === "Escape") closeFlyout();
+		if (key === "Escape" && closable) open = false;
 	}
-</script>
+
+    function closeFlyout() {
+        if (closable) open = false;
+    }
+</script>   
 
 <svelte:window on:keydown={handleEscapeKey} />
 
 <div
 	class="flyout-wrapper"
 	aria-expanded={open}
-	bind:this={wrapper}
+	aria-haspopup={open}
+	aria-controls={menuId}
 	on:click={() => (open = !open)}
+	bind:this={wrapperElement}
 >
 	<slot />
-
 	{#if open}
-		<div
-			class="flyout-anchor position-{position}"
-			style="--fds-flyout-gap: {gap}px"
-			on:click={e => e.stopPropagation()}
-			use:focusTrap
-			use:externalMouseEvents={{ type: "mousedown" }}
-			on:outermousedown={closeFlyout}
-		>
-			<slot name="override">
-				<FlyoutSurface
-					class={className ?? ""}
-					on:click
-					on:blur
-					on:focus
-					on:dblclick
-					on:contextmenu
-					on:mousedown
-					on:mouseup
-					on:mouseover
-					on:mouseout
-					on:mouseenter
-					on:mouseleave
-					on:keypress
-					on:keydown
-					on:keyup
-					{...$$restProps}
-				>
-					<slot name="flyout" />
-				</FlyoutSurface>
-			</slot>
-		</div>
-
-		{#if backdrop}
-			<div on:click={e => e.stopPropagation()} aria-hidden="true" class="flyout-backdrop" />
-		{/if}
+        <slot name="override">
+            <div
+                id={menuId}
+                class="flyout-anchor placement-{placement} alignment-{alignment}"
+                style="--fds-flyout-offset: {offset}px;"
+                use:focusTrap
+                bind:this={anchorElement}
+                on:click={e => e.stopPropagation()}
+            >
+                <FlyoutSurface bind:element={menuElement} class={className ?? ""} {...$$restProps}>
+                    <slot name="flyout" />
+                </FlyoutSurface>
+            </div>
+            <div class="flyout-backdrop" bind:this={backdropElement} on:mousedown={closeFlyout} />
+        </slot>
 	{/if}
 </div>
 
