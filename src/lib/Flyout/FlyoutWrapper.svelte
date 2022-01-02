@@ -47,7 +47,7 @@
     function closeFlyout() {
         if (closable) open = false;
     }
-</script>   
+</script>
 
 <svelte:window on:keydown={handleEscapeKey} />
 

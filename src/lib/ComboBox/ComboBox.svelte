@@ -43,7 +43,7 @@
 	export let menuElement: HTMLUListElement = null;
 
 	/** Obtains a bound DOM reference to the ComboBox's trigger button element. */
-	export let buttonElement: HTMLUListElement = null;
+	export let buttonElement: HTMLButtonElement = null;
 
 	const forwardEvents = createEventForwarder(get_current_component(), ["open", "close", "select", "change", "input", "beforeinput", "keydown"]);
 	const dispatch = createEventDispatcher();
@@ -51,7 +51,7 @@
 	const dropdownId = uid("fds-combo-box-dropdown-");
 
 	$: selectableItems = items.filter(item => !item.disabled);
-	$: selection = items.find(i => i[editable ? "name" : "value"] === value);
+	$: selection = items.find(i => i.name === value);
 	$: if (menuElement && menuElement.children.length > 0 && !editable) {
 		if (selection) {
 			(<HTMLLIElement>menuElement.children[items.indexOf(selection)]).focus();
@@ -88,7 +88,7 @@
 	function selectItem(item: Item) {
 		if (item.disabled) return;
 
-		value = item[editable ? "name" : "value"];
+		value = item.name;
 		open = false;
 		if (containerElement && !editable) (<HTMLElement>containerElement.children[0]).focus();
 	}
@@ -116,14 +116,10 @@
 			!(items.indexOf(selection) >= items.length - 1)
 		) {
 			value =
-				selectableItems[selectableItems.indexOf(selection) + 1][
-					editable ? "name" : "value"
-				]; // If down arrow is pressed, check current selection and move to next non-disabled item.
+				selectableItems[selectableItems.indexOf(selection) + 1].name; // If down arrow is pressed, check current selection and move to next non-disabled item.
 		} else if (key === "ArrowUp" && !editableClosed && !(items.indexOf(selection) <= 0)) {
 			value =
-				selectableItems[selectableItems.indexOf(selection) - 1][
-					editable ? "name" : "value"
-				]; // Do the same with up arrow.
+				selectableItems[selectableItems.indexOf(selection) - 1].name; // Do the same with up arrow.
 		} else if (menuElement && selection && key === "Enter") {
 			event.preventDefault();
 			selectItem(selection); // Select item when the enter key is pressed and the menu is open
@@ -181,9 +177,9 @@ When the combo box is closed, it either displays the current selection or is emp
 - Usage:
     ```tsx
     <ComboBox items={[
-		{ name: "Item 1", value: 0 },
-		{ name: "Item 2", value: 1 },
-		{ name: "Item 3", value: 2 },
+		{ name: "Item 1" },
+		{ name: "Item 2" },
+		{ name: "Item 3" },
 	]} />
     ```
 -->
@@ -297,7 +293,7 @@ When the combo box is closed, it either displays the current selection or is emp
 				{#each items as item, i}
 					<ComboBoxItem
 						role="option"
-						selected={item[editable ? "name" : "value"] === value}
+						selected={item.name === value}
 						disabled={item.disabled}
 						id="{dropdownId}-item-{i}"
 						on:keydown={handleKeyboardNavigation}
