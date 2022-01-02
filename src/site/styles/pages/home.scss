@@ -85,7 +85,6 @@
 		}
 	}
 	.editor {
-		@include prism-vs-light;
 		flex: 1 1 auto;
 		display: flex;
 		overflow: auto;
@@ -96,10 +95,6 @@
 		border-top-left-radius: 0;
 		background-color: var(--solid-background-base);
 		border: 1px solid var(--divider-stroke-default);
-		@media (prefers-color-scheme: dark) {
-			@include prism-vs-dark;
-			color-scheme: dark;
-		}
 		pre {
 			user-select: text;
 			padding: 4px;
