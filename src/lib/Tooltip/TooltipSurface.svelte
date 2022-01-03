@@ -1,30 +1,24 @@
 <script lang="ts">
+	import { fade } from "svelte/transition";
+	import { getCSSDuration, createEventForwarder } from "$lib/internal";
+	import { get_current_component } from "svelte/internal";
+
+	/** Specifies a custom class name for the surface. */
 	let className = "";
 	export { className as class };
 
-	let element: HTMLDivElement;
+	/** Obtains a bound DOM reference to the surface element. */
+	export let element: HTMLDivElement = null;
 
-	export const getElement = () => element;
+	const forwardEvents = createEventForwarder(get_current_component());
 </script>
 
 <div
-	on:click
-	on:blur
-	on:focus
-	on:dblclick
-	on:contextmenu
-	on:mousedown
-	on:mouseup
-	on:mouseover
-	on:mouseout
-	on:mouseenter
-	on:mouseleave
-	on:keypress
-	on:keydown
-	on:keyup
-	bind:this={element}
-	class="tooltip {className ?? ''}"
+	class="tooltip {className}"
 	role="tooltip"
+	use:forwardEvents
+	transition:fade={{ duration: getCSSDuration("--fds-control-fast-duration") }}
+	bind:this={element}
 	{...$$restProps}
 >
 	<slot />

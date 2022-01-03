@@ -28,7 +28,7 @@
 </script>
 
 <Navbar {items}>
-	<Tooltip slot="buttons" alignment="left" text="view github">
+	<Tooltip slot="buttons" placement="left" offset={8} text="View GitHub">
 		<IconButton>
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
 				<path

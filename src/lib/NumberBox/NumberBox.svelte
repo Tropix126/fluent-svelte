@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { TextBox, TextBoxButton } from "$lib";
 
+	/** @extends {"../TextBox/TextBox.svelte"} */
 	/** Determines whether the spinner buttons will be placed in an inline layout. */
 	export let inline = false;
 
@@ -16,7 +17,7 @@
 	/** Controls the interval between two value changes when triggering a spin button. */
 	export let step: number = undefined;
 
-	/** Controls whether the NumberBox is disabled. */
+	/** Controls whether the NumberBox is intended for user interaction, and styles it accordingly. */
 	export let disabled = false;
 
 	/** Specifies a custom class name for the NumberBox. */
@@ -26,8 +27,17 @@
 	/** Obtains a bound DOM reference to the input element. */
 	export let inputElement: HTMLInputElement = null;
 
+	/** Obtains a bound DOM reference to the NumberBox's container element. */
+	export let containerElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the NumberBox's buttons container element. */
+	export let buttonsContainerElement: HTMLDivElement = null;
+
 	/** Obtains a bound DOM reference to the spin button element that increases the input's value. */
 	export let spinUpButtonElement: HTMLButtonElement = null;
+
+	/** Obtains a bound DOM reference to the NumberBox's clear button element. Only available if `clearButton` is set to true, `readonly` is set to false, and a `value` is present. */
+	export let clearButtonElement: HTMLButtonElement = null;
 
 	/** Obtains a bound DOM reference to the spin button element that decreases the input's value. */
 	export let spinDownButtonElement: HTMLButtonElement = null;
@@ -94,6 +104,9 @@
 	class="number-box {className ?? ''}"
 	type="number"
 	bind:inputElement
+	bind:containerElement
+	bind:buttonsContainerElement
+	bind:clearButtonElement
 	bind:value
 	on:outermousedown={() => (spinnerFlyoutOpen = false)}
 	on:change
@@ -114,6 +127,7 @@
 	on:keypress
 	on:keydown
 	on:keyup
+	on:clear
 	{min}
 	{max}
 	{step}
