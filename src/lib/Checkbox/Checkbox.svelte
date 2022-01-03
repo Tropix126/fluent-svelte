@@ -2,7 +2,7 @@
 	import { get_current_component } from "svelte/internal";
 	import { createEventForwarder } from "$lib/internal";
 
-	import { TextBlock } from "$lib";
+	import { TextBlock } from "$lib/index";
 
 	/** Controls whether the checkbox is checked or not. */
 	export let checked = false;

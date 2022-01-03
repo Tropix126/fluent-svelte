@@ -2,7 +2,7 @@
 	import { createEventDispatcher, tick } from "svelte";
 	import { get_current_component } from "svelte/internal";
 
-	import { Button, TextBox, TextBoxButton } from "$lib";
+	import { Button, TextBox, TextBoxButton } from "$lib/index";
 	import { ComboBoxItem, createEventForwarder, externalMouseEvents, uid } from "$lib/internal";
 
 	interface Item {

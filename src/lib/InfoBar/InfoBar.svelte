@@ -3,7 +3,7 @@
 	import { get_current_component } from "svelte/internal";
 	import { createEventForwarder } from "$lib/internal";
 
-	import { InfoBadge } from "$lib";
+	import { InfoBadge } from "$lib/index";
 
 	const dispatch = createEventDispatcher();
 
