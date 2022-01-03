@@ -52,7 +52,7 @@
 	</div>
 	<div class="component-showcase-buttons">
 		{#if repl}
-			<Tooltip text="Edit in Svelte REPL">
+			<Tooltip text="Edit in Svelte REPL" placement="left">
 				<IconButton
 					href="https://svelte.dev/repl/{repl}"
 					target="blank"

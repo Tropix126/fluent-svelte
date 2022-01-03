@@ -59,7 +59,7 @@ export function uid(prefix: string) {
 		prefix +
 		String.fromCharCode(Math.floor(Math.random() * 26) + 97) +
 		Math.random().toString(16).slice(2) +
-		performance.now().toString(16).split(".")[0]
+		Date.now().toString(16).split(".")[0]
 	);
 }
 
