@@ -66,7 +66,11 @@
 	let dragging = false;
 	let holding = false;
 
-	const forwardEvents = createEventForwarder(get_current_component(), ["input", "change", "beforeinput"]);
+	const forwardEvents = createEventForwarder(get_current_component(), [
+		"input",
+		"change",
+		"beforeinput"
+	]);
 	const valueToPercentage = v => ((v - min) / (max - min)) * 100;
 
 	function cancelMove() {
@@ -121,6 +125,11 @@
 		}
 	}
 
+	function handleTouchStart(event) {
+		if (event.cancelable) event.preventDefault();
+		holding = true;
+	}
+
 	export function stepUp() {
 		value += step;
 		if (value > max) value = max;
@@ -165,11 +174,11 @@ A slider is a control that lets the user select from a range of values by moving
 		holding = true;
 		dragging = true;
 	}}
-	on:touchstart|preventDefault={() => (holding = true)}
+	on:touchstart={handleTouchStart}
 	on:keydown={handleArrowKeys}
 	tabindex={disabled ? -1 : 0}
 	style="--fds-slider-percentage: {percentage}%"
-	class="slider orientation-{orientation} {className ?? ''}"
+	class="slider orientation-{orientation} {className}"
 	class:disabled
 	class:reverse
 	bind:this={containerElement}
