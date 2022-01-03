@@ -8,14 +8,14 @@
 	export { className as class };
 
 	export let element: HTMLButtonElement = null;
-	
+
 	const forwardEvents = createEventForwarder(get_current_component());
 </script>
 
 <button
 	use:forwardEvents
 	bind:this={element}
-	class="text-box-button {className ?? ''}"
+	class="text-box-button {className}"
 	{type}
 	{...$$restProps}
 >

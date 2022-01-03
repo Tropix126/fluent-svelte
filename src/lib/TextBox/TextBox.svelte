@@ -5,30 +5,42 @@
 
 	import { TextBoxButton } from "$lib";
 
-	type TextInputTypes = "text" | "number" | "search" | "password" | "email" | "tel" | "url" | "date" | "datetime-local" | "month" | "time" | "week";	
+	type TextInputTypes =
+		| "text"
+		| "number"
+		| "search"
+		| "password"
+		| "email"
+		| "tel"
+		| "url"
+		| "date"
+		| "datetime-local"
+		| "month"
+		| "time"
+		| "week";
 
-	/** Specifies the input's native value attribute */
+	/** The input's current value. */
 	export let value: any = "";
 
-	/** Determines the input type of the textbox */
+	/** Determiness the input type of the textbox. */
 	export let type: TextInputTypes = "text";
 
-	/** Determines whether a text clear button is present */
+	/** The initial placeholder text displayed if no value is present. */
 	export let placeholder: string = undefined;
 
-	/** Determines whether a text clear button is present */
+	/** Determines whether a text clear button is present. */
 	export let clearButton = true;
 
-	/** Determines whether a search button is present when `type` is set to "search" */
+	/** Determines whether a search button is present when `type` is set to "search". */
 	export let searchButton = true;
 
-	/** Determines whether a password reveal button is present when `type` is set to "password" */
+	/** Determines whether a password reveal button is present when `type` is set to "password". */
 	export let revealButton = true;
 
-	/** Determines whether the textbox can be typed in or not */
+	/** Determines whether the textbox can be typed in or not. */
 	export let readonly = false;
 
-	/** Controls whether the textbox is disabled */
+	/** Controls whether the TextBox is intended for user interaction, and styles it accordingly. */
 	export let disabled = false;
 
 	/** Specifies a custom class name for the TextBox container. */
@@ -38,8 +50,28 @@
 	/** Obtains a bound DOM reference to the TextBox's input element. */
 	export let inputElement: HTMLInputElement = null;
 
+	/** Obtains a bound DOM reference to the TextBox's container element. */
+	export let containerElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the TextBox's buttons container element. */
+	export let buttonsContainerElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the TextBox's clear button element. Only available if `clearButton` is set to true, `readonly` is set to false, and a `value` is present. */
+	export let clearButtonElement: HTMLButtonElement = null;
+
+	/** Obtains a bound DOM reference to the TextBox's search button element. Only available if `type` is set to `search`. */
+	export let searchButtonElement: HTMLButtonElement = null;
+
+	/** Obtains a bound DOM reference to the TextBox's reveal button element. Only available if `type` is set to `password`. */
+	export let revealButtonElement: HTMLButtonElement = null;
+
 	const dispatch = createEventDispatcher();
-	const forwardEvents = createEventForwarder(get_current_component(), ["clear", "search", "reveal", "outermousedown"]);
+	const forwardEvents = createEventForwarder(get_current_component(), [
+		"clear",
+		"search",
+		"reveal",
+		"outermousedown"
+	]);
 
 	function handleClear(event) {
 		dispatch("clear", event);
@@ -77,10 +109,11 @@
 </script>
 
 <div
-	class="text-box-container {className ?? ''}"
+	class="text-box-container {className}"
+	class:disabled
+	bind:this={containerElement}
 	use:externalMouseEvents={{ type: "mousedown" }}
 	on:outermousedown
-	class:disabled
 >
 	<!-- Dirty workaround for the fact that svelte can't handle two-way binding when the input type is dynamic. -->
 	<!-- prettier-ignore -->
@@ -110,12 +143,13 @@
 		<input type="week" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
 	{/if}
 	<div class="text-box-underline" />
-	<div class="text-box-buttons">
+	<div class="text-box-buttons" bind:this={buttonsContainerElement}>
 		{#if clearButton && value && !readonly}
 			<TextBoxButton
+				class="text-box-clear-button"
 				aria-label="Clear value"
 				on:click={handleClear}
-				class="text-box-clear-button"
+				bind:element={clearButtonElement}
 			>
 				<svg
 					aria-hidden="true"
@@ -132,7 +166,11 @@
 			</TextBoxButton>
 		{/if}
 		{#if type === "search" && searchButton}
-			<TextBoxButton aria-label="Search" on:click={handleSearch}>
+			<TextBoxButton
+				aria-label="Search"
+				on:click={handleSearch}
+				bind:element={searchButtonElement}
+			>
 				<svg
 					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"
@@ -148,7 +186,11 @@
 			</TextBoxButton>
 		{/if}
 		{#if type === "password" && value && revealButton}
-			<TextBoxButton aria-label="Reveal password" on:mousedown={handleReveal}>
+			<TextBoxButton
+				aria-label="Reveal password"
+				on:mousedown={handleReveal}
+				bind:element={revealButtonElement}
+			>
 				<svg
 					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"
