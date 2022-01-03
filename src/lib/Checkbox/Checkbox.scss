@@ -1,6 +1,8 @@
 @use "../mixins" as *;
 
 .checkbox {
+	@include typography-body;
+
 	margin: 0;
 	border: 1px solid var(--control-strong-stroke-default);
 	border-radius: var(--control-corner-radius);
@@ -66,8 +68,12 @@
 		user-select: none;
 		min-block-size: 32px;
 
-		> :global(.text-block) {
+		> span {
 			padding-inline-start: 8px;
+		}
+
+		&.disabled > span {
+			color: var(--text-disabled);
 		}
 	}
 

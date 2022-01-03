@@ -1,0 +1,18 @@
+.table-of-contents {
+	li {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		margin-left: calc(12px * var(--depth));
+	}
+	:global(.list-item) {
+		margin-inline: 0;
+		inline-size: 100%;
+		block-size: 28px;
+		:global(.text-block) {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	}
+}

@@ -1,0 +1,36 @@
+.auto-suggest-box-flyout {
+	z-index: 100;
+	overflow: auto;
+	position: absolute;
+	inset-inline-start: -1px;
+	inset-block-start: calc(100% + 1px);
+	inline-size: calc(100% + 2px);
+	margin: 0;
+	padding: 0;
+	padding-block: 2px;
+	box-sizing: border-box;
+	color: var(--text-primary);
+	border-radius: 0 0 var(--overlay-corner-radius) var(--overlay-corner-radius);
+	border: 1px solid var(--surface-stroke-flyout);
+	background-clip: padding-box;
+	background-color: var(--flyout-fallback-background-default);
+	box-shadow: var(--flyout-shadow);
+	max-block-size: 472px;
+}
+
+:global {
+	.auto-suggest-box.open {
+		background-color: var(--control-fill-input-active) !important;
+		.text-box-underline::after {
+			content: "";
+			border-bottom: 2px solid var(--fds-accent-default);
+		}
+		input::placeholder {
+			color: var(--text-tertiary);
+		}
+		.text-box-underline {
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+	}
+}

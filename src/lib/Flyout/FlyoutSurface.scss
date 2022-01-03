@@ -1,9 +1,22 @@
 @use "../mixins" as *;
 
+@keyframes flyout-in {
+	0% {
+		opacity: 0;
+		transform: var(--flyout-transition-offset, translateY(12px));
+	}
+	100% {
+		opacity: 1;
+		transform: none;
+	}
+}
+
 .flyout {
 	@include typography-body;
+	animation: flyout-in var(--control-normal-duration) var(--control-fast-out-slow-in-easing);
 	padding: 16px;
 	min-inline-size: 320px;
+	box-sizing: border-box;
 	color: var(--text-primary);
 	border-radius: var(--overlay-corner-radius);
 	border: 1px solid var(--surface-stroke-flyout);

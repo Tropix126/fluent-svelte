@@ -1,0 +1,33 @@
+@use "../mixins" as *;
+
+@keyframes menu-open {
+	from {
+		transform: translateY(var(--menu-flyout-transition-offset, -50%));
+		box-shadow: none;
+	}
+	to {
+		box-shadow: var(--flyout-shadow);
+	}
+}
+
+.menu-flyout {
+	@include typography-body;
+	@include flex($direction: column);
+	animation: menu-open var(--control-normal-duration) var(--control-fast-out-slow-in-easing);
+	min-inline-size: 120px;
+	max-inline-size: 100%;
+	max-block-size: 100vh;
+	margin: 0;
+	padding: 0;
+	padding-block: 2px;
+	box-sizing: border-box;
+	color: var(--text-primary);
+	border-radius: var(--overlay-corner-radius);
+	border: 1px solid var(--surface-stroke-flyout);
+	background-clip: padding-box;
+	background-color: var(--flyout-fallback-background-default);
+	box-shadow: var(--flyout-shadow);
+	&-surface-container {
+		overflow: hidden;
+	}
+}

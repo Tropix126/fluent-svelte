@@ -1,106 +1,155 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
-	import { externalMouseEvents } from "../internal";
+	import { get_current_component } from "svelte/internal";
+	import { externalMouseEvents, createEventForwarder } from "$lib/internal";
 
-	import TextBoxButton from "./TextBoxButton.svelte";
+	import { TextBoxButton } from "$lib";
 
-	/** Specifies the input's native value attribute */
+	type TextInputTypes =
+		| "text"
+		| "number"
+		| "search"
+		| "password"
+		| "email"
+		| "tel"
+		| "url"
+		| "date"
+		| "datetime-local"
+		| "month"
+		| "time"
+		| "week";
+
+	/** The input's current value. */
 	export let value: any = "";
 
-	/** Determines the input type of the textbox */
-	export let type = "text";
+	/** Determiness the input type of the textbox. */
+	export let type: TextInputTypes = "text";
 
-	/** Determines whether a text clear button is present */
+	/** The initial placeholder text displayed if no value is present. */
 	export let placeholder: string = undefined;
 
-	/** Determines whether a text clear button is present */
+	/** Determines whether a text clear button is present. */
 	export let clearButton = true;
 
-	/** Determines whether a search button is present when `type` is set to "search" */
+	/** Determines whether a search button is present when `type` is set to "search". */
 	export let searchButton = true;
 
-	/** Determines whether a password reveal button is present when `type` is set to "password" */
+	/** Determines whether a password reveal button is present when `type` is set to "password". */
 	export let revealButton = true;
 
-	/** Controls whether the textbox is disabled */
+	/** Determines whether the textbox can be typed in or not. */
+	export let readonly = false;
+
+	/** Controls whether the TextBox is intended for user interaction, and styles it accordingly. */
 	export let disabled = false;
 
-	/** Specifies a custom class name for the TextBox */
+	/** Specifies a custom class name for the TextBox container. */
 	let className = "";
 	export { className as class };
 
-	let element: HTMLInputElement;
+	/** Obtains a bound DOM reference to the TextBox's input element. */
+	export let inputElement: HTMLInputElement = null;
+
+	/** Obtains a bound DOM reference to the TextBox's container element. */
+	export let containerElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the TextBox's buttons container element. */
+	export let buttonsContainerElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the TextBox's clear button element. Only available if `clearButton` is set to true, `readonly` is set to false, and a `value` is present. */
+	export let clearButtonElement: HTMLButtonElement = null;
+
+	/** Obtains a bound DOM reference to the TextBox's search button element. Only available if `type` is set to `search`. */
+	export let searchButtonElement: HTMLButtonElement = null;
+
+	/** Obtains a bound DOM reference to the TextBox's reveal button element. Only available if `type` is set to `password`. */
+	export let revealButtonElement: HTMLButtonElement = null;
+
+	const dispatch = createEventDispatcher();
+	const forwardEvents = createEventForwarder(get_current_component(), [
+		"clear",
+		"search",
+		"reveal",
+		"outermousedown"
+	]);
 
 	function handleClear(event) {
 		dispatch("clear", event);
-		element.focus();
+		inputElement.focus();
 		value = "";
 	}
 
 	function handleSearch(event) {
 		dispatch("search", event);
-		element.focus();
+		inputElement.focus();
 	}
 
 	function handleReveal(event) {
-		element.focus();
-		element.setAttribute("type", "text");
+		inputElement.focus();
+		inputElement.setAttribute("type", "text");
 		dispatch("reveal", event);
 		let revealButtonMouseDown = true;
 		const hidePassword = () => {
 			if (!revealButtonMouseDown) return;
-			element.focus();
+			inputElement.focus();
 			revealButtonMouseDown = false;
-			element.setAttribute("type", "password");
+			inputElement.setAttribute("type", "password");
 			window.removeEventListener("mouseup", hidePassword);
 		};
 		window.addEventListener("mouseup", hidePassword);
 	}
 
-	export const getElement = () => element;
-	const dispatch = createEventDispatcher();
+	const inputProps = {
+		class: "text-box",
+		disabled: disabled || undefined,
+		readonly: readonly || undefined,
+		placeholder: placeholder || undefined,
+		...$$restProps
+	};
 </script>
 
 <div
-	class="text-box-container"
+	class="text-box-container {className}"
+	class:disabled
+	bind:this={containerElement}
 	use:externalMouseEvents={{ type: "mousedown" }}
 	on:outermousedown
-	class:disabled
 >
-	<input
-		class="text-box {className ?? ''}"
-		{value}
-		{type}
-		{disabled}
-		{placeholder}
-		{...$$restProps}
-		bind:this={element}
-		on:mousedown
-		on:mouseup
-		on:mouseover
-		on:mouseout
-		on:mouseenter
-		on:mouseleave
-		on:dblclick
-		on:contextmenu
-		on:click
-		on:change
-		on:input
-		on:input={() => (value = element.value)}
-		on:beforeinput
-		on:blur
-		on:focus
-		on:keypress
-		on:keydown
-		on:keyup
-	/>
+	<!-- Dirty workaround for the fact that svelte can't handle two-way binding when the input type is dynamic. -->
+	<!-- prettier-ignore -->
+	{#if type === "text"}
+		<input type="text" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		{:else if type === "number"}
+		<input type="number" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		{:else if type === "search"}
+		<input type="search" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		{:else if type === "password"}
+		<input type="password" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		{:else if type === "email"}
+		<input type="email" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		{:else if type === "tel"}
+		<input type="tel" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		{:else if type === "url"}
+		<input type="url" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		{:else if type === "date"}
+		<input type="date" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		{:else if type === "datetime-local"}
+		<input type="datetime-local" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		{:else if type === "month"}
+		<input type="month" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		{:else if type === "time"}
+		<input type="time" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		{:else if type === "week"}
+		<input type="week" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+	{/if}
 	<div class="text-box-underline" />
-	<div class="text-box-buttons">
-		{#if clearButton && value}
+	<div class="text-box-buttons" bind:this={buttonsContainerElement}>
+		{#if clearButton && value && !readonly}
 			<TextBoxButton
+				class="text-box-clear-button"
 				aria-label="Clear value"
 				on:click={handleClear}
-				class="text-box-clear-button"
+				bind:element={clearButtonElement}
 			>
 				<svg
 					aria-hidden="true"
@@ -117,7 +166,11 @@
 			</TextBoxButton>
 		{/if}
 		{#if type === "search" && searchButton}
-			<TextBoxButton aria-label="Search" on:click={handleSearch}>
+			<TextBoxButton
+				aria-label="Search"
+				on:click={handleSearch}
+				bind:element={searchButtonElement}
+			>
 				<svg
 					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +186,11 @@
 			</TextBoxButton>
 		{/if}
 		{#if type === "password" && value && revealButton}
-			<TextBoxButton aria-label="Reveal password" on:mousedown={handleReveal}>
+			<TextBoxButton
+				aria-label="Reveal password"
+				on:mousedown={handleReveal}
+				bind:element={revealButtonElement}
+			>
 				<svg
 					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"

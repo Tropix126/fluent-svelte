@@ -1,7 +1,7 @@
 @use "../mixins" as *;
 
 :global {
-	.number-box {
+	.number-box input {
 		appearance: textfield;
 		&::-webkit-outer-spin-button,
 		&::-webkit-inner-spin-button {

@@ -1,55 +1,44 @@
 <script lang="ts">
-	import TextBlock from "../TextBlock/TextBlock.svelte";
+	import { get_current_component } from "svelte/internal";
+	import { createEventForwarder } from "$lib/internal";
 
-	/** Controls whether the switch is toggled or not */
+	/** Controls whether the switch is toggled or not. */
 	export let checked = false;
 
-	/** Controls whether the checkbox is disabled */
-	export let disabled = false;
-
-	/** Specifies the input's native value attribute */
+	/** Sets the input element's native `value` attribute for usage in forms. */
 	export let value: any = undefined;
 
-	/** Specifies a custom class name for the switch */
+	/** Controls whether the switch is intended for user interaction, and styles it accordingly. */
+	export let disabled = false;
+
+	/** Specifies a custom class name for the switch. */
 	let className = "";
 	export { className as class };
 
-	let element: HTMLInputElement;
+	/** Obtains a bound DOM reference to the switch's <input /> element. */
+	export let inputElement: HTMLInputElement = null;
 
-	export const getElement = () => element;
+	/** Obtains a bound DOM reference to the switch's outer container element. */
+	export let containerElement: HTMLLabelElement = null;
+
+	const forwardEvents = createEventForwarder(get_current_component());
 </script>
 
-<label class="toggle-switch-container" class:disabled>
+<label class="toggle-switch-container" bind:this={containerElement}>
 	<input
-		on:change
-		on:input
-		on:beforeinput
-		on:click
-		on:blur
-		on:focus
-		on:dblclick
-		on:contextmenu
-		on:mousedown
-		on:mouseup
-		on:mouseover
-		on:mouseout
-		on:mouseenter
-		on:mouseleave
-		on:keypress
-		on:keydown
-		on:keyup
-		class="toggle-switch {className ?? ''}"
+		use:forwardEvents
+		class="toggle-switch {className}"
 		type="checkbox"
 		bind:checked
-		bind:this={element}
+		bind:this={inputElement}
 		{value}
 		{disabled}
 		{...$$restProps}
 	/>
 	{#if $$slots.default}
-		<TextBlock>
+		<span>
 			<slot />
-		</TextBlock>
+		</span>
 	{/if}
 </label>
 

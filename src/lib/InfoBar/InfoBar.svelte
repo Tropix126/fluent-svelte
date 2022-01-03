@@ -1,35 +1,54 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
+	import { get_current_component } from "svelte/internal";
+	import { createEventForwarder } from "$lib/internal";
 
-	import InfoBadge from "../InfoBadge/InfoBadge.svelte";
+	import { InfoBadge } from "$lib";
 
 	const dispatch = createEventDispatcher();
 
-	/** Determines whether the bar is open (rendered) */
+	/** Determines whether the bar is open (rendered). */
 	export let open = true;
 
-	/** Determines whether the close button is used or not */
+	/** Determines whether the close button is used or not. */
 	export let closable = true;
 
-	/** Indicates the severity color of the bar */
+	/** Indicates the severity color of the bar. */
 	export let severity: "information" | "success" | "caution" | "critical" | "attention" =
 		"information";
 
-	/** Specifies the description text shown in the bar */
-	export let description = "";
+	/** Title of the Infobar. */
+	export let title = "";
 
-	/** Specifies a custom class name for the bar */
+	/** Description text shown next to or below the title. */
+	export let message = "";
+
+	/** Specifies a custom class name for the bar. */
 	let className = "";
 	export { className as class };
 
+	/** Obtains a bound DOM reference to the bar's container element. */
+	export let element: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the bar's title element. */
+	export let titleElement: HTMLHeadingElement = null;
+
+	/** Obtains a bound DOM reference to the bar's message (paragraph) element. */
+	export let messageElement: HTMLParagraphElement = null;
+
+	/** Obtains a bound DOM reference to the bar's action wrapper element. */
+	export let actionElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the bar's close button element. */
+	export let closeButtonElement: HTMLButtonElement = null;
+
 	let wrapped = false;
-	let action: HTMLDivElement;
-	let element: HTMLDivElement;
 	let clientHeight = 0;
 
-	export const getElement = () => element;
+	const forwardEvents = createEventForwarder(get_current_component());
 
-	$: if (action && description && clientHeight) wrapped = action.offsetTop > 0;
+	$: actionWrapped = clientHeight && actionElement?.offsetTop > 0;
+	$: messageWrapped = clientHeight && messageElement?.offsetTop > titleElement?.offsetTop;
 
 	function handleClose(event) {
 		open = false;
@@ -39,38 +58,38 @@
 
 {#if open}
 	<div
-		bind:clientHeight
+		use:forwardEvents
 		bind:this={element}
-		class="info-bar severity-{severity} {className ?? ''}"
+		bind:clientHeight
+		class="info-bar severity-{severity} {className}"
 		role="alert"
 		{...$$restProps}
-		on:click
-		on:blur
-		on:focus
-		on:dblclick
-		on:contextmenu
-		on:mousedown
-		on:mouseup
-		on:mouseover
-		on:mouseout
-		on:mouseenter
-		on:mouseleave
-		on:keypress
-		on:keydown
-		on:keyup
 	>
 		<div class="info-bar-icon">
 			<slot name="icon">
 				<InfoBadge {severity} />
 			</slot>
 		</div>
-		<div class="info-bar-content" class:action-wrapped={wrapped}>
-			<h5>
-				<slot />
-			</h5>
-			<p>{description}</p>
+		<div
+			class="info-bar-content"
+			class:wrapped
+			class:action-visible={$$slots.action}
+			class:action-wrapped={actionWrapped}
+			class:message-wrapped={messageWrapped}
+		>
+			{#if title}
+				<h5 bind:this={titleElement}>
+					{title}
+				</h5>
+			{/if}
+			{#if message || $$slots.default}
+				<p bind:this={messageElement}>
+					{message}
+					<slot />
+				</p>
+			{/if}
 			{#if $$slots.action}
-				<div class="info-bar-action" bind:this={action}>
+				<div class="info-bar-action" bind:this={actionElement}>
 					<slot name="action" />
 				</div>
 			{/if}
@@ -81,6 +100,7 @@
 				type="button"
 				aria-label="Close"
 				on:click={handleClose}
+				bind:this={closeButtonElement}
 			>
 				<svg
 					aria-hidden="true"

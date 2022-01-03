@@ -7,29 +7,59 @@
 		pointer-events: none;
 		position: absolute;
 		z-index: 100;
-		&.alignment- {
+		&.placement- {
+			&top {
+				bottom: calc(100% + var(--tooltip-offset));
+			}
+			&bottom {
+				top: calc(100% + var(--tooltip-offset));
+			}
+			&left {
+				right: calc(100% + var(--tooltip-offset));
+			}
+			&right {
+				left: calc(100% + var(--tooltip-offset));
+			}
 			&top,
-			&bottom,
-			&auto {
-				transform: translateX(-50%);
-				left: 50%;
+			&bottom {
+				&.alignment- {
+					&start {
+						inset-inline-start: 0;
+					}
+					&end {
+						inset-inline-end: 0;
+					}
+					&center {
+						inset-inline-start: 50%;
+						transform: translateX(-50%);
+					}
+				}
 			}
 			&left,
 			&right {
-				transform: translateY(-50%);
-				top: 50%;
+				&.alignment- {
+					&start {
+						inset-block-start: 0;
+					}
+					&end {
+						inset-block-end: 0;
+					}
+					&center {
+						inset-block-start: 50%;
+						transform: translateY(-50%);
+					}
+				}
 			}
-			&top {
-				inset-block-start: calc(var(--tooltip-offset) * -1);
-			}
-			&bottom {
-				inset-block-end: calc(var(--tooltip-offset) * -1);
-			}
-			&left {
-				inset-inline-start: calc(var(--tooltip-offset) * -1);
-			}
-			&right {
-				inset-inline-end: calc(var(--tooltip-offset) * -1);
+			&auto {
+				transform: translateY(-100%);
+				&.alignment- {
+					&center {
+						transform: translate(-50%, -100%);
+					}
+					&end {
+						transform: translate(-100%, -100%);
+					}
+				}
 			}
 		}
 	}

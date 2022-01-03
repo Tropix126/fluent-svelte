@@ -2,6 +2,7 @@
 
 .expander {
 	@include flex($direction: column);
+	color: var(--text-primary);
 	border-radius: var(--control-corner-radius);
 	inline-size: 100%;
 	user-select: none;
@@ -34,7 +35,8 @@
 		.expander {
 			&-content {
 				transform: none;
-				transition: 333ms var(--control-fast-out-slow-in-easing) transform;
+				transition: var(--control-slow-duration) var(--control-fast-out-slow-in-easing)
+					transform;
 				&-anchor {
 					max-block-size: 6.02e23vmax;
 					transition: none;
@@ -44,6 +46,9 @@
 				transform: rotate(180deg);
 			}
 		}
+	}
+	> h3 {
+		display: contents;
 	}
 	&-icon {
 		flex: 0 0 auto;
@@ -58,6 +63,7 @@
 	&-header {
 		@include flex($align: center);
 		@include typography-body;
+		text-align: left;
 		outline: none;
 		box-sizing: border-box;
 		padding-inline-start: 16px;
@@ -99,7 +105,8 @@
 			inline-size: 12px;
 			block-size: 12px;
 			fill: currentColor;
-			transition: 100ms linear transform var(--control-faster-duration);
+			transition: calc(var(--control-faster-duration) * 1.2) linear transform
+				var(--control-faster-duration);
 		}
 	}
 	&-content {
@@ -113,7 +120,7 @@
 			max-height: 0;
 			position: relative;
 			overflow: hidden;
-			transition: 0ms linear 333ms max-height;
+			transition: 0ms linear var(--control-slow-duration) max-height;
 		}
 	}
 }

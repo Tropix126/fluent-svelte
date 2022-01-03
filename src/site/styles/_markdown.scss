@@ -1,0 +1,253 @@
+@use "./mixins" as *;
+
+.markdown-body {
+	color: var(--text-primary);
+	font-size: 1.4rem;
+	line-height: 1.45;
+
+	// Spacing
+	> *:first-child {
+		margin-block-start: 0 !important;
+	}
+
+	> *:last-child {
+		margin-block-end: 0 !important;
+	}
+
+	> *:only-child {
+		margin: 0 !important;
+	}
+
+	blockquote,
+	details,
+	dl,
+	ol,
+	p,
+	pre,
+	table,
+	ul {
+		margin-block-start: 0;
+		margin-block-end: 16px;
+	}
+
+	// Images
+	figure {
+		margin-block: 16px;
+
+		&.margin- {
+			&top {
+				margin: 48px 0 16px 0;
+			}
+
+			&bottom {
+				margin: 16px 0 48px 0;
+			}
+		}
+
+		img {
+			max-width: 100%;
+			height: auto;
+			border: 1px solid var(--card-stroke-default);
+			border-radius: var(--overlay-corner-radius);
+		}
+
+		figcaption {
+			color: var(--text-secondary);
+		}
+	}
+
+	// Header text (<h1> through <h6>)
+	h1,
+	h2 {
+		padding-block-start: 1.5em;
+		padding-block-end: 0.3em;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: var(--font-family-display);
+		margin-block-start: 24px;
+		margin-block-end: 16px;
+		color: var(--text-primary);
+		font-weight: 600;
+		line-height: 1.25;
+	}
+
+	h1 {
+		font-size: var(--display-font-size);
+	}
+
+	h2 {
+		font-size: var(--title-large-font-size);
+	}
+
+	h3 {
+		font-size: var(--title-font-size);
+	}
+
+	h4 {
+		font-size: 1em;
+	}
+
+	h5 {
+		font-size: 0.875em;
+	}
+
+	h6 {
+		color: var(--text-tertiary);
+		font-size: 0.85em;
+	}
+
+	// Ordered & unordered lists
+	ol ol,
+	ol ul,
+	ul ol,
+	ul ul {
+		margin-block-start: 0;
+		margin-block-end: 0;
+	}
+
+	ol,
+	ul {
+		padding-inline-start: 2em;
+	}
+
+	li + li {
+		margin-block-start: 0.25em;
+	}
+
+	ol ol,
+	ul ol {
+		list-style-type: lower-roman;
+	}
+
+	ol,
+	ul {
+		padding-inline-start: 2em;
+	}
+
+	// Codeblocks
+	code,
+	kbd {
+		margin: 0;
+		padding-inline: 0.4em;
+		padding-block: 0.2em;
+		border: 1px solid var(--card-stroke-default);
+		border-radius: var(--control-corner-radius);
+		background-color: var(--card-background-default);
+		background-clip: padding-box;
+		font-family: var(--font-family-monospace);
+		font-size: 85%;
+		word-wrap: break-word;
+	}
+
+	kbd {
+		padding-inline: 0.4em;
+		padding-block: 0.3em;
+		color: hsl(70, 5%, 22%);
+		box-shadow: inset 0 -0.2em 0 var(--subtle-fill-secondary);
+
+		@media (prefers-color-scheme: dark) {
+			color: hsl(0, 0%, 83%);
+		}
+	}
+
+	pre {
+		padding-inline: 16px;
+		padding-block: 12px;
+		border: 1px solid var(--card-stroke-default);
+		border-radius: var(--control-corner-radius);
+		background-color: var(--card-background-default);
+		background-clip: padding-box;
+		font-size: 1em;
+		overflow: auto;
+
+		code {
+			padding: 0;
+			border: none;
+			background-color: transparent;
+		}
+	}
+
+	// Blockquotes
+	blockquote {
+		margin: 0;
+		padding: 0 1em;
+		color: var(--text-disabled);
+		border-inline-start: 0.25em solid var(--subtle-fill-secondary);
+	}
+
+	// Anchors
+	a:not(.icon-button):not(.button) {
+		color: var(--accent-text-primary);
+		text-decoration: underline;
+		text-decoration-skip-ink: none;
+
+		&:hover,
+		&:active {
+			text-decoration: none;
+		}
+
+		&:hover {
+			color: var(--accent-text-tertiary);
+		}
+
+		&:active {
+			color: var(--accent-text-secondary);
+		}
+	}
+
+	// Horizontal dividers
+	hr:not([class]) {
+		margin: 24px 0;
+		border: none;
+		border-block-start: 1px solid var(--divider-stroke-default);
+	}
+
+	// Tables
+	table {
+		display: inline-block;
+		border: 1px solid var(--card-stroke-default);
+		border-radius: var(--control-corner-radius);
+		border-collapse: collapse;
+		background-clip: padding-box;
+		overflow: hidden;
+		text-align: left;
+
+		button {
+			width: 100%;
+		}
+
+		th,
+		td {
+			padding-inline: 12px;
+			padding-block: 6px;
+		}
+
+		td {
+			border-block-start: 1px solid var(--card-stroke-default);
+		}
+
+		th {
+			background-color: var(--card-background-secondary);
+			font-weight: 600;
+		}
+
+		tr {
+			background-color: var(--card-background-default);
+		}
+	}
+
+	.info-bar,
+	.copy-box {
+		margin-block-end: 24px;
+	}
+
+	.copy-box {
+		margin-block-start: 8px;
+	}
+}

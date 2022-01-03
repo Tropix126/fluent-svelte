@@ -1,0 +1,49 @@
+@use "src/lib/mixins" as *;
+@use "src/site/styles/mixins" as *;
+
+.code-example {
+	@include flex($direction: column, $align: center, $justify: start, $gap: 1.25rem);
+	inline-size: fit-content;
+	max-inline-size: 100vw;
+	block-size: 100%;
+	margin-block-start: 1.5rem;
+	padding: 1rem;
+	border: 1px solid var(--fds-control-stroke-default);
+	border-radius: 1rem;
+
+	h3 {
+		margin-block-end: 0;
+	}
+
+	.example {
+		display: grid;
+		grid-template-rows: min-content 1fr min-content;
+		justify-items: center;
+		align-content: start;
+		gap: 1rem;
+
+		.example-code {
+			pre {
+				margin-block-end: 0;
+				border-radius: 1rem;
+				tab-size: 2;
+			}
+		}
+	}
+
+	.example-description {
+		text-align: center;
+		overflow-wrap: anywhere;
+	}
+
+	:global(svg) {
+		fill: var(--fds-text-primary);
+	}
+
+	@media screen and (max-width: 600px) {
+		:global(svg),
+		.code {
+			display: none;
+		}
+	}
+}

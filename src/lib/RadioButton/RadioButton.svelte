@@ -1,58 +1,48 @@
 <script lang="ts">
-	import TextBlock from "../TextBlock/TextBlock.svelte";
+	import { get_current_component } from "svelte/internal";
+	import { createEventForwarder } from "$lib/internal";
 
-	/** Value representing a group of radios that the inputs will be bound to */
+	/** Bindable value representing a group of radio inputs that the input will be bound to. */
 	export let group: any = [];
 
-	/** Specifies whether the radio is disabled */
+	/** Controls whether the radio is checked or not. Only valid is `group` is not bound. */
+	export let checked = false;
+
+	/** Sets the input element's native `value` attribute for usage in forms. */
+	export let value: any = undefined;
+
+	/** Controls whether the radio is intended for user interaction, and styles it accordingly. */
 	export let disabled = false;
 
-	/** Specifies the input's native value attribute */
-	export let value = undefined;
-
-	/** Specifies a custom class name for the outer combobox container */
+	/** Specifies a custom class name for the radio. */
 	let className = "";
 	export { className as class };
 
-	let element: HTMLInputElement;
+	/** Obtains a bound DOM reference to the checkbox's <input /> element. */
+	export let inputElement: HTMLInputElement = null;
 
-	export const getElement = () => element;
+	/** Obtains a bound DOM reference to the checkbox's outer container element. */
+	export let containerElement: HTMLLabelElement = null;
 
-	$: checked = group === value;
+	const forwardEvents = createEventForwarder(get_current_component());
 </script>
 
-<label class="radio-button-container">
+<label class="radio-button-container" bind:this={containerElement}>
 	<input
-		on:change
-		on:input
-		on:beforeinput
-		on:click
-		on:blur
-		on:focus
-		on:dblclick
-		on:contextmenu
-		on:mousedown
-		on:mouseup
-		on:mouseover
-		on:mouseout
-		on:mouseenter
-		on:mouseleave
-		on:keypress
-		on:keydown
-		on:keyup
+		use:forwardEvents
 		type="radio"
-		aria-selected={checked}
-		class="radio-button {className ?? ''}"
+		class="radio-button {className}"
 		bind:group
-		bind:this={element}
+		bind:this={inputElement}
 		{value}
+		{checked}
 		{disabled}
 		{...$$restProps}
 	/>
 	{#if $$slots.default}
-		<TextBlock>
+		<span>
 			<slot />
-		</TextBlock>
+		</span>
 	{/if}
 </label>
 

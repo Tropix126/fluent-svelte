@@ -1,0 +1,42 @@
+@use "src/lib/mixins" as *;
+@use "./mixins" as *;
+
+:global {
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+		-webkit-user-drag: none;
+	}
+
+	:root {
+		--font-family-monospace: "Cascadia Code", "Fira Code", "Consolas", monospace;
+		@media (prefers-color-scheme: dark) {
+			color-scheme: dark;
+		}
+	}
+
+	html {
+		font-size: 62.5%;
+	}
+
+	body {
+		@include typography-body;
+		height: 100vh;
+		margin: 0;
+		padding: 0;
+		color: var(--text-primary);
+		user-select: revert;
+		background-color: var(--solid-background-base);
+	}
+
+	// Codeblock syntax highlighting
+	code {
+		@media (prefers-color-scheme: light) {
+			@include prism-vs-light;
+		}
+		@media (prefers-color-scheme: dark) {
+			@include prism-vs-dark;
+		}
+	}
+}

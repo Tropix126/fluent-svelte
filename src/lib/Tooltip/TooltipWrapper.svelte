@@ -1,44 +1,53 @@
 <script lang="ts">
-	import { fade } from "svelte/transition";
+	import { onMount } from "svelte";
 
 	import TooltipSurface from "./TooltipSurface.svelte";
 
-	/** Specifies the tooltip's text content */
+	/** Specifies the tooltip's text content. */
 	export let text = "";
 
-	/** Distance of the tooltip from the alignment axis in pixels */
-	export let offset = 48;
+	/** Distance of the tooltip from the alignment axis in pixels. */
+	export let offset = 24;
 
-	/** Direction the tooltip will appear from */
-	export let alignment: "auto" | "top" | "bottom" | "left" | "right" = "auto";
+	/** Direction that the tooltip will appear from. */
+	export let placement: "top" | "bottom" | "left" | "right" | "auto" = "auto";
 
-	/** Allows the tooltip to follow the user's cursor if `alignment` is set to "auto" and persistent is true */
+	/** Alignment of the tooltip along the placement target's given axis. */
+	export let alignment: "start" | "center" | "end" = "center";
+
+	/** Allows the tooltip to follow the user's cursor if `placement` is set to `auto`. */
 	export let followCursor = false;
 
-	/** Prevents the tooltip from disappearing after cursor leaves bounds */
+	/** Prevents the tooltip from disappearing after cursor leaves bounds. */
 	export let persistent = false;
 
-	/** Determines if the tooltip is visible or not */
+	/** Determines if the tooltip is visible or not. */
 	export let visible = false;
 
-	/** Initial delay time for the tooltip to become visible in millseconds */
+	/** Initial delay time for the tooltip to become visible in millseconds. */
 	export let delay = 1000;
 
-	type Position = { x?: number; y?: number };
+	/** Obtains a bound reference to the tooltip surface element. */
+	export let tooltipElement: HTMLDivElement = null;
 
-	let anchor: HTMLDivElement;
-	let wrapper: HTMLDivElement;
+	/** Obtains a bound reference to the tooltip's positioning anchor element. */
+	export let anchorElement: HTMLDivElement = null;
+
+	/** Obtains a bound reference to the tooltip's content wrapper element. */
+	export let wrapperElement: HTMLDivElement = null;
+
+	let mounted = false;
 	let tooltipDurationTimeout: ReturnType<typeof setTimeout>;
-	let currentPosition: Position = {
+	let currentPosition = {
 		x: 0,
 		y: 0
 	};
-	let mousePosition: Position = {
+	let mousePosition = {
 		x: 0,
 		y: 0
 	};
 
-	export const getElement = () => wrapper;
+	onMount(() => (mounted = true));
 
 	function updateMousePosition({ clientX, clientY }) {
 		mousePosition.x = clientX;
@@ -54,7 +63,8 @@
 
 	function mountTooltip() {
 		tooltipDurationTimeout = setTimeout(() => {
-			if (alignment === "auto") updateTooltipPositionAuto(wrapper.getBoundingClientRect());
+			if (placement === "auto" && wrapperElement)
+				updateTooltipPositionAuto(wrapperElement.getBoundingClientRect());
 
 			visible = true;
 		}, delay);
@@ -70,27 +80,28 @@
 
 <div
 	class="tooltip-wrapper"
-	bind:this={wrapper}
+	title={mounted ? undefined : text}
+	bind:this={wrapperElement}
 	on:mouseenter={mountTooltip}
 	on:mouseleave={destroyTooltip}
 	on:mousemove={updateMousePosition}
-	on:mousemove={() => {
-		if (followCursor) updateTooltipPositionAuto(wrapper.getBoundingClientRect());
-	}}
+	on:mousemove={() =>
+		placement === "auto" &&
+		followCursor &&
+		updateTooltipPositionAuto(wrapperElement.getBoundingClientRect())}
 >
 	<slot />
 
 	{#if visible}
 		<div
-			bind:this={anchor}
-			class="tooltip-anchor alignment-{alignment}"
-			style="{alignment === 'auto'
+			bind:this={anchorElement}
+			class="tooltip-anchor placement-{placement} alignment-{alignment}"
+			style="{placement === 'auto'
 				? `top: calc(${currentPosition.y}px - var(--fds-tooltip-offset));
 				   left: ${currentPosition.x}px;`
 				: ''} --fds-tooltip-offset: {offset}px"
-			transition:fade={{ duration: 167 }}
 		>
-			<TooltipSurface {...$$restProps}>
+			<TooltipSurface bind:element={tooltipElement} {...$$restProps}>
 				{text}
 				<slot name="tooltip" />
 			</TooltipSurface>

@@ -1,0 +1,91 @@
+@use "src/lib/mixins" as *;
+
+.navbar {
+	@include flex($align: center, $justify: center);
+	position: fixed;
+	inset-block-start: 0;
+	inset-inline-start: 0;
+	z-index: 1000;
+	inline-size: 100%;
+	min-block-size: 56px;
+	box-sizing: border-box;
+	border-bottom: 1px solid var(--surface-stroke-flyout);
+	background-color: var(--layer-background-default);
+	background-clip: padding-box;
+	backdrop-filter: blur(60px);
+	&-inner {
+		@include flex($align: center);
+		inline-size: 100%;
+		max-inline-size: 1440px;
+		padding-inline: 18px 12px;
+		margin: 0 auto;
+	}
+	a:focus-visible {
+		outline: none;
+		box-shadow: var(--focus-stroke);
+	}
+	nav {
+		@include flex($align: center, $justify: end, $gap: 12px);
+		flex: 1 1 auto;
+		padding: 0 16px;
+		a {
+			@include flex($align: center, $justify: center);
+			border-radius: var(--control-corner-radius);
+			position: relative;
+			text-decoration: none;
+			color: var(--text-primary);
+			transition: var(--control-fast-duration) var(--control-fast-out-slow-in-easing);
+			padding: 5px 11px;
+			&:hover,
+			&.selected {
+				background-color: var(--subtle-fill-secondary);
+			}
+			&:active {
+				background-color: var(--subtle-fill-tertiary);
+			}
+			&.selected {
+				color: var(--accent-text-primary);
+			}
+			> :global(svg) {
+				@include icon($size: calc(var(--body-font-size) + 2px));
+				margin-right: 8px;
+			}
+		}
+	}
+}
+
+.logo,
+.buttons {
+	flex: 0 0 auto;
+}
+
+.logo {
+	@include flex($justify: center, $align: center);
+	text-decoration: none;
+	position: relative;
+	color: var(--text-primary);
+	transition: var(--control-fast-duration) var(--control-fast-out-slow-in-easing);
+	font: {
+		family: var(--fds-font-family-display);
+		size: 20px;
+		weight: 600;
+	}
+	&:hover {
+		color: var(--text-secondary);
+	}
+	> img {
+		margin-inline-end: 14px;
+		width: auto;
+		height: 32px;
+	}
+	:global(.text-block) {
+		color: var(--text-secondary);
+		margin-inline-start: 6px;
+		position: relative;
+		top: 1px;
+	}
+}
+
+.buttons {
+	@include flex($align: center, $gap: 8px);
+}

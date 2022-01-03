@@ -2,6 +2,8 @@
 
 .toggle-switch {
 	@include flex($inline: true, $align: center);
+	@include typography-body;
+
 	position: relative;
 	margin: 0;
 	border: 1px solid var(--control-strong-stroke-default);
@@ -60,6 +62,10 @@
 			inline-size: 12px;
 			block-size: 12px;
 		}
+
+		+ span {
+			color: var(--text-disabled);
+		}
 	}
 
 	&:checked {
@@ -103,7 +109,7 @@
 		user-select: none;
 		min-block-size: 32px;
 
-		> :global(.text-block) {
+		> span {
 			padding-inline-start: 8px;
 		}
 	}

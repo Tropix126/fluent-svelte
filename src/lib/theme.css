@@ -20,8 +20,8 @@
 
 	/* Font Size */
 	--fds-caption-font-size: 12px;
-    --fds-body-font-size: 14px;
-    --fds-body-large-font-size: 18px;
+	--fds-body-font-size: 14px;
+	--fds-body-large-font-size: 18px;
 	--fds-subtitle-font-size: 20px;
 	--fds-title-font-size: 28px;
 	--fds-title-large-font-size: 40px;
@@ -32,6 +32,7 @@
 	--fds-overlay-corner-radius: 8px;
 
 	/* Duration */
+	--fds-control-slow-duration: 333ms;
 	--fds-control-normal-duration: 250ms;
 	--fds-control-fast-duration: 167ms;
 	/* --fds-control-fast-after-duration: 168ms; */
@@ -43,6 +44,17 @@
 	/* Focus Stroke */
 	--fds-focus-stroke: 0 0 0 1px var(--fds-focus-stroke-inner),
 		0 0 0 3px var(--fds-focus-stroke-outer);
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+	:root {
+		--fds-control-slow-duration: 0ms;
+		--fds-control-normal-duration: 0ms;
+		--fds-control-fast-duration: 0ms;
+		/* --fds-control-fast-after-duration: 0ms; */
+		--fds-control-faster-duration: 0ms;
+	}
 }
 
 /* Light Theme Colors */
@@ -209,7 +221,7 @@
 			0px 2px 21px hsl(0, 0%, 0%, 14.74%);
 
 		/* Shell Shadows */
-		--fds-inactive-window-shadow: 0px 16px 32px hsla(0, 0%, 0%, 18, 76%),
+		--fds-inactive-window-shadow: 0px 16px 32px hsla(0, 0%, 0%, 18%),
 			0px 2px 10.67px hsla(0, 0%, 0%, 0.1474);
 		--fds-active-window-shadow: 0px 32px 64px hsla(0, 0%, 0%, 28%),
 			0px 2px 21px hsla(0, 0%, 0%, 22%);

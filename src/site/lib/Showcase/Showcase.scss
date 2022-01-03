@@ -1,0 +1,44 @@
+@use "src/lib/mixins" as *;
+
+.component-showcase {
+	position: relative;
+	overflow: hidden;
+	outline: none;
+	min-block-size: 240px;
+	inline-size: 100%;
+	border-radius: var(--overlay-corner-radius);
+	background-clip: padding-box;
+	background-color: var(--card-background-default);
+	border: 1px solid var(--card-stroke-default);
+	box-shadow: var(--fds-card-shadow);
+	padding: 24px;
+	z-index: 1;
+	&:focus-visible {
+		box-shadow: var(--focus-stroke);
+	}
+	&-grid {
+		position: relative;
+		display: grid;
+		grid-gap: 12px;
+	}
+	&-backdrop,
+	&-inner {
+		@include flex($align: center, $justify: center);
+		position: absolute;
+		inset-inline-start: 0;
+		inset-block-start: 0;
+		inline-size: 100%;
+		block-size: 100%;
+	}
+	&-backdrop {
+		z-index: -1;
+		transform: translate(-50%, -50%);
+		block-size: 600%;
+		inline-size: 600%;
+	}
+	&-buttons {
+		position: absolute;
+		inset-inline-end: 12px;
+		inset-block-end: 12px;
+	}
+}

@@ -7,7 +7,7 @@
 	box-sizing: border-box;
 	min-inline-size: 30px;
 	min-block-size: 30px;
-    padding: 8px;   
+	padding: 8px;
 	color: var(--text-primary);
 	border-radius: var(--control-corner-radius);
 	background-color: var(--subtle-fill-transparent);
@@ -26,6 +26,6 @@
 		color: var(--text-disabled);
 	}
 	:global(svg) {
-        @include icon($size: 16px);
+		@include icon($size: 16px);
 	}
 }

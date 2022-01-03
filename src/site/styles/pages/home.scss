@@ -1,0 +1,134 @@
+@use "src/lib/mixins" as *;
+@use "src/site/styles/mixins" as *;
+
+:global {
+	#hero-section {
+		@include flex($direction: column, $justify: center, $align: center);
+		position: relative;
+		min-block-size: 596px;
+		text-align: center;
+		background: url("/bloom-mica-light.png") center/170% no-repeat;
+		@media (prefers-color-scheme: dark) {
+			background-image: url("/bloom-mica-dark.png");
+		}
+		> .page-section-inner {
+			@include flex($direction: column, $align: center);
+			position: relative;
+			padding-block: 58px 128px;
+		}
+		h1 {
+			font-size: 5.4rem;
+		}
+		.hero-card {
+			.text-box-container {
+				margin-block-start: 4px;
+				margin-block-end: 14px;
+			}
+			.copy-box {
+				font-family: var(--font-family-monospace);
+			}
+			header > .icon-button {
+				position: absolute;
+				inset-block-start: 6px;
+				inset-inline-end: 6px;
+			}
+		}
+		.buttons-spacer .button {
+			min-width: 128px;
+		}
+	}
+}
+
+.hero- {
+	&contents,
+	&cards {
+		position: relative;
+	}
+	&cards {
+		padding: 0 72px;
+		text-align: left;
+		position: absolute;
+		display: grid;
+		grid-gap: 24px;
+		inset-block-start: calc(100% - 48px);
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		inline-size: 100%;
+		inline-size: 90vw;
+		max-inline-size: 1160px;
+	}
+}
+
+.editor-body {
+	@include flex($direction: column);
+	flex: 1 1 auto;
+	max-height: 100%;
+	min-height: 0;
+	line-height: 18px;
+	font: {
+		size: var(--body-font-size);
+		family: var(--font-family-monospace);
+	}
+	.editor-tabs {
+		@include flex($align: center);
+		flex: 0 0 auto;
+		margin: 0;
+		padding: 0;
+		li {
+			@include typography-body;
+			margin: 0;
+			border: 1px solid var(--divider-stroke-default);
+			border-block-start: 2px solid #ff3e00;
+			border-bottom: none;
+			background-color: var(--solid-background-base);
+			padding: 6px 12px;
+			list-style-type: none;
+		}
+	}
+	.editor {
+		flex: 1 1 auto;
+		display: flex;
+		overflow: auto;
+		overflow: overlay;
+		max-height: 100%;
+		min-height: 0;
+		border-radius: var(--control-corner-radius);
+		border-top-left-radius: 0;
+		background-color: var(--solid-background-base);
+		border: 1px solid var(--divider-stroke-default);
+		pre {
+			user-select: text;
+			padding: 4px;
+			margin: 0;
+			code {
+				line-height: inherit;
+			}
+		}
+	}
+	.line-numbers {
+		position: sticky;
+		align-self: flex-start;
+		z-index: 1;
+		left: 0;
+		flex: 0 0 auto;
+		font-weight: 400;
+		background-color: var(--solid-background-base);
+		color: var(--text-secondary);
+		padding: 4px 6px;
+		inline-size: fit-content;
+		min-inline-size: 32px;
+		text-align: right;
+		border-inline-end: 1px solid var(--divider-stroke-default);
+		span {
+			display: block;
+		}
+	}
+}
+
+.example-app {
+	@include flex($direction: column, $align: center, $justify: center);
+	flex: 1 1 auto;
+	padding-bottom: 32px;
+	> div {
+		margin-top: 12px;
+	}
+}

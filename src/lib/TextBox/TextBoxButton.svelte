@@ -1,36 +1,26 @@
 <script lang="ts">
+	import { createEventForwarder } from "$lib/internal";
+	import { get_current_component } from "svelte/internal";
+
 	export let type = "button";
 
 	let className = "";
 	export { className as class };
 
-	let element: HTMLButtonElement;
+	export let element: HTMLButtonElement = null;
 
-	export const getElement = () => element;
+	const forwardEvents = createEventForwarder(get_current_component());
 </script>
 
 <button
+	use:forwardEvents
 	bind:this={element}
-	class="text-box-button {className ?? ''}"
+	class="text-box-button {className}"
 	{type}
 	{...$$restProps}
-	on:click
-	on:blur
-	on:focus
-	on:dblclick
-	on:contextmenu
-	on:mousedown
-	on:mouseup
-	on:mouseover
-	on:mouseout
-	on:mouseenter
-	on:mouseleave
-	on:keypress
-	on:keydown
-	on:keyup
 >
-	<slot /></button
->
+	<slot />
+</button>
 
 <style lang="scss">
 	@use "./TextBoxButton";

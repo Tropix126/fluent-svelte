@@ -1,0 +1,23 @@
+@use "src/lib/mixins" as *;
+
+.hero-card {
+	@include typography-body;
+	@include flex($direction: column);
+	box-sizing: border-box;
+	padding: 12px;
+	backdrop-filter: blur(60px) saturate(125%);
+	border-radius: var(--overlay-corner-radius);
+	background-color: var(--card-background-default);
+	border: 1px solid var(--card-stroke-default);
+	background-clip: padding-box;
+	box-shadow: var(--card-shadow);
+	transition: var(--control-normal-duration) var(--control-fast-out-slow-in-easing);
+	&:hover {
+		box-shadow: var(--flyout-shadow);
+		transform: translateY(-4px);
+	}
+	header {
+		@include flex($justify: between);
+		margin-bottom: 12px;
+	}
+}

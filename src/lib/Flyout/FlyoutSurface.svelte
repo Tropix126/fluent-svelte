@@ -1,29 +1,26 @@
 <script lang="ts">
+	import { fade } from "svelte/transition";
+	import { circOut } from "svelte/easing";
+
+	import { get_current_component } from "svelte/internal";
+	import { getCSSDuration, createEventForwarder } from "$lib/internal";
+
+	/** Specifies a custom class name for the surface. */
 	let className = "";
 	export { className as class };
 
-	let element: HTMLDivElement;
+	/** Obtains a bound DOM reference to the surface element. */
+	export let element: HTMLDivElement = null;
 
-	export const getElement = () => element;
+	const forwardEvents = createEventForwarder(get_current_component());
 </script>
 
 <div
-	class="flyout {className ?? ''}"
-	on:click
-	on:blur
-	on:focus
-	on:dblclick
-	on:contextmenu
-	on:mousedown
-	on:mouseup
-	on:mouseover
-	on:mouseout
-	on:mouseenter
-	on:mouseleave
-	on:keypress
-	on:keydown
-	on:keyup
+	class="flyout {className}"
+	use:forwardEvents
+	out:fade={{ duration: getCSSDuration("--fds-control-faster-duration"), easing: circOut }}
 	bind:this={element}
+	{...$$restProps}
 >
 	<slot />
 </div>

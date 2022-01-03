@@ -1,0 +1,38 @@
+@use "../mixins" as *;
+
+.menu-bar-item {
+	@include typography-body;
+	@include flex($inline: true, $align: center);
+
+	position: relative;
+	padding: 5px 11px;
+	margin: 4px;
+	cursor: default;
+	color: var(--text-primary);
+	background-color: var(--subtle-fill-transparent);
+	border-radius: var(--control-corner-radius);
+	&:hover {
+		background-color: var(--subtle-fill-secondary);
+	}
+	&:active,
+	&[aria-expanded="true"] {
+		background-color: var(--subtle-fill-tertiary);
+		&:hover {
+			background-color: var(--subtle-fill-secondary);
+		}
+	}
+	&:active {
+		color: var(--text-secondary);
+	}
+	&.disabled {
+		color: var(--text-disabled);
+		background-color: var(--subtle-fill-disabled) !important;
+	}
+}
+
+.menu-flyout-anchor {
+	z-index: 10000;
+	position: absolute;
+	inset-block-start: 100%;
+	inset-inline-start: 0;
+}

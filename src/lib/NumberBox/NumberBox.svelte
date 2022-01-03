@@ -1,30 +1,50 @@
 <script lang="ts">
-	import TextBox from "../TextBox/TextBox.svelte";
-	import TextBoxButton from "../TextBox/TextBoxButton.svelte";
+	import { TextBox, TextBoxButton } from "$lib";
 
-	/** Determines whether the spinner buttons will be placed in an inline layout */
+	/** @extends {"../TextBox/TextBox.svelte"} */
+	/** Determines whether the spinner buttons will be placed in an inline layout. */
 	export let inline = false;
 
-	/** Maximum value for the input */
+	/** The input's current value. */
 	export let value: any = "";
 
-	/** Minimum value for the input */
+	/** Minimum value for the input. */
 	export let min: number = undefined;
 
-	/** Maximum value for the input */
+	/** Maximum value for the input. */
 	export let max: number = undefined;
 
-	/** Controls the interval between two value changes */
+	/** Controls the interval between two value changes when triggering a spin button. */
 	export let step: number = undefined;
 
-	/** Controls whether the NumberBox is disabled */
+	/** Controls whether the NumberBox is intended for user interaction, and styles it accordingly. */
 	export let disabled = false;
 
-	/** Specifies a custom class name for the NumberBox */
+	/** Specifies a custom class name for the NumberBox. */
 	let className = "";
 	export { className as class };
 
-	let input;
+	/** Obtains a bound DOM reference to the input element. */
+	export let inputElement: HTMLInputElement = null;
+
+	/** Obtains a bound DOM reference to the NumberBox's container element. */
+	export let containerElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the NumberBox's buttons container element. */
+	export let buttonsContainerElement: HTMLDivElement = null;
+
+	/** Obtains a bound DOM reference to the spin button element that increases the input's value. */
+	export let spinUpButtonElement: HTMLButtonElement = null;
+
+	/** Obtains a bound DOM reference to the NumberBox's clear button element. Only available if `clearButton` is set to true, `readonly` is set to false, and a `value` is present. */
+	export let clearButtonElement: HTMLButtonElement = null;
+
+	/** Obtains a bound DOM reference to the spin button element that decreases the input's value. */
+	export let spinDownButtonElement: HTMLButtonElement = null;
+
+	/** Obtains a bound DOM reference to the spin button flyout. Only available when `inline` is set to `false`. */
+	export let spinnerFlyoutElement: HTMLDivElement = null;
+
 	let spinUpTimeout;
 	let spinDownTimeout;
 	let spinUpInterval;
@@ -63,16 +83,14 @@
 	}
 
 	export function stepUp() {
-		input.getElement().stepUp();
-		value = input.getElement().value;
+		inputElement.stepUp();
+		value = inputElement.value;
 	}
 
 	export function stepDown() {
-		input.getElement().stepDown();
-		value = input.getElement().value;
+		inputElement.stepDown();
+		value = inputElement.value;
 	}
-
-	export const getElement = () => input.getElement();
 
 	$: if (value?.toString() === max?.toString() || value?.toString() === min?.toString())
 		stopSpinIntervals();
@@ -85,7 +103,10 @@
 <TextBox
 	class="number-box {className ?? ''}"
 	type="number"
-	bind:this={input}
+	bind:inputElement
+	bind:containerElement
+	bind:buttonsContainerElement
+	bind:clearButtonElement
 	bind:value
 	on:outermousedown={() => (spinnerFlyoutOpen = false)}
 	on:change
@@ -106,17 +127,20 @@
 	on:keypress
 	on:keydown
 	on:keyup
+	on:clear
 	{min}
 	{max}
 	{step}
 	{...$$restProps}
 >
+	<slot />
 	<svelte:fragment slot="buttons">
 		{#if inline}
 			<TextBoxButton
 				on:mousedown={spinUp}
 				on:mouseup={stopSpinIntervals}
 				on:mouseleave={stopSpinIntervals}
+				bind:element={spinUpButtonElement}
 				tabindex="-1"
 				aria-label="Increase number"
 				disabled={spinUpButtonDisabled}
@@ -139,6 +163,7 @@
 				on:mousedown={spinDown}
 				on:mouseup={stopSpinIntervals}
 				on:mouseleave={stopSpinIntervals}
+				bind:element={spinDownButtonElement}
 				tabindex="-1"
 				aria-label="Decrease number"
 				class="number-box-spinner"
@@ -161,7 +186,7 @@
 			<TextBoxButton
 				class="number-box-spinner-compact"
 				tabindex="-1"
-				on:mousedown={input.getElement().focus()}
+				on:mousedown={() => inputElement.focus()}
 			>
 				<svg
 					aria-hidden="true"
@@ -177,11 +202,12 @@
 				</svg>
 			</TextBoxButton>
 			{#if spinnerFlyoutOpen}
-				<div class="number-box-spinner-flyout">
+				<div class="number-box-spinner-flyout" bind:this={spinnerFlyoutElement}>
 					<TextBoxButton
 						on:mousedown={spinUp}
 						on:mouseup={stopSpinIntervals}
 						on:mouseleave={stopSpinIntervals}
+						bind:element={spinUpButtonElement}
 						class="number-box-spinner"
 						disabled={spinUpButtonDisabled}
 						aria-label="Increase number"
@@ -204,6 +230,7 @@
 						on:mousedown={spinDown}
 						on:mouseup={stopSpinIntervals}
 						on:mouseleave={stopSpinIntervals}
+						bind:element={spinDownButtonElement}
 						tabindex="-1"
 						aria-label="Decrease number"
 						class="number-box-spinner"
@@ -225,6 +252,7 @@
 				</div>
 			{/if}
 		{/if}
+
 		<slot name="buttons" />
 	</svelte:fragment>
 </TextBox>

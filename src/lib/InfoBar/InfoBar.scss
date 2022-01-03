@@ -46,14 +46,24 @@
 			block-start: 7px;
 			block-end: 7px;
 		}
+		&.message-wrapped,
 		&.action-wrapped {
 			margin: {
 				block-start: 13px;
 				block-end: 15px;
 			}
+		}
+		&.message-wrapped {
+			h5,
 			p {
-				margin-block-end: 16px;
+				align-self: flex-start;
 			}
+			.info-bar-action {
+				margin-inline-end: 50%;
+			}
+		}
+		&.action-wrapped .info-bar-action {
+			padding-block-start: 16px;
 		}
 	}
 	h5,

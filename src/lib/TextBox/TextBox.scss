@@ -3,8 +3,10 @@
 .text-box {
 	@include typography-body;
 	box-sizing: border-box;
+	border: none;
 	outline: none;
 	cursor: unset;
+	margin: 0;
 	flex: 1 1 auto;
 	inline-size: 100%;
 	min-block-size: 30px;
@@ -12,7 +14,6 @@
 	border-radius: var(--control-corner-radius);
 	color: var(--text-primary);
 	background-color: transparent;
-	border: none;
 	&::placeholder {
 		user-select: none;
 		color: var(--text-secondary);
@@ -79,7 +80,7 @@
 			box-sizing: border-box;
 			position: absolute;
 			inset-block-end: 0;
-			inset-block-start: 0;
+			inset-inline-start: 0;
 			inline-size: 100%;
 			block-size: 100%;
 			border-bottom: 1px solid var(--control-strong-stroke-default);
