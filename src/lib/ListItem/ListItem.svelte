@@ -1,7 +1,9 @@
 <script lang="ts">
-	import { TextBlock } from "$lib";
-	import { createEventForwarder } from "$lib/internal";
+	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
+	import { createEventForwarder } from "$lib/internal";
+
+	import { TextBlock } from "$lib";
 
 	/** @restProps {button | a} */
 	/** Controls whether the item is selected or not. */
@@ -13,6 +15,9 @@
 	/** Sets an href value and converts the list element into an anchor. */
 	export let href = "";
 
+	/** Specifies an ARIA role for the item. */
+	export let role = "listitem";
+
 	/** Specifies a custom class name for the item. */
 	let className = "";
 	export { className as class };
@@ -20,7 +25,10 @@
 	/** Obtains a bound DOM reference to the item's element. */
 	export let element: HTMLAnchorElement | HTMLLIElement = null;
 
-	const forwardEvents = createEventForwarder(get_current_component());
+	const forwardEvents = createEventForwarder(get_current_component(), ["select"]);
+	const dispatch = createEventDispatcher();
+
+	$: if (selected) dispatch("select");
 
 	function handleKeyDown({ key, target }) {
 		if (key === "Enter") target.click();
@@ -33,11 +41,12 @@
 		on:keydown={handleKeyDown}
 		bind:this={element}
 		tabindex={disabled ? -1 : 0}
-		role="listitem"
+		aria-selected={selected}
 		class="list-item {className}"
 		class:selected
 		class:disabled
 		{href}
+		{role}
 		{...$$restProps}
 	>
 		<slot name="icon" />
@@ -51,9 +60,12 @@
 		on:keydown={handleKeyDown}
 		bind:this={element}
 		tabindex={disabled ? -1 : 0}
+		aria-selected={selected}
 		class="list-item {className}"
 		class:selected
 		class:disabled
+		{href}
+		{role}
 		{...$$restProps}
 	>
 		<slot name="icon" />

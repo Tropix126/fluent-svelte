@@ -71,7 +71,7 @@ interface ArrowNavigationOptions {
 // Controls the focus of a list of elements by using the arrow keys
 export function arrowNavigation(
 	node: HTMLElement,
-	{ preventTab = false, stopPropagation = false }: ArrowNavigationOptions
+	options: ArrowNavigationOptions = { preventTab: false, stopPropagation: false }
 ) {
 	const handleKeyDown = (event: KeyboardEvent) => {
 		const { key } = event;
@@ -82,9 +82,9 @@ export function arrowNavigation(
 		const activeIndex = tabOrder.indexOf(document.activeElement as HTMLElement);
 
 		if (tabOrder.length < 0) return;
-		if (key === "ArrowUp" || key === "ArrowDown" || (key === "Tab" && preventTab)) {
+		if (key === "ArrowUp" || key === "ArrowDown" || (key === "Tab" && options.preventTab)) {
 			event.preventDefault();
-			if (stopPropagation) event.stopPropagation();
+			if (options.stopPropagation) event.stopPropagation();
 		}
 
 		if (key === "ArrowUp") {

@@ -25,7 +25,8 @@
 		MenuFlyout,
 		MenuFlyoutItem,
 		MenuFlyoutDivider,
-		ContextMenu
+		ContextMenu,
+		AutoSuggestBox
 	} from "$lib";
 
 	import { PageSection } from "$site/lib";
@@ -654,6 +655,51 @@
 			</MenuFlyoutItem>
 		</svelte:fragment>
 	</ContextMenu>
+
+	<h3>Auto Suggest Box</h3>
+	<div class="showcase-group">
+		<AutoSuggestBox
+			placeholder="Search fruits"
+			items={[
+				"Apple",
+				"Orange",
+				"Grape",
+				"Mango",
+				"Pear",
+				"Banana",
+				"Strawberry",
+				"Watermelon",
+				"Cherry"
+			]}
+		/>
+
+		<AutoSuggestBox
+			placeholder="Custom item template"
+			items={[
+				"Apple",
+				"Orange",
+				"Grape",
+				"Mango",
+				"Pear",
+				"Banana",
+				"Strawberry",
+				"Watermelon",
+				"Cherry"
+			]}
+		>
+			<li
+				slot="item-template"
+				let:id
+				let:item
+				let:selection
+				let:index
+				{id}
+				style={selection === index ? "background-color: red" : ""}
+			>
+				{item}
+			</li>
+		</AutoSuggestBox>
+	</div>
 </PageSection>
 
 <style lang="scss">

@@ -133,6 +133,7 @@
 	{step}
 	{...$$restProps}
 >
+	<slot />
 	<svelte:fragment slot="buttons">
 		{#if inline}
 			<TextBoxButton
@@ -251,6 +252,7 @@
 				</div>
 			{/if}
 		{/if}
+
 		<slot name="buttons" />
 	</svelte:fragment>
 </TextBox>
