@@ -31,7 +31,7 @@
 	<input
 		use:forwardEvents
 		type="radio"
-		class="radio-button {className ?? ''}"
+		class="radio-button {className}"
 		bind:group
 		bind:this={inputElement}
 		{value}

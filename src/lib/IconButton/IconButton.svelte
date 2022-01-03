@@ -23,7 +23,7 @@
 	<a
 		use:forwardEvents
 		bind:this={element}
-		class="icon-button {className ?? ''}"
+		class="icon-button {className}"
 		class:disabled
 		{href}
 		{...$$restProps}
@@ -33,7 +33,7 @@
 {:else}
 	<button
 		use:forwardEvents
-		class="icon-button {className ?? ''}"
+		class="icon-button {className}"
 		class:disabled
 		{disabled}
 		{...$$restProps}

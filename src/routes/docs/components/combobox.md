@@ -5,8 +5,7 @@
     import data from "$lib/ComboBox/ComboBox.svelte?sveld&raw";
 </script>
 
-A combo box (also known as a drop-down list) is used to present a list of items that a user can select from. A combo box starts in a compact state and expands to show a list of selectable items. 
-
+A combo box (also known as a drop-down list) is used to present a list of items that a user can select from. A combo box starts in a compact state and expands to show a list of selectable items.
 
 ```ts
 import { ComboBox } from "fluent-svelte";

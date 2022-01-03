@@ -46,11 +46,11 @@
 	&:disabled {
 		border-color: var(--control-strong-stroke-disabled);
 		background-color: var(--control-alt-fill-disabled);
-		
+
 		&::before {
 			visibility: hidden;
 		}
-		
+
 		+ span {
 			color: var(--text-disabled);
 		}

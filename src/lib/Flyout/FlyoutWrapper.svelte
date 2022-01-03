@@ -2,7 +2,7 @@
 	import { createEventDispatcher } from "svelte";
 	import { uid, focusTrap } from "$lib/internal";
 
-    import FlyoutSurface from "./FlyoutSurface.svelte";
+	import FlyoutSurface from "./FlyoutSurface.svelte";
 
 	/** Determines the flyout's visibility. */
 	export let open = false;
@@ -44,9 +44,9 @@
 		if (key === "Escape" && closable) open = false;
 	}
 
-    function closeFlyout() {
-        if (closable) open = false;
-    }
+	function closeFlyout() {
+		if (closable) open = false;
+	}
 </script>
 
 <svelte:window on:keydown={handleEscapeKey} />
@@ -61,21 +61,21 @@
 >
 	<slot />
 	{#if open}
-        <slot name="override">
-            <div
-                id={menuId}
-                class="flyout-anchor placement-{placement} alignment-{alignment}"
-                style="--fds-flyout-offset: {offset}px;"
-                use:focusTrap
-                bind:this={anchorElement}
-                on:click={e => e.stopPropagation()}
-            >
-                <FlyoutSurface bind:element={menuElement} class={className ?? ""} {...$$restProps}>
-                    <slot name="flyout" />
-                </FlyoutSurface>
-            </div>
-            <div class="flyout-backdrop" bind:this={backdropElement} on:mousedown={closeFlyout} />
-        </slot>
+		<slot name="override">
+			<div
+				id={menuId}
+				class="flyout-anchor placement-{placement} alignment-{alignment}"
+				style="--fds-flyout-offset: {offset}px;"
+				use:focusTrap
+				bind:this={anchorElement}
+				on:click={e => e.stopPropagation()}
+			>
+				<FlyoutSurface bind:element={menuElement} class={className ?? ""} {...$$restProps}>
+					<slot name="flyout" />
+				</FlyoutSurface>
+			</div>
+			<div class="flyout-backdrop" bind:this={backdropElement} on:mousedown={closeFlyout} />
+		</slot>
 	{/if}
 </div>
 

@@ -47,7 +47,7 @@ Checkboxes represent a control that a user can select (check) or clear (uncheck)
 			bind:indeterminate
 			bind:this={inputElement}
 			type="checkbox"
-			class="checkbox {className ?? ''}"
+			class="checkbox {className}"
 			{value}
 			{disabled}
 			{...$$restProps}

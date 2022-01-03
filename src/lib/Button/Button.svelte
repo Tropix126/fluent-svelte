@@ -35,7 +35,7 @@ A button gives the user a way to trigger an immediate action. Some buttons are s
 		use:forwardEvents
 		bind:this={element}
 		role="button"
-		class="button style-{variant} {className ?? ''}"
+		class="button style-{variant} {className}"
 		class:disabled
 		{href}
 		{...$$restProps}
@@ -46,7 +46,7 @@ A button gives the user a way to trigger an immediate action. Some buttons are s
 	<button
 		use:forwardEvents
 		bind:this={element}
-		class="button style-{variant} {className ?? ''}"
+		class="button style-{variant} {className}"
 		class:disabled
 		{disabled}
 		{...$$restProps}

@@ -1,5 +1,4 @@
 <script>
-	// this doesn't use the Fluent namespace because WebStorm
 	import {
 		Button,
 		Checkbox,
@@ -28,8 +27,6 @@
 		MenuFlyoutDivider,
 		ContextMenu
 	} from "$lib";
-
-	import { MenuFlyoutSurface } from "$lib/internal";
 
 	import { PageSection } from "$site/lib";
 
@@ -123,23 +120,13 @@
 	<ComboBox
 		placeholder="ComboBox"
 		items={[
-			{
-				name: "Item 1",
-				value: 0
-			},
-			{
-				name: "Item 2",
-				value: 1
-			},
+			{ name: "Item 1" },
+			{ name: "Item 2" },
 			{
 				name: "Item 3",
-				value: 2,
 				disabled: true
 			},
-			{
-				name: "Item 4",
-				value: 3
-			}
+			{ name: "Item 4" }
 		]}
 	/>
 
@@ -149,21 +136,11 @@
 		items={[
 			{
 				name: "Item 1",
-				value: 0,
 				disabled: true
 			},
-			{
-				name: "Item 2",
-				value: 1
-			},
-			{
-				name: "Item 3",
-				value: 2
-			},
-			{
-				name: "Item 4",
-				value: 3
-			}
+			{ name: "Item 2" },
+			{ name: "Item 3" },
+			{ name: "Item 4" }
 		]}
 	/>
 
@@ -172,20 +149,16 @@
 		disabled
 		items={[
 			{
-				name: "Item 1",
-				value: 0
+				name: "Item 1"
 			},
 			{
-				name: "Item 2",
-				value: 1
+				name: "Item 2"
 			},
 			{
-				name: "Item 3",
-				value: 2
+				name: "Item 3"
 			},
 			{
-				name: "Item 4",
-				value: 3
+				name: "Item 4"
 			}
 		]}
 	/>
@@ -295,34 +268,10 @@
 
 	<h3>Tooltip</h3>
 	<div class="showcase-group">
-		<Tooltip text="hiii">
+		<Tooltip text="test">
 			<div
-				style="width: 80px; height: 80px; border: 2px dotted var(--fds-divider-stroke-default); margin: 0;"
-			/>
-		</Tooltip>
-		<Tooltip followCursor text="hiii">
-			<div
-				style="width: 80px; height: 80px; border: 2px dotted var(--fds-divider-stroke-default); margin: 0;"
-			/>
-		</Tooltip>
-		<Tooltip alignment="top" text="hiii">
-			<div
-				style="width: 80px; height: 80px; border: 2px dotted var(--fds-divider-stroke-default); margin: 0;"
-			/>
-		</Tooltip>
-		<Tooltip alignment="bottom" text="hiii">
-			<div
-				style="width: 80px; height: 80px; border: 2px dotted var(--fds-divider-stroke-default); margin: 0;"
-			/>
-		</Tooltip>
-		<Tooltip alignment="left" text="hiii">
-			<div
-				style="width: 80px; height: 80px; border: 2px dotted var(--fds-divider-stroke-default); margin: 0;"
-			/>
-		</Tooltip>
-		<Tooltip alignment="right" text="hiii">
-			<div
-				style="width: 80px; height: 80px; border: 2px dotted var(--fds-divider-stroke-default); margin: 0;"
+				tabindex={-1}
+				style="width:80px;height:80px;border:2px dotted var(--fds-divider-stroke-default);margin:0;"
 			/>
 		</Tooltip>
 	</div>
@@ -367,24 +316,19 @@
 					value={1}
 					items={[
 						{
-							name: "Disabled",
-							value: 0
+							name: "Disabled"
 						},
 						{
-							name: "10 minutes",
-							value: 1
+							name: "10 minutes"
 						},
 						{
-							name: "20 minutes",
-							value: 2
+							name: "20 minutes"
 						},
 						{
-							name: "30 minutes",
-							value: 3
+							name: "30 minutes"
 						},
 						{
-							name: "1 hour",
-							value: 4
+							name: "1 hour"
 						}
 					]}
 				/>

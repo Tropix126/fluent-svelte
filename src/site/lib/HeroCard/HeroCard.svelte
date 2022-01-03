@@ -8,7 +8,7 @@
 </script>
 
 <div
-	class="hero-card {className ?? ''}"
+	class="hero-card {className}"
 	on:click
 	on:blur
 	on:focus

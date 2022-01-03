@@ -19,11 +19,15 @@
 	export let containerElement: HTMLDivElement = null;
 </script>
 
-<div class="person-picture-container" style="--fds-person-picture-size: {size}px" bind:this={containerElement}>
+<div
+	class="person-picture-container"
+	style="--fds-person-picture-size: {size}px"
+	bind:this={containerElement}
+>
 	{#if src}
 		<img
 			bind:this={element}
-			class="person-picture {className ?? ''}"
+			class="person-picture {className}"
 			width={size}
 			height={size}
 			{src}
@@ -31,7 +35,7 @@
 			{...$$restProps}
 		/>
 	{:else}
-		<div bind:this={element} class="person-picture {className ?? ''}" {...$$restProps}>
+		<div bind:this={element} class="person-picture {className}" {...$$restProps}>
 			<slot>
 				{alt
 					.split(" ")

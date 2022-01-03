@@ -55,9 +55,9 @@
 		if (key === "Escape" && closable) open = false;
 	}
 
-    function closeFlyout() {
-        if (closable) open = false;
-    }
+	function closeFlyout() {
+		if (closable) open = false;
+	}
 
 	setContext("closeFlyout", event => {
 		dispatch("select");
@@ -84,12 +84,17 @@
 			id={menuId}
 			class="menu-flyout-anchor placement-{placement} alignment-{alignment}"
 			style="--fds-menu-flyout-offset: {offset}px;"
-            tabindex="-1"
+			tabindex="-1"
 			bind:this={anchorElement}
 			use:arrowNavigation={{ preventTab: true }}
 			on:click={e => e.stopPropagation()}
 		>
-			<MenuFlyoutSurface bind:element={menuElement} bind:this={menu} class={className ?? ""} {...$$restProps}>
+			<MenuFlyoutSurface
+				bind:element={menuElement}
+				bind:this={menu}
+				class={className ?? ""}
+				{...$$restProps}
+			>
 				<slot name="flyout" />
 			</MenuFlyoutSurface>
 		</div>
@@ -98,5 +103,5 @@
 </div>
 
 <style lang="scss">
-    @use "./MenuFlyoutWrapper";
+	@use "./MenuFlyoutWrapper";
 </style>

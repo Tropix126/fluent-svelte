@@ -62,7 +62,7 @@
 
 	const forwardEvents = createEventForwarder(get_current_component());
 	const dispatch = createEventDispatcher();
-	const closeFlyout = getContext<((event: Event) => void)>("closeFlyout");
+	const closeFlyout = getContext<(event: Event) => void>("closeFlyout");
 	const menuId = uid("fds-menu-flyout-submenu-");
 
 	let menu: SvelteComponentTyped = null;
@@ -72,8 +72,7 @@
 	};
 
 	$: dispatch(open ? "open" : "close");
-	$: if (open && menu && tabbable(subMenuElement).length > 0)
-		tabbable(subMenuElement)[0].focus();
+	$: if (open && menu && tabbable(subMenuElement).length > 0) tabbable(subMenuElement)[0].focus();
 
 	function close(event) {
 		if (!cascading && closeFlyout && variant === "standard") closeFlyout(event);
@@ -119,7 +118,7 @@
 		aria-haspopup={$$slots.flyout && !disabled && open}
 		aria-controls={$$slots.flyout && !disabled && menuId}
 		aria-selected={selected || checked}
-		class="menu-flyout-item type-{variant} {className ?? ''}"
+		class="menu-flyout-item type-{variant} {className}"
 		class:cascading
 		class:selected
 		class:checked

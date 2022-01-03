@@ -34,7 +34,7 @@
 		bind:this={element}
 		tabindex={disabled ? -1 : 0}
 		role="listitem"
-		class="list-item {className ?? ''}"
+		class="list-item {className}"
 		class:selected
 		class:disabled
 		{href}
@@ -51,7 +51,7 @@
 		on:keydown={handleKeyDown}
 		bind:this={element}
 		tabindex={disabled ? -1 : 0}
-		class="list-item {className ?? ''}"
+		class="list-item {className}"
 		class:selected
 		class:disabled
 		{...$$restProps}

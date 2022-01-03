@@ -27,7 +27,7 @@
 <label class="toggle-switch-container" bind:this={containerElement}>
 	<input
 		use:forwardEvents
-		class="toggle-switch {className ?? ''}"
+		class="toggle-switch {className}"
 		type="checkbox"
 		bind:checked
 		bind:this={inputElement}

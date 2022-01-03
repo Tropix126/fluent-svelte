@@ -20,7 +20,7 @@
 	}
 </script>
 
-<div class="component-showcase {className ?? ''}" {...$$restProps}>
+<div class="component-showcase {className}" {...$$restProps}>
 	{#if module}
 		<div class="module" />
 	{/if}

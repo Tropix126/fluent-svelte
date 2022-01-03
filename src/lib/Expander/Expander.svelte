@@ -28,7 +28,7 @@
 	const forwardEvents = createEventForwarder(get_current_component(), ["expand", "collapse"]);
 	const headerId = uid("fds-expander-header-");
 	const contentId = uid("fds-expander-content-");
-	
+
 	$: dispatch(expanded ? "expand" : "collapse");
 
 	function handleKeydown({ key }) {
@@ -41,7 +41,7 @@
 
 <div
 	use:forwardEvents
-	class="expander direction-{direction} {className ?? ''}"
+	class="expander direction-{direction} {className}"
 	role="region"
 	class:expanded
 	bind:this={containerElement}
@@ -67,7 +67,12 @@
 			<span class="expander-header-title">
 				<slot />
 			</span>
-			<button class="expander-chevron" tabindex="-1" id={contentId} aria-labelledby={headerId}>
+			<button
+				class="expander-chevron"
+				tabindex="-1"
+				id={contentId}
+				aria-labelledby={headerId}
+			>
 				<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
 					{#if direction === "down"}
 						<path

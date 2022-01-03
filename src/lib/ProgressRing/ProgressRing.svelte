@@ -2,8 +2,8 @@
 	import { createEventForwarder } from "$lib/internal";
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
-	
-	/** Determines a completion amount in percentage. */
+
+	/** Determines a completion amount in percentage (0-100). If no value or an invalid value is provided, the ring will be indeterminate. */
 	export let value: number = undefined;
 
 	/** The size (diameter) of the ring in pixels. */
@@ -37,7 +37,7 @@
 	use:forwardEvents
 	bind:this={element}
 	tabindex="-1"
-	class="progress-ring {className ?? ''}"
+	class="progress-ring {className}"
 	class:indeterminate={!value}
 	width={size}
 	height={size}

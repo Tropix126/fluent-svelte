@@ -78,7 +78,7 @@
 	>
 		<div
 			use:forwardEvents
-			class="content-dialog size-{size} {className ?? ''}"
+			class="content-dialog size-{size} {className}"
 			role="dialog"
 			aria-modal="true"
 			aria-labelledby={title && titleId}

@@ -61,7 +61,7 @@
 		use:forwardEvents
 		bind:this={element}
 		bind:clientHeight
-		class="info-bar severity-{severity} {className ?? ''}"
+		class="info-bar severity-{severity} {className}"
 		role="alert"
 		{...$$restProps}
 	>

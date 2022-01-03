@@ -134,8 +134,8 @@
 	code,
 	kbd {
 		margin: 0;
-		padding-inline: .4em;
-		padding-block: .2em;
+		padding-inline: 0.4em;
+		padding-block: 0.2em;
 		border: 1px solid var(--card-stroke-default);
 		border-radius: var(--control-corner-radius);
 		background-color: var(--card-background-default);
@@ -146,8 +146,8 @@
 	}
 
 	kbd {
-		padding-inline: .4em;
-		padding-block: .3em;
+		padding-inline: 0.4em;
+		padding-block: 0.3em;
 		color: hsl(70, 5%, 22%);
 		box-shadow: inset 0 -0.2em 0 var(--subtle-fill-secondary);
 

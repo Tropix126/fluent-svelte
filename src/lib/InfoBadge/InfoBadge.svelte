@@ -17,13 +17,13 @@
 	const svgProps = {
 		"aria-hidden": true,
 		xmlns: "http://www.w3.org/2000/svg"
-	}
+	};
 </script>
 
 <span
 	use:forwardEvents
 	bind:this={element}
-	class="info-badge severity-{severity} {className ?? ''}"
+	class="info-badge severity-{severity} {className}"
 	{...$$restProps}
 >
 	<slot>

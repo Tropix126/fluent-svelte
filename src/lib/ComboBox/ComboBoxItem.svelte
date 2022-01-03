@@ -14,7 +14,7 @@
 <li
 	use:forwardEvents
 	tabindex="0"
-	class="combo-box-item {className ?? ''}"
+	class="combo-box-item {className}"
 	class:selected
 	class:disabled
 	{...$$restProps}

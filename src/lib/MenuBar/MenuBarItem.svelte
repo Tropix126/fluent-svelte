@@ -35,10 +35,15 @@
 
 	let menu: SvelteComponentTyped;
 
-	const forwardEvents = createEventForwarder(get_current_component(), ["open", "close", "select"]);
+	const forwardEvents = createEventForwarder(get_current_component(), [
+		"open",
+		"close",
+		"select"
+	]);
 	const dispatch = createEventDispatcher();
 	const menuId = uid("fds-menu-flyout-anchor-");
-	const handleSideNavigation = getContext<((event: Event, activeItem: HTMLElement) => void)>("sideNavigation");
+	const handleSideNavigation =
+		getContext<(event: Event, activeItem: HTMLElement) => void>("sideNavigation");
 
 	$: if ($currentMenu !== menu) open = false;
 	$: if (!menu && element) element.focus();
@@ -57,8 +62,7 @@
 	}
 
 	function focusFirstItem() {
-		if (open && menu && tabbable(menuElement).length > 0)
-			tabbable(menuElement)[0].focus();
+		if (open && menu && tabbable(menuElement).length > 0) tabbable(menuElement)[0].focus();
 	}
 
 	function handleEscapeKey({ key }: KeyboardEvent) {
@@ -96,7 +100,7 @@
 
 <li
 	use:forwardEvents
-	class="menu-bar-item {className ?? ''}"
+	class="menu-bar-item {className}"
 	class:disabled
 	role="menuitem"
 	tabindex={disabled ? -1 : 0}

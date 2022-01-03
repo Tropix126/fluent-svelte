@@ -40,7 +40,7 @@
 	});
 </script>
 
-<ul class="menu-bar {className ?? ''}" role="menubar" bind:this={element} {...$$restProps}>
+<ul class="menu-bar {className}" role="menubar" bind:this={element} {...$$restProps}>
 	<slot />
 </ul>
 

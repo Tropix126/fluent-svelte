@@ -13,7 +13,7 @@
 
 .flyout {
 	@include typography-body;
-    animation: flyout-in var(--control-normal-duration) var(--control-fast-out-slow-in-easing);
+	animation: flyout-in var(--control-normal-duration) var(--control-fast-out-slow-in-easing);
 	padding: 16px;
 	min-inline-size: 320px;
 	box-sizing: border-box;
