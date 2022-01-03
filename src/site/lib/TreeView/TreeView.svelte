@@ -53,9 +53,7 @@
 				</div>
 			{:else}
 				<TextBlock class="category-header" variant="bodyStrong">{name}</TextBlock>
-				{#if treeViewState?.[id(name)]}
-					<svelte:self depth={depth + 1} tree={pages} />
-				{/if}
+                <svelte:self depth={depth + 1} tree={pages} />
 			{/if}
 		{:else}
 			<ListItem
