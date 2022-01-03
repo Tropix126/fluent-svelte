@@ -7,7 +7,6 @@
 
 	interface Item {
 		name: string;
-		value: any;
 		disabled?: boolean;
 	}
 
@@ -45,7 +44,15 @@
 	/** Obtains a bound DOM reference to the ComboBox's trigger button element. */
 	export let buttonElement: HTMLButtonElement = null;
 
-	const forwardEvents = createEventForwarder(get_current_component(), ["open", "close", "select", "change", "input", "beforeinput", "keydown"]);
+	const forwardEvents = createEventForwarder(get_current_component(), [
+		"open",
+		"close",
+		"select",
+		"change",
+		"input",
+		"beforeinput",
+		"keydown"
+	]);
 	const dispatch = createEventDispatcher();
 	const buttonId = uid("fds-combo-box-button-");
 	const dropdownId = uid("fds-combo-box-dropdown-");
@@ -97,7 +104,8 @@
 		open = !open;
 		await tick();
 		if (editable && inputElement) inputElement.focus();
-		if (menuElement && selection) updateOffset(<HTMLElement>menuElement.children[items.indexOf(selection)]);
+		if (menuElement && selection)
+			updateOffset(<HTMLElement>menuElement.children[items.indexOf(selection)]);
 	}
 
 	async function handleKeyboardNavigation(event: KeyboardEvent) {
@@ -115,11 +123,9 @@
 			!editableClosed &&
 			!(items.indexOf(selection) >= items.length - 1)
 		) {
-			value =
-				selectableItems[selectableItems.indexOf(selection) + 1].name; // If down arrow is pressed, check current selection and move to next non-disabled item.
+			value = selectableItems[selectableItems.indexOf(selection) + 1].name; // If down arrow is pressed, check current selection and move to next non-disabled item.
 		} else if (key === "ArrowUp" && !editableClosed && !(items.indexOf(selection) <= 0)) {
-			value =
-				selectableItems[selectableItems.indexOf(selection) - 1].name; // Do the same with up arrow.
+			value = selectableItems[selectableItems.indexOf(selection) - 1].name; // Do the same with up arrow.
 		} else if (menuElement && selection && key === "Enter") {
 			event.preventDefault();
 			selectItem(selection); // Select item when the enter key is pressed and the menu is open
@@ -186,7 +192,7 @@ When the combo box is closed, it either displays the current selection or is emp
 <div
 	use:forwardEvents
 	use:externalMouseEvents={{ type: "mousedown" }}
-	class="combo-box {className ?? ''}"
+	class="combo-box {className}"
 	class:disabled
 	class:editable
 	class:open
@@ -257,7 +263,7 @@ When the combo box is closed, it either displays the current selection or is emp
 			{disabled}
 		>
 			<span class="combo-box-label" class:placeholder={!selection}>
-				{selection?.name || placeholder}
+				{value || placeholder}
 			</span>
 			<svg
 				aria-hidden="true"
@@ -306,7 +312,15 @@ When the combo box is closed, it either displays the current selection or is emp
 		{/if}
 
 		{#if !editable}
-			<input type="hidden" aria-hidden="true" bind:this={inputElement} bind:value on:change on:input on:beforeinput />
+			<input
+				type="hidden"
+				aria-hidden="true"
+				bind:this={inputElement}
+				bind:value
+				on:change
+				on:input
+				on:beforeinput
+			/>
 		{/if}
 		<slot />
 	{/if}
