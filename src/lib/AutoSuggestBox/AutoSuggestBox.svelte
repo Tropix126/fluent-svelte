@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
 
-	import { TextBox, ListItem } from "$lib/index";
+	import { TextBox, ListItem } from "$lib";
 	import { uid } from "$lib/internal";
 
 	/** @extends {"../TextBox/TextBox.svelte"} */
@@ -13,6 +13,9 @@
 
 	/** The current visibility state of the suggestion flyout. */
 	export let open = false;
+    
+    /** Bindable index of the currently selected item. */
+	export let selection = 0;
 
 	/** Specifies a custom class name for the component. */
 	let className = "";
@@ -35,8 +38,7 @@
 
 	let focused = false;
 	let typedValue = "";
-	let selection = 0;
-
+    
 	const dispatch = createEventDispatcher();
 	const flyoutId = uid("fds-auto-suggest-flyout-");
 
