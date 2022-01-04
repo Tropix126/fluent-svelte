@@ -659,6 +659,7 @@
 	<h3>Auto Suggest Box</h3>
 	<div class="showcase-group">
 		<AutoSuggestBox
+            on:select={() => console.log("hi")}
 			placeholder="Search fruits"
 			items={[
 				"Apple",

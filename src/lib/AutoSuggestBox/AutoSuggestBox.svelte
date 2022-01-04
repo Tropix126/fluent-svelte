@@ -43,10 +43,14 @@
 	const flyoutId = uid("fds-auto-suggest-flyout-");
 
 	$: matches = items.filter(item => item.toLowerCase().includes(typedValue.toLowerCase()));
-	$: dispatch("select", {
-		item: items[selection],
-		index: selection
-	});
+	$: selection, dispatchSelect();
+
+    function dispatchSelect() {
+        dispatch("select", {
+            item: items[selection],
+            index: selection
+        });
+    }
 
 	function handleInput() {
 		typedValue = inputElement.value;
@@ -111,7 +115,7 @@
     on:clear
 	on:clear={() => {
         typedValue = "";
-        open = true;
+        if (items.length > 0) open = true;
     }}
 	bind:inputElement
 	bind:containerElement
