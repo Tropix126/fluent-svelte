@@ -2,6 +2,8 @@
 
 .radio-button {
 	@include flex($inline: true, $align: center, $justify: center);
+	@include typography-body;
+
 	position: relative;
 	margin: 0;
 	border: 1px solid var(--control-strong-stroke-default);

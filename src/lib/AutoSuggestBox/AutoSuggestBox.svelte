@@ -13,8 +13,8 @@
 
 	/** The current visibility state of the suggestion flyout. */
 	export let open = false;
-    
-    /** Bindable index of the currently selected item. */
+
+	/** Bindable index of the currently selected item. */
 	export let selection = 0;
 
 	/** Specifies a custom class name for the component. */
@@ -38,19 +38,19 @@
 
 	let focused = false;
 	let typedValue = "";
-    
+
 	const dispatch = createEventDispatcher();
 	const flyoutId = uid("fds-auto-suggest-flyout-");
 
 	$: matches = items.filter(item => item.toLowerCase().includes(typedValue.toLowerCase()));
 	$: selection, dispatchSelect();
 
-    function dispatchSelect() {
-        dispatch("select", {
-            item: items[selection],
-            index: selection
-        });
-    }
+	function dispatchSelect() {
+		dispatch("select", {
+			item: items[selection],
+			index: selection
+		});
+	}
 
 	function handleInput() {
 		typedValue = inputElement.value;
@@ -112,11 +112,11 @@
 	on:mouseleave
 	on:keypress
 	on:keyup
-    on:clear
+	on:clear
 	on:clear={() => {
-        typedValue = "";
-        if (items.length > 0) open = true;
-    }}
+		typedValue = "";
+		if (items.length > 0) open = true;
+	}}
 	bind:inputElement
 	bind:containerElement
 	bind:clearButtonElement

@@ -53,7 +53,7 @@
 				</div>
 			{:else}
 				<TextBlock class="category-header" variant="bodyStrong">{name}</TextBlock>
-                <svelte:self depth={depth + 1} tree={pages} />
+				<svelte:self depth={depth + 1} tree={pages} />
 			{/if}
 		{:else}
 			<ListItem

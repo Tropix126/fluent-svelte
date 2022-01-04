@@ -2,7 +2,6 @@
 	import type { Load } from "@sveltejs/kit";
 	import { DocsExamples, loadExampleModules } from "$site/data/examples";
 	import { docsPages } from "$site/data/docs";
-	import { page } from "$app/stores";
 
 	export const prerender = true;
 
@@ -35,19 +34,28 @@
 <script lang="ts">
 	import type { DocsExamples, DocsMap } from "$site/data/examples";
 
-	import { page } from "$app/stores";
+	import { goto } from "$app/navigation";
 
-	import { Metadata, TreeView, Toc, DocsSearch } from "$site/lib";
+	import { Metadata, TreeView, Toc } from "$site/lib";
 	import { docsMap } from "$site/data/docs";
 
-	import { Button, TextBlock, TextBox } from "$lib";
-
-	import ArrowRight from "@fluentui/svg-icons/icons/arrow_right_32_regular.svg?raw";
+	import { Button, TextBlock, AutoSuggestBox, ListItem } from "$lib";
 
 	export let currentPage: DocsMap;
 	export let examples: DocsExamples[] = [];
 
 	let article;
+	let searchValue = "";
+	let searchSelection = 0;
+	let searchFlyoutOpen = false;
+	let searchItems = docsPages.map(page => page.name);
+
+	function handleKeyDown({ key }: KeyboardEvent) {
+		if (key === "Enter") {
+			searchValue = "";
+			goto(`/docs${docsPages[searchSelection].path}`);
+		}
+	}
 </script>
 
 <svelte:head>
@@ -58,7 +66,32 @@
 	<div class="docs-container-inner">
 		<aside>
 			<div class="docs-search">
-				<DocsSearch type="search" placeholder="Search Docs" />
+				<AutoSuggestBox
+					on:keydown={handleKeyDown}
+					bind:open={searchFlyoutOpen}
+					bind:value={searchValue}
+					bind:selection={searchSelection}
+					bind:items={searchItems}
+					placeholder="Search Docs"
+				>
+					<ListItem
+						slot="item-template"
+						let:selection
+						let:index
+						let:id
+						let:item
+						selected={selection === index}
+						href={`/docs${docsPages[index].path}`}
+						{id}
+					>
+						<svelte:fragment slot="icon">
+							{#if docsPages[index].icon}
+								{@html docsPages[index].icon}
+							{/if}
+						</svelte:fragment>
+						{item}
+					</ListItem>
+				</AutoSuggestBox>
 			</div>
 			<TreeView tree={docsMap} />
 		</aside>
