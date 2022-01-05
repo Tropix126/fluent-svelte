@@ -111,6 +111,10 @@ Slider tracks can also be reversed using the `reverse` prop. This will change th
 ```
 <Slider reverse />
 
+### Trackless Sliders
+
+A slider's fill indication can be removed by setting the `track` property to `false`. This will only hide the *track*, not the rail or thumb.
+
 ### Disabled Sliders
 
 If the slider is not meant to be clicked, you can use the `disabled` property to visually indicate this. If a slider is disabled, it will be unclickable.
