@@ -194,8 +194,9 @@ A slider is a control that lets the user select from a range of values by moving
 	>
 		{#if tooltip && !disabled}
 			<TooltipSurface class="slider-tooltip">
-				{prefix}{value}{suffix}
-				<slot name="tooltip" />
+                <slot name="tooltip" {prefix} {suffix} {value}>
+                    {prefix}{value}{suffix}
+                </slot>
 			</TooltipSurface>
 		{/if}
 	</div>
