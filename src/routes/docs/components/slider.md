@@ -92,6 +92,21 @@ Tooltip text can also be customized through the `prefix` and `suffix` properties
 <Slider suffix=" meters" />
 ```
 
+If you require further tooltip configuration, the tooltip's content can also be entirely overrided with your own using the `tooltip` slot.
+
+The `tooltip` slot has three slot props: `value`, `prefix` and `suffix` which grant you access to the current value and the prefix/suffix strings respectively.
+
+```html
+<Slider>
+    <svelte:fragment slot="tooltip" let:value let:prefix let:suffix>
+        {prefix}{value}{suffix}
+        <h1>
+            Custom HTML content!
+        </h1>
+    </svelte:fragment>
+</Slider>
+```
+
 ### Direction and Orientation
 
 Sliders can be displayed in either a horizontal (left and right) or vertical orientation (up and down). By default, sliders are displayed in a horizontal orientation. You can change this by setting the `orientation` property to `"vertical"`.
