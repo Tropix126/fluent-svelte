@@ -53,7 +53,7 @@
 	function handleKeyDown({ key }: KeyboardEvent) {
         if (key === "Enter") {
 			searchValue = "";
-			goto(`/docs${docsPages[searchSelection].path}`);
+			// goto(`/docs${docsPages.find(p => p.name === searchItems[searchSelection]).path}`);
 		}
 	}
 
@@ -80,11 +80,11 @@
 					bind:selection={searchSelection}
 					bind:items={searchItems}
 				>
-					<svelte:fragment slot="item-template" let:matches let:selection let:index let:id let:item>
+					<svelte:fragment slot="item-template" let:selection let:index let:id let:item>
                         <ListItem
                             on:click={() => handleSelection(index)}
                             selected={selection === index}
-                            href={`/docs${docsPages[index].path}`}
+                            href={`/docs${docsPages.find(p => p.name === item).path}`}
                             {id}
                         >
                             {item}
