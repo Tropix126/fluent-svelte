@@ -7,7 +7,7 @@
 	export let tree = [];
 
 	let treeViewState: any;
-	let depth = 0;
+	let __depth = 0;
 
 	onMount(() => {
 		// Check localStorage for an existing treeViewState
@@ -33,7 +33,7 @@
 <div class="tree-view">
 	{#each tree as { name, path, type, pages, icon }}
 		{#if type === "category"}
-			{#if depth > 0}
+			{#if __depth > 0}
 				<div class="subtree" class:expanded={treeViewState?.[id(name)]}>
 					<ListItem
 						type="expander"
@@ -47,13 +47,13 @@
 					</ListItem>
 					{#if treeViewState?.[id(name)]}
 						<div class="subtree-items">
-							<svelte:self depth={depth + 1} tree={pages} />
+							<svelte:self __depth={__depth + 1} tree={pages} />
 						</div>
 					{/if}
 				</div>
 			{:else}
 				<TextBlock class="category-header" variant="bodyStrong">{name}</TextBlock>
-				<svelte:self depth={depth + 1} tree={pages} />
+				<svelte:self __depth={__depth + 1} tree={pages} />
 			{/if}
 		{:else}
 			<ListItem

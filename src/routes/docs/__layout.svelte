@@ -51,10 +51,16 @@
 	let searchItems = docsPages.map(page => page.name);
 
 	function handleKeyDown({ key }: KeyboardEvent) {
-		if (key === "Enter") {
+        if (key === "Enter") {
 			searchValue = "";
 			goto(`/docs${docsPages[searchSelection].path}`);
 		}
+	}
+
+	function handleSelection(index) {
+		searchValue = searchItems[index];
+		searchSelection = index;
+		searchFlyoutOpen = false;
 	}
 </script>
 
@@ -67,30 +73,28 @@
 		<aside>
 			<div class="docs-search">
 				<AutoSuggestBox
+                    placeholder="Search Docs"
 					on:keydown={handleKeyDown}
 					bind:open={searchFlyoutOpen}
 					bind:value={searchValue}
 					bind:selection={searchSelection}
 					bind:items={searchItems}
-					placeholder="Search Docs"
 				>
-					<ListItem
-						slot="item-template"
-						let:selection
-						let:index
-						let:id
-						let:item
-						selected={selection === index}
-						href={`/docs${docsPages[index].path}`}
-						{id}
-					>
-						<svelte:fragment slot="icon">
-							{#if docsPages[index].icon}
-								{@html docsPages[index].icon}
-							{/if}
-						</svelte:fragment>
-						{item}
-					</ListItem>
+					<svelte:fragment slot="item-template" let:matches let:selection let:index let:id let:item>
+                        <ListItem
+                            on:click={() => handleSelection(index)}
+                            selected={selection === index}
+                            href={`/docs${docsPages[index].path}`}
+                            {id}
+                        >
+                            {item}
+                            <svelte:fragment slot="icon">
+                                {#if docsPages.find(p => p.name === item)}
+                                    {@html docsPages.find(p => p.name === item).icon}
+                                {/if}
+                            </svelte:fragment>
+                        </ListItem>
+					</svelte:fragment>
 				</AutoSuggestBox>
 			</div>
 			<TreeView tree={docsMap} />

@@ -93,12 +93,12 @@
 	on:input
 	on:input={handleInput}
 	on:outermousedown={() => (open = false)}
-	on:focus
 	on:focus={() => (focused = true)}
-	on:blur
+	on:focus
 	on:blur={() => (focused = false)}
-	on:keydown
+	on:blur
 	on:keydown={handleKeyboardNavigation}
+	on:keydown
 	on:change
 	on:beforeinput
 	on:click
@@ -112,11 +112,11 @@
 	on:mouseleave
 	on:keypress
 	on:keyup
-	on:clear
 	on:clear={() => {
 		typedValue = "";
 		if (items.length > 0) open = true;
 	}}
+	on:clear
 	bind:inputElement
 	bind:containerElement
 	bind:clearButtonElement
