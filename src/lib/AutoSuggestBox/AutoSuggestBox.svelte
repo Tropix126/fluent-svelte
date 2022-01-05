@@ -127,7 +127,7 @@
 >
 	{#if open && matches.length > 0}
 		<ul id={flyoutId} role="listbox" class="auto-suggest-box-flyout">
-			{#each matches as item, index}
+			{#each matches as item, index (item)}
 				<slot
 					name="item-template"
 					id="{flyoutId}-item-{index}"
