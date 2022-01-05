@@ -64,9 +64,7 @@
 	}
 </script>
 
-<svelte:head>
-	<Metadata title="Fluent Svelte - Docs - {currentPage?.name}" />
-</svelte:head>
+<Metadata title="Fluent Svelte - Docs - {currentPage?.name}" description="" />
 
 <main class="docs-container">
 	<div class="docs-container-inner">

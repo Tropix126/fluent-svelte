@@ -132,7 +132,7 @@ and
 	{/if}
 {:else}
 	<p>
-		All DOM events are forwarded to this component's respective elements by default. <a
+		All DOM events are forwarded to this component's respective elements by default.<a
 			href="#todo">Learn More</a
 		>
 	</p>

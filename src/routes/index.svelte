@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button, TextBlock, IconButton } from "$lib";
 
-	import { PageSection, CopyBox, HeroCard } from "$site/lib";
+	import { PageSection, CopyBox, HeroCard, Metadata } from "$site/lib";
 
 	import Box from "@fluentui/svg-icons/icons/box_16_regular.svg?raw";
 	import Book from "@fluentui/svg-icons/icons/book_24_regular.svg?raw";
@@ -22,6 +22,8 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name"><span class="token namespace">on:</span>click=</span><span class="token language-javascript"><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span>Reset Counter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Button</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>`;
 </script>
+
+<Metadata title="Fluent Svelte" description="A faithful implementation of Microsoft's Fluent Design System in Svelte." />
 
 <PageSection id="hero-section">
 	<div class="hero-contents">
