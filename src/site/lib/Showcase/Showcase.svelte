@@ -8,9 +8,9 @@
 
 	export let columns = 1;
 
-	export let repl = "";
+    export let columnWidth = "1fr";
 
-	export let module = "";
+	export let repl = "";
 
 	let className = "";
 	export { className as class };
@@ -21,13 +21,10 @@
 </script>
 
 <div class="component-showcase {className}" {...$$restProps}>
-	{#if module}
-		<div class="module" />
-	{/if}
 	<div use:panzoom={{ minZoom: 0.5, maxZoom: 10, bounds: true }} class="component-showcase-inner">
 		<div
 			class="component-showcase-grid"
-			style="grid-template-columns: {`1fr `.repeat(columns)}"
+			style="grid-template-columns: {`${columnWidth} `.repeat(columns)}"
 		>
 			<slot />
 		</div>
@@ -52,7 +49,7 @@
 	</div>
 	<div class="component-showcase-buttons">
 		{#if repl}
-			<Tooltip text="Edit in Svelte REPL" placement="left">
+			<Tooltip text="Edit in Svelte REPL" offset={8} placement="left">
 				<IconButton
 					href="https://svelte.dev/repl/{repl}"
 					target="blank"

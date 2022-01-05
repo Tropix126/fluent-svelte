@@ -22,7 +22,7 @@ import { Button } from "fluent-svelte";
 
 ## Usage
 
-A button can either be a clickable action or a link. By default, a button will be rendered as a standard HTML `<button>` element. If an `href` prop is provided, the button will be converted into an `<a>` tag.
+A button can either be a clickable action or a link. By default, a button will be rendered as a standard HTML `<button>` element. If an `href` property is provided, the button will be converted into an `<a>` tag.
 
 ### Styles
 
@@ -36,7 +36,7 @@ Buttons come in three possible _variants_ - `standard`, `accent` and `hyperlink`
 
 ### Disabled Buttons
 
-If the button is not meant to be clicked, you can use the `disabled` prop to visually indicate this. If a button is disabled, it will be unclickable and the `href` prop will be ignored.
+If the button is not meant to be clicked, you can use the `disabled` property to visually indicate this. If a button is disabled, it will be unclickable and the `href` prop will be ignored.
 
 ## Component API
 

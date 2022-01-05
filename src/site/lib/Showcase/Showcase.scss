@@ -10,7 +10,7 @@
 	background-clip: padding-box;
 	background-color: var(--card-background-default);
 	border: 1px solid var(--card-stroke-default);
-	box-shadow: var(--fds-card-shadow);
+	box-shadow: var(--card-shadow);
 	padding: 24px;
 	z-index: 1;
 	&:focus-visible {
@@ -19,6 +19,7 @@
 	&-grid {
 		position: relative;
 		display: grid;
+        place-items: center;
 		grid-gap: 12px;
 	}
 	&-backdrop,

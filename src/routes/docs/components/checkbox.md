@@ -38,17 +38,17 @@ Additionally, you can use svelte's two-way binding syntax to bind the checked st
 <script>
 	import { Checkbox } from "fluent-svelte";
 
-	let isChecked = false;
+	let checked = false;
 </script>
 
-<Checkbox bind:checked={isChecked} />
+<Checkbox bind:checked />
 
-Current state: {isChecked ? "checked" : "unchecked"}
+Current state: {checked ? "checked" : "unchecked"}
 ```
 
 ### Indeterminate States
 
-If the checkbox cannot be represented as either checked or unchecked, it can be marked as _indeterminate_ using the `indeterminate` prop.
+If the checkbox cannot be represented as either checked or unchecked, it can be marked as _indeterminate_ using the `indeterminate` property.
 
 ```html
 <Checkbox indeterminate />
@@ -64,7 +64,7 @@ Passing in content to the checkbox's slot will cause that content to be rendered
 
 ### Disabled Checkboxes
 
-If the checkbox is not meant to be clicked, you can use the `disabled` prop to visually indicate this. If a checkbox is disabled, it will be unclickable.
+If the checkbox is not meant to be clicked, you can use the `disabled` property to visually indicate this. If a checkbox is disabled, it will be unclickable.
 
 ## Component API
 
