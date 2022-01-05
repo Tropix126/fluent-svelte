@@ -93,7 +93,7 @@ and
 						{/if}
 					</td>
 					<td>
-						{#if Object.keys(JSON.parse(slot_props)).length > 0}
+						{#if slot_props}
 							<code>{slot_props}</code>
 						{:else}
 							None
@@ -115,7 +115,6 @@ and
 {/if}
 
 <h3>Events</h3>
-
 {#if manualForward}
 	<h4>Forwarded Events</h4>
 	{#if forwardedEvents.length > 0}
