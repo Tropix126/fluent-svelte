@@ -10,7 +10,8 @@
 		outline: none;
 		box-shadow: var(--focus-stroke);
 	}
-	&:active,
+    &:active,
+	&-thumb:active,
 	&:focus-visible {
 		:global(.slider-tooltip) {
 			opacity: 1;
