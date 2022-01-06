@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-
-	import TooltipSurface from "./TooltipSurface.svelte";
+    import { fade } from "svelte/transition";
+    import { TooltipSurface, getCSSDuration } from "$lib/internal";
 
 	/** Specifies the tooltip's text content. */
 	export let text = "";
@@ -95,6 +95,7 @@
 	{#if visible}
 		<div
 			bind:this={anchorElement}
+            in:fade|local={{ duration: getCSSDuration("--fds-control-fast-duration") }}
 			class="tooltip-anchor placement-{placement} alignment-{alignment}"
 			style="{placement === 'auto'
 				? `top: calc(${currentPosition.y}px - var(--fds-tooltip-offset));

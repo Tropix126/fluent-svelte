@@ -5,9 +5,9 @@
 	import { ListItem, TextBlock } from "$lib";
 
 	export let tree = [];
+	export let __depth = 0;
 
 	let treeViewState: any;
-	let __depth = 0;
 
 	onMount(() => {
 		// Check localStorage for an existing treeViewState

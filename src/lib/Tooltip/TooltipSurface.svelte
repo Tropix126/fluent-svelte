@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { fade } from "svelte/transition";
-	import { getCSSDuration, createEventForwarder } from "$lib/internal";
+	import { createEventForwarder } from "$lib/internal";
 	import { get_current_component } from "svelte/internal";
 
 	/** Specifies a custom class name for the surface. */
@@ -17,7 +16,6 @@
 	class="tooltip {className}"
 	role="tooltip"
 	use:forwardEvents
-	transition:fade={{ duration: getCSSDuration("--fds-control-fast-duration") }}
 	bind:this={element}
 	{...$$restProps}
 >
