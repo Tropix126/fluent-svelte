@@ -6,10 +6,10 @@
 
 	export let target: HTMLElement;
 
-	let headings: HTMLHeadingElement[];
+	let headings: HTMLHeadingElement[] = [];
 	let activeHeading: HTMLHeadingElement;
 
-	$: $page, (headings = target && Array.from(target.querySelectorAll("h1, h2, h3")));
+	$: $page, setTimeout(() => headings = target && Array.from(target.querySelectorAll("h1, h2, h3")), 0);
 
 	function handleScroll() {
 		if (headings)
@@ -27,6 +27,8 @@
 	onMount(() => {
 		window.addEventListener("scroll", handleScroll);
 	});
+
+    $: console.log(headings);
 </script>
 
 {#if target}
