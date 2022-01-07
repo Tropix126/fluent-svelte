@@ -17,9 +17,10 @@
 		box-shadow: var(--focus-stroke);
 	}
 	&-grid {
+		margin: 24px;
 		position: relative;
 		display: grid;
-        place-items: center;
+		place-items: center;
 		grid-gap: 12px;
 	}
 	&-backdrop,

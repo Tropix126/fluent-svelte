@@ -9,7 +9,12 @@
 	let headings: HTMLHeadingElement[] = [];
 	let activeHeading: HTMLHeadingElement;
 
-	$: $page, headings = (target && Array.from(target.querySelectorAll("h1, h2, h3")));
+	$: $page,
+		(headings =
+			target &&
+			Array.from(target.querySelectorAll("h1, h2, h3")).filter(
+				node => !node.closest(".component-showcase-grid")
+			));
 
 	function handleScroll() {
 		if (headings)
@@ -18,7 +23,7 @@
 				.find(heading => heading.offsetTop <= window.scrollY);
 	}
 
-	function handleSelect(index: number, { target }: MouseEvent) {
+	function handleSelect(index: number) {
 		const { top } = headings[index].getBoundingClientRect();
 
 		window.scrollTo({ top: top + window.scrollY - 55, behavior: "smooth" });
@@ -33,10 +38,7 @@
 	<nav class="table-of-contents">
 		{#each headings as { tagName, innerText }, i}
 			<li style="--fds-depth: {+tagName[1] - 1};">
-				<ListItem
-					on:click={e => handleSelect(i, e)}
-					selected={activeHeading === headings[i]}
-				>
+				<ListItem on:click={() => handleSelect(i)} selected={activeHeading === headings[i]}>
 					{innerText}
 				</ListItem>
 			</li>

@@ -8,7 +8,7 @@
 
 	export let columns = 1;
 
-    export let columnWidth = "1fr";
+	export let columnWidth = "1fr";
 
 	export let repl = "";
 
