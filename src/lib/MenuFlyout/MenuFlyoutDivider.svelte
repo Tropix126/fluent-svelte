@@ -7,7 +7,7 @@
 	export let element: HTMLElement = null;
 </script>
 
-<hr role="separator" class="menu-flyout-divider {className}" bind:this={element} {...$$restProps} />
+<hr class="menu-yout-divider {className}" bind:this={element} {...$$restProps} />
 
 <style lang="scss">
 	@use "./MenuFlyoutDivider";
