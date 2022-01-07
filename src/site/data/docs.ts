@@ -1,10 +1,26 @@
+export type RawExample = {
+	name: string,
+	source: string,
+	description?: string,
+	repl?: string,
+}
+
+export type PreparedExample = {
+	title: string,
+	description: string,
+	componentName: string,
+	source: string,
+	pagePath: string,
+	repl?: string
+}
+
 export type DocsMap = {
-	name: string;
-	path?: string;
-	type?: "page" | "category";
-	icon?: string;
-	pages?: DocsMap[];
-	examples?: Array<{ name: string; source: string; description?: string }>;
+	name: string,
+	path?: string,
+	type?: "page" | "category",
+	icon?: string,
+	examples?: RawExample[],
+	pages?: DocsMap[],
 };
 
 // SVG stuff is hopefully temporary
@@ -25,25 +41,15 @@ export const docsMap: DocsMap[] = [
 				examples: [
 					{
 						name: "Simple Button",
-						source: `<Fluent.Button>Click Me!</Fluent.Button>`
-					},
-					{
-						name: "Button Variants",
-						source: `<Fluent.Button variant="standard">
-	Standard Button
-</Fluent.Button>
-<Fluent.Button variant="accent">
-	Accent Button
-</Fluent.Button>
-<Fluent.Button variant="hyperlink">
-	Hyperlink Button
-</Fluent.Button>`
-					},
-					{
-						name: "Hyperlink Button (External)",
-						source: `<Fluent.Button variant="hyperlink" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noreferrer noopener">
-	Click Me!
-</Fluent.Button>`
+						source: `<Fluent.Button variant="standard">Button</Fluent.Button>
+<Fluent.Button variant="accent">Button</Fluent.Button>
+<Fluent.Button variant="hyperlink">Button</Fluent.Button>
+<Fluent.Button variant="standard" disabled>Button</Fluent.Button>
+<Fluent.Button variant="accent" disabled>Button</Fluent.Button>
+<Fluent.Button variant="hyperlink" disabled>Button</Fluent.Button>
+`,
+						description: "Buttons can have 3 different variants: standard, accent, and hyperlink. They can also be disabled.",
+						repl: "0c6ca42e2c5c4868a7a8c1a1a45759eb"
 					}
 				]
 			}
@@ -57,15 +63,15 @@ function filterPages(docsStructure: DocsMap[] | DocsMap): DocsMap[] {
 	if (Array.isArray(docsStructure)) {
 		// it's an array of pages/categories
 		return docsStructure
-			.map(page => filterPages(page)) // recursively flatten the structure and filter to only include pages
-			.flat(Infinity) as DocsMap[]; // flatten the structure to get rid of any nesting
+				.map(page => filterPages(page)) // recursively flatten the structure and filter to only include pages
+				.flat(Infinity) as DocsMap[] // flatten the structure to get rid of any nesting
 	} else {
 		// it's a single page/category, not a structure
 		if (docsStructure.type === "category") {
 			// it's a category
 			return docsStructure.pages
-				.map(page => filterPages(page)) // filter down and down until only pages are left
-				.flat(Infinity) as DocsMap[]; // flatten the array
+					.map(page => filterPages(page)) // filter down and down until only pages are left
+					.flat(Infinity) as DocsMap[] // flatten the array
 		} else {
 			// it's a page
 			return [docsStructure];

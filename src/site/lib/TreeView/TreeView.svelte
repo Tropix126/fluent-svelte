@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { onMount } from "svelte";
-	import { page } from "$app/stores";
+	import { onMount } from "svelte"
+	import { page } from "$app/stores"
 
-	import { ListItem, TextBlock } from "$lib";
+	import { ListItem, TextBlock } from "$lib"
 
-	export let tree = [];
+	export let tree = []
 
-	let treeViewState: any;
-	let depth = 0;
+	let treeViewState: any
+	let depth = 0
 
 	onMount(() => {
 		// Check localStorage for an existing treeViewState
@@ -59,10 +59,10 @@
 			{/if}
 		{:else}
 			<ListItem
-				on:click
-				type="navigation"
-				selected={`/docs${path}` === $page.path}
-				href="/docs{path}"
+					on:click
+					type="navigation"
+					selected={`/docs${path}` === $page.url.pathname}
+					href="/docs{path}"
 			>
 				<svelte:fragment slot="icon">
 					{@html icon || ""}

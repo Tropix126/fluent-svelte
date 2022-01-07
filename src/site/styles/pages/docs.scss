@@ -3,11 +3,12 @@
 
 .docs- {
 	&container {
-		box-shadow: inset 0 0 0 100vmax var(--fds-card-background-secondary); // Temporary bodge for mica tinting
 		background: url("/hero-mica-light.png") center/170% no-repeat fixed;
+		box-shadow: inset 0 0 0 100vmax var(--fds-card-background-secondary); // Temporary bodge for mica tinting
 		@media (prefers-color-scheme: dark) {
 			background-image: url("/hero-mica-dark.png");
 		}
+
 		&-inner {
 			min-height: 100vh;
 			max-width: 1440px;
@@ -15,6 +16,7 @@
 			@include flex($justify: center);
 		}
 	}
+
 	&search {
 		margin-inline: 4px;
 		margin-block-end: 12px;
@@ -23,37 +25,42 @@
 
 .code-example {
 	@include flex($direction: column);
-	pre,
-	.example-preview {
+
+	pre, .example-preview {
 		padding: 12px;
 	}
-	.example-preview {
-		background-color: var(--solid-background-tertiary);
-		background-clip: padding-box;
-		border-radius: var(--overlay-corner-radius) var(--overlay-corner-radius) 0 0;
-		border: 1px solid var(--card-stroke-default);
-		border-block-end: none;
-	}
+
+	//.example-preview {
+	//	background-color: var(--solid-background-tertiary);
+	//	background-clip: padding-box;
+	//	border-radius: var(--overlay-corner-radius) var(--overlay-corner-radius) 0 0;
+	//	border: 1px solid var(--card-stroke-default);
+	//	border-block-end: none;
+	//}
+
 	pre {
 		border-radius: 0 0 var(--overlay-corner-radius) var(--overlay-corner-radius);
 	}
 }
 
 aside {
-	padding-inline: 4px;
 	position: sticky;
-	align-self: start;
 	top: 56px;
-	padding-block-start: 12px;
+	align-self: start;
 	flex: 0 0 auto;
 	width: 280px;
+	padding-block-start: 12px;
+	padding-inline: 4px;
+
 	&:last-child {
 		width: 220px;
 		padding-block-start: 44px;
 		padding-inline-end: 12px;
+
 		:global(.text-block.type-body-strong) {
 			margin-bottom: 12px;
 		}
+
 		@media only screen and (max-width: 1096px) {
 			display: none;
 		}
@@ -61,16 +68,18 @@ aside {
 }
 
 article {
-	max-inline-size: 100%;
-	min-inline-size: 0;
-	margin-block-start: 56px;
 	position: relative;
 	z-index: 1;
-	padding: 44px 56px;
 	flex: 1 1 auto;
+	margin-block-start: 56px;
+	padding: 44px 56px;
+	max-inline-size: 100%;
+	min-inline-size: 0;
 	border-inline-start: 1px solid var(--card-stroke-default);
+
 	header {
 		@include flex($justify: between, $align: start);
+
 		h1:first-child {
 			margin-block-start: 0;
 			padding: 0;

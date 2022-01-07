@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { onMount } from "svelte";
+	import { onMount } from "svelte"
 
-	import { ListItem } from "$lib";
-	import { page } from "$app/stores";
+	import { ListItem } from "$lib"
+	import { page } from "$app/stores"
 
-	export let target: HTMLElement;
+	export let target: HTMLElement
 
-	let headings: HTMLHeadingElement[];
-	let activeHeading: HTMLHeadingElement;
+	let headings: HTMLHeadingElement[]
+	let activeHeading: HTMLHeadingElement
 
-	$: $page, (headings = target && Array.from(target.querySelectorAll("h1, h2, h3")));
+	$: $page, (headings = target && Array.from(target.querySelectorAll("h1, h2, h3")))
 
 	function handleScroll() {
 		if (headings)
@@ -45,5 +45,5 @@
 {/if}
 
 <style lang="scss">
-	@use "./Toc";
+	@use "./TableOfContents";
 </style>

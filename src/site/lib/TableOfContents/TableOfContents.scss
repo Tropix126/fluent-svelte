@@ -1,10 +1,11 @@
 .table-of-contents {
 	li {
-		list-style-type: none;
 		margin: 0;
+		margin-inline-end: calc(12px * var(--depth));
 		padding: 0;
-		margin-left: calc(12px * var(--depth));
+		list-style-type: none;
 	}
+
 	:global(.list-item) {
 		margin-inline: 0;
 		inline-size: 100%;

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { page } from "$app/stores";
-	import { TextBlock } from "$lib";
+	import { page } from "$app/stores"
+	import { TextBlock } from "$lib"
 
 	interface Item {
 		href: string;
@@ -8,7 +8,7 @@
 		icon?: string;
 	}
 
-	export let items: Item[];
+	export let items: Item[]
 </script>
 
 <header class="navbar">
@@ -20,14 +20,14 @@
 		<nav>
 			{#each items as { href, name, icon }}
 				<a
-					{href}
-					sveltekit:prefetch
-					class:selected={$page.path === href ||
-						($page.path.split("/").length > 1 &&
+						{href}
+						sveltekit:prefetch
+						class:selected={$page.url.pathname === href ||
+						($page.url.pathname.split("/").length > 1 &&
 							href.split("/").length > 1 &&
-							$page.path.startsWith(href) &&
+							$page.url.pathname.startsWith(href) &&
 							!(href === "" || href === "/")) ||
-						(href === "/" && $page.path === "")}
+						(href === "/" && $page.url.pathname === "")}
 				>
 					{#if icon}
 						{@html icon}

@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { IconButton, Tooltip } from "$lib";
+	import { IconButton, Tooltip } from "$lib"
 
-	import _panzoom from "panzoom";
-	import type { PanZoomOptions } from "panzoom";
+	import _panzoom, { type PanZoomOptions } from "panzoom"
 
-	import Edit from "@fluentui/svg-icons/icons/edit_16_regular.svg?raw";
+	import Edit from "@fluentui/svg-icons/icons/edit_16_regular.svg?raw"
 
 	export let columns = 1;
 
@@ -22,7 +21,7 @@
 
 <div class="component-showcase {className ?? ''}" {...$$restProps}>
 	{#if module}
-		<div class="module" />
+		<div class="module"></div>
 	{/if}
 	<div use:panzoom={{ minZoom: 0.5, maxZoom: 10, bounds: true }} class="component-showcase-inner">
 		<div

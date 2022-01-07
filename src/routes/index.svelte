@@ -1,13 +1,12 @@
 <script lang="ts">
-	import { Button, TextBlock, IconButton } from "$lib";
+	import { Button, IconButton, TextBlock } from "$lib"
+	import { CopyBox, external, HeroCard, PageSection } from "$site/lib"
 
-	import { PageSection, CopyBox, HeroCard } from "$site/lib";
+	import Box from "@fluentui/svg-icons/icons/box_16_regular.svg?raw"
+	import Book from "@fluentui/svg-icons/icons/book_24_regular.svg?raw"
+	import Open from "@fluentui/svg-icons/icons/open_16_regular.svg?raw"
 
-	import Box from "@fluentui/svg-icons/icons/box_16_regular.svg?raw";
-	import Book from "@fluentui/svg-icons/icons/book_24_regular.svg?raw";
-	import Open from "@fluentui/svg-icons/icons/open_16_regular.svg?raw";
-
-	let exampleCount = 0;
+	let exampleCount = 0
 
 	const example = `<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
     <span class="token keyword">import</span> <span class="token punctuation">{</span> Button<span class="token punctuation">,</span> TextBlock <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"fluent-svelte"</span><span class="token punctuation">;</span>
@@ -38,9 +37,8 @@
 			<svelte:fragment slot="header">
 				<TextBlock variant="bodyStrong">1. Install</TextBlock>
 				<IconButton
-					href="https://npmjs.com/package/fluent-svelte"
-					target="_blank"
-					rel="noreferrer noopener"
+						href="https://npmjs.com/package/fluent-svelte"
+						{...external}
 				>
 					{@html Box}
 				</IconButton>
@@ -60,9 +58,7 @@
 		<HeroCard>
 			<svelte:fragment slot="header">
 				<TextBlock variant="bodyStrong">2. Build</TextBlock>
-				<IconButton href="/docs">
-					{@html Book}
-				</IconButton>
+				<IconButton href="/docs">{@html Book}</IconButton>
 			</svelte:fragment>
 
 			<div class="editor-body">
@@ -76,10 +72,8 @@
 						{/each}
 					</aside>
 					<pre>
-                        <code>
-                            {@html example}
-                        </code>
-                    </pre>
+						<code>{@html example}</code>
+					</pre>
 				</div>
 			</div>
 		</HeroCard>
@@ -87,9 +81,8 @@
 			<svelte:fragment slot="header">
 				<TextBlock variant="bodyStrong">3. View</TextBlock>
 				<IconButton
-					href="https://svelte.dev/repl/b90fb12e06e84aabb303121f713d1296"
-					target="_blank"
-					rel="noreferrer noopener"
+						href="https://svelte.dev/repl/b90fb12e06e84aabb303121f713d1296"
+						{...external}
 				>
 					{@html Open}
 				</IconButton>
@@ -97,9 +90,9 @@
 			<div class="example-app">
 				<TextBlock variant="display">{exampleCount}</TextBlock>
 				<div>
-					<Button variant="accent" on:click={() => (exampleCount += 1)}
-						>Increase Count</Button
-					>
+					<Button on:click={() => (exampleCount += 1)} variant="accent">
+						Increase Count
+					</Button>
 					<Button on:click={() => (exampleCount = 0)}>Reset Count</Button>
 				</div>
 			</div>

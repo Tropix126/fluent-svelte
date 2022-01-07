@@ -1,24 +1,25 @@
 <script lang="ts">
-	import ArrowDown from "@fluentui/svg-icons/icons/arrow_down_32_regular.svg?raw";
-	import type { DocsExample } from "$site/lib/data/examples";
+	import Showcase from "./Showcase.svelte"
+	import { TextBlock } from "$lib"
+	import type { PreparedExample } from "$site/data/docs"
 
-	export let example: DocsExample;
+	export let example: PreparedExample
+	const modulePromise = import(`../../examples/${ example.pagePath }/${ example.componentName }.svelte`)
 </script>
 
 <div class="code-example">
-	<h3>{example.name}</h3>
-	<div class="example">
-		<div class="example-code">
-			<pre><code>
-				{@html example.src}
-			</code></pre>
-		</div>
-		{@html ArrowDown}
-		<div class="example-preview">
-			<svelte:component this={example.mod} />
-		</div>
+	<TextBlock class="example-title" variant="title">{example.title}</TextBlock>
+	<div class="example code-example">
+		<Showcase columns={3} repl={example.repl}>
+			{#await modulePromise then module}
+				<svelte:component this={module.default}/>
+			{/await}
+		</Showcase>
+		<pre>
+			<code>{example.source}</code>
+		</pre>
 	</div>
-	<p class="example-description">{@html example.description}</p>
+	<TextBlock class="example-description">{@html example.description}</TextBlock>
 </div>
 
 <style lang="scss">

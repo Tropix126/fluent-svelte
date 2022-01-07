@@ -1,29 +1,29 @@
 <script lang="ts">
-	import { page } from "$app/stores";
-	import { goto } from "$app/navigation";
+	import { page } from "$app/stores"
+	import { goto } from "$app/navigation"
 
-	import { TextBox, ListItem } from "$lib";
-	import { externalMouseEvents } from "$lib/internal";
+	import { ListItem, TextBox } from "$lib"
+	import { externalMouseEvents } from "$lib/internal"
 
-	import { docsPages } from "$site/data/docs";
+	import { docsPages } from "$site/data/docs"
 
-	let value = "";
-	let searchFocused = false;
-	let autoSuggestVisible = false;
-	let selection = 0;
+	let value = ""
+	let searchFocused = false
+	let autoSuggestVisible = false
+	let selection = 0
 
 	// Determines if the auto-suggest flyout should be shown
-	$: if (value && searchFocused) autoSuggestVisible = true;
+	$: if (value && searchFocused) autoSuggestVisible = true
 
 	// Handler for keyboard navigation in the search autocomplete flyout
 	function handleSearchKeys(e: KeyboardEvent) {
 		const { key } = e;
 		if (key === "ArrowUp" || key === "ArrowDown") e.preventDefault();
 		if (key === "Enter") {
-			if (searchResults.length > 0 && $page.path !== `/docs${searchResults[selection].path}`)
-				goto(`/docs${searchResults[selection].path}`, {
+			if (searchResults.length > 0 && $page.url.pathname !== `/docs${ searchResults[selection].path }`)
+				goto(`/docs${ searchResults[selection].path }`, {
 					keepfocus: true
-				});
+				})
 		} else if (key === "ArrowDown") {
 			selection++;
 			if (selection > searchResults.length - 1) selection = 0;
@@ -65,7 +65,7 @@
 			on:search={() => {
 				if (
 					searchResults.length > 0 &&
-					$page.path !== `/docs${searchResults[selection].path}`
+					$page.url.pathname !== `/docs${searchResults[selection].path}`
 				)
 					goto(`/docs${searchResults[selection].path}`, {
 						keepfocus: true

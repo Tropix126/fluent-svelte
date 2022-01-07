@@ -1,5 +1,3 @@
-type ComponentPropName = string;
-
 interface ComponentProp {
 	name: string;
 	kind: "let" | "const" | "function";
@@ -12,25 +10,21 @@ interface ComponentProp {
 	reactive: boolean;
 }
 
-const DEFAULT_SLOT_NAME = "__default__";
+const DEFAULT_SLOT_NAME = "Default Slot"
 
-type ComponentSlotName = typeof DEFAULT_SLOT_NAME | string;
-
-interface ComponentSlot {
-	name?: string;
-	default: boolean;
-	fallback?: string;
-	slot_props?: string;
-}
+type SlotProps = Record<string, SlotPropValue>;
 
 interface SlotPropValue {
 	value?: string;
 	replace: boolean;
 }
 
-type SlotProps = Record<string, SlotPropValue>;
-
-type ComponentEventName = string;
+interface ComponentSlot {
+	name?: typeof DEFAULT_SLOT_NAME | string;
+	default: boolean;
+	fallback?: string;
+	slot_props?: SlotProps;
+}
 
 interface ForwardedEvent {
 	type: "forwarded";
@@ -43,10 +37,6 @@ interface DispatchedEvent {
 	name: string;
 	detail?: any;
 }
-
-type ComponentEvent = ForwardedEvent | DispatchedEvent;
-
-type TypeDefName = string;
 
 interface TypeDef extends Pick<commentParser.Tag, "type" | "name"> {
 	description?: string;
@@ -77,7 +67,7 @@ interface ComponentPropBindings {
 export interface ParsedComponent {
 	props: ComponentProp[];
 	slots: ComponentSlot[];
-	events: ComponentEvent[];
+	events: (ForwardedEvent | DispatchedEvent)[];
 	typedefs: TypeDef[];
 	rest_props: RestProps;
 	extends?: Extends;

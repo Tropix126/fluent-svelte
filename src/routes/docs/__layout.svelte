@@ -1,53 +1,46 @@
 <script context="module" lang="ts">
-	import type { Load } from "@sveltejs/kit";
-	import { DocsExamples, loadExampleModules } from "$site/data/examples";
-	import { docsPages } from "$site/data/docs";
-	import { page } from "$app/stores";
+	import type { Load } from "@sveltejs/kit"
+	import { docsPages, PreparedExample } from "$site/data/docs"
 
-	export const prerender = true;
+	export const prerender = true
 
-	export const load: Load = async ({ page }) => {
-		const path = page.path
-			.replace(/\/$/gi, "") // remove trailing slash
-			.replace("/docs", ""); // remove /docs
+	export const load: Load = async ({ url }) => {
+		const path = url.pathname
+				.replace(/\/$/gi, "") // remove trailing slash
+				.replace("/docs", "") // remove /docs
 
-		const currentPage = docsPages.find(p => p.path === path);
+		const page = docsPages.find(p => p.path === path)
 
-		if (currentPage?.examples) {
-			const examples: DocsExamples[] = await loadExampleModules(currentPage.path);
-
-			return {
-				props: {
-					currentPage,
-					examples
-				}
-			};
-		}
+		const examples: PreparedExample[] = page.examples.map((example, index) => {
+			return ({
+				title: example.name,
+				description: example.description,
+				source: example.source,
+				repl: example?.repl,
+				pagePath: page.path.substring(1),
+				componentName: `_${ example.name.replace(/\s+/g, "") }${ index }`,
+			})
+		})
 
 		return {
 			props: {
-				currentPage
+				currentPage: page,
+				examples: examples,
 			}
-		};
-	};
+		}
+	}
 </script>
 
 <script lang="ts">
-	import type { DocsExamples, DocsMap } from "$site/data/examples";
+	import { docsMap, DocsMap } from "$site/data/docs"
+	import { Metadata, TreeView, TableOfContents, DocsSearch, APIDocs, CodeExample, external } from "$site/lib"
+	import { Button, TextBlock } from "$lib"
+	import { page } from "$app/stores"
 
-	import { page } from "$app/stores";
+	export let currentPage: DocsMap
+	export let examples: PreparedExample[] = []
 
-	import { Metadata, TreeView, Toc, DocsSearch } from "$site/lib";
-	import { docsMap } from "$site/data/docs";
-
-	import { Button, TextBlock, TextBox } from "$lib";
-
-	import ArrowRight from "@fluentui/svg-icons/icons/arrow_right_32_regular.svg?raw";
-
-	export let currentPage: DocsMap;
-	export let examples: DocsExamples[] = [];
-
-	let article;
+	let article
 </script>
 
 <svelte:head>
@@ -67,35 +60,31 @@
 			<header>
 				<h1>{currentPage?.name}</h1>
 				<Button
-					href="https://github.com/tropix126/fluent-svelte/edit/main/src/routes/docs{currentPage?.path ||
+						href="https://github.com/tropix126/fluent-svelte/edit/main/src/routes/docs{currentPage?.path ||
 						'/index'}.md"
-					rel="noreferrer noopener"
-					target="_blank"
-					variant="hyperlink">Edit This Page</Button
-				>
+						{...external}
+						variant="hyperlink">
+					Edit This Page
+				</Button>
 			</header>
-			<slot />
+			<slot/>
+
 			{#if currentPage?.examples}
 				<h2>Examples</h2>
-				{#each examples as example (example.name)}
-					<h4>{example.name}</h4>
-					<div class="code-example">
-						<div class="example-preview">
-							<svelte:component this={example.mod} />
-						</div>
-						<pre>
-							<code>
-							{@html example.src}
-							</code>
-						</pre>
-					</div>
+				{#each examples as example (example.componentName)}
+					<CodeExample {example}/>
 				{/each}
+			{/if}
+
+			{#if currentPage.path.startsWith("/components/")}
+				<h3>Component API</h3>
+				<!--				<APIDocs component={currentPage.name} />-->
 			{/if}
 		</article>
 
 		<aside>
 			<TextBlock variant="bodyStrong">On This Page</TextBlock>
-			<Toc target={article} />
+			<TableOfContents target={article}/>
 		</aside>
 	</div>
 </main>
