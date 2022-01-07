@@ -10,7 +10,7 @@
 		outline: none;
 		box-shadow: var(--focus-stroke);
 	}
-    &:active,
+	&:active,
 	&-thumb:active,
 	&:focus-visible {
 		:global(.slider-tooltip) {
@@ -19,7 +19,7 @@
 	}
 	&.orientation- {
 		&horizontal {
-            block-size: 32px;
+			block-size: 32px;
 			inline-size: 100%;
 			.slider- {
 				&rail {
@@ -67,7 +67,7 @@
 		}
 		&vertical {
 			block-size: 100%;
-            inline-size: 32px;
+			inline-size: 32px;
 			.slider- {
 				&rail {
 					align-items: flex-end;

@@ -1,6 +1,5 @@
 <script context="module" lang="ts">
 	import type { Load } from "@sveltejs/kit";
-	import { DocsExamples, loadExampleModules } from "$site/data/examples";
 	import { docsPages } from "$site/data/docs";
 
 	export const prerender = true;
@@ -12,17 +11,6 @@
 
 		const currentPage = docsPages.find(p => p.path === path);
 
-		if (currentPage?.examples) {
-			const examples: DocsExamples[] = await loadExampleModules(currentPage.path);
-
-			return {
-				props: {
-					currentPage,
-					examples
-				}
-			};
-		}
-
 		return {
 			props: {
 				currentPage
@@ -32,8 +20,6 @@
 </script>
 
 <script lang="ts">
-	import type { DocsExamples, DocsMap } from "$site/data/examples";
-
 	import { goto } from "$app/navigation";
 
 	import { Metadata, TreeView, Toc } from "$site/lib";
@@ -42,7 +28,6 @@
 	import { Button, TextBlock, AutoSuggestBox, ListItem } from "$lib";
 
 	export let currentPage: DocsMap;
-	export let examples: DocsExamples[] = [];
 
 	let article;
 	let searchValue = "";
@@ -51,7 +36,7 @@
 	let searchItems = docsPages.map(page => page.name);
 
 	function handleKeyDown({ key }: KeyboardEvent) {
-        if (key === "Enter") {
+		if (key === "Enter") {
 			searchValue = "";
 			// goto(`/docs${docsPages.find(p => p.name === searchItems[searchSelection]).path}`);
 		}
@@ -68,10 +53,10 @@
 
 <main class="docs-container">
 	<div class="docs-container-inner">
-		<aside>
+		<aside class="docs-sidebar">
 			<div class="docs-search">
 				<AutoSuggestBox
-                    placeholder="Search Docs"
+					placeholder="Search Docs"
 					on:keydown={handleKeyDown}
 					bind:open={searchFlyoutOpen}
 					bind:value={searchValue}
@@ -79,19 +64,19 @@
 					bind:items={searchItems}
 				>
 					<svelte:fragment slot="item-template" let:selection let:index let:id let:item>
-                        <ListItem
-                            on:click={() => handleSelection(index)}
-                            selected={selection === index}
-                            href={`/docs${docsPages.find(p => p.name === item).path}`}
-                            {id}
-                        >
-                            {item}
-                            <svelte:fragment slot="icon">
-                                {#if docsPages.find(p => p.name === item)}
-                                    {@html docsPages.find(p => p.name === item).icon}
-                                {/if}
-                            </svelte:fragment>
-                        </ListItem>
+						<ListItem
+							on:click={() => handleSelection(index)}
+							selected={selection === index}
+							href={`/docs${docsPages.find(p => p.name === item).path}`}
+							{id}
+						>
+							{item}
+							<svelte:fragment slot="icon">
+								{#if docsPages.find(p => p.name === item)}
+									{@html docsPages.find(p => p.name === item).icon}
+								{/if}
+							</svelte:fragment>
+						</ListItem>
 					</svelte:fragment>
 				</AutoSuggestBox>
 			</div>
@@ -110,25 +95,9 @@
 				>
 			</header>
 			<slot />
-			{#if currentPage?.examples}
-				<h2>Examples</h2>
-				{#each examples as example (example.name)}
-					<h4>{example.name}</h4>
-					<div class="code-example">
-						<div class="example-preview">
-							<svelte:component this={example.mod} />
-						</div>
-						<pre>
-							<code>
-							{@html example.src}
-							</code>
-						</pre>
-					</div>
-				{/each}
-			{/if}
 		</article>
 
-		<aside>
+		<aside class="docs-sidebar">
 			<TextBlock variant="bodyStrong">On This Page</TextBlock>
 			<Toc target={article} />
 		</aside>

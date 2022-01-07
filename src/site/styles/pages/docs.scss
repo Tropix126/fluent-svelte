@@ -21,25 +21,7 @@
 	}
 }
 
-.code-example {
-	@include flex($direction: column);
-	pre,
-	.example-preview {
-		padding: 12px;
-	}
-	.example-preview {
-		background-color: var(--solid-background-tertiary);
-		background-clip: padding-box;
-		border-radius: var(--overlay-corner-radius) var(--overlay-corner-radius) 0 0;
-		border: 1px solid var(--card-stroke-default);
-		border-block-end: none;
-	}
-	pre {
-		border-radius: 0 0 var(--overlay-corner-radius) var(--overlay-corner-radius);
-	}
-}
-
-aside {
+.docs-sidebar {
 	padding-inline: 4px;
 	position: sticky;
 	align-self: start;
@@ -47,6 +29,9 @@ aside {
 	padding-block-start: 12px;
 	flex: 0 0 auto;
 	width: 280px;
+	@media only screen and (max-width: 768px) {
+		display: none;
+	}
 	&:last-child {
 		width: 220px;
 		padding-block-start: 44px;
@@ -66,9 +51,13 @@ article {
 	margin-block-start: 56px;
 	position: relative;
 	z-index: 1;
-	padding: 44px 56px;
+	padding-block: 44px;
+	padding-inline: 56px;
 	flex: 1 1 auto;
 	border-inline-start: 1px solid var(--card-stroke-default);
+	@media only screen and (max-width: 648px) {
+		padding: 24px;
+	}
 	header {
 		@include flex($justify: between, $align: start);
 		h1:first-child {

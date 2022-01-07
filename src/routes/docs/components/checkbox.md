@@ -2,7 +2,7 @@
     import { Checkbox, Button, InfoBar } from "$lib";
     import { Showcase, APIDocs } from "$site/lib";
 
-    import data from "$lib/Checkbox/Checkbox.svelte?sveld&raw";
+    import data from "$lib/Checkbox/Checkbox.svelte?raw&sveld";
 </script>
 
 Checkboxes represent a control that a user can select (check) or clear (uncheck). A Checkbox can also report its value as indeterminate.

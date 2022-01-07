@@ -34,19 +34,20 @@
 		"url": "https://github.com/tropix126/fluent-svelte/issues"
 	},
 	"scripts": {
-		"dev": "vite-node ./generateDocsExamples.ts && svelte-kit dev",
-		"build": "vite-node ./generateDocsExamples.ts && svelte-kit build",
+		"dev": "rollup -c && svelte-kit dev",
+		"build": "rollup -c && svelte-kit build",
 		"package": "svelte-kit package",
-		"preview": "svelte-kit preview",
+		"preview": "rollup -c && svelte-kit preview",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. .",
-		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
-		"generate": "vite-node ./generateDocsExamples.ts"
+		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
 		"@fec/remark-a11y-emoji": "^3.1.0",
 		"@fluentui/svg-icons": "^1.1.154",
+		"@rollup/plugin-node-resolve": "^13.1.3",
+		"@rollup/plugin-typescript": "^8.3.0",
 		"@sveltejs/adapter-vercel": "next",
 		"@sveltejs/kit": "^1.0.0-next.211",
 		"@sveltejs/svelte-repl": "^0.2.2",
@@ -63,6 +64,7 @@
 		"prismjs": "^1.25.0",
 		"rehype-slug": "^5.0.1",
 		"remark-github": "^11.2.2",
+		"rollup": "^2.63.0",
 		"sass": "^1.45.2",
 		"svelte": "^3.44.3",
 		"svelte-check": "^2.2.11",
@@ -71,7 +73,6 @@
 		"svelte2tsx": "^0.4.12",
 		"tslib": "^2.3.1",
 		"typescript": "^4.5.4",
-		"vite-node": "^0.1.11",
 		"vite-plugin-sveld": "^1.0.2"
 	},
 	"dependencies": {

@@ -25,7 +25,7 @@
 	p,
 	pre,
 	table,
-	ul {
+	ul:not(.repl-tabs) {
 		margin-block-start: 0;
 		margin-block-end: 16px;
 	}
@@ -112,11 +112,11 @@
 	}
 
 	ol,
-	ul {
+	ul:not(.repl-tabs) {
 		padding-inline-start: 2em;
 	}
 
-	li + li {
+	li + li:not(.repl-tab) {
 		margin-block-start: 0.25em;
 	}
 
@@ -126,7 +126,7 @@
 	}
 
 	ol,
-	ul {
+	ul:not(.repl-tabs) {
 		padding-inline-start: 2em;
 	}
 
@@ -215,11 +215,12 @@
 		border-radius: var(--control-corner-radius);
 		border-collapse: collapse;
 		background-clip: padding-box;
-		overflow: hidden;
 		text-align: left;
+		overflow: auto;
+		max-inline-size: 100%;
 
 		button {
-			width: 100%;
+			inline-size: 100%;
 		}
 
 		th,

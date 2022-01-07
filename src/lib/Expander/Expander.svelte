@@ -29,7 +29,11 @@
 	const headerId = uid("fds-expander-header-");
 	const contentId = uid("fds-expander-content-");
 
-	$: dispatch(expanded ? "expand" : "collapse");
+    $: if (expanded) {
+        dispatch("expand");
+    } else {
+        dispatch("collapse");
+    }
 
 	function handleKeydown({ key }) {
 		if (key === "Enter" || key === " ") {

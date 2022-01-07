@@ -2,7 +2,7 @@
     import { Button, InfoBar } from "$lib";
     import { Showcase, APIDocs } from "$site/lib";
 
-    import data from "$lib/Button/Button.svelte?sveld&raw";
+    import data from "$lib/Button/Button.svelte?raw&sveld";
 </script>
 
 A button gives the user a way to trigger an immediate action. Some buttons are specialized for particular tasks, such as navigation, repeated actions, or presenting menus.

@@ -3,6 +3,8 @@ lockfileVersion: 5.3
 specifiers:
     "@fec/remark-a11y-emoji": ^3.1.0
     "@fluentui/svg-icons": ^1.1.154
+    "@rollup/plugin-node-resolve": ^13.1.3
+    "@rollup/plugin-typescript": ^8.3.0
     "@sveltejs/adapter-vercel": next
     "@sveltejs/kit": ^1.0.0-next.211
     "@sveltejs/svelte-repl": ^0.2.2
@@ -20,6 +22,7 @@ specifiers:
     prismjs: ^1.25.0
     rehype-slug: ^5.0.1
     remark-github: ^11.2.2
+    rollup: ^2.63.0
     sass: ^1.45.2
     svelte: ^3.44.3
     svelte-check: ^2.2.11
@@ -29,7 +32,6 @@ specifiers:
     tabbable: ^5.2.1
     tslib: ^2.3.1
     typescript: ^4.5.4
-    vite-node: ^0.1.11
     vite-plugin-sveld: ^1.0.2
 
 dependencies:
@@ -39,7 +41,9 @@ dependencies:
 devDependencies:
     "@fec/remark-a11y-emoji": 3.1.0
     "@fluentui/svg-icons": 1.1.154
-    "@sveltejs/adapter-vercel": 1.0.0-next.34
+    "@rollup/plugin-node-resolve": 13.1.3_rollup@2.63.0
+    "@rollup/plugin-typescript": 8.3.0_cb044fd0a247ab74c5d8bfaf0e00abae
+    "@sveltejs/adapter-vercel": 1.0.0-next.35
     "@sveltejs/kit": 1.0.0-next.211_sass@1.45.2+svelte@3.44.3
     "@sveltejs/svelte-repl": 0.2.2
     "@types/prismjs": 1.16.6
@@ -55,6 +59,7 @@ devDependencies:
     prismjs: 1.25.0
     rehype-slug: 5.0.1
     remark-github: 11.2.2
+    rollup: 2.63.0
     sass: 1.45.2
     svelte: 3.44.3
     svelte-check: 2.2.11_66db6330e465f871f93322a7a5c0c1f1
@@ -63,7 +68,6 @@ devDependencies:
     svelte2tsx: 0.4.12_svelte@3.44.3+typescript@4.5.4
     tslib: 2.3.1
     typescript: 4.5.4
-    vite-node: 0.1.11_sass@1.45.2
     vite-plugin-sveld: 1.0.2_1316a881f2197081170db6db0540290e
 
 packages:
@@ -117,7 +121,7 @@ packages:
             fastq: 1.13.0
         dev: true
 
-    /@rollup/plugin-node-resolve/11.2.1_rollup@2.62.0:
+    /@rollup/plugin-node-resolve/11.2.1_rollup@2.63.0:
         resolution:
             {
                 integrity: sha512-yc2n43jcqVyGE2sqV5/YCmocy9ArjVAP/BeXyTtADTBBX6V0e5UMqwO8CdQ0kzjb6zu5P1qMzsScCMRvE9OlVg==
@@ -126,16 +130,52 @@ packages:
         peerDependencies:
             rollup: ^1.20.0||^2.0.0
         dependencies:
-            "@rollup/pluginutils": 3.1.0_rollup@2.62.0
+            "@rollup/pluginutils": 3.1.0_rollup@2.63.0
             "@types/resolve": 1.17.1
             builtin-modules: 3.2.0
             deepmerge: 4.2.2
             is-module: 1.0.0
             resolve: 1.20.0
-            rollup: 2.62.0
+            rollup: 2.63.0
         dev: true
 
-    /@rollup/pluginutils/3.1.0_rollup@2.62.0:
+    /@rollup/plugin-node-resolve/13.1.3_rollup@2.63.0:
+        resolution:
+            {
+                integrity: sha512-BdxNk+LtmElRo5d06MGY4zoepyrXX1tkzX2hrnPEZ53k78GuOMWLqmJDGIIOPwVRIFZrLQOo+Yr6KtCuLIA0AQ==
+            }
+        engines: { node: ">= 10.0.0" }
+        peerDependencies:
+            rollup: ^2.42.0
+        dependencies:
+            "@rollup/pluginutils": 3.1.0_rollup@2.63.0
+            "@types/resolve": 1.17.1
+            builtin-modules: 3.2.0
+            deepmerge: 4.2.2
+            is-module: 1.0.0
+            resolve: 1.20.0
+            rollup: 2.63.0
+        dev: true
+
+    /@rollup/plugin-typescript/8.3.0_cb044fd0a247ab74c5d8bfaf0e00abae:
+        resolution:
+            {
+                integrity: sha512-I5FpSvLbtAdwJ+naznv+B4sjXZUcIvLLceYpITAn7wAP8W0wqc5noLdGIp9HGVntNhRWXctwPYrSSFQxtl0FPA==
+            }
+        engines: { node: ">=8.0.0" }
+        peerDependencies:
+            rollup: ^2.14.0
+            tslib: "*"
+            typescript: ">=3.7.0"
+        dependencies:
+            "@rollup/pluginutils": 3.1.0_rollup@2.63.0
+            resolve: 1.20.0
+            rollup: 2.63.0
+            tslib: 2.3.1
+            typescript: 4.5.4
+        dev: true
+
+    /@rollup/pluginutils/3.1.0_rollup@2.63.0:
         resolution:
             {
                 integrity: sha512-GksZ6pr6TpIjHm8h9lSQ8pi8BE9VeubNT0OMJ3B5uZJ8pz73NPiqOtCog/x2/QzM1ENChPKxMDhiQuRHsqc+lg==
@@ -147,7 +187,7 @@ packages:
             "@types/estree": 0.0.39
             estree-walker: 1.0.1
             picomatch: 2.3.0
-            rollup: 2.62.0
+            rollup: 2.63.0
         dev: true
 
     /@rollup/pluginutils/4.1.2:
@@ -161,10 +201,10 @@ packages:
             picomatch: 2.3.0
         dev: true
 
-    /@sveltejs/adapter-vercel/1.0.0-next.34:
+    /@sveltejs/adapter-vercel/1.0.0-next.35:
         resolution:
             {
-                integrity: sha512-TQDQK2wjDQkoSkNVuFVu4a/hzqKIWCGL15Zi7zQv740ZSd6F2Lg9QHlFfEXMglu6mhoep084h6JiLtzavNiZeA==
+                integrity: sha512-juh74OesfWUo2EFThOIXX4I/9MJBGpDK3+reYc/R6slPxLLEVIZDV7TcAc2yldSGgMDCUbQg7nmXjF098IT1NQ==
             }
         dependencies:
             esbuild: 0.13.15
@@ -1361,13 +1401,6 @@ packages:
         engines: { node: ">=6" }
         dev: true
 
-    /kolorist/1.5.1:
-        resolution:
-            {
-                integrity: sha512-lxpCM3HTvquGxKGzHeknB/sUjuVoUElLlfYnXZT73K8geR9jQbroGlSCFBax9/0mpGoD3kzcMLnOlGQPJJNyqQ==
-            }
-        dev: true
-
     /lilconfig/2.0.4:
         resolution:
             {
@@ -2202,7 +2235,7 @@ packages:
             glob: 7.2.0
         dev: true
 
-    /rollup-plugin-svelte/7.1.0_rollup@2.62.0+svelte@3.44.3:
+    /rollup-plugin-svelte/7.1.0_rollup@2.63.0+svelte@3.44.3:
         resolution:
             {
                 integrity: sha512-vopCUq3G+25sKjwF5VilIbiY6KCuMNHP1PFvx2Vr3REBNMDllKHFZN2B9jwwC+MqNc3UPKkjXnceLPEjTjXGXg==
@@ -2213,7 +2246,7 @@ packages:
             svelte: ">=3.5.0"
         dependencies:
             require-relative: 0.8.7
-            rollup: 2.62.0
+            rollup: 2.63.0
             rollup-pluginutils: 2.8.2
             svelte: 3.44.3
         dev: true
@@ -2227,10 +2260,10 @@ packages:
             estree-walker: 0.6.1
         dev: true
 
-    /rollup/2.62.0:
+    /rollup/2.63.0:
         resolution:
             {
-                integrity: sha512-cJEQq2gwB0GWMD3rYImefQTSjrPYaC6s4J9pYqnstVLJ1CHa/aZNVkD4Epuvg4iLeMA4KRiq7UM7awKK6j7jcw==
+                integrity: sha512-nps0idjmD+NXl6OREfyYXMn/dar3WGcyKn+KBzPdaLecub3x/LrId0wUcthcr8oZUAcZAR8NKcfGGFlNgGL1kQ==
             }
         engines: { node: ">=10.0.0" }
         hasBin: true
@@ -2381,14 +2414,14 @@ packages:
             }
         hasBin: true
         dependencies:
-            "@rollup/plugin-node-resolve": 11.2.1_rollup@2.62.0
+            "@rollup/plugin-node-resolve": 11.2.1_rollup@2.63.0
             acorn: 8.7.0
             comment-parser: 0.7.6
             fast-glob: 3.2.7
             fs-extra: 9.1.0
             prettier: 2.5.1
-            rollup: 2.62.0
-            rollup-plugin-svelte: 7.1.0_rollup@2.62.0+svelte@3.44.3
+            rollup: 2.63.0
+            rollup-plugin-svelte: 7.1.0_rollup@2.63.0+svelte@3.44.3
             svelte: 3.44.3
             svelte-preprocess: 4.10.1_1316a881f2197081170db6db0540290e
             typescript: 4.5.4
@@ -2745,25 +2778,6 @@ packages:
             vfile-message: 3.1.0
         dev: true
 
-    /vite-node/0.1.11_sass@1.45.2:
-        resolution:
-            {
-                integrity: sha512-48AusyLGCtcfYwus/N1Jy/3JFKPb0NKsUN3GbOk5/2rS7gVzeviscs4ZIIhGPccKoNe2MB+GBa6ikstScw1cAQ==
-            }
-        engines: { node: ">=14.0.0" }
-        hasBin: true
-        dependencies:
-            debug: 4.3.3
-            kolorist: 1.5.1
-            minimist: 1.2.5
-            vite: 2.7.10_sass@1.45.2
-        transitivePeerDependencies:
-            - less
-            - sass
-            - stylus
-            - supports-color
-        dev: true
-
     /vite-plugin-sveld/1.0.2_1316a881f2197081170db6db0540290e:
         resolution:
             {
@@ -2812,7 +2826,7 @@ packages:
             esbuild: 0.13.15
             postcss: 8.4.5
             resolve: 1.20.0
-            rollup: 2.62.0
+            rollup: 2.63.0
             sass: 1.45.2
         optionalDependencies:
             fsevents: 2.3.2

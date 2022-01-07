@@ -2,7 +2,7 @@
     import { Slider, Button, InfoBar } from "$lib";
     import { Showcase, APIDocs } from "$site/lib";
 
-    import data from "$lib/Slider/Slider.svelte?sveld&raw";
+    import data from "$lib/Slider/Slider.svelte?raw&sveld";
 </script>
 
 A slider is a control that lets the user select from a range of values by moving a thumb control along a track.
@@ -31,7 +31,7 @@ import { Slider } from "fluent-svelte";
 By default, sliders are created with a value of `0`. This starts the slider thumb at 0% of the track. You can set the initial value of the slider by setting the `value` property.
 
 ```html
-<Slider value={20} />
+<Slider value="{20}" />
 ```
 
 Additionally, you can use svelte's two-way binding syntax to bind the value to a variable.
@@ -53,7 +53,7 @@ Current value: {value}
 Sliders can normally only take in `value`s ranging from `0` to `100`. This can be changed by setting the `min` and `max` properties.
 
 ```html
-<Slider min={100} max={500} value={250} />
+<Slider min="{100}" max="{500}" value="{250}" />
 ```
 
 ### Step
@@ -61,7 +61,7 @@ Sliders can normally only take in `value`s ranging from `0` to `100`. This can b
 A `step` property can be set to control the granularity of the slider. For example, if you set the `step` to `10`, the slider will only allow values that are multiples of `10`. The default step of `1` means that the slider can take any whole-number value.
 
 ```html
-<Slider step={10} />
+<Slider step="{10}" />
 ```
 
 ### Using Ticks
@@ -69,27 +69,25 @@ A `step` property can be set to control the granularity of the slider. For examp
 Slider ticks are small markers along the slider rail that mark a significant value. Ticks are purely visual, and do not alter user interaction. You can add slider ticks by passing an array of numbers within the slider's value range into the `ticks` property:
 
 ```html
-<Slider ticks={[0, 50, 100]} />
+<Slider ticks="{[0," 50, 100]} />
 ```
 
 <Slider ticks={[0, 50, 100]} />
 
 You can also customize the appearance of the slider's ticks. The `tickPlacement` property will control how the ticks are displayed on the slider rail. The default value is `"around"`, which shows the ticks at both sides of the rail vertically. Tick placement can be either `"around"`, `"before"`, or `"after"`.
 
-
 ### Tooltips
 
 All sliders are accompanied by a tooltip that displays the current value of the slider. If you do not wish to display a tooltip, you can set the `tooltip` property to `false`.
 
 ```html
-<Slider tooltip={false} />
+<Slider tooltip="{false}" />
 ```
 
 Tooltip text can also be customized through the `prefix` and `suffix` properties, which will add a string respectively before or after the tooltip's text. This is useful if you want to convey units of measurement or other information about the slider's value.
 
 ```html
-<Slider prefix="$" />
-<Slider suffix=" meters" />
+<Slider prefix="$" /> <Slider suffix=" meters" />
 ```
 
 If you require further tooltip configuration, the tooltip's content can also be entirely overrided with your own using the `tooltip` slot.
@@ -98,12 +96,10 @@ The `tooltip` slot has three slot props: `value`, `prefix` and `suffix` which gr
 
 ```html
 <Slider>
-    <svelte:fragment slot="tooltip" let:value let:prefix let:suffix>
-        {prefix}{value}{suffix}
-        <h1>
-            Custom HTML content!
-        </h1>
-    </svelte:fragment>
+	<svelte:fragment slot="tooltip" let:value let:prefix let:suffix>
+		{prefix}{value}{suffix}
+		<h1>Custom HTML content!</h1>
+	</svelte:fragment>
 </Slider>
 ```
 
@@ -124,11 +120,12 @@ Slider tracks can also be reversed using the `reverse` prop. This will change th
 ```html
 <Slider reverse />
 ```
+
 <Slider reverse />
 
 ### Trackless Sliders
 
-A slider's fill indication can be removed by setting the `track` property to `false`. This will only hide the *track*, not the rail or thumb.
+A slider's fill indication can be removed by setting the `track` property to `false`. This will only hide the _track_, not the rail or thumb.
 
 ### Disabled Sliders
 
