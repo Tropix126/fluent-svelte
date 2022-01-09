@@ -523,6 +523,7 @@
 		<MenuBarItem>Help</MenuBarItem>
 	</MenuBar>
 
+	<h3>MenuFlyout</h3>
 	<MenuFlyout alignment="start">
 		<Button>Open</Button>
 		<svelte:fragment slot="flyout">
@@ -573,7 +574,20 @@
 			<MenuFlyoutItem checked variant="toggle">Toggle Option 0</MenuFlyoutItem>
 			<MenuFlyoutItem variant="toggle">Toggle Option 1</MenuFlyoutItem>
 			<MenuFlyoutDivider />
-			<MenuFlyoutItem indented cascading hint="hi">cascading</MenuFlyoutItem>
+			<MenuFlyoutItem indented cascading hint="hint">
+                cascading
+                <svelte:fragment slot="flyout">
+                    <MenuFlyoutItem>
+                        subitem 1
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem>
+                        subitem 2
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem>
+                        subitem 3
+                    </MenuFlyoutItem>
+                </svelte:fragment>
+            </MenuFlyoutItem>
 		</svelte:fragment>
 	</MenuFlyout>
 
