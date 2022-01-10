@@ -29,7 +29,7 @@
 
 <!--
 @component
-Checkboxes represent a control that a user can select (check) or clear (uncheck). A Checkbox can also report its value as indeterminate.
+Checkboxes represent a control that a user can select (check) or clear (uncheck). A Checkbox can also report its value as indeterminate. [Docs](https://fluent-svelte.vercel.app/docs/components/checkbox)
 - Usage:
     ```tsx
     <Checkbox bind:checked />

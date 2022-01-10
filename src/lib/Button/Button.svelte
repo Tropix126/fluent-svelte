@@ -24,7 +24,7 @@
 
 <!--
 @component
-A button gives the user a way to trigger an immediate action. Some buttons are specialized for particular tasks, such as navigation, repeated actions, or presenting menus.
+A button gives the user a way to trigger an immediate action. Some buttons are specialized for particular tasks, such as navigation, repeated actions, or presenting menus. [Docs](https://fluent-svelte.vercel.app/docs/components/button)
 - Usage:
     ```tsx
     <Button>Click me!</Button>

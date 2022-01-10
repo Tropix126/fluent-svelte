@@ -180,6 +180,8 @@
 Use a combo box (also known as a drop-down list) to present a list of items that a user can select from. A combo box starts in a compact state and expands to show a list of selectable items. 
 
 When the combo box is closed, it either displays the current selection or is empty if there is no selected item. When the user expands the combo box, it displays the list of selectable items.
+[Docs](https://fluent-svelte.vercel.app/docs/components/combobox)
+
 - Usage:
     ```tsx
     <ComboBox items={[

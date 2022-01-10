@@ -39,6 +39,20 @@
 	}
 </script>
 
+<!--
+@component
+Expanders are controls that display a header and a collapsable content area. The content area can be expanded clicking on the header.
+- Usage:
+    ```tsx
+    <Expander>
+        Header
+        <svelte:fragment slot="content">
+            Content
+        </svelte:fragment>
+    </Expander>
+    ```
+- [Docs](https://fluent-svelte.vercel.app/docs/components/expander)
+-->
 <div
 	use:forwardEvents
 	class="expander direction-{direction} {className}"
