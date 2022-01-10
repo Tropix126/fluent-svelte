@@ -21,7 +21,7 @@
 .menu-flyout {
 	@include typography-body;
 	@include flex($direction: column);
-	animation: menu-open var(--control-normal-duration) var(--control-fast-out-slow-in-easing), menu-shadow var(--control-fast-duration) var(--control-fast-out-slow-in-easing) var(--control-normal-duration);
+	animation: menu-open var(--control-normal-duration) var(--control-fast-out-slow-in-easing), menu-shadow var(--control-fast-duration) var(--control-fast-out-slow-in-easing) var(--control-normal-duration) forwards;
 	min-inline-size: 120px;
 	max-inline-size: 100%;
 	max-block-size: 100vh;
@@ -34,7 +34,6 @@
 	border: 1px solid var(--surface-stroke-flyout);
 	background-clip: padding-box;
 	background-color: var(--flyout-fallback-background-default);
-	box-shadow: var(--flyout-shadow);
 	&-surface-container {
 		overflow: hidden;
 	}
