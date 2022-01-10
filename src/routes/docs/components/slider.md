@@ -12,16 +12,18 @@ import { Slider } from "fluent-svelte";
 ```
 
 <Showcase columns={4} columnWidth="120px" repl="461bd056ac7b4c7a920354256560b0a4">
-    <Slider />
-    <Slider value={10000} step={10000} max={30000} ticks={[10000, 20000]} suffix="cm" />
-    <Slider value={80} max={200} reverse />
-    <Slider value={50} disabled />
-    <div style="block-size: 72px;">
-        <Slider orientation="vertical" value={24} />
+    <div style="display: contents" on:mousedown|stopPropagation>
+        <Slider />
+        <Slider value={10000} step={10000} max={30000} ticks={[10000, 20000]} suffix="cm" />
+        <Slider value={80} max={200} reverse />
+        <Slider value={50} disabled />
+        <div style="block-size: 72px;">
+            <Slider orientation="vertical" value={24} />
+        </div>
+        <Slider orientation="vertical" value={50} reverse />
+        <Slider orientation="vertical" value={76} track={false} ticks={[24, 50, 76]} tickPlacement="after" />
+        <Slider orientation="vertical" value={24} disabled />
     </div>
-    <Slider orientation="vertical" value={50} reverse />
-    <Slider orientation="vertical" value={76} track={false} ticks={[24, 50, 76]} tickPlacement="after" />
-    <Slider orientation="vertical" value={24} disabled />
 </Showcase>
 
 ## Usage
