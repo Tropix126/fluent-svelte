@@ -11,7 +11,7 @@
 	export let open: boolean = false;
 
 	/** Title text displayed as the dialog header. */
-	export let title: string = undefined;
+	export let title: string = "";
 
 	/** Specifies the visual size of the dialog. */
 	export let size: "standard" | "max" | "min" = "standard";
@@ -24,6 +24,9 @@
 
 	/** Determines if the dialog should darken the contents behind it. */
 	export let darken = true;
+
+    /** Determines if keyboard focus should be locked to the dialog's contents. */
+    export let trapFocus = true;
 
 	/** Specifies a custom class name for the dialog. */
 	let className = "";
@@ -47,6 +50,7 @@
 	const bodyId = uid("fds-dialog-body-");
 
 	$: if (!open) dispatch("close");
+    $: _focusTrap = trapFocus ? focusTrap : () => {};
 
 	function mountDialog(node: HTMLDivElement) {
 		dispatch("open");
@@ -61,6 +65,7 @@
 	function handleEscapeKey({ key }: KeyboardEvent) {
 		if (key === "Escape" && open && closable) close();
 	}
+
 </script>
 
 <svelte:window on:keydown={handleEscapeKey} />
@@ -73,7 +78,7 @@
 		on:mousedown={e => dispatch("backdropmousedown", e)}
 		transition:fade={{ duration: getCSSDuration("--fds-control-faster-duration") }}
 		use:mountDialog
-		use:focusTrap
+		use:_focusTrap
 		bind:this={backdropElement}
 	>
 		<div
