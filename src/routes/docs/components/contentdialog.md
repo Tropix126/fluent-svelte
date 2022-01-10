@@ -129,6 +129,10 @@ To do this, you can set the `append` property to any valid [HTMLElement](https:/
 </ContentDialog>
 ```
 
+<InfoBar severity="information" title="Information">
+    If you are familliar with React, this is essentially a <a href="https://reactjs.org/docs/portals.html" target="_blank" rel="noreferrer noopener">portal</a>.
+</InfoBar>
+
 ## Component API
 
 <APIDocs {data} />
