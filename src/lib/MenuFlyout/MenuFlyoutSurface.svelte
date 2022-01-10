@@ -14,7 +14,7 @@
 	style={animationComplete ? "overflow: visible;" : undefined}
 >
 	<ul
-		on:animationend={() => (animationComplete = true)}
+		on:animationend|once={() => (animationComplete = true)}
 		class="menu-flyout {className}"
 		bind:this={element}
 		{...$$restProps}
