@@ -76,7 +76,7 @@
 		class:darken
 		on:click={e => dispatch("backdropclick", e)}
 		on:mousedown={e => dispatch("backdropmousedown", e)}
-		transition:fade={{ duration: getCSSDuration("--fds-control-faster-duration") }}
+		transition:fade|local={{ duration: getCSSDuration("--fds-control-faster-duration") }}
 		use:mountDialog
 		use:_focusTrap
 		bind:this={backdropElement}
@@ -89,7 +89,7 @@
 			aria-labelledby={title && titleId}
 			aria-describedby={bodyId}
 			bind:this={element}
-			transition:scale={{
+			transition:scale|local={{
 				duration: getCSSDuration("--fds-control-fast-duration"),
 				start: 1.05,
 				easing: circOut

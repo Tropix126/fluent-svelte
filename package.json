@@ -1,6 +1,6 @@
 {
 	"name": "fluent-svelte",
-	"version": "1.2",
+	"version": "1.2.0",
 	"description": "A faithful implementation of Microsoft's Fluent Design System in Svelte.",
 	"homepage": "https://github.com/tropix126/fluent-svelte",
 	"license": "MIT",
