@@ -76,7 +76,7 @@ Slider ticks are small markers along the slider rail that mark a significant val
 
 <Slider ticks={[0, 50, 100]} />
 
-You can also customize the appearance of the slider's ticks. The `tickPlacement` property will control how the ticks are displayed on the slider rail. The default value is `"around"`, which shows the ticks at both sides of the rail vertically. Tick placement can be either `"around"`, `"before"`, or `"after"`.
+You can also customize the appearance of the slider's ticks. The `tickPlacement` property will control how the ticks are displayed on the slider rail. The default value is `around`, which shows the ticks at both sides of the rail vertically. Tick placement can be either `around`, `before`, or `after`.
 
 
 ### Tooltips
@@ -111,7 +111,7 @@ The `tooltip` slot has three slot props: `value`, `prefix` and `suffix` which gr
 
 ### Direction and Orientation
 
-Sliders can be displayed in either a horizontal (left and right) or vertical orientation (up and down). By default, sliders are displayed in a horizontal orientation. You can change this by setting the `orientation` property to `"vertical"`.
+Sliders can be displayed in either a horizontal (left and right) or vertical orientation (up and down). By default, sliders are displayed in a horizontal orientation. You can change this by setting the `orientation` property to `vertical`.
 
 ```html
 <Slider orientation="vertical" />

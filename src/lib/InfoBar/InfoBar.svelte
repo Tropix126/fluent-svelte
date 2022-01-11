@@ -5,8 +5,6 @@
 
 	import { InfoBadge } from "$lib/index";
 
-	const dispatch = createEventDispatcher();
-
 	/** Determines whether the bar is open (rendered). */
 	export let open = true;
 
@@ -45,17 +43,28 @@
 	let wrapped = false;
 	let clientHeight = 0;
 
+    const dispatch = createEventDispatcher();
 	const forwardEvents = createEventForwarder(get_current_component());
 
 	$: actionWrapped = clientHeight && actionElement?.offsetTop > 0;
 	$: messageWrapped = clientHeight && messageElement?.offsetTop > titleElement?.offsetTop;
-
-	function handleClose(event) {
-		open = false;
-		dispatch("close", event);
-	}
+    $: if (open) {
+        dispatch("open");
+    } else {
+        dispatch("close");
+    }
 </script>
 
+<!--
+@component
+The InfoBar control is for displaying app-wide status messages to users that are highly visible yet non-intrusive. There are built-in security levels to easily indicate the type of message shown as well as the option to include your own call to action or hyperlink button.
+- Usage:
+    ```tsx
+    <InfoBar title="Title" message="Message">
+        <Button slot="action">Action</Button>
+    </InfoBar>
+    ```
+-->
 {#if open}
 	<div
 		use:forwardEvents
@@ -99,7 +108,7 @@
 				class="info-bar-close-button"
 				type="button"
 				aria-label="Close"
-				on:click={handleClose}
+				on:click={() => open = false}
 				bind:this={closeButtonElement}
 			>
 				<svg

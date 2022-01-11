@@ -44,4 +44,10 @@
 		inset-inline-end: 12px;
 		inset-block-end: 12px;
 	}
+	:global {
+		.info-bar {
+			inline-size: 100%;
+			margin-block-end: 0;
+		}
+	}
 }

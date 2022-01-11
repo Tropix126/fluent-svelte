@@ -95,7 +95,7 @@ You can use the `footer` slot to insert various actions at the bottom of the dia
 
 ### Size
 
-Dialogs come in three sizes - `"min"`, `"standard"`, and `"max"`. You can set the dialog's size using the `size` property. With this in mind, dialogs will always responsively scale down if their width exceeds the viewport size.
+Dialogs come in three sizes - `min`, `standard`, and `max`. You can set the dialog's size using the `size` property. With this in mind, dialogs will always responsively scale down if their width exceeds the viewport size.
 
 <div class="dialog-sizes">
     {#each ["min", "standard", "max"] as size}
