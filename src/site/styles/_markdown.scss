@@ -233,6 +233,7 @@
 		}
 
 		th {
+            white-space: nowrap;
 			background-color: var(--card-background-secondary);
 			font-weight: 600;
 		}
@@ -241,6 +242,10 @@
 			vertical-align: middle;
 			background-color: var(--card-background-default);
 		}
+
+        :global(.info-bar) {
+            margin-block-end: 0;
+        }
 	}
 
 	.info-bar,

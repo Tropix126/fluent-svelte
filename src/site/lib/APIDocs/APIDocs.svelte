@@ -101,7 +101,7 @@ and
 					</td>
 					<td>
 						{#if typeof fallback !== "undefined"}
-							<code>{fallback}</code>
+							<code>{fallback.substr(0, 300)}</code>{fallback.length > 300 ? "…" : ""}
 						{:else}
 							Empty
 						{/if}
