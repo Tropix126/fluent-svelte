@@ -13,7 +13,7 @@ InfoBadges are a non-intrusive and intuitive way to display notifications or bri
 import { InfoBadge } from "fluent-svelte";
 ```
 
-<Showcase repl="789be6a7b377455aab6f44e123885423" columns={5}>
+<Showcase repl="ce7c58c352e24e84ad6838663e6dcd4e" columns={5}>
     {#each severities as severity}
         <InfoBadge {severity} />
     {/each}
