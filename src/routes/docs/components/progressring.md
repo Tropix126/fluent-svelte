@@ -39,11 +39,13 @@ The `value` property takes in a number between `0` to `100` that represents the 
 <ProgressRing value={50} />
 ```
 
-ProgressRings have two primary states - indeterminate and determinate.
+ProgressRings have two primary states - *determinate* and *indeterminate*.
 
 A ProgressRing is indeterminate under the following conditions:
 - No `value` is provided.
 - A `value` is passed in, but it is `undefined`, `null`, or `NaN`.
+
+A determinate ProgressRing displays a completion percentage by filling the ring gradually, while an indeterminate ProgressRing plays a looping spinner animation.
 
 ### Size
 
@@ -53,7 +55,7 @@ You can control the diameter of the ring in pixels by setting the `size` propert
 <ProgressRing size={64} />
 ```
 
-### Component API
+## Component API
 
 <APIDocs {data} />
 
