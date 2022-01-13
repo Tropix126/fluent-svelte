@@ -26,7 +26,7 @@ A button can either be a clickable action or a link. By default, a button will b
 
 ### Styles
 
-Buttons come in three possible _variants_ - `standard`, `accent` and `hyperlink`. Variants can be specified using the `variant` prop.
+Buttons come in three possible _variants_ - `standard`, `accent` and `hyperlink`. Variants can be specified using the `variant` property.
 
 | Variant   | Preview                                               | Usage                                                                        |
 | --------- | ----------------------------------------------------- | ---------------------------------------------------------------------------- |
@@ -36,7 +36,7 @@ Buttons come in three possible _variants_ - `standard`, `accent` and `hyperlink`
 
 ### Disabled Buttons
 
-If the button is not meant to be clicked, you can use the `disabled` property to visually indicate this. If a button is disabled, it will be unclickable and the `href` prop will be ignored.
+If the button is not meant to be clicked, you can use the `disabled` property to visually indicate this. If a button is disabled, it will be unclickable and the `href` property will be ignored.
 
 ## Component API
 
