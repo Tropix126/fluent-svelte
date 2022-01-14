@@ -14,6 +14,7 @@
 }
 
 .progress-ring {
+    outline: none;
 	min-inline-size: 16px;
 	min-block-size: 16px;
 
@@ -26,7 +27,7 @@
 		stroke: {
 			width: 1.5;
 			linecap: round;
-			dasharray: 43.75;
+			dasharray: 43.97;
 		}
 	}
 

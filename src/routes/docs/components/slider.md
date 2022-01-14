@@ -121,7 +121,7 @@ Sliders can be displayed in either a horizontal (left and right) or vertical ori
     <Slider orientation="vertical" />
 </div>
 
-Slider tracks can also be reversed using the `reverse` prop. This will change the direction of the slider's track. For example, if the slider is horizontal and the `reverse` prop is set to `true`, the track will be displayed from right to left.
+Slider tracks can also be reversed using the `reverse` property. This will change the direction of the slider's track. For example, if the slider is horizontal and the `reverse` property is set to `true`, the track will be displayed from right to left.
 
 ```html
 <Slider reverse />
