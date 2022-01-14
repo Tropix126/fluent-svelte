@@ -35,6 +35,14 @@
 	}
 </script>
 
+<!--
+@component
+List Items display data stacked vertically in a single column. List Items work better for items that have text as a focal point, and for collections that are meant to be read top to bottom (i.e. alphabetically ordered). A few common use cases for List Items include lists of messages and search results.
+- Usage:
+    ```tsx
+    <ListItem>Text</ListItem>
+    ```
+-->
 {#if href && !disabled}
 	<a
 		use:forwardEvents
