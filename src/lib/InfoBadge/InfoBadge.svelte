@@ -20,6 +20,16 @@
 	};
 </script>
 
+<!--
+@component
+InfoBadges are a non-intrusive and intuitive way to display notifications or bring focus to an area within an app - whether that be for notifications, indicating new content, or showing an alert. [Docs](https://fluent-svelte.vercel.app/docs/components/infobadge)
+- Usage:
+    ```tsx
+    <InfoBadge />
+    <InfoBadge severity="success" />
+    <InfoBadge>0</InfoBadge>
+    ```
+-->
 <span
 	use:forwardEvents
 	bind:this={element}
