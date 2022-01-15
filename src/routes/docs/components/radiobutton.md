@@ -13,7 +13,7 @@ Radio buttons, also called option buttons, let users select one option from a co
 import { RadioButton } from "fluent-svelte";
 ```
 
-<Showcase columns={3} repl="0fde4983fdc841d8b7320143ee3d50d7">
+<Showcase columns={3} repl="b3c4c774b4b84f948a8a6747e5cf7226">
     <RadioButton value={1} bind:group>Option 1</RadioButton>
     <RadioButton value={2} bind:group>Option 2</RadioButton>
     <RadioButton value={3} bind:group disabled>Option 3</RadioButton>

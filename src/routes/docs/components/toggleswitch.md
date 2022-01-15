@@ -11,7 +11,7 @@ The toggle switch represents a physical switch that allows users to turn things 
 import { ToggleSwitch } from "fluent-svelte";
 ```
 
-<Showcase columns={2} repl="0fde4983fdc841d8b7320143ee3d50d7">
+<Showcase columns={2} repl="4b7217ee24294302937ec6c69db1bbc0">
     <ToggleSwitch>ToggleSwitch</ToggleSwitch>
     <ToggleSwitch checked>ToggleSwitch</ToggleSwitch>
     <ToggleSwitch disabled>ToggleSwitch</ToggleSwitch>
