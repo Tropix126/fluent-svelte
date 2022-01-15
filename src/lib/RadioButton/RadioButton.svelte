@@ -3,7 +3,7 @@
 	import { createEventForwarder } from "$lib/internal";
 
 	/** Bindable value representing a group of radio inputs that the input will be bound to. */
-	export let group: any = [];
+	export let group: any = undefined;
 
 	/** Controls whether the radio is checked or not. Only valid is `group` is not bound. */
 	export let checked = false;
@@ -27,6 +27,22 @@
 	const forwardEvents = createEventForwarder(get_current_component());
 </script>
 
+<!--
+@component
+Radio buttons, also called option buttons, let users select one option from a collection of two or more mutually exclusive, but related, options. The singular behavior of a RadioButtons group distinguishes it from check boxes, which support multi-selection and deselection, or clearing. [Docs](https://fluent-svelte.vercel.app/docs/components/radiobutton)
+- Usage:
+    ```tsx
+    <script>
+        import { RadioButton } from "fluent-svelte";
+
+        let flavor = "chocolate";
+    </script>
+
+    <RadioButton bind:group={flavor} value="chocolate">Chocolate</RadioButton>
+    <RadioButton bind:group={flavor} value="vanilla">Vanilla</RadioButton>
+    <RadioButton bind:group={flavor} value="strawberry">Strawberry</RadioButton>
+    ```
+-->
 <label class="radio-button-container" bind:this={containerElement}>
 	<input
 		use:forwardEvents

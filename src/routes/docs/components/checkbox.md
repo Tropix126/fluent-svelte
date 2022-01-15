@@ -11,7 +11,7 @@ Checkboxes represent a control that a user can select (check) or clear (uncheck)
 import { Checkbox } from "fluent-svelte";
 ```
 
-<Showcase columns={3} repl="0fde4983fdc841d8b7320143ee3d50d7">
+<Showcase columns={3} repl="f749a248f8924ea3a90db238cc2c2415">
     <Checkbox>Checkbox</Checkbox>
     <Checkbox checked>Checkbox</Checkbox>
     <Checkbox checked indeterminate>Checkbox</Checkbox>
@@ -61,6 +61,10 @@ Passing in content to the checkbox's slot will cause that content to be rendered
 ```html
 <Checkbox>I have a label!</Checkbox>
 ```
+
+### Value
+
+For usage in forms, you can set a `value` property which will set the [value](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#value) of the Checkbox's `<input>` element.
 
 ### Disabled Checkboxes
 

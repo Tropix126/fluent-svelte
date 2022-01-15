@@ -24,6 +24,14 @@
 	const forwardEvents = createEventForwarder(get_current_component());
 </script>
 
+<!--
+@component
+The toggle switch represents a physical switch that allows users to turn things on or off, like a light switch. Use toggle switch controls to present users with two mutually exclusive options (such as on/off), where choosing an option provides immediate results. [Docs](https://fluent-svelte.vercel.app/docs/components/radiobutton)
+- Usage:
+    ```tsx
+    <ToggleSwitch bind:checked />
+    ```
+-->
 <label class="toggle-switch-container" bind:this={containerElement}>
 	<input
 		use:forwardEvents

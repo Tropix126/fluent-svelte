@@ -45,7 +45,7 @@
 
 <!--
 @component
-Expanders are controls that display a header and a collapsable content area. The content area can be expanded clicking on the header.
+Expanders are controls that display a header and a collapsable content area. The content area can be expanded clicking on the header. [Docs](https://fluent-svelte.vercel.app/docs/components/expander)
 - Usage:
     ```tsx
     <Expander>
@@ -55,7 +55,6 @@ Expanders are controls that display a header and a collapsable content area. The
         </svelte:fragment>
     </Expander>
     ```
-- [Docs](https://fluent-svelte.vercel.app/docs/components/expander)
 -->
 <div
 	use:forwardEvents

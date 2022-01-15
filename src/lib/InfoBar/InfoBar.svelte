@@ -57,7 +57,7 @@
 
 <!--
 @component
-The InfoBar control is for displaying app-wide status messages to users that are highly visible yet non-intrusive. There are built-in security levels to easily indicate the type of message shown as well as the option to include your own call to action or hyperlink button.
+The InfoBar control is for displaying app-wide status messages to users that are highly visible yet non-intrusive. There are built-in security levels to easily indicate the type of message shown as well as the option to include your own call to action or hyperlink button. [Docs](https://fluent-svelte.vercel.app/docs/components/infobar)
 - Usage:
     ```tsx
     <InfoBar title="Title" message="Message">
