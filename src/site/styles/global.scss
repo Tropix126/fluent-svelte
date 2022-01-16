@@ -11,6 +11,7 @@
 
 	:root {
 		--font-family-monospace: "Cascadia Code", "Fira Code", "Consolas", monospace;
+		--font-family-sans-serif: "Segoe UI", sans-serif;
 		@media (prefers-color-scheme: dark) {
 			color-scheme: dark;
 		}
