@@ -45,17 +45,3 @@ TextBlocks can be customized to a given purpose by passing in a `variant` proper
 ## Component API
 
 <APIDocs {data} />
-
-
-<style>
-    .ring-spacer {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 12px;
-    }
-
-    :global(.component-showcase .component-showcase-grid > .example-ring-input) {
-        margin-block-start: 12px;
-        inline-size: 108px;
-    }
-</style>

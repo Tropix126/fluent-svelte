@@ -30,7 +30,7 @@
 	}
 </script>
 
-<div class="tree-view">
+<div class="tree-view scroller">
 	{#each tree as { name, path, type, pages, icon }}
 		{#if type === "category"}
 			{#if __depth > 0}
