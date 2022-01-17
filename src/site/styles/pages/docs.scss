@@ -40,13 +40,15 @@
 }
 
 aside {
+    @include flex($direction: column);
 	padding-inline: 4px;
 	position: sticky;
 	align-self: start;
-	top: 56px;
+	inset-block-start: 56px;
 	padding-block-start: 12px;
 	flex: 0 0 auto;
-	width: 280px;
+	inline-size: 280px;
+    max-block-size: calc(100vh - 56px);
 	&:last-child {
 		width: 220px;
 		padding-block-start: 44px;

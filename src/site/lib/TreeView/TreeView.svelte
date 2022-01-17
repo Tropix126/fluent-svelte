@@ -77,8 +77,14 @@
 		padding-inline-start: 24px;
 	}
 
-	.tree-view :global(.category-header) {
-		inline-size: 100%;
-		padding: 10px 16px;
-	}
+	.tree-view {
+        max-block-size: 100%;
+        min-block-size: 0;
+        overflow: auto;
+        :global(.category-header) {
+            inline-size: 100%;
+            padding-inline: 16px;
+            padding-block: 10px;
+        }
+    }
 </style>
