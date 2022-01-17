@@ -80,7 +80,6 @@
 	.tree-view {
         max-block-size: 100%;
         min-block-size: 0;
-        overflow: auto;
         :global(.category-header) {
             inline-size: 100%;
             padding-inline: 16px;

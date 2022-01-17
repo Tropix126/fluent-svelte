@@ -110,11 +110,11 @@ export const docsMap: DocsMap[] = [
 			}
 		]
 	},
-	// {
-	// 	type: "category",
-	// 	name: "Internals",
-	// 	pages: []
-	// }
+	{
+		type: "category",
+		name: "Internals",
+		pages: []
+	}
 ];
 
 // {

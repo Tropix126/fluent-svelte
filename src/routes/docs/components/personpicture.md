@@ -1,28 +1,97 @@
 <script lang="ts">
-    import { TextBlock } from "$lib";
+    import { Button, PersonPicture, InfoBadge } from "$lib";
     import { Showcase, APIDocs } from "$site/lib";
 
     import data from "$lib/PersonPicture/PersonPicture.svelte?sveld&raw";
 </script>
 
-The TextBlock control renders a block of text in a given style depending on it's indended purpose in the layout. As the visual representation of language, TextBlock’s main task is to communicate information. Its style should never get in the way of that goal.
+The person picture control displays the avatar image for a person, if one is available; if not, it displays the person's initials or a generic glyph. You can additionally insert your own badge at the top of the picture, and provide your own inner content.
 
 ```ts
-import { TextBlock } from "fluent-svelte";
+import { PersonPicture } from "fluent-svelte";
 ``` 
 
-<Showcase repl="" columns={3}>
-    <TextBlock variant="caption">Caption</TextBlock>
-    <TextBlock variant="body">Body</TextBlock>
-    <TextBlock variant="bodyStrong">Body Strong</TextBlock>
-    <TextBlock variant="bodyLarge">Body Large</TextBlock>
-    <TextBlock variant="subtitle">Subtitle</TextBlock>
-    <TextBlock variant="title">Title</TextBlock>
-    <TextBlock variant="titleLarge">Title Large</TextBlock>
-    <TextBlock variant="display">Display</TextBlock>
+<Showcase repl="46c25d4df2414602878cb7a1d7d47194" columns={4}>
+    <PersonPicture src="https://thispersondoesnotexist.com/image" alt="Random person">
+        {Math.random()
+            .toString(36)
+            .replace(/[^a-z]+/g, "")
+            .toUpperCase()
+            .substr(0, 2)}
+    </PersonPicture>
+    <PersonPicture src="https://thispersondoesnotexist.com/image" alt="Random person" size={48} />
+    <PersonPicture>
+        {Math.random()
+            .toString(36)
+            .replace(/[^a-z]+/g, "")
+            .toUpperCase()
+            .substr(0, 2)}
+        <svelte:fragment slot="badge">
+            <InfoBadge>1</InfoBadge>
+        </svelte:fragment>
+    </PersonPicture>
+    <PersonPicture alt="A A A" />
 </Showcase>
 
 ## Usage
+
+### Setting a Photo
+
+Similarly to HTML's [`<img />`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element, you can set the `src` property to a URL of an image.
+
+```html
+<PersonPicture src="https://source.unsplash.com/random" />
+```
+
+It's recommended for both accessibility and fallback purposes that you provide an `alt` property for the image as well. The `alt` attribute is used by screen readers to provide a description of the image to visually impaired users.
+
+```html
+<PersonPicture alt="Dog runs through the snow" src="https://images.unsplash.com/photo-1530126483408-aa533e55bdb2" />
+```
+
+Additionally, if `src` is invalid and no slot text is inserted, the alt text will be converted to initials format as a fallback.
+
+```html
+<PersonPicture src="not-a-real-domain" alt="John Smith" />
+```
+
+### Custom Text
+
+If no `src` is provided, you can provide your own text to be displayed in the control. The order of display is:
+1. If a valid image URL in `src` is provided, it will be displayed.
+2. If the `src` attribute fails to display or is invalid, the text or HTML is passed into the default slot will be displayed.
+3. If `src` is invalid, no slots are used, but an `alt` property is provided, the alt text will be converted to initials format and displayed.
+
+```html
+<PersonPicture>RDJ</PersonPicture>
+<PersonPicture src="not-a-real-domain" alt="Robert Downey Jr." />
+```
+
+### Badges
+
+You can use the component's `badge` slot to insert an offset element at the top of the picture. It's recommended that you use the [`InfoBadge`](infobadge) component for this.
+
+```html
+<script>
+    import { InfoBadge, PersonPicture } from "fluent-svelte";
+
+    let messages = 4;
+</script>
+
+<PersonPicture src="https://thispersondoesnotexist.com/image" alt="John Smith">
+    <InfoBadge slot="badge">
+        {messages}
+    </InfoBadge>
+</PersonPicture>
+```
+
+### Size
+
+You can control the dimensions of the picture in pixels by setting the `size` property. The default size is `72`.
+
+```html
+<PersonPicture size={64} />
+```
 
 ## Component API
 

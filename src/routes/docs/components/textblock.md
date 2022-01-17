@@ -11,7 +11,7 @@ The TextBlock control renders a block of text in a given style depending on it's
 import { TextBlock } from "fluent-svelte";
 ``` 
 
-<Showcase repl="" columns={3}>
+<Showcase repl="9354fe2253804088b23e4dc9a882fa24" columns={3}>
     <TextBlock variant="caption">Caption</TextBlock>
     <TextBlock variant="body">Body</TextBlock>
     <TextBlock variant="bodyStrong">Body Strong</TextBlock>

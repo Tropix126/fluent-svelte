@@ -17,6 +17,10 @@
 
 	/** Obtains a bound DOM reference to the outer picture container. */
 	export let containerElement: HTMLDivElement = null;
+
+    let error = false;
+
+    $: if (src) error = false;
 </script>
 
 <div
@@ -24,9 +28,10 @@
 	style="--fds-person-picture-size: {size}px"
 	bind:this={containerElement}
 >
-	{#if src}
+	{#if src && !error}
 		<img
 			bind:this={element}
+            on:error={() => error = true}
 			class="person-picture {className}"
 			width={size}
 			height={size}
@@ -38,10 +43,10 @@
 		<div bind:this={element} class="person-picture {className}" {...$$restProps}>
 			<slot>
 				{alt
-					.split(" ")
+					?.split(" ")
 					.map(i => i.charAt(0))
 					.join("")
-					.toUpperCase()}
+					.toUpperCase() ?? ""}
 			</slot>
 		</div>
 	{/if}
