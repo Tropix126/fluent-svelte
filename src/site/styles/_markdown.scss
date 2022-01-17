@@ -211,11 +211,12 @@
 	// Tables
 	table {
 		display: inline-block;
+        max-inline-size: 100%;
 		border: 1px solid var(--card-stroke-default);
 		border-radius: var(--control-corner-radius);
 		border-collapse: collapse;
 		background-clip: padding-box;
-		overflow: hidden;
+        overflow: auto;
 		text-align: left;
 
 		button {

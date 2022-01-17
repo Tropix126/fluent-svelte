@@ -13,7 +13,7 @@
 		(headings =
 			target &&
 			Array.from(target.querySelectorAll("h1, h2, h3")).filter(
-				node => !node.closest(".component-showcase-grid")
+				node => !node.closest(".component-showcase-grid, .markdown-body > table")
 			));
 
 	function handleScroll() {
