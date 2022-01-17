@@ -29,7 +29,7 @@
 
 <Navbar {items}>
 	<Tooltip slot="buttons" placement="left" offset={8} text="View GitHub">
-		<IconButton>
+		<IconButton href="https://github.com/tropix126/fluent-svelte/" rel="noreferrer noopener">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
 				<path
 					fill-rule="evenodd"
