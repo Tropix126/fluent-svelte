@@ -75,7 +75,7 @@
 
 <div
 	class="context-menu-wrapper"
-	on:contextmenu|preventDefault={handleContextMenu}
+	on:contextmenu|preventDefault|stopPropagation={handleContextMenu}
 	on:contextmenu
 	bind:this={wrapperElement}
 >
