@@ -63,7 +63,7 @@
 	&-header {
 		@include flex($align: center);
 		@include typography-body;
-		text-align: left;
+		text-align: start;
 		outline: none;
 		box-sizing: border-box;
 		padding-inline-start: 16px;
