@@ -92,7 +92,7 @@
 			style="top: {menuPosition.y}px; left: {menuPosition.x}px;"
 		>
 			<MenuFlyoutSurface bind:this={menu} bind:element={menuElement} {...$$restProps}>
-				<slot name="menu" />
+				<slot name="flyout" />
 			</MenuFlyoutSurface>
 		</div>
 	{/if}
