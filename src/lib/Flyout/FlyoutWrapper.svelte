@@ -61,21 +61,21 @@
 >
 	<slot />
 	{#if open}
-		<slot name="override">
-			<div
-				id={menuId}
-				class="flyout-anchor placement-{placement} alignment-{alignment}"
-				style="--fds-flyout-offset: {offset}px;"
-				use:focusTrap
-				bind:this={anchorElement}
-				on:click={e => e.stopPropagation()}
-			>
-				<FlyoutSurface bind:element={menuElement} class={className ?? ""} {...$$restProps}>
-					<slot name="flyout" />
-				</FlyoutSurface>
-			</div>
-			<div class="flyout-backdrop" bind:this={backdropElement} on:mousedown={closeFlyout} />
-		</slot>
+        <div
+            id={menuId}
+            class="flyout-anchor placement-{placement} alignment-{alignment}"
+            style="--fds-flyout-offset: {offset}px;"
+            use:focusTrap
+            bind:this={anchorElement}
+            on:click={e => e.stopPropagation()}
+        >
+            <slot name="override">
+                <FlyoutSurface bind:element={menuElement} class={className ?? ""} {...$$restProps}>
+                    <slot name="flyout" />
+                </FlyoutSurface>
+            </slot>
+        </div>
+        <div class="flyout-backdrop" bind:this={backdropElement} on:mousedown={closeFlyout}></div>
 	{/if}
 </div>
 
