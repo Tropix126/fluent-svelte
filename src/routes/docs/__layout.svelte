@@ -45,15 +45,17 @@
 	export let examples: DocsExamples[] = [];
 
 	let article;
+    let searchMatches = [];
 	let searchValue = "";
 	let searchSelection = 0;
 	let searchFlyoutOpen = false;
 	let searchItems = docsPages.map(page => page.name);
-
+    
 	function handleKeyDown({ key }: KeyboardEvent) {
+        console.log(docsPages[searchSelection].path);
         if (key === "Enter") {
 			searchValue = "";
-			// goto(`/docs${docsPages.find(p => p.name === searchItems[searchSelection]).path}`);
+			goto(`/docs${docsPages.filter(page => searchMatches.some(match => page.name === match))[searchSelection].path}`);
 		}
 	}
 
@@ -62,6 +64,7 @@
 		searchSelection = index;
 		searchFlyoutOpen = false;
 	}
+
 </script>
 
 <Metadata title="Fluent Svelte - Docs - {currentPage?.name}" description="" />
@@ -76,19 +79,20 @@
 					bind:open={searchFlyoutOpen}
 					bind:value={searchValue}
 					bind:selection={searchSelection}
+                    bind:matches={searchMatches}
 					bind:items={searchItems}
 				>
-					<svelte:fragment slot="item-template" let:selection let:index let:id let:item>
+					<svelte:fragment slot="item-template" let:matches let:index let:id let:item>
                         <ListItem
                             on:click={() => handleSelection(index)}
-                            selected={selection === index}
-                            href={`/docs${docsPages.find(p => p.name === item).path}`}
+                            selected={searchSelection === index}
+                            href="/docs{docsPages.filter(page => matches.some(match => page.name === match))[index].path}"
                             {id}
                         >
                             {item}
                             <svelte:fragment slot="icon">
-                                {#if docsPages.find(p => p.name === item)}
-                                    {@html docsPages.find(p => p.name === item).icon}
+                                {#if docsPages.filter(page => matches.some(match => page.name === match))[index].name}
+                                    {@html docsPages.filter(page => matches.some(match => page.name === match))[index].icon}
                                 {/if}
                             </svelte:fragment>
                         </ListItem>
