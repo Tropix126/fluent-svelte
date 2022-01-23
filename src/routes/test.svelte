@@ -596,7 +596,7 @@
 		<div
 			style="background-color: var(--fds-solid-background-secondary); width: 200px; height: 200px;"
 		/>
-		<svelte:fragment slot="menu">
+		<svelte:fragment slot="flyout">
 			<MenuFlyoutItem hint="Alt+Left arrow">
 				{@html ArrowLeft}
 				Back

@@ -17,6 +17,9 @@
 	/** Bindable index of the currently selected item. */
 	export let selection = 0;
 
+	/** Bindable array of currently suggested items. */
+    export let matches: string[] = [];
+
 	/** Specifies a custom class name for the component. */
 	let className = "";
 	export { className as class };
