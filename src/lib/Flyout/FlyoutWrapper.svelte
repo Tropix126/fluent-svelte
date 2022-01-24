@@ -19,6 +19,9 @@
 	/** Distance of the flyout from the control button in pixels. */
 	export let offset = 4;
 
+    /** Determines if keyboard focus should be locked to the dialog's contents. */
+    export let trapFocus = true;
+
 	/** Specifies a custom class name for the flyout. */
 	let className = "";
 	export { className as class };
@@ -38,7 +41,12 @@
 	const dispatch = createEventDispatcher();
 	const menuId = uid("fds-flyout-anchor-");
 
-	$: dispatch(open ? "open" : "close");
+	$: _focusTrap = trapFocus ? focusTrap : () => {};
+	$: if (open) {
+		dispatch("open");
+	} else {
+		dispatch("close")
+	}
 
 	function handleEscapeKey({ key }: KeyboardEvent) {
 		if (key === "Escape" && closable) open = false;
@@ -46,6 +54,13 @@
 
 	function closeFlyout() {
 		if (closable) open = false;
+	}
+
+	function handleKeyDown(event: KeyboardEvent) {
+		if (event.key === " " || event.key === "Enter") {
+			event.preventDefault();
+			open = !open;
+		}
 	}
 </script>
 
@@ -57,6 +72,7 @@
 	aria-haspopup={open}
 	aria-controls={menuId}
 	on:click={() => (open = !open)}
+	on:keydown={handleKeyDown}
 	bind:this={wrapperElement}
 >
 	<slot />
@@ -65,7 +81,7 @@
             id={menuId}
             class="flyout-anchor placement-{placement} alignment-{alignment}"
             style="--fds-flyout-offset: {offset}px;"
-            use:focusTrap
+            use:_focusTrap
             bind:this={anchorElement}
             on:click={e => e.stopPropagation()}
         >
