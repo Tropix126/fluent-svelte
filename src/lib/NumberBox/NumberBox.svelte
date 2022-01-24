@@ -131,6 +131,7 @@
 	{min}
 	{max}
 	{step}
+    {disabled}
 	{...$$restProps}
 >
 	<slot />
