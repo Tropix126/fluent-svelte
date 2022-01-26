@@ -18,7 +18,7 @@
 <div
 	class="flyout {className}"
 	use:forwardEvents
-	out:fade={{ duration: getCSSDuration("--fds-control-faster-duration"), easing: circOut }}
+	out:fade|local={{ duration: getCSSDuration("--fds-control-faster-duration"), easing: circOut }}
 	bind:this={element}
 	{...$$restProps}
 >
