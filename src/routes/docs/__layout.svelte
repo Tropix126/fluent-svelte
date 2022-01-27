@@ -52,7 +52,6 @@
 	let searchItems = docsPages.map(page => page.name);
     
 	function handleKeyDown({ key }: KeyboardEvent) {
-        console.log(docsPages[searchSelection].path);
         if (key === "Enter") {
 			searchValue = "";
 			goto(`/docs${docsPages.filter(page => searchMatches.some(match => page.name === match))[searchSelection].path}`);
