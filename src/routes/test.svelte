@@ -260,12 +260,16 @@
 		<TextBox disabled placeholder="TextBox" />
 		<TextBox type="password" placeholder="TextBox" />
 		<TextBox type="search" placeholder="TextBox" />
+        <TextBox disabled value="hi" type="password" placeholder="TextBox" />
+		<TextBox disabled value="hi" type="search" placeholder="TextBox" />
 	</div>
 
 	<h3>Number Box</h3>
 	<div class="showcase-group">
 		<NumberBox value={1} min={0} max={10} placeholder="NumberBox" />
 		<NumberBox size={50} placeholder="NumberBox" inline />
+        <NumberBox disabled value={1} min={0} max={10} placeholder="NumberBox" />
+		<NumberBox disabled size={50} placeholder="NumberBox" inline />
 	</div>
 
 	<h3>Tooltip</h3>
