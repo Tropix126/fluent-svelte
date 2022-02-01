@@ -44,7 +44,7 @@
 	/** Obtains a bound DOM reference to the dialog's footer element. */
 	export let footerElement: HTMLElement = null;
 
-	const forwardEvents = createEventForwarder(get_current_component(), ["open", "close"]);
+	const forwardEvents = createEventForwarder(get_current_component(), ["open", "close", "backdropclick", "backdropmousedown"]);
 	const dispatch = createEventDispatcher();
 	const titleId = uid("fds-dialog-title-");
 	const bodyId = uid("fds-dialog-body-");

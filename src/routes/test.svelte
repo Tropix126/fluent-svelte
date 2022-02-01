@@ -1,32 +1,32 @@
 <script>
 	import {
+		AutoSuggestBox,
 		Button,
 		Checkbox,
-		ProgressRing,
-		ProgressBar,
-		ToggleSwitch,
-		RadioButton,
 		ComboBox,
-		InfoBadge,
-		Slider,
-		Flyout,
-		InfoBar,
-		TextBox,
-		NumberBox,
-		PersonPicture,
-		Tooltip,
 		ContentDialog,
+		ContextMenu,
 		Expander,
-		TextBlock,
+		Flyout,
 		IconButton,
+		InfoBadge,
+		InfoBar,
 		ListItem,
 		MenuBar,
 		MenuBarItem,
 		MenuFlyout,
-		MenuFlyoutItem,
 		MenuFlyoutDivider,
-		ContextMenu,
-		AutoSuggestBox
+		MenuFlyoutItem,
+		NumberBox,
+		PersonPicture,
+		ProgressBar,
+		ProgressRing,
+		RadioButton,
+		Slider,
+		TextBlock,
+		TextBox,
+		ToggleSwitch,
+		Tooltip
 	} from "$lib";
 
 	import { PageSection } from "$site/lib";
@@ -169,7 +169,8 @@
 		<ProgressRing />
 		<ProgressRing bind:value={progressRingValue} />
 		<Button on:click={() => (progressRingValue = Math.floor(Math.random() * 101))}
-			>Randomize Value</Button
+		>Randomize Value
+		</Button
 		>
 	</div>
 	<div class="showcase-group">
@@ -259,12 +260,16 @@
 		<TextBox disabled placeholder="TextBox" />
 		<TextBox type="password" placeholder="TextBox" />
 		<TextBox type="search" placeholder="TextBox" />
+        <TextBox disabled value="hi" type="password" placeholder="TextBox" />
+		<TextBox disabled value="hi" type="search" placeholder="TextBox" />
 	</div>
 
 	<h3>Number Box</h3>
 	<div class="showcase-group">
 		<NumberBox value={1} min={0} max={10} placeholder="NumberBox" />
 		<NumberBox size={50} placeholder="NumberBox" inline />
+        <NumberBox disabled value={1} min={0} max={10} placeholder="NumberBox" />
+		<NumberBox disabled size={50} placeholder="NumberBox" inline />
 	</div>
 
 	<h3>Tooltip</h3>
@@ -341,13 +346,15 @@
 					on:click={() => {
 						dialogOpen = false;
 						dialogResult = "Save";
-					}}>Save</Button
+					}}>Save
+				</Button
 				>
 				<Button
 					on:click={() => {
 						dialogOpen = false;
 						dialogResult = "Cancel";
-					}}>Cancel</Button
+					}}>Cancel
+				</Button
 				>
 			</svelte:fragment>
 		</ContentDialog>
@@ -363,25 +370,28 @@
 		<Slider value={2500} min={1000} max={5000} />
 	</div>
 
+	<h4>Ticks</h4>
 	<div class="showcase-group">
 		<Slider value={50} ticks={[20, 40, 60, 80]} />
 		<Slider value={50} ticks={[20, 40, 60, 80]} tickPlacement="before" />
 		<Slider value={50} ticks={[20, 40, 60, 80]} tickPlacement="after" />
 	</div>
 
+	<h4>Tooltips</h4>
 	<div class="showcase-group">
 		<Slider value={50} tooltip={false} />
 		<Slider value={50} prefix="$" />
 		<Slider value={50} suffix="%" />
 	</div>
 
+	<h4>Variants</h4>
 	<div class="showcase-group">
 		<Slider value={50} reverse />
 		<Slider value={50} disabled />
 		<Slider value={50} track={false} />
 	</div>
 
-	<div class="showcase-group" style="height: 250px">
+	<div class="showcase-group" style="block-size: 250px">
 		<Slider orientation="vertical" />
 		<Slider orientation="vertical" value={50} step={20} />
 		<Slider orientation="vertical" value={2500} min={1000} max={5000} />
@@ -560,7 +570,8 @@
 			</MenuFlyoutItem>
 			<MenuFlyoutItem indented selected>Standard Option (Selected)</MenuFlyoutItem>
 			<MenuFlyoutItem indented disabled selected
-				>Standard Option (Disabled Selected)</MenuFlyoutItem
+			>Standard Option (Disabled Selected)
+			</MenuFlyoutItem
 			>
 			<MenuFlyoutItem indented disabled>Standard Option Disabled</MenuFlyoutItem>
 			<MenuFlyoutDivider />
@@ -575,19 +586,19 @@
 			<MenuFlyoutItem variant="toggle">Toggle Option 1</MenuFlyoutItem>
 			<MenuFlyoutDivider />
 			<MenuFlyoutItem indented cascading hint="hint">
-                cascading
-                <svelte:fragment slot="flyout">
-                    <MenuFlyoutItem>
-                        subitem 1
-                    </MenuFlyoutItem>
-                    <MenuFlyoutItem>
-                        subitem 2
-                    </MenuFlyoutItem>
-                    <MenuFlyoutItem>
-                        subitem 3
-                    </MenuFlyoutItem>
-                </svelte:fragment>
-            </MenuFlyoutItem>
+				cascading
+				<svelte:fragment slot="flyout">
+					<MenuFlyoutItem>
+						subitem 1
+					</MenuFlyoutItem>
+					<MenuFlyoutItem>
+						subitem 2
+					</MenuFlyoutItem>
+					<MenuFlyoutItem>
+						subitem 3
+					</MenuFlyoutItem>
+				</svelte:fragment>
+			</MenuFlyoutItem>
 		</svelte:fragment>
 	</MenuFlyout>
 
@@ -659,11 +670,14 @@
 			<MenuFlyoutItem indented hint="Ctrl+U">View page source</MenuFlyoutItem>
 			<MenuFlyoutItem>
 				<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-					><path
+				>
+					<path
 						d="M1 5c0-1.1.9-2 2-2h10a2 2 0 012 2v5a2 2 0 01-1.16 1.82 1.5 1.5 0 00-.28-.38l-.45-.45A1 1 0 0014 10V5a1 1 0 00-1-1H3a1 1 0 00-1 1v5a1 1 0 001 1h4v1H3a2 2 0 01-2-2V5z"
-					/><path
+					/>
+					<path
 						d="M8.85 8.15A.5.5 0 008 8.5v6a.5.5 0 00.9.3l1.35-1.8h2.25a.5.5 0 00.35-.85l-4-4zM9 13V9.7l2.3 2.3H10a.5.5 0 00-.4.2L9 13z"
-					/></svg
+					/>
+				</svg
 				>
 				Inspect
 			</MenuFlyoutItem>

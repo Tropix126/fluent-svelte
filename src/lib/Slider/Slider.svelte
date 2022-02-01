@@ -66,11 +66,17 @@
 	let dragging = false;
 	let holding = false;
 
+	$: directionAwareReverse = containerElement?.dir === "ltr" ? reverse : !reverse;
+
 	const forwardEvents = createEventForwarder(get_current_component(), [
 		"input",
 		"change",
 		"beforeinput"
 	]);
+
+	// Divides the current value minus the minimum value
+	// by the difference between the max and min values,
+	// and multiplies by 100 to get a percentage.
 	const valueToPercentage = v => ((v - min) / (max - min)) * 100;
 
 	function cancelMove() {
@@ -88,17 +94,16 @@
 		const percentageX = event.touches ? event.touches[0].clientX : event.clientX;
 		const percentageY = event.touches ? event.touches[0].clientY : event.clientY;
 
-		let nextStep =
-			min +
-			Math.round(
-				((max - min) *
-					(orientation === "horizontal"
-						? (percentageX - (reverse ? right : left)) / width
-						: -(percentageY - (reverse ? top : bottom)) / height) *
-					(reverse ? -1 : 1)) /
-					step
-			) *
-				step;
+		const position = orientation === "horizontal" ? percentageX : percentageY;
+		const startingPos = orientation === "horizontal" ? (directionAwareReverse ? right : left) : (directionAwareReverse ? top : bottom);
+		const length = orientation === "horizontal" ? width : height;
+
+		let nextStep = min + Math.round((
+			(max - min)
+			* ((position - startingPos) / length)
+			* (directionAwareReverse ? -1 : 1)
+			* (orientation === "vertical" ? -1 : 1)
+		) / step) * step;
 
 		if (nextStep <= min) nextStep = min;
 		else if (nextStep >= max) nextStep = max;
@@ -180,7 +185,7 @@ A slider is a control that lets the user select from a range of values by moving
 	style="--fds-slider-percentage: {percentage}%"
 	class="slider orientation-{orientation} {className}"
 	class:disabled
-	class:reverse
+	class:reverse={directionAwareReverse}
 	bind:this={containerElement}
 	{...$$restProps}
 >
@@ -194,16 +199,16 @@ A slider is a control that lets the user select from a range of values by moving
 	>
 		{#if tooltip && !disabled}
 			<TooltipSurface class="slider-tooltip">
-                <slot name="tooltip" {prefix} {suffix} {value}>
-                    {prefix}{value}{suffix}
-                </slot>
+				<slot name="tooltip" {prefix} {suffix} {value}>
+					{prefix}{value}{suffix}
+				</slot>
 			</TooltipSurface>
 		{/if}
 	</div>
 
 	<div class="slider-rail" bind:this={railElement}>
 		{#if track}
-			<div class="slider-track" bind:this={trackElement} />
+			<div class="slider-track" bind:this={trackElement}></div>
 		{/if}
 	</div>
 
@@ -212,8 +217,8 @@ A slider is a control that lets the user select from a range of values by moving
 			{#each ticks as tick}
 				<div
 					class="slider-tick"
-					style="--fds-slider-tick-percentage: {valueToPercentage(tick)}%"
-				/>
+					style="--fds-slider-tick-percentage: {valueToPercentage(tick)}%">
+				</div>
 			{/each}
 		</div>
 	{/if}

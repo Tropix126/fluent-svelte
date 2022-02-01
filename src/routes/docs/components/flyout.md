@@ -21,7 +21,7 @@ import { Flyout } from "fluent-svelte";
 ```
 
 <Showcase repl="f884a63a8b3349e38c783e86aa4f4d17">
-    <Flyout open>
+    <Flyout open trapFocus={false}>
         <Button>Open</Button>
         <svelte:fragment slot="flyout">
             Flyout
