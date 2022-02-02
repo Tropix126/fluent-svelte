@@ -64,7 +64,6 @@
 	}
 </script>
 
-
 <!--
 @component
 Flyouts represent a control that displays lightweight UI that is either information, or requires user interaction. Unlike a dialog, a Flyout can be dismissed by clicking or tapping outside of it, or pressing the Esc key. [Docs](https://fluent-svelte.vercel.app/docs/components/flyout)
