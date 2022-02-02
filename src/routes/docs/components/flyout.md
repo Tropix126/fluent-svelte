@@ -81,7 +81,7 @@ There are three aspects to the positioning system of flyouts - `placement`, `ali
 - The `placement` property is the direction that the flyout will be opened from. This can be either `top`, `bottom`, `left`, or `right`.
 - The `alignment` property controls either the vertical or horizontal alignment of the flyout along a given placement axis. This can be either `start`, `center`, or `end`.
 
-<!-- <div class="positioning-chart placement-{placement} alignment-{alignment}" style:--fds-example-offset={offset}>
+<div class="positioning-chart placement-{placement} alignment-{alignment}" style:--fds-example-offset={offset}>
     <div class="example-flyout-wrapper">
         <div class="example-flyout"></div>
     </div>
@@ -97,7 +97,7 @@ There are three aspects to the positioning system of flyouts - `placement`, `ali
         { name: "end" }
     ]} />
     <Slider bind:value={offset} />
-</div> -->
+</div>
 
 ### Focus Behavior
 
