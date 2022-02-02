@@ -65,7 +65,7 @@
 
 	let menuGroup = 0;
 
-	let test1 = false;
+	let infobarOpen = false;
 </script>
 
 <div style="height: 56px;" />
@@ -252,6 +252,9 @@
 			message="Don't do this or something bad will happen."
 		/>
 		<InfoBar severity="critical" title="Error" message="Something bad happened :(" />
+
+		<Checkbox bind:checked={infobarOpen}>Show InfoBar</Checkbox>
+		<InfoBar bind:open={infobarOpen}>Now you see me</InfoBar>
 	</div>
 
 	<h3>Text Box</h3>
@@ -260,7 +263,7 @@
 		<TextBox disabled placeholder="TextBox" />
 		<TextBox type="password" placeholder="TextBox" />
 		<TextBox type="search" placeholder="TextBox" />
-        <TextBox disabled value="hi" type="password" placeholder="TextBox" />
+		<TextBox disabled value="hi" type="password" placeholder="TextBox" />
 		<TextBox disabled value="hi" type="search" placeholder="TextBox" />
 	</div>
 
@@ -268,7 +271,7 @@
 	<div class="showcase-group">
 		<NumberBox value={1} min={0} max={10} placeholder="NumberBox" />
 		<NumberBox size={50} placeholder="NumberBox" inline />
-        <NumberBox disabled value={1} min={0} max={10} placeholder="NumberBox" />
+		<NumberBox disabled value={1} min={0} max={10} placeholder="NumberBox" />
 		<NumberBox disabled size={50} placeholder="NumberBox" inline />
 	</div>
 
@@ -296,14 +299,14 @@
 				.toString(36)
 				.replace(/[^a-z]+/g, "")
 				.toUpperCase()
-				.substr(0, 2)}
+				.substring(0, 2)}
 		</PersonPicture>
 		<PersonPicture size={48}>
 			{Math.random()
 				.toString(36)
 				.replace(/[^a-z]+/g, "")
 				.toUpperCase()
-				.substr(0, 2)}
+				.substring(0, 2)}
 
 			<svelte:fragment slot="badge">
 				<InfoBadge>1</InfoBadge>

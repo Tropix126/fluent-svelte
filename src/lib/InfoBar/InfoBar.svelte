@@ -4,6 +4,7 @@
 	import { createEventForwarder } from "$lib/internal";
 
 	import { InfoBadge } from "$lib/index";
+	import { fly } from "svelte/transition";
 
 	/** Determines whether the bar is open (rendered). */
 	export let open = true;
@@ -43,16 +44,16 @@
 	let wrapped = false;
 	let clientHeight = 0;
 
-    const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher();
 	const forwardEvents = createEventForwarder(get_current_component());
 
 	$: actionWrapped = clientHeight && actionElement?.offsetTop > 0;
 	$: messageWrapped = clientHeight && messageElement?.offsetTop > titleElement?.offsetTop;
-    $: if (open) {
-        dispatch("open");
-    } else {
-        dispatch("close");
-    }
+	$: if (open) {
+		dispatch("open");
+	} else {
+		dispatch("close");
+	}
 </script>
 
 <!--
@@ -72,6 +73,7 @@ The InfoBar control is for displaying app-wide status messages to users that are
 		bind:clientHeight
 		class="info-bar severity-{severity} {className}"
 		role="alert"
+		transition:fly|local={{ y: 6, duration: 300 }}
 		{...$$restProps}
 	>
 		<div class="info-bar-icon">
