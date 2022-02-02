@@ -5,7 +5,7 @@
     import data from "$lib/TextBox/TextBox.svelte?sveld&raw";
 </script>
 
-The toggle switch represents a physical switch that allows users to turn things on or off, like a light switch. Use toggle switch controls to present users with two mutually exclusive options (such as on/off), where choosing an option provides immediate results.
+The TextBox control lets a user type text into an app. The text displays on the screen in a simple, plaintext format on a single line. It additionally comes with a set of buttons which allow users to perform specialized actions on the text, such as showing a password or clearing the TextBox's contents.   
 
 ```ts
 import { TextBox } from "fluent-svelte";
@@ -21,6 +21,8 @@ import { TextBox } from "fluent-svelte";
 </Showcase>
 
 ## Usage
+
+TextBox is an extension of HTML's native `<input />` element.
 
 ## Component API
 
