@@ -74,8 +74,8 @@
 	<div
 		class="content-dialog-smoke"
 		class:darken
-		on:click={e => dispatch("backdropclick", e)}
-		on:mousedown={e => dispatch("backdropmousedown", e)}
+		on:click|self={e => dispatch("backdropclick", e)}
+		on:mousedown|self={e => dispatch("backdropmousedown", e)}
 		transition:fade|local={{ duration: getCSSDuration("--fds-control-faster-duration") }}
 		use:mountDialog
 		use:_focusTrap
