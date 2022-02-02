@@ -11,7 +11,7 @@
 		| "display" = "body";
 
 	/** Specifies a custom class name for the text block */
-	export let className = "";
+	let className = "";
 	export { className as class };
 
 	/** Obtains a bound DOM reference to the text's element. */
