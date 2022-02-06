@@ -253,6 +253,7 @@ When the combo box is closed, it either displays the current selection or is emp
 		</TextBox>
 	{:else}
 		<Button
+			type="button"
 			class="combo-box-button"
 			id={buttonId}
 			aria-labelledby={buttonId}
