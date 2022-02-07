@@ -6,7 +6,10 @@
 	border-radius: var(--control-corner-radius);
 	min-inline-size: 32px;
 	min-block-size: 32px;
-	direction: ltr;
+
+    > :global(*) {
+        direction: ltr;
+    }
 
 	&:focus-visible {
 		outline: none;

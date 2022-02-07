@@ -65,8 +65,11 @@
 
 	let dragging = false;
 	let holding = false;
+    let directionAwareReverse = false;
 
-	$: directionAwareReverse = containerElement?.dir === "ltr" ? reverse : !reverse;
+	$: if (containerElement) {
+        directionAwareReverse = window?.getComputedStyle(containerElement).direction === "ltr" ? reverse : !reverse;
+    }
 
 	const forwardEvents = createEventForwarder(get_current_component(), [
 		"input",
