@@ -11,7 +11,7 @@ The TextBox control lets a user type text into an app. The text displays on the 
 import { TextBox } from "fluent-svelte";
 ```
 
-<Showcase columns={2} repl="">
+<Showcase columns={2} repl="65b817e67ff3450da0c5755b5fdac9f7">
     <TextBox placeholder="TextBox" />
     <TextBox placeholder="TextBox" disabled />
     <TextBox type="search" placeholder="TextBox" />
