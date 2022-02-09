@@ -66,7 +66,7 @@ An expander doesn't have to expand downwards. You can control an expander's expa
 
 ```html
 <Expander direction="up">
-    I am expanded by default.
+    This expander will expand upwards.
 </Expander>
 ```
 
