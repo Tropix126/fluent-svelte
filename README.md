@@ -4,7 +4,7 @@
   Fluent Svelte
 </h1>
 
-> Warning: This project is still in alpha stages. It is NOT production ready and heavily undocumented. Expect regular breaking changes.
+> Warning: This project is still in alpha stages; I would not consider it production ready *yet*. Assume any undocumented component to be in the 0.x. phase of development and therefore unstable.
 
 ### What is this?
 
