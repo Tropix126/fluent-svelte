@@ -4,6 +4,7 @@
 	@include typography-body;
 	@include flex($direction: column);
 	box-sizing: border-box;
+	position: relative;
 	padding: 12px;
 	backdrop-filter: blur(60px) saturate(125%);
 	border-radius: var(--overlay-corner-radius);
