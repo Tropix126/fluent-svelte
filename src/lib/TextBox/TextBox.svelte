@@ -108,6 +108,14 @@
 	};
 </script>
 
+<!--
+@component
+The TextBox control lets a user type text into an app. The text displays on the screen in a simple, plaintext format on a single line. It additionally comes with a set of buttons which allow users to perform specialized actions on the text, such as showing a password or clearing the TextBox's contents. [Docs](https://fluent-svelte.vercel.app/docs/components/texbox)
+- Usage:
+    ```tsx
+    <TextBox placeholder="Enter your name." />
+    ```
+-->
 <div
 	class="text-box-container {className}"
 	class:disabled
