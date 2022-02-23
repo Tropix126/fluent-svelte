@@ -62,7 +62,7 @@ Supported types: `text`, `number`, `search`, `password`, `email`, `tel`, `url`, 
 Most of these types will simply set the `type` attribute of the TextBox's input element. Some of these types, however, have additional functionality added specific to their input method.
 
 - On `search` types - A search button will be added to the end of the TextBox to allow users to submit a search query. You can use the `on:search` event to handle the search query. If you wish to hide the search button when using this type, you can set the `searchButton` property to `false`.
-- On `password` types - A password reveal button will be added to the end of the TextBox to allow users to reveal the input's value. You can use the `on:reveal` event to run code when the password is revealed. If you wish to hide the reveal button when using this type, you can set the `passwordButton` property to `false`.
+- On `password` types - A password reveal button will be added to the end of the TextBox to allow users to reveal the input's value. You can use the `on:reveal` event to run code when the password is revealed. If you wish to hide the reveal button when using this type, you can set the `revealButton` property to `false`.
 
 ### Placeholders
 
