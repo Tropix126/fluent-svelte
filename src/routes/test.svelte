@@ -365,7 +365,7 @@
 	<h3>Slider</h3>
 
 	<div class="showcase-group">
-		<Slider />
+		<Slider on:change={() => console.log("x")} />
 		<Slider value={50} max={9000000} step={20} />
 		<Slider value={2500} min={1000} max={5000} />
 	</div>

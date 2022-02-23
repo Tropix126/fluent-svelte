@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createEventForwarder, TooltipSurface } from "$lib/internal";
+    import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 
 	/** The slider's current value. */
@@ -72,6 +73,7 @@
         directionAwareReverse = window?.getComputedStyle(containerElement).direction === "ltr" ? reverse : !reverse;
     }
 
+    const dispatch = createEventDispatcher();
 	const forwardEvents = createEventForwarder(get_current_component(), [
 		"input",
 		"change",
@@ -157,6 +159,7 @@
 		if (value < min) value = min;
 	}
 
+    $: dispatch("change", value);
 	$: percentage = valueToPercentage(value);
 	$: {
 		if (value <= min) value = min;
@@ -238,16 +241,13 @@ A slider is a control that lets the user select from a range of values by moving
 	{/if}
 
 	<input
-		on:change
-		on:input
-		on:beforeinput
 		type="range"
 		hidden
 		{min}
 		{max}
 		{step}
 		{disabled}
-		bind:value
+		{value}
 		bind:this={inputElement}
 	/>
 </div>
