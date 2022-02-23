@@ -42,8 +42,8 @@
 				}
 
 				&thumb {
-					inset-inline-start: var(--slider-percentage);
-					transform: translateX(-50%);
+                    inset-inline-start: calc(var(--slider-percentage) + var(--slider-thumb-offset));
+                    transform: translateX(-50%);
 				}
 
 				&tick {
@@ -69,7 +69,7 @@
 
 					&thumb {
 						inset-inline-start: unset;
-						inset-inline-end: var(--slider-percentage);
+						inset-inline-end: calc(var(--slider-percentage) + var(--slider-thumb-offset));
 						transform: translateX(50%);
 					}
 
@@ -98,7 +98,7 @@
 				}
 
 				&thumb {
-					inset-block-end: var(--slider-percentage);
+					inset-block-end: calc(var(--slider-percentage) + var(--slider-thumb-offset));
 					transform: translateY(50%);
 				}
 
@@ -124,7 +124,7 @@
 
 					&thumb {
 						inset-block-end: unset;
-						inset-block-start: var(--slider-percentage);
+						inset-block-start: calc(var(--slider-percentage) + var(--slider-thumb-offset));
 						transform: translateY(-50%);
 					}
 

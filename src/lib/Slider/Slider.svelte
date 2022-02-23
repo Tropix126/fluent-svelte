@@ -66,6 +66,7 @@
 	let dragging = false;
 	let holding = false;
     let directionAwareReverse = false;
+    let thumbClientWidth = 20;
 
 	$: if (containerElement) {
         directionAwareReverse = window?.getComputedStyle(containerElement).direction === "ltr" ? reverse : !reverse;
@@ -138,6 +139,14 @@
 		holding = true;
 	}
 
+    function linearScale(input: readonly [number, number], output: readonly [number, number]) {
+        return (value: number) => {
+            if (input[0] === input[1] || output[0] === output[1]) return output[0];
+            const ratio = (output[1] - output[0]) / (input[1] - input[0]);
+            return output[0] + ratio * (value - input[0]);
+        };
+    }
+
 	export function stepUp() {
 		value += step;
 		if (value > max) value = max;
@@ -185,13 +194,14 @@ A slider is a control that lets the user select from a range of values by moving
 	on:touchstart={handleTouchStart}
 	on:keydown={handleArrowKeys}
 	tabindex={disabled ? -1 : 0}
-	style="--fds-slider-percentage: {percentage}%"
+	style="--fds-slider-percentage: {percentage}%; --fds-slider-thumb-offset: {(thumbClientWidth / 2) - linearScale([0, 50], [0, thumbClientWidth / 2])(percentage)}px;"
 	class="slider orientation-{orientation} {className}"
 	class:disabled
 	class:reverse={directionAwareReverse}
 	bind:this={containerElement}
 	{...$$restProps}
 >
+
 	<div
 		class="slider-thumb"
 		role="slider"
@@ -199,6 +209,7 @@ A slider is a control that lets the user select from a range of values by moving
 		aria-valuemax={max}
 		aria-valuenow={value}
 		bind:this={thumbElement}
+        bind:clientWidth={thumbClientWidth}
 	>
 		{#if tooltip && !disabled}
 			<TooltipSurface class="slider-tooltip">
