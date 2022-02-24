@@ -3,11 +3,20 @@
 
 .docs- {
 	&container {
-		box-shadow: inset 0 0 0 100vmax var(--fds-card-background-secondary); // Temporary bodge for mica tinting
-		background: url("/bloom-mica-light.png") center/170% no-repeat fixed;
-		@media (prefers-color-scheme: dark) {
-			background-image: url("/bloom-mica-dark.png");
-		}
+		background-color: var(--fds-card-background-secondary); // Temporary bodge for mica tinting
+        &::before {
+            transform: scale(2);
+            content: "";
+            position: fixed;
+            z-index: -1;
+            inset: 0;
+            inline-size: 100%;
+            block-size: 100%;
+            background: url("/bloom-mica-light.png") center/cover no-repeat fixed;
+            @media (prefers-color-scheme: dark) {
+                background-image: url("/bloom-mica-dark.png");
+            }
+        }
 		&-inner {
 			min-height: 100vh;
 			max-width: 1440px;
@@ -41,6 +50,7 @@
 
 aside {
     @include flex($direction: column);
+    overflow: auto;
 	padding-inline: 4px;
 	position: sticky;
 	align-self: start;

@@ -20,7 +20,7 @@ and
 	>vite-plugin-sveld</a
 >.
 
-<h3>Props</h3>
+<h3 id="props">Props</h3>
 {#if data.props.length > 0}
 	<table>
 		<thead>
@@ -76,7 +76,7 @@ and
 	</InfoBar>
 {/if}
 
-<h3>Slots</h3>
+<h3 id="slots">Slots</h3>
 {#if data.slots.length > 0}
 	<table>
 		<thead>
@@ -114,7 +114,7 @@ and
 	None
 {/if}
 
-<h3>Events</h3>
+<h3 id="events">Events</h3>
 {#if manualForward}
 	<h4>Forwarded Events</h4>
 	{#if forwardedEvents.length > 0}

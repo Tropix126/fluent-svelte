@@ -103,7 +103,7 @@
 
 		<article class="markdown-body" bind:this={article}>
 			<header>
-				<h1>{currentPage?.name}</h1>
+				<h1 id={currentPage?.name}>{currentPage?.name}</h1>
 				<Button
 					href="https://github.com/tropix126/fluent-svelte/edit/main/src/routes/docs{currentPage?.path ||
 						'/index'}.md"
