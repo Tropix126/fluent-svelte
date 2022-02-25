@@ -14,7 +14,7 @@
     let alignment = "center";
 </script>
 
-Flyouts represent a control that displays lightweight UI that is either information, or requires user interaction. Unlike a [dialog](dialog), a Flyout can be dismissed by clicking or tapping outside of it, or pressing the <kbd>Esc</kbd> key.
+Flyouts represent a control that displays lightweight UI that is either information, or requires user interaction. Unlike a [ContentDialog](contentdialog), a Flyout can be dismissed by clicking or tapping outside of it, or pressing the <kbd>Esc</kbd> key.
 
 ```ts
 import { Flyout } from "fluent-svelte";
