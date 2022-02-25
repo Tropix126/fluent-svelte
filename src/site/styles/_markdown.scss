@@ -211,12 +211,12 @@
 	// Tables
 	table {
 		display: inline-block;
-        max-inline-size: 100%;
+		max-inline-size: 100%;
 		border: 1px solid var(--card-stroke-default);
 		border-radius: var(--control-corner-radius);
 		border-collapse: collapse;
 		background-clip: padding-box;
-        overflow: auto;
+		overflow: auto;
 		text-align: left;
 
 		button {
@@ -234,7 +234,7 @@
 		}
 
 		th {
-            white-space: nowrap;
+			white-space: nowrap;
 			background-color: var(--card-background-secondary);
 			font-weight: 600;
 		}
@@ -244,9 +244,9 @@
 			background-color: var(--card-background-default);
 		}
 
-        :global(.info-bar) {
-            margin-block-end: 0;
-        }
+		:global(.info-bar) {
+			margin-block-end: 0;
+		}
 	}
 
 	.info-bar,

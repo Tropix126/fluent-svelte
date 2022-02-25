@@ -30,10 +30,10 @@
 	const contentId = uid("fds-expander-content-");
 
 	$: if (expanded) {
-        dispatch("expand");
-    } else {
-        dispatch("collapse");
-    }
+		dispatch("expand");
+	} else {
+		dispatch("collapse");
+	}
 
 	function handleKeydown({ key }) {
 		if (key === "Enter" || key === " ") {

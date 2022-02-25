@@ -35,10 +35,8 @@ import { Flyout } from "fluent-svelte";
 
 ```html
 <Flyout>
-    <Button>Trigger Button</Button>
-    <svelte:fragment slot="flyout">
-        Flyout Contents
-    </svelte:fragment>
+	<button>Trigger Button</button>
+	<svelte:fragment slot="flyout"> Flyout Contents </svelte:fragment>
 </Flyout>
 ```
 
@@ -50,9 +48,7 @@ You can control if the flyout is open using the `open` property.
 
 ```html
 <Flyout open>
-    <svelte:fragment slot="flyout">
-        This flyout is open by default.
-    </svelte:fragment>
+	<svelte:fragment slot="flyout"> This flyout is open by default. </svelte:fragment>
 </Flyout>
 ```
 
@@ -77,9 +73,9 @@ Additionally, flyouts can be closed by pressing the escape key or clicking on co
 
 There are three aspects to the positioning system of flyouts - `placement`, `alignment`, and `offset`.
 
-- The `offset` property controls the distance between the flyout and the flyout wrapper in pixels. The default offset is `8`.
-- The `placement` property is the direction that the flyout will be opened from. This can be either `top`, `bottom`, `left`, or `right`.
-- The `alignment` property controls either the vertical or horizontal alignment of the flyout along a given placement axis. This can be either `start`, `center`, or `end`.
+-   The `offset` property controls the distance between the flyout and the flyout wrapper in pixels. The default offset is `8`.
+-   The `placement` property is the direction that the flyout will be opened from. This can be either `top`, `bottom`, `left`, or `right`.
+-   The `alignment` property controls either the vertical or horizontal alignment of the flyout along a given placement axis. This can be either `start`, `center`, or `end`.
 
 <div class="positioning-chart placement-{placement} alignment-{alignment}" style:--fds-example-offset={offset}>
     <div class="example-flyout-wrapper">
@@ -109,10 +105,10 @@ For more niche use cases, you can completely override the flyout element with yo
 
 ```html
 <Flyout>
-    <Button>Open</Button>
-    <div slot="override" style="background-color: red; padding: 24px;">
-        <h1>Custom flyout containers!</h1>
-    </div>
+	<button>Open</button>
+	<div slot="override" style="background-color: red; padding: 24px;">
+		<h1>Custom flyout containers!</h1>
+	</div>
 </Flyout>
 ```
 

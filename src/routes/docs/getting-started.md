@@ -64,7 +64,7 @@ Components are exported from a single index file in the library. They can be imp
 	import { Button, Checkbox } from "fluent-svelte";
 </script>
 
-<Button>Click me!</Button>
+<button>Click me!</button>
 <Checkbox>Check me!</Checkbox>
 ```
 
@@ -90,7 +90,7 @@ In the REPL, packages are automatically installed by name when using an `import`
 	import { Button, Checkbox } from "fluent-svelte";
 </script>
 
-<Button>Click me!</Button>
+<button>Click me!</button>
 
 <style>
 	@import url("https://unpkg.com/fluent-svelte/theme.css");

@@ -19,8 +19,8 @@
 	/** Distance of the flyout from the control button in pixels. */
 	export let offset = 4;
 
-    /** Determines if keyboard focus should be locked to the dialog's contents. */
-    export let trapFocus = true;
+	/** Determines if keyboard focus should be locked to the dialog's contents. */
+	export let trapFocus = true;
 
 	/** Specifies a custom class name for the flyout. */
 	let className = "";
@@ -45,7 +45,7 @@
 	$: if (open) {
 		dispatch("open");
 	} else {
-		dispatch("close")
+		dispatch("close");
 	}
 
 	function handleEscapeKey({ key }: KeyboardEvent) {
@@ -91,21 +91,21 @@ Flyouts represent a control that displays lightweight UI that is either informat
 >
 	<slot />
 	{#if open}
-        <div
-            id={menuId}
-            class="flyout-anchor placement-{placement} alignment-{alignment}"
-            style="--fds-flyout-offset: {offset}px;"
-            use:_focusTrap
-            bind:this={anchorElement}
-            on:click={e => e.stopPropagation()}
-        >
-            <slot name="override">
-                <FlyoutSurface bind:element={menuElement} class={className ?? ""} {...$$restProps}>
-                    <slot name="flyout" />
-                </FlyoutSurface>
-            </slot>
-        </div>
-        <div class="flyout-backdrop" bind:this={backdropElement} on:mousedown={closeFlyout}></div>
+		<div
+			id={menuId}
+			class="flyout-anchor placement-{placement} alignment-{alignment}"
+			style="--fds-flyout-offset: {offset}px;"
+			use:_focusTrap
+			bind:this={anchorElement}
+			on:click={e => e.stopPropagation()}
+		>
+			<slot name="override">
+				<FlyoutSurface bind:element={menuElement} class={className ?? ""} {...$$restProps}>
+					<slot name="flyout" />
+				</FlyoutSurface>
+			</slot>
+		</div>
+		<div class="flyout-backdrop" bind:this={backdropElement} on:mousedown={closeFlyout} />
 	{/if}
 </div>
 

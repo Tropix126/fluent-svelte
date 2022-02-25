@@ -18,7 +18,7 @@
 	export let selection = 0;
 
 	/** Bindable array of currently suggested items. */
-    export let matches: string[] = [];
+	export let matches: string[] = [];
 
 	/** Specifies a custom class name for the component. */
 	let className = "";

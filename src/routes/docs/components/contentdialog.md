@@ -40,11 +40,10 @@ import { ContentDialog } from "fluent-svelte";
 
 ### Opening and Closing
 
-Dialogs are not rendered into the DOM initially. They need to be *opened* first, by setting the `open` property.
+Dialogs are not rendered into the DOM initially. They need to be _opened_ first, by setting the `open` property.
+
 ```html
-<ContentDialog open>
-    This dialog is open by default.
-</ContentDialog>
+<ContentDialog open> This dialog is open by default. </ContentDialog>
 ```
 
 If you wish to control a dialog opening from a trigger button, you can two-way bind the `open` property to a variable.
@@ -110,8 +109,8 @@ Dialogs come in three sizes - `min`, `standard`, and `max`. You can set the dial
 
 The default behavior of a dialog is to open with a backdrop ("smoke") layer which prevents user interaction and darkens the contents of the page behind the dialog.
 
-- You can disable backdrop darkening by setting the `darken` property to `false`.
-- You can configure the backdrop to close the dialog when it is clicked using the `on:backdropclick` and `on:backdropmousedown` events dispatched from the component.
+-   You can disable backdrop darkening by setting the `darken` property to `false`.
+-   You can configure the backdrop to close the dialog when it is clicked using the `on:backdropclick` and `on:backdropmousedown` events dispatched from the component.
 
 ### Focus Behavior
 

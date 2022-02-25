@@ -18,9 +18,9 @@
 	/** Obtains a bound DOM reference to the outer picture container. */
 	export let containerElement: HTMLDivElement = null;
 
-    let error = false;
+	let error = false;
 
-    $: if (src) error = false;
+	$: if (src) error = false;
 </script>
 
 <div
@@ -31,7 +31,7 @@
 	{#if src && !error}
 		<img
 			bind:this={element}
-            on:error={() => error = true}
+			on:error={() => (error = true)}
 			class="person-picture {className}"
 			width={size}
 			height={size}

@@ -105,7 +105,7 @@
 
 	&-container {
 		@include flex($inline: true, $align: center);
-        @include typography-body;
+		@include typography-body;
 
 		color: var(--text-primary);
 		user-select: none;
