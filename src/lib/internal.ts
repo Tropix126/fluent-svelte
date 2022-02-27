@@ -10,6 +10,7 @@ export { default as ComboBoxItem } from "./ComboBox/ComboBoxItem.svelte";
 export { default as FlyoutSurface } from "./Flyout/FlyoutSurface.svelte";
 export { default as TooltipSurface } from "./Tooltip/TooltipSurface.svelte";
 export { default as MenuFlyoutSurface } from "./MenuFlyout/MenuFlyoutSurface.svelte";
+export { default as CalendarViewItem } from "./CalendarView/CalendarViewItem.svelte";
 
 // Svelte action for handling outer mouse
 interface ExternalMouseEventOptions {

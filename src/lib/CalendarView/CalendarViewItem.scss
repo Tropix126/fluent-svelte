@@ -1,0 +1,99 @@
+@use "../mixins" as *;
+
+.calendar-view-item {
+    @include flex($inline: true, $justify: center, $align: center);
+    position: relative;
+    user-select: none;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0;
+    border: none;
+    outline: none;
+    background-color: var(--subtle-fill-transparent);;
+    color: var(--text-primary);
+    border-radius: 50%;
+    line-height: 20px;
+    font: {
+        family: var(--font-family-text);
+        size: 14px;
+        weight: 400;
+    }
+    &:focus-visible {
+        box-shadow: var(--focus-stroke);
+    }
+    &:hover:not(.blackout) {
+        background-color: var(--subtle-fill-secondary);
+    }
+    &:active {
+        background-color: var(--subtle-fill-tertiary);
+        color: var(--text-secondary);
+    }
+    &:disabled:not(.blackout) {
+        background-color: var(--subtle-fill-disabled);
+        color: var(--text-disabled);
+    }
+    &.blackout {
+        &::after {
+            content: "";
+            transform-origin: center;
+            inline-size: 26px;
+            block-size: 1px;
+            position: absolute;
+            transform: matrix(-0.71, -0.71, -0.71, 0.71, 0, 0);
+            border-top: 1px solid rgba(0, 0, 0, 0.4458);
+        }
+    }
+    &.variant- {
+        &day {
+            inline-size: 40px;
+            block-size: 40px;
+        }
+        &month-year {
+            inline-size: 56px;
+            block-size: 56px;
+        }
+    }
+    &.out-of-range {
+        color: var(--text-secondary);
+        &:active {
+            color: var(--text-tertiary);
+        }
+    }
+    &.selected {
+        color: var(--accent-text-primary);
+        border: 1px solid var(--accent-default);
+        &:hover:not(.blackout) {
+            background-color: var(--subtle-fill-secondary);
+            border-color: var(--accent-secondary);
+        }
+        &:active {
+            background-color: var(--subtle-fill-tertiary);
+            border-color: var(--accent-tertiary);
+        }
+        &:disabled:not(.blackout) {
+            color: var(--accent-text-disabled);
+            background-color: var(--subtle-fill-disabled);
+            border-color: var(--accent-disabled);
+        }
+        &.current {
+            box-shadow: inset 0 0 0 1px var(--text-on-accent-primary);
+            &:focus-visible {
+                box-shadow: inset 0 0 0 1px var(--text-on-accent-primary), var(--focus-stroke);
+            }
+        }
+    }
+    &.current:not(.out-of-range) {
+        color: var(--text-on-accent-primary);
+        background-color: var(--accent-default);
+        &:hover:not(.blackout) {
+            background-color: var(--accent-secondary);
+        }
+        &:active {
+            background-color: var(--accent-tertiary);
+            color: var(--text-on-accent-secondary);
+        }
+        &:disabled:not(.blackout) {
+            background-color: var(--accent-disabled);
+        }
+    }
+}

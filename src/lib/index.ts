@@ -26,3 +26,4 @@ export { default as MenuFlyout } from "./MenuFlyout/MenuFlyoutWrapper.svelte";
 export { default as MenuFlyoutItem } from "./MenuFlyout/MenuFlyoutItem.svelte";
 export { default as MenuFlyoutDivider } from "./MenuFlyout/MenuFlyoutDivider.svelte";
 export { default as ContextMenu } from "./ContextMenu/ContextMenu.svelte";
+export { default as CalendarView } from "./CalendarView/CalendarView.svelte";
