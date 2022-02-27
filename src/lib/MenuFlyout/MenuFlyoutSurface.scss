@@ -5,23 +5,25 @@
 		transform: translateY(var(--menu-flyout-transition-offset, -50%));
 	}
 	to {
-        transform: none;
+		transform: none;
 	}
 }
 
 @keyframes menu-shadow {
-    from {
-        box-shadow: none;
-    }
-    to {
-        box-shadow: var(--flyout-shadow);
-    }
+	from {
+		box-shadow: none;
+	}
+	to {
+		box-shadow: var(--flyout-shadow);
+	}
 }
 
 .menu-flyout {
 	@include typography-body;
 	@include flex($direction: column);
-	animation: menu-open var(--control-normal-duration) var(--control-fast-out-slow-in-easing), menu-shadow var(--control-fast-duration) var(--control-fast-out-slow-in-easing) var(--control-normal-duration) forwards;
+	animation: menu-open var(--control-normal-duration) var(--control-fast-out-slow-in-easing),
+		menu-shadow var(--control-fast-duration) var(--control-fast-out-slow-in-easing)
+			var(--control-normal-duration) forwards;
 	min-inline-size: 120px;
 	max-inline-size: 100%;
 	max-block-size: 100vh;

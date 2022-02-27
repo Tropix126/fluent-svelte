@@ -169,9 +169,8 @@
 		<ProgressRing />
 		<ProgressRing bind:value={progressRingValue} />
 		<Button on:click={() => (progressRingValue = Math.floor(Math.random() * 101))}
-		>Randomize Value
-		</Button
-		>
+			>Randomize Value
+		</Button>
 	</div>
 	<div class="showcase-group">
 		<ProgressRing size={60} />
@@ -260,7 +259,7 @@
 		<TextBox disabled placeholder="TextBox" />
 		<TextBox type="password" placeholder="TextBox" />
 		<TextBox type="search" placeholder="TextBox" />
-        <TextBox disabled value="hi" type="password" placeholder="TextBox" />
+		<TextBox disabled value="hi" type="password" placeholder="TextBox" />
 		<TextBox disabled value="hi" type="search" placeholder="TextBox" />
 	</div>
 
@@ -268,7 +267,7 @@
 	<div class="showcase-group">
 		<NumberBox value={1} min={0} max={10} placeholder="NumberBox" />
 		<NumberBox size={50} placeholder="NumberBox" inline />
-        <NumberBox disabled value={1} min={0} max={10} placeholder="NumberBox" />
+		<NumberBox disabled value={1} min={0} max={10} placeholder="NumberBox" />
 		<NumberBox disabled size={50} placeholder="NumberBox" inline />
 	</div>
 
@@ -346,16 +345,16 @@
 					on:click={() => {
 						dialogOpen = false;
 						dialogResult = "Save";
-					}}>Save
-				</Button
-				>
+					}}
+					>Save
+				</Button>
 				<Button
 					on:click={() => {
 						dialogOpen = false;
 						dialogResult = "Cancel";
-					}}>Cancel
-				</Button
-				>
+					}}
+					>Cancel
+				</Button>
 			</svelte:fragment>
 		</ContentDialog>
 	</div>
@@ -570,9 +569,8 @@
 			</MenuFlyoutItem>
 			<MenuFlyoutItem indented selected>Standard Option (Selected)</MenuFlyoutItem>
 			<MenuFlyoutItem indented disabled selected
-			>Standard Option (Disabled Selected)
-			</MenuFlyoutItem
-			>
+				>Standard Option (Disabled Selected)
+			</MenuFlyoutItem>
 			<MenuFlyoutItem indented disabled>Standard Option Disabled</MenuFlyoutItem>
 			<MenuFlyoutDivider />
 			<MenuFlyoutItem variant="radio" bind:group={menuGroup} value={0}>
@@ -588,15 +586,9 @@
 			<MenuFlyoutItem indented cascading hint="hint">
 				cascading
 				<svelte:fragment slot="flyout">
-					<MenuFlyoutItem>
-						subitem 1
-					</MenuFlyoutItem>
-					<MenuFlyoutItem>
-						subitem 2
-					</MenuFlyoutItem>
-					<MenuFlyoutItem>
-						subitem 3
-					</MenuFlyoutItem>
+					<MenuFlyoutItem>subitem 1</MenuFlyoutItem>
+					<MenuFlyoutItem>subitem 2</MenuFlyoutItem>
+					<MenuFlyoutItem>subitem 3</MenuFlyoutItem>
 				</svelte:fragment>
 			</MenuFlyoutItem>
 		</svelte:fragment>
@@ -669,16 +661,14 @@
 			<MenuFlyoutDivider />
 			<MenuFlyoutItem indented hint="Ctrl+U">View page source</MenuFlyoutItem>
 			<MenuFlyoutItem>
-				<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-				>
+				<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M1 5c0-1.1.9-2 2-2h10a2 2 0 012 2v5a2 2 0 01-1.16 1.82 1.5 1.5 0 00-.28-.38l-.45-.45A1 1 0 0014 10V5a1 1 0 00-1-1H3a1 1 0 00-1 1v5a1 1 0 001 1h4v1H3a2 2 0 01-2-2V5z"
 					/>
 					<path
 						d="M8.85 8.15A.5.5 0 008 8.5v6a.5.5 0 00.9.3l1.35-1.8h2.25a.5.5 0 00.35-.85l-4-4zM9 13V9.7l2.3 2.3H10a.5.5 0 00-.4.2L9 13z"
 					/>
-				</svg
-				>
+				</svg>
 				Inspect
 			</MenuFlyoutItem>
 		</svelte:fragment>

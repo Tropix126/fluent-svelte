@@ -28,8 +28,8 @@ A button can either be a clickable action or a link. By default, a button will b
 
 Buttons come in three possible _variants_ - `standard`, `accent` and `hyperlink`. Variants can be specified using the `variant` property.
 
-| Variant   | Preview                                               | Usage                                                                        |
-| --------- | ----------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Variant     | Preview                                               | Usage                                                                        |
+| ----------- | ----------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `standard`  | <Button variant="standard">Standard Button</Button>   | Secondary or alternative actions that are not important to the user.         |
 | `accent`    | <Button variant="accent">Accent Button</Button>       | Actions that are important to the user, or are the primary focus a decision. |
 | `hyperlink` | <Button variant="hyperlink">Hyperlink Button</Button> | Low-emphasis, tertiary actions that link to an external resource.            |

@@ -11,7 +11,7 @@ ProgressRing provides visual feedback to to the user that a long-running operati
 
 ```ts
 import { ProgressRing } from "fluent-svelte";
-``` 
+```
 
 <Showcase repl="">
     <div class="ring-spacer">
@@ -37,14 +37,15 @@ import { ProgressRing } from "fluent-svelte";
 The `value` property takes in a number between `0` to `100` that represents the percentage of a task that is completed.
 
 ```html
-<ProgressRing value={50} />
+<ProgressRing value="{50}" />
 ```
 
-ProgressRings have two primary states - *determinate* and *indeterminate*.
+ProgressRings have two primary states - _determinate_ and _indeterminate_.
 
 A ProgressRing is indeterminate under the following conditions:
-- No `value` is provided.
-- A `value` is passed in, but it is `undefined`, `null`, or `NaN`.
+
+-   No `value` is provided.
+-   A `value` is passed in, but it is `undefined`, `null`, or `NaN`.
 
 A determinate ProgressRing displays a completion percentage by filling the ring gradually, while an indeterminate ProgressRing plays a looping spinner animation.
 
@@ -53,13 +54,12 @@ A determinate ProgressRing displays a completion percentage by filling the ring 
 You can control the diameter of the ring in pixels by setting the `size` property. The default size is `32`.
 
 ```html
-<ProgressRing size={64} />
+<ProgressRing size="{64}" />
 ```
 
 ## Component API
 
 <APIDocs {data} />
-
 
 <style>
     .ring-spacer {

@@ -98,7 +98,7 @@
 				<slot name="flyout" />
 			</MenuFlyoutSurface>
 		</div>
-		<div class="menu-flyout-backdrop" bind:this={backdropElement} on:mousedown={closeFlyout}></div>
+		<div class="menu-flyout-backdrop" bind:this={backdropElement} on:mousedown={closeFlyout} />
 	{/if}
 </div>
 

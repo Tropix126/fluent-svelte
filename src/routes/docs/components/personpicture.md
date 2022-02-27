@@ -9,7 +9,7 @@ The person picture control displays the avatar image for a person, if one is ava
 
 ```ts
 import { PersonPicture } from "fluent-svelte";
-``` 
+```
 
 <Showcase repl="46c25d4df2414602878cb7a1d7d47194" columns={4}>
     <PersonPicture src="https://thispersondoesnotexist.com/image" alt="Random person">
@@ -46,7 +46,10 @@ Similarly to HTML's [`<img />`](https://developer.mozilla.org/en-US/docs/Web/HTM
 It's recommended for both accessibility and fallback purposes that you provide an `alt` property for the image as well. The `alt` attribute is used by screen readers to provide a description of the image to visually impaired users.
 
 ```html
-<PersonPicture alt="Dog runs through the snow" src="https://images.unsplash.com/photo-1530126483408-aa533e55bdb2" />
+<PersonPicture
+	alt="Dog runs through the snow"
+	src="https://images.unsplash.com/photo-1530126483408-aa533e55bdb2"
+/>
 ```
 
 Additionally, if `src` is invalid and no slot text is inserted, the alt text will be converted to initials format as a fallback.
@@ -58,13 +61,13 @@ Additionally, if `src` is invalid and no slot text is inserted, the alt text wil
 ### Custom Text
 
 If no `src` is provided, you can provide your own text to be displayed in the control. The order of display is:
+
 1. If a valid image URL in `src` is provided, it will be displayed.
 2. If the `src` attribute fails to display or is invalid, the text or HTML is passed into the default slot will be displayed.
 3. If `src` is invalid, no slots are used, but an `alt` property is provided, the alt text will be converted to initials format and displayed.
 
 ```html
-<PersonPicture>RDJ</PersonPicture>
-<PersonPicture src="not-a-real-domain" alt="Robert Downey Jr." />
+<PersonPicture>RDJ</PersonPicture> <PersonPicture src="not-a-real-domain" alt="Robert Downey Jr." />
 ```
 
 ### Badges
@@ -73,15 +76,13 @@ You can use the component's `badge` slot to insert an offset element at the top 
 
 ```html
 <script>
-    import { InfoBadge, PersonPicture } from "fluent-svelte";
+	import { InfoBadge, PersonPicture } from "fluent-svelte";
 
-    let messages = 4;
+	let messages = 4;
 </script>
 
 <PersonPicture src="https://thispersondoesnotexist.com/image" alt="John Smith">
-    <InfoBadge slot="badge">
-        {messages}
-    </InfoBadge>
+	<InfoBadge slot="badge"> {messages} </InfoBadge>
 </PersonPicture>
 ```
 
@@ -90,7 +91,7 @@ You can use the component's `badge` slot to insert an offset element at the top 
 You can control the dimensions of the picture in pixels by setting the `size` property. The default size is `72`.
 
 ```html
-<PersonPicture size={64} />
+<PersonPicture size="{64}" />
 ```
 
 ## Component API

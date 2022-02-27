@@ -4,11 +4,11 @@
 </script>
 
 <svelte:head>
-    <title>{title}</title>
-    <meta content={title} name="og:title" />
-    <meta content={title} name="twitter:title" />
+	<title>{title}</title>
+	<meta content={title} name="og:title" />
+	<meta content={title} name="twitter:title" />
 
-    <meta content={description} name="description" />
-    <meta content={description} name="og:description" />
-    <meta content={description} name="twitter:description" />
+	<meta content={description} name="description" />
+	<meta content={description} name="og:description" />
+	<meta content={description} name="twitter:description" />
 </svelte:head>

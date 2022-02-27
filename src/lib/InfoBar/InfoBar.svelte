@@ -43,16 +43,16 @@
 	let wrapped = false;
 	let clientHeight = 0;
 
-    const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher();
 	const forwardEvents = createEventForwarder(get_current_component());
 
 	$: actionWrapped = clientHeight && actionElement?.offsetTop > 0;
 	$: messageWrapped = clientHeight && messageElement?.offsetTop > titleElement?.offsetTop;
-    $: if (open) {
-        dispatch("open");
-    } else {
-        dispatch("close");
-    }
+	$: if (open) {
+		dispatch("open");
+	} else {
+		dispatch("close");
+	}
 </script>
 
 <!--
@@ -108,7 +108,7 @@ The InfoBar control is for displaying app-wide status messages to users that are
 				class="info-bar-close-button"
 				type="button"
 				aria-label="Close"
-				on:click={() => open = false}
+				on:click={() => (open = false)}
 				bind:this={closeButtonElement}
 			>
 				<svg

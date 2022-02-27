@@ -23,7 +23,10 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>`;
 </script>
 
-<Metadata title="Fluent Svelte" description="A faithful implementation of Microsoft's Fluent Design System in Svelte." />
+<Metadata
+	title="Fluent Svelte"
+	description="A faithful implementation of Microsoft's Fluent Design System in Svelte."
+/>
 
 <PageSection id="hero-section">
 	<div class="hero-contents">

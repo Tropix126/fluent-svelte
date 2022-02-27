@@ -25,8 +25,8 @@
 	/** Determines if the dialog should darken the contents behind it. */
 	export let darken = true;
 
-    /** Determines if keyboard focus should be locked to the dialog's contents. */
-    export let trapFocus = true;
+	/** Determines if keyboard focus should be locked to the dialog's contents. */
+	export let trapFocus = true;
 
 	/** Specifies a custom class name for the dialog. */
 	let className = "";
@@ -44,13 +44,18 @@
 	/** Obtains a bound DOM reference to the dialog's footer element. */
 	export let footerElement: HTMLElement = null;
 
-	const forwardEvents = createEventForwarder(get_current_component(), ["open", "close", "backdropclick", "backdropmousedown"]);
+	const forwardEvents = createEventForwarder(get_current_component(), [
+		"open",
+		"close",
+		"backdropclick",
+		"backdropmousedown"
+	]);
 	const dispatch = createEventDispatcher();
 	const titleId = uid("fds-dialog-title-");
 	const bodyId = uid("fds-dialog-body-");
 
 	$: if (!open) dispatch("close");
-    $: _focusTrap = trapFocus ? focusTrap : () => {};
+	$: _focusTrap = trapFocus ? focusTrap : () => {};
 
 	function mountDialog(node: HTMLDivElement) {
 		dispatch("open");
@@ -65,7 +70,6 @@
 	function handleEscapeKey({ key }: KeyboardEvent) {
 		if (key === "Escape" && open && closable) close();
 	}
-
 </script>
 
 <svelte:window on:keydown={handleEscapeKey} />

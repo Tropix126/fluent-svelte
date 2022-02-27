@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventForwarder, TooltipSurface } from "$lib/internal";
-    import { createEventDispatcher } from "svelte";
+	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 
 	/** The slider's current value. */
@@ -66,14 +66,15 @@
 
 	let dragging = false;
 	let holding = false;
-    let directionAwareReverse = false;
-    let thumbClientWidth = 20;
+	let directionAwareReverse = false;
+	let thumbClientWidth = 20;
 
 	$: if (containerElement) {
-        directionAwareReverse = window?.getComputedStyle(containerElement).direction === "ltr" ? reverse : !reverse;
-    }
+		directionAwareReverse =
+			window?.getComputedStyle(containerElement).direction === "ltr" ? reverse : !reverse;
+	}
 
-    const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher();
 	const forwardEvents = createEventForwarder(get_current_component(), [
 		"input",
 		"change",
@@ -101,15 +102,26 @@
 		const percentageY = event.touches ? event.touches[0].clientY : event.clientY;
 
 		const position = orientation === "horizontal" ? percentageX : percentageY;
-		const startingPos = orientation === "horizontal" ? (directionAwareReverse ? right : left) : (directionAwareReverse ? top : bottom);
+		const startingPos =
+			orientation === "horizontal"
+				? directionAwareReverse
+					? right
+					: left
+				: directionAwareReverse
+				? top
+				: bottom;
 		const length = orientation === "horizontal" ? width : height;
 
-		let nextStep = min + Math.round((
-			(max - min)
-			* ((position - startingPos) / length)
-			* (directionAwareReverse ? -1 : 1)
-			* (orientation === "vertical" ? -1 : 1)
-		) / step) * step;
+		let nextStep =
+			min +
+			Math.round(
+				((max - min) *
+					((position - startingPos) / length) *
+					(directionAwareReverse ? -1 : 1) *
+					(orientation === "vertical" ? -1 : 1)) /
+					step
+			) *
+				step;
 
 		if (nextStep <= min) nextStep = min;
 		else if (nextStep >= max) nextStep = max;
@@ -141,13 +153,13 @@
 		holding = true;
 	}
 
-    function linearScale(input: readonly [number, number], output: readonly [number, number]) {
-        return (value: number) => {
-            if (input[0] === input[1] || output[0] === output[1]) return output[0];
-            const ratio = (output[1] - output[0]) / (input[1] - input[0]);
-            return output[0] + ratio * (value - input[0]);
-        };
-    }
+	function linearScale(input: readonly [number, number], output: readonly [number, number]) {
+		return (value: number) => {
+			if (input[0] === input[1] || output[0] === output[1]) return output[0];
+			const ratio = (output[1] - output[0]) / (input[1] - input[0]);
+			return output[0] + ratio * (value - input[0]);
+		};
+	}
 
 	export function stepUp() {
 		value += step;
@@ -159,7 +171,7 @@
 		if (value < min) value = min;
 	}
 
-    $: dispatch("change", value);
+	$: dispatch("change", value);
 	$: percentage = valueToPercentage(value);
 	$: {
 		if (value <= min) value = min;
@@ -197,14 +209,15 @@ A slider is a control that lets the user select from a range of values by moving
 	on:touchstart={handleTouchStart}
 	on:keydown={handleArrowKeys}
 	tabindex={disabled ? -1 : 0}
-	style="--fds-slider-percentage: {percentage}%; --fds-slider-thumb-offset: {(thumbClientWidth / 2) - linearScale([0, 50], [0, thumbClientWidth / 2])(percentage)}px;"
+	style="--fds-slider-percentage: {percentage}%; --fds-slider-thumb-offset: {thumbClientWidth /
+		2 -
+		linearScale([0, 50], [0, thumbClientWidth / 2])(percentage)}px;"
 	class="slider orientation-{orientation} {className}"
 	class:disabled
 	class:reverse={directionAwareReverse}
 	bind:this={containerElement}
 	{...$$restProps}
 >
-
 	<div
 		class="slider-thumb"
 		role="slider"
@@ -212,7 +225,7 @@ A slider is a control that lets the user select from a range of values by moving
 		aria-valuemax={max}
 		aria-valuenow={value}
 		bind:this={thumbElement}
-        bind:clientWidth={thumbClientWidth}
+		bind:clientWidth={thumbClientWidth}
 	>
 		{#if tooltip && !disabled}
 			<TooltipSurface class="slider-tooltip">
@@ -225,7 +238,7 @@ A slider is a control that lets the user select from a range of values by moving
 
 	<div class="slider-rail" bind:this={railElement}>
 		{#if track}
-			<div class="slider-track" bind:this={trackElement}></div>
+			<div class="slider-track" bind:this={trackElement} />
 		{/if}
 	</div>
 
@@ -234,22 +247,13 @@ A slider is a control that lets the user select from a range of values by moving
 			{#each ticks as tick}
 				<div
 					class="slider-tick"
-					style="--fds-slider-tick-percentage: {valueToPercentage(tick)}%">
-				</div>
+					style="--fds-slider-tick-percentage: {valueToPercentage(tick)}%"
+				/>
 			{/each}
 		</div>
 	{/if}
 
-	<input
-		type="range"
-		hidden
-		{min}
-		{max}
-		{step}
-		{disabled}
-		{value}
-		bind:this={inputElement}
-	/>
+	<input type="range" hidden {min} {max} {step} {disabled} {value} bind:this={inputElement} />
 </div>
 
 <style lang="scss">

@@ -5,7 +5,7 @@
     import data from "$lib/TextBox/TextBox.svelte?sveld&raw";
 </script>
 
-The TextBox control lets a user type text into an app. The text displays on the screen in a simple, plaintext format on a single line. It additionally comes with a set of buttons which allow users to perform specialized actions on the text, such as showing a password or clearing the TextBox's contents.   
+The TextBox control lets a user type text into an app. The text displays on the screen in a simple, plaintext format on a single line. It additionally comes with a set of buttons which allow users to perform specialized actions on the text, such as showing a password or clearing the TextBox's contents.
 
 ```ts
 import { TextBox } from "fluent-svelte";
@@ -53,16 +53,19 @@ You can customize the intended input type of the TextBox by setting the `type` p
 Supported types: `text`, `number`, `search`, `password`, `email`, `tel`, `url`, `date`, `datetime-local`, `month`, `time`, `week`.
 
 <InfoBar
-    severity="caution"
-    title="NumberBox vs. the {`"number"`} type"
+severity="caution"
+title="NumberBox vs. the {`"number"`} type"
+
 >
+
     While you <i>can</i> use the <code>number</code> type with TextBox, it's probably a better idea to use the specialized <a href="numberbox">NumberBox</a> component instead, which is an extension of TextBox designed for handling numeric inputs.
+
 </InfoBar>
 
 Most of these types will simply set the `type` attribute of the TextBox's input element. Some of these types, however, have additional functionality added specific to their input method.
 
-- On `search` types - A search button will be added to the end of the TextBox to allow users to submit a search query. You can use the `on:search` event to handle the search query. If you wish to hide the search button when using this type, you can set the `searchButton` property to `false`.
-- On `password` types - A password reveal button will be added to the end of the TextBox to allow users to reveal the input's value. You can use the `on:reveal` event to run code when the password is revealed. If you wish to hide the reveal button when using this type, you can set the `revealButton` property to `false`.
+-   On `search` types - A search button will be added to the end of the TextBox to allow users to submit a search query. You can use the `on:search` event to handle the search query. If you wish to hide the search button when using this type, you can set the `searchButton` property to `false`.
+-   On `password` types - A password reveal button will be added to the end of the TextBox to allow users to reveal the input's value. You can use the `on:reveal` event to run code when the password is revealed. If you wish to hide the reveal button when using this type, you can set the `revealButton` property to `false`.
 
 ### Placeholders
 
@@ -99,14 +102,17 @@ Along with the builtin action buttons, you can also add your own buttons to the 
 
 There are two methods to (completely) restrict manual input on a TextBox: the `disabled` and `readonly` properties.
 
-- The `disabled` property will prevent the user from entering text into the TextBox as well as style the TextBox to indicate this. The TextBox will not be focusable and will not respond to keyboard events.
-- The `readonly` property will only prevent the user from entering text into the TextBox. The TextBox will still be focusable, however, and no changes to the styling will be made.
+-   The `disabled` property will prevent the user from entering text into the TextBox as well as style the TextBox to indicate this. The TextBox will not be focusable and will not respond to keyboard events.
+-   The `readonly` property will only prevent the user from entering text into the TextBox. The TextBox will still be focusable, however, and no changes to the styling will be made.
 
 <InfoBar
-    severity="attention"
-    title="Buttons and these properties"
+severity="attention"
+title="Buttons and these properties"
+
 >
+
     It should be noted that while using either of these modes that the clear button will not be displayed, in order to prevent users from modifying the TextBox's content. The <code>clearButton</code> property will have no effect on this behavior. Additionally, when the TextBox is <code>disabled</code>, the search and password reveal buttons will not be rendered into their respective types either.
+
 </InfoBar>
 
 ```html

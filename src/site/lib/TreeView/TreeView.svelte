@@ -78,12 +78,12 @@
 	}
 
 	.tree-view {
-        max-block-size: 100%;
-        min-block-size: 0;
-        :global(.category-header) {
-            inline-size: 100%;
-            padding-inline: 16px;
-            padding-block: 10px;
-        }
-    }
+		max-block-size: 100%;
+		min-block-size: 0;
+		:global(.category-header) {
+			inline-size: 100%;
+			padding-inline: 16px;
+			padding-block: 10px;
+		}
+	}
 </style>

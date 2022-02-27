@@ -7,9 +7,9 @@
 	min-inline-size: 32px;
 	min-block-size: 32px;
 
-    > :global(*) {
-        direction: ltr;
-    }
+	> :global(*) {
+		direction: ltr;
+	}
 
 	&:focus-visible {
 		outline: none;
@@ -42,8 +42,8 @@
 				}
 
 				&thumb {
-                    inset-inline-start: calc(var(--slider-percentage) + var(--slider-thumb-offset));
-                    transform: translateX(-50%);
+					inset-inline-start: calc(var(--slider-percentage) + var(--slider-thumb-offset));
+					transform: translateX(-50%);
 				}
 
 				&tick {
@@ -69,7 +69,9 @@
 
 					&thumb {
 						inset-inline-start: unset;
-						inset-inline-end: calc(var(--slider-percentage) + var(--slider-thumb-offset));
+						inset-inline-end: calc(
+							var(--slider-percentage) + var(--slider-thumb-offset)
+						);
 						transform: translateX(50%);
 					}
 
@@ -124,7 +126,9 @@
 
 					&thumb {
 						inset-block-end: unset;
-						inset-block-start: calc(var(--slider-percentage) + var(--slider-thumb-offset));
+						inset-block-start: calc(
+							var(--slider-percentage) + var(--slider-thumb-offset)
+						);
 						transform: translateY(-50%);
 					}
 
@@ -221,7 +225,8 @@
 			position: absolute;
 			border-radius: 100%;
 			background-color: var(--accent-default);
-			transition: var(--control-fast-duration) var(--control-fast-out-slow-in-easing) transform;
+			transition: var(--control-fast-duration) var(--control-fast-out-slow-in-easing)
+				transform;
 			inline-size: 12px;
 			block-size: 12px;
 		}
