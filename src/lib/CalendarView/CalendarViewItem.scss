@@ -7,7 +7,7 @@
     text-align: center;
     box-sizing: border-box;
     padding: 0;
-    border: none;
+    border: 1px solid transparent;
     outline: none;
     background-color: var(--subtle-fill-transparent);;
     color: var(--text-primary);
@@ -21,14 +21,14 @@
     &:focus-visible {
         box-shadow: var(--focus-stroke);
     }
-    &:hover:not(.blackout) {
+    &:hover {
         background-color: var(--subtle-fill-secondary);
     }
     &:active {
         background-color: var(--subtle-fill-tertiary);
         color: var(--text-secondary);
     }
-    &:disabled:not(.blackout) {
+    &:disabled {
         background-color: var(--subtle-fill-disabled);
         color: var(--text-disabled);
     }
@@ -43,14 +43,20 @@
             border-top: 1px solid rgba(0, 0, 0, 0.4458);
         }
     }
-    &.variant- {
+    &.type- {
         &day {
             inline-size: 40px;
             block-size: 40px;
+            small {
+                top: 2px;
+            }
         }
         &month-year {
             inline-size: 56px;
             block-size: 56px;
+            small {
+                top: 9.58px; // figma toolkit is weird idk
+            }
         }
     }
     &.out-of-range {
@@ -62,7 +68,7 @@
     &.selected {
         color: var(--accent-text-primary);
         border: 1px solid var(--accent-default);
-        &:hover:not(.blackout) {
+        &:hover {
             background-color: var(--subtle-fill-secondary);
             border-color: var(--accent-secondary);
         }
@@ -70,7 +76,7 @@
             background-color: var(--subtle-fill-tertiary);
             border-color: var(--accent-tertiary);
         }
-        &:disabled:not(.blackout) {
+        &:disabled {
             color: var(--accent-text-disabled);
             background-color: var(--subtle-fill-disabled);
             border-color: var(--accent-disabled);
@@ -85,7 +91,7 @@
     &.current:not(.out-of-range) {
         color: var(--text-on-accent-primary);
         background-color: var(--accent-default);
-        &:hover:not(.blackout) {
+        &:hover {
             background-color: var(--accent-secondary);
         }
         &:active {
@@ -94,6 +100,21 @@
         }
         &:disabled:not(.blackout) {
             background-color: var(--accent-disabled);
+        }
+    }
+    small {
+        pointer-events: none;
+        position: absolute;
+        inline-size: 100%;
+        padding-inline: 1px;
+        letter-spacing: 0.04em;
+        text-align: center;
+        color: inherit;
+        line-height: 12px;
+        font: {
+            family: var(--font-family-small);
+            weight: 400;
+            size: 8px;
         }
     }
 }

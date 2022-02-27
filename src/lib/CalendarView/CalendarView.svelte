@@ -5,6 +5,7 @@
 
 	export let locale: string = undefined;
     export let multiple = false;
+    export let headers = false;
     export let value: Date | Date[] | null = null;
     export let blackout: Date[] = undefined;        
     export let min: Date = undefined;
@@ -380,6 +381,7 @@
                                     current={compareDates(day, new Date(), "day")}
                                     disabled={(min > day) || (max < day)}
                                     blackout={blackout && indexOfDate(blackout, day, "day") > -1}
+                                    header={page && headers && inMonth && day.getDate() === 1 && getMonthLocale(day.getDate(), { locale, format: "short" })}
                                     {selected}
                                 >
                                     {day.getDate()}
@@ -407,6 +409,7 @@
                                         outOfRange={!inYear}
                                         current={compareDates(month, new Date(), "month")}
                                         disabled={((min?.getMonth() > month.getMonth()) && min?.getFullYear() === month.getFullYear()) || (max < month)}
+                                        header={page && headers && inYear && month.getMonth() === 0 && month.getFullYear().toString()}
                                         {selected}
                                     >
                                         {getMonthLocale(month.getMonth(), { locale, format: "short" })}

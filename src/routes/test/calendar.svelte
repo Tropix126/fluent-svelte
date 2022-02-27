@@ -4,4 +4,4 @@
 
 <br /><br /><br /><br /><br />
 
-<CalendarView />
+<CalendarView headers />

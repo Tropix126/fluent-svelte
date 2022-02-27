@@ -12,7 +12,7 @@
     on:click
     on:keydown
     type="button"
-    class="calendar-view-item variant-{variant === "day" ? "day" : "month-year"}"
+    class="calendar-view-item type-{variant === "day" ? "day" : "month-year"}"
     class:selected
     class:current
     class:blackout
