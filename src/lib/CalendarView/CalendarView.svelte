@@ -483,9 +483,8 @@
                                             blackout={blackout && indexOfDate(blackout, day, "day") > -1}
                                             header={page &&
                                                 headers &&
-                                                inMonth &&
                                                 day.getDate() === 1 &&
-                                                getMonthLocale(day.getDate(), { locale, format: "short" })}
+                                                getMonthLocale(day.getMonth(), { locale, format: "short" })}
                                             {selected}
                                         >
                                             {day.getDate()}
@@ -519,7 +518,6 @@
                                                     max < month}
                                                 header={page &&
                                                     headers &&
-                                                    inYear &&
                                                     month.getMonth() === 0 &&
                                                     month.getFullYear().toString()}
                                                 {selected}
