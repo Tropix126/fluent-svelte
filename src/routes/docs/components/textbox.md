@@ -53,7 +53,7 @@ You can customize the intended input type of the TextBox by setting the `type` p
 Supported types: `text`, `number`, `search`, `password`, `email`, `tel`, `url`, `date`, `datetime-local`, `month`, `time`, `week`.
 
 <InfoBar severity="caution" title="NumberBox vs. the {`"number"`} type">
-    While you <i>can</i> use the <code>number</code> type with TextBox, it's probably a better idea to use the specialized <a href="numberbox">NumberBox</a> component instead, which is an extension of TextBox designed for handling numeric inputs.
+While you <i>can</i> use the <code>number</code> type with TextBox, it's probably a better idea to use the specialized <a href="numberbox">NumberBox</a> component instead, which is an extension of TextBox designed for handling numeric inputs.
 </InfoBar>
 
 Most of these types will simply set the `type` attribute of the TextBox's input element. Some of these types, however, have additional functionality added specific to their input method.

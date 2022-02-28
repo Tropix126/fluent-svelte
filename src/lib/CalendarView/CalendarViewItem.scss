@@ -1,120 +1,120 @@
 @use "../mixins" as *;
 
 .calendar-view-item {
-    @include flex($inline: true, $justify: center, $align: center);
-    position: relative;
-    user-select: none;
-    text-align: center;
-    box-sizing: border-box;
-    padding: 0;
-    border: 1px solid transparent;
-    outline: none;
-    background-color: var(--subtle-fill-transparent);;
-    color: var(--text-primary);
-    border-radius: 50%;
-    line-height: 20px;
-    font: {
-        family: var(--font-family-text);
-        size: 14px;
-        weight: 400;
-    }
-    &:focus-visible {
-        box-shadow: var(--focus-stroke);
-    }
-    &:hover {
-        background-color: var(--subtle-fill-secondary);
-    }
-    &:active {
-        background-color: var(--subtle-fill-tertiary);
-        color: var(--text-secondary);
-    }
-    &:disabled {
-        background-color: var(--subtle-fill-disabled);
-        color: var(--text-disabled);
-    }
-    &.blackout {
-        &::after {
-            content: "";
-            transform-origin: center;
-            inline-size: 26px;
-            block-size: 1px;
-            position: absolute;
-            transform: matrix(-0.71, -0.71, -0.71, 0.71, 0, 0);
-            border-top: 1px solid rgba(0, 0, 0, 0.4458);
-        }
-    }
-    &.type- {
-        &day {
-            inline-size: 40px;
-            block-size: 40px;
-            small {
-                top: 2px;
-            }
-        }
-        &month-year {
-            inline-size: 56px;
-            block-size: 56px;
-            small {
-                top: 9.58px; // figma toolkit is weird idk
-            }
-        }
-    }
-    &.out-of-range {
-        color: var(--text-secondary);
-        &:active {
-            color: var(--text-tertiary);
-        }
-    }
-    &.selected {
-        color: var(--accent-text-primary);
-        border: 1px solid var(--accent-default);
-        &:hover {
-            background-color: var(--subtle-fill-secondary);
-            border-color: var(--accent-secondary);
-        }
-        &:active {
-            background-color: var(--subtle-fill-tertiary);
-            border-color: var(--accent-tertiary);
-        }
-        &:disabled {
-            color: var(--accent-text-disabled);
-            background-color: var(--subtle-fill-disabled);
-            border-color: var(--accent-disabled);
-        }
-        &.current {
-            box-shadow: inset 0 0 0 1px var(--text-on-accent-primary);
-            &:focus-visible {
-                box-shadow: inset 0 0 0 1px var(--text-on-accent-primary), var(--focus-stroke);
-            }
-        }
-    }
-    &.current:not(.out-of-range) {
-        color: var(--text-on-accent-primary);
-        background-color: var(--accent-default);
-        &:hover {
-            background-color: var(--accent-secondary);
-        }
-        &:active {
-            background-color: var(--accent-tertiary);
-            color: var(--text-on-accent-secondary);
-        }
-        &:disabled:not(.blackout) {
-            background-color: var(--accent-disabled);
-        }
-    }
-    small {
-        pointer-events: none;
-        position: absolute;
-        inline-size: 100%;
-        padding-inline: 1px;
-        letter-spacing: 0.04em;
-        text-align: center;
-        color: inherit;
-        line-height: 12px;
-        font: {
-            family: var(--font-family-small);
-            weight: 400;
-            size: 8px;
-        }
-    }
+	@include flex($inline: true, $justify: center, $align: center);
+	position: relative;
+	user-select: none;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 0;
+	border: 1px solid transparent;
+	outline: none;
+	background-color: var(--subtle-fill-transparent);
+	color: var(--text-primary);
+	border-radius: 50%;
+	line-height: 20px;
+	font: {
+		family: var(--font-family-text);
+		size: 14px;
+		weight: 400;
+	}
+	&:focus-visible {
+		box-shadow: var(--focus-stroke);
+	}
+	&:hover {
+		background-color: var(--subtle-fill-secondary);
+	}
+	&:active {
+		background-color: var(--subtle-fill-tertiary);
+		color: var(--text-secondary);
+	}
+	&:disabled {
+		background-color: var(--subtle-fill-disabled);
+		color: var(--text-disabled);
+	}
+	&.blackout {
+		&::after {
+			content: "";
+			transform-origin: center;
+			inline-size: 26px;
+			block-size: 1px;
+			position: absolute;
+			transform: matrix(-0.71, -0.71, -0.71, 0.71, 0, 0);
+			border-top: 1px solid rgba(0, 0, 0, 0.4458);
+		}
+	}
+	&.type- {
+		&day {
+			inline-size: 40px;
+			block-size: 40px;
+			small {
+				top: 2px;
+			}
+		}
+		&month-year {
+			inline-size: 56px;
+			block-size: 56px;
+			small {
+				top: 9.58px; // figma toolkit is weird idk
+			}
+		}
+	}
+	&.out-of-range {
+		color: var(--text-secondary);
+		&:active {
+			color: var(--text-tertiary);
+		}
+	}
+	&.selected {
+		color: var(--accent-text-primary);
+		border: 1px solid var(--accent-default);
+		&:hover {
+			background-color: var(--subtle-fill-secondary);
+			border-color: var(--accent-secondary);
+		}
+		&:active {
+			background-color: var(--subtle-fill-tertiary);
+			border-color: var(--accent-tertiary);
+		}
+		&:disabled {
+			color: var(--accent-text-disabled);
+			background-color: var(--subtle-fill-disabled);
+			border-color: var(--accent-disabled);
+		}
+		&.current {
+			box-shadow: inset 0 0 0 1px var(--text-on-accent-primary);
+			&:focus-visible {
+				box-shadow: inset 0 0 0 1px var(--text-on-accent-primary), var(--focus-stroke);
+			}
+		}
+	}
+	&.current:not(.out-of-range) {
+		color: var(--text-on-accent-primary);
+		background-color: var(--accent-default);
+		&:hover {
+			background-color: var(--accent-secondary);
+		}
+		&:active {
+			background-color: var(--accent-tertiary);
+			color: var(--text-on-accent-secondary);
+		}
+		&:disabled:not(.blackout) {
+			background-color: var(--accent-disabled);
+		}
+	}
+	small {
+		pointer-events: none;
+		position: absolute;
+		inline-size: 100%;
+		padding-inline: 1px;
+		letter-spacing: 0.04em;
+		text-align: center;
+		color: inherit;
+		line-height: 12px;
+		font: {
+			family: var(--font-family-small);
+			weight: 400;
+			size: 8px;
+		}
+	}
 }
