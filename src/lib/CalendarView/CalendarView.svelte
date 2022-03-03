@@ -1,17 +1,36 @@
 <script lang="ts">
-	import { createEventDispatcher } from "svelte";
+	import { createEventDispatcher, onMount } from "svelte";
+    import { fly } from "svelte/transition";
     import { circOut } from "svelte/easing";
+    import { getCSSDuration } from "../internal";
     
 	import CalendarViewItem from "./CalendarViewItem.svelte";
 
+    /** Locale code used for specifying the language of the calendar. If unset, the locale will be automatically inferred from `navigator.language`. */
 	export let locale: string = undefined;
+
+    /** Determines if multiple dates can be manually selected by the user. */
 	export let multiple = false;
+
+    /** Controls whether header text will be shown above items representing the first day of a month or the first month of a year. */
 	export let headers = false;
+
+    /** The currently selected calendar date(s). */
 	export let value: Date | Date[] | null = null;
+
+    /** Array of specifically excluded dates that cannot be selected by the user. */
 	export let blackout: Date[] = undefined;
+
+    /** The minimum date that can be manually selected by the user. */
 	export let min: Date = undefined;
+
+    /** The maximum date that can be manually selected by the user. */
 	export let max: Date = undefined;
+
+    /** The selection view that the calendar will start in. Views can be manually changed by the user when clicking the calendar's header. */
 	export let view: View = "days";
+
+    /** Number representing the day that the calendar week starts on. 0 is sunday, 6 is saturday. */
 	export let weekStart = 0;
 
 	const firstValue = Array.isArray(value) ? value[0] : value;
@@ -23,9 +42,12 @@
 		(firstValue ?? new Date()).getMonth(),
 		1
 	);
-    let viewDirection: "up" | "down" = "up";
+    let viewDirection: AnimationDirection = "neutral";
+    let pageDirection: AnimationDirection = "neutral";
+    let pageAnimationDuration = 0;
 
 	type View = "days" | "months" | "years";
+    type AnimationDirection = "up" | "down" | "neutral";
 	type DateTimeWeekdayFormat = "long" | "short" | "narrow";
 	type DateTimeMonthFormat = "long" | "short" | "narrow" | "numeric" | "2-digit";
 	type DateComparisonPrecision = "time" | "day" | "month" | "year" | "decade";
@@ -189,18 +211,38 @@
 		}
 	}
 
-	function updatePage(value: number = 0) {
-		page = new Date(getPageByOffset(value, page, view));
+	function updatePage(amount: number = 0) {
+        page = new Date(getPageByOffset(amount, page, view));
+        if (amount <= -1) {
+            pageDirection = "up";
+        } else if (amount >= 1) {
+            pageDirection = "down"
+        } else {
+            pageDirection = "neutral";
+        }
 	}
+
+    function updateView(newView: View) {
+        if ((view === "days" && newView === "months") || (view === "months" && newView === "years")) {
+            viewDirection = "up";
+        } else if ((view === "years" && newView === "months") || (view === "months" && newView === "days")) {
+            viewDirection = "down";
+        } else {
+            viewDirection = "neutral";
+        }
+
+        pageDirection = "neutral";
+        view = newView;
+    }
 
 	function handleKeyDown(event: KeyboardEvent, date: Date) {
 		const { key } = event;
 
 		if (event.ctrlKey && (key === "ArrowUp" || key === "ArrowDown")) {
 			if (key === "ArrowUp") {
-				view = view === "days" ? "months" : "years";
+				updateView(view === "days" ? "months" : "years");
 			} else if (key === "ArrowDown") {
-				view = view === "years" ? "months" : "days";
+				updateView(view === "years" ? "months" : "days");
 			}
 			return;
 		}
@@ -242,12 +284,12 @@
 			if (focusedDate.getMonth() !== page.getMonth()) {
 				if (key === "ArrowLeft" || key === "ArrowUp") {
 					updatePage(-1);
+                    focusOrder = (<HTMLElement>event.target).closest("tbody").querySelectorAll("button");
 				} else if (key === "ArrowRight" || key === "ArrowDown") {
 					updatePage(1);
 				}
 
 				focusedDate = newFocusedDate;
-                focusOrder = (<HTMLElement>event.target).closest("tbody").querySelectorAll("button");
 				focusOrder?.[calendarDays.indexOf(newFocusedDate)].focus();
 
 				return;
@@ -350,20 +392,16 @@
 
 	function selectMonth(month: Date) {
 		page.setMonth(month.getMonth(), 1);
-		view = "days";
-        viewDirection = "down";
+		updateView("days");
 	}
 
 	function selectYear(month: Date) {
 		page.setFullYear(month.getFullYear());
-		view = "months";
-        viewDirection = "down";
+		updateView("months");
 	}
 
 	function fadeScale(node, { delay = 0, duration = 200, easing = x => x, baseScale = 0 }) {
 		const o = +getComputedStyle(node).opacity;
-		const m = getComputedStyle(node).transform.match(/scale\(([0-9.]+)\)/);
-		const s = m ? m[1] : 1;
 		const is = 1 - baseScale;
 
 		return {
@@ -371,14 +409,17 @@
 			duration,
 			css: t => {
 				const eased = easing(t);
-				return `opacity: ${eased * o}; transform: scale(${eased * s * is + baseScale})`;
+				return `opacity: ${eased * o}; transform: scale(${eased * is + baseScale})`;
 			}
-		};
+		}
 	}
 
+    onMount(() => {
+        pageAnimationDuration = getCSSDuration("--fds-control-slow-duration");
+    });
+    
 	$: dispatch("change", value);
-	$: view, updatePage(0); // ensures that data is in sync when comparing min/max values
-	$: previousPage = getPageByOffset(-1, page, view);
+	$: view, updatePage(0);
 	$: nextPage = getPageByOffset(1, page, view);
 	$: if (view === "days") {
 		header = new Intl.DateTimeFormat(locale, {
@@ -404,10 +445,7 @@
 	<header>
 		<div class="header-text" role="heading" aria-live="polite">
 			<button
-				on:click={() => {
-                    view = view === "days" ? "months" : "years";
-                    viewDirection = "up";
-                }}
+				on:click={() => updateView(view === "days" ? "months" : "years")}
 				disabled={view === "years"}>{header}</button
 			>
 		</div>
@@ -419,7 +457,8 @@
 					/>
 				</svg>
 			</button>
-			<button disabled={max < nextPage} on:click={() => updatePage(1)}>
+			<button disabled={max < nextPage} on:click={() => updatePage(1)}
+            >
 				<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M4.95681 5C4.14912 5 3.67466 5.90803 4.13591 6.57107L6.76854 10.3555C7.36532 11.2134 8.63448 11.2133 9.23126 10.3555L11.8639 6.57106C12.3251 5.90803 11.8507 5 11.043 5H4.95681Z"
@@ -460,105 +499,120 @@
                         </tr>
                     </thead>
                 {/if}
-                <tbody>
-                    {#if view === "days"}
-                        {#each Array(6) as _, week}
-                            <tr>
-                                {#each getCalendarDays(page).slice(week * 7, week * 7 + 7) as day, i}
-                                    {@const selected =
-                                        value !== null &&
-                                        (Array.isArray(value)
-                                            ? indexOfDate(value, day, "day") > -1
-                                            : compareDates(value, day, "day"))}
-                                    {@const inMonth = day.getMonth() === page.getMonth()}
-
-                                    <td role="gridcell">
-                                        <CalendarViewItem
-                                            on:click={() => selectDay(day)}
-                                            on:keydown={e => handleKeyDown(e, day)}
-                                            tabindex={-1}
-                                            outOfRange={!inMonth}
-                                            current={compareDates(day, new Date(), "day")}
-                                            disabled={min > day || max < day}
-                                            blackout={blackout && indexOfDate(blackout, day, "day") > -1}
-                                            header={page &&
-                                                headers &&
-                                                day.getDate() === 1 &&
-                                                getMonthLocale(day.getMonth(), { locale, format: "short" })}
-                                            {selected}
-                                        >
-                                            {day.getDate()}
-                                        </CalendarViewItem>
-                                    </td>
-                                {/each}
-                            </tr>
-                        {/each}
-                        {:else}
-                        {#each Array(4) as _, row}
-                            <tr>
-                                {#if view === "months"}
-                                    {#each getCalendarMonths(page).slice(row * 4, row * 4 + 4) as month, i}
+                {#key page}
+                    <tbody
+                        in:fly={{
+                            opacity: 1,
+                            duration: pageAnimationDuration,
+                            easing: circOut,
+                            y: pageDirection === "neutral" ? 0 : pageDirection === "up" ? -198 : 198
+                        }}
+                        out:fly={{
+                            opacity: 1,
+                            duration: pageAnimationDuration,
+                            easing: circOut,
+                            y: pageDirection === "neutral" ? 0 : pageDirection === "up" ? 198 : -198
+                        }}
+                    >
+                        {#if view === "days"}
+                            {#each Array(6) as _, week}
+                                <tr>
+                                    {#each getCalendarDays(page).slice(week * 7, week * 7 + 7) as day, i}
                                         {@const selected =
                                             value !== null &&
                                             (Array.isArray(value)
-                                                ? indexOfDate(value, month, "month") > -1
-                                                : compareDates(value, month, "month"))}
-                                        {@const inYear = month.getFullYear() === page.getFullYear()}
+                                                ? indexOfDate(value, day, "day") > -1
+                                                : compareDates(value, day, "day"))}
+                                        {@const inMonth = day.getMonth() === page.getMonth()}
 
                                         <td role="gridcell">
                                             <CalendarViewItem
-                                                on:click={() => selectMonth(month)}
-                                                on:keydown={e => handleKeyDown(e, month)}
-                                                variant="monthYear"
+                                                on:click={() => selectDay(day)}
+                                                on:keydown={e => handleKeyDown(e, day)}
                                                 tabindex={-1}
-                                                outOfRange={!inYear}
-                                                current={compareDates(month, new Date(), "month")}
-                                                disabled={(min?.getMonth() > month.getMonth() &&
-                                                    min?.getFullYear() === month.getFullYear()) ||
-                                                    max < month}
+                                                outOfRange={!inMonth}
+                                                current={compareDates(day, new Date(), "day")}
+                                                disabled={min > day || max < day}
+                                                blackout={blackout && indexOfDate(blackout, day, "day") > -1}
                                                 header={page &&
                                                     headers &&
-                                                    month.getMonth() === 0 &&
-                                                    month.getFullYear().toString()}
+                                                    day.getDate() === 1 &&
+                                                    getMonthLocale(day.getMonth(), { locale, format: "short" })}
                                                 {selected}
                                             >
-                                                {getMonthLocale(month.getMonth(), {
-                                                    locale,
-                                                    format: "short"
-                                                })}
+                                                {day.getDate()}
                                             </CalendarViewItem>
                                         </td>
                                     {/each}
-                                {:else if view === "years"}
-                                    {#each getCalendarYears(page).slice(row * 4, row * 4 + 4) as year, i}
-                                        {@const selected =
-                                            value !== null &&
-                                            (Array.isArray(value)
-                                                ? indexOfDate(value, year, "year") > -1
-                                                : compareDates(value, year, "year"))}
-                                        {@const inDecade = compareDates(year, page, "decade")}
+                                </tr>
+                            {/each}
+                            {:else}
+                            {#each Array(4) as _, row}
+                                <tr>
+                                    {#if view === "months"}
+                                        {#each getCalendarMonths(page).slice(row * 4, row * 4 + 4) as month, i}
+                                            {@const selected =
+                                                value !== null &&
+                                                (Array.isArray(value)
+                                                    ? indexOfDate(value, month, "month") > -1
+                                                    : compareDates(value, month, "month"))}
+                                            {@const inYear = month.getFullYear() === page.getFullYear()}
 
-                                        <td role="gridcell">
-                                            <CalendarViewItem
-                                                on:click={() => selectYear(year)}
-                                                on:keydown={e => handleKeyDown(e, year)}
-                                                variant="monthYear"
-                                                tabindex={-1}
-                                                outOfRange={!inDecade}
-                                                current={compareDates(year, new Date(), "year")}
-                                                disabled={min?.getFullYear() > year.getFullYear() ||
-                                                    max < year}
-                                                {selected}
-                                            >
-                                                {year.getFullYear()}
-                                            </CalendarViewItem>
-                                        </td>
-                                    {/each}
-                                {/if}
-                            </tr>
-                        {/each}
-                    {/if}
-                </tbody>
+                                            <td role="gridcell">
+                                                <CalendarViewItem
+                                                    on:click={() => selectMonth(month)}
+                                                    on:keydown={e => handleKeyDown(e, month)}
+                                                    variant="monthYear"
+                                                    tabindex={-1}
+                                                    outOfRange={!inYear}
+                                                    current={compareDates(month, new Date(), "month")}
+                                                    disabled={(min?.getMonth() > month.getMonth() &&
+                                                        min?.getFullYear() === month.getFullYear()) ||
+                                                        max < month}
+                                                    header={page &&
+                                                        headers &&
+                                                        month.getMonth() === 0 &&
+                                                        month.getFullYear().toString()}
+                                                    {selected}
+                                                >
+                                                    {getMonthLocale(month.getMonth(), {
+                                                        locale,
+                                                        format: "short"
+                                                    })}
+                                                </CalendarViewItem>
+                                            </td>
+                                        {/each}
+                                    {:else if view === "years"}
+                                        {#each getCalendarYears(page).slice(row * 4, row * 4 + 4) as year, i}
+                                            {@const selected =
+                                                value !== null &&
+                                                (Array.isArray(value)
+                                                    ? indexOfDate(value, year, "year") > -1
+                                                    : compareDates(value, year, "year"))}
+                                            {@const inDecade = compareDates(year, page, "decade")}
+
+                                            <td role="gridcell">
+                                                <CalendarViewItem
+                                                    on:click={() => selectYear(year)}
+                                                    on:keydown={e => handleKeyDown(e, year)}
+                                                    variant="monthYear"
+                                                    tabindex={-1}
+                                                    outOfRange={!inDecade}
+                                                    current={compareDates(year, new Date(), "year")}
+                                                    disabled={min?.getFullYear() > year.getFullYear() ||
+                                                        max < year}
+                                                    {selected}
+                                                >
+                                                    {year.getFullYear()}
+                                                </CalendarViewItem>
+                                            </td>
+                                        {/each}
+                                    {/if}
+                                </tr>
+                            {/each}
+                        {/if}
+                    </tbody>
+                {/key}
             </table>
         {/key}
     </div>
