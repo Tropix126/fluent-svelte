@@ -16,7 +16,7 @@
 	class:selected
 	class:current
 	class:blackout
-    class:disabled
+	class:disabled
 	class:out-of-range={outOfRange}
 	disabled={disabled || blackout}
 	aria-selected={selected}

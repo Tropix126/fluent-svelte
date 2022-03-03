@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { CalendarView } from "$lib";
 
-    let value = new Date();
+	let value = new Date();
 </script>
 
 <br /><br /><br /><br />

@@ -2,9 +2,9 @@
 
 .calendar-view {
 	@include flex($inline: true, $direction: column);
-    inline-size: 300px;
-    block-size: 347px;
-    position: relative;
+	inline-size: 300px;
+	block-size: 347px;
+	position: relative;
 	user-select: none;
 	color: var(--text-primary);
 	background-clip: padding-box;
@@ -76,28 +76,28 @@
 		}
 	}
 	table {
-        inset: 0;
-        display: block;
-        overflow: hidden;
-        position: absolute;
+		inset: 0;
+		display: block;
+		overflow: hidden;
+		position: absolute;
 		box-sizing: border-box;
 		inline-size: calc(100% - 6px);
 		block-size: calc(100% - 6px);
 		margin: 3px;
 		font-size: 14px;
-        &.view- {
-            &months,
-            &years {
-                margin: 11px;
-                inline-size: calc(100% - 22px);
-                block-size: calc(100% - 22px);
-                tr {
-                    grid-template-columns: repeat(4, 1fr);
-                    grid-gap: calc(52px / 3);
-                    margin-block-end: calc(52px / 3);
-                }
-            }
-        }
+		&.view- {
+			&months,
+			&years {
+				margin: 11px;
+				inline-size: calc(100% - 22px);
+				block-size: calc(100% - 22px);
+				tr {
+					grid-template-columns: repeat(4, 1fr);
+					grid-gap: calc(52px / 3);
+					margin-block-end: calc(52px / 3);
+				}
+			}
+		}
 		td,
 		th {
 			padding: 0;
@@ -111,45 +111,46 @@
 				weight: 600;
 			}
 		}
-        thead, tbody {
-            inline-size: 100%;
-            position: absolute;
-            display: flex;
-            flex-direction: column;
-        }
-        thead tr, tbody {
-            background-color: var(--flyout-fallback-background-default);
-            box-shadow: inset 0 0 0 100vmax var(--fds-layer-on-acrylic-background-default);
-        }
-        thead {
-            z-index: 1;
-            inset-inline-start: 0;
-            inset-block-start: 0;
-        }
-        tbody {
-            will-change: transform;
-            inset-inline-start: 0;
-            inset-block-end: 0;
-            tr:last-child {
-                margin-block-end: 0;
-            }
-        }
-        tr {
-            display: grid;
-            inline-size: 100%;
-            grid-template-columns: repeat(7, 1fr);
-            grid-gap: 2px;
-            margin-block-end: 2px;
-        }
+		thead,
+		tbody {
+			inline-size: 100%;
+			position: absolute;
+			display: flex;
+			flex-direction: column;
+		}
+		thead tr,
+		tbody {
+			background-color: var(--flyout-fallback-background-default);
+			box-shadow: inset 0 0 0 100vmax var(--fds-layer-on-acrylic-background-default);
+		}
+		thead {
+			z-index: 1;
+			inset-inline-start: 0;
+			inset-block-start: 0;
+		}
+		tbody {
+			will-change: transform;
+			inset-inline-start: 0;
+			inset-block-end: 0;
+			tr:last-child {
+				margin-block-end: 0;
+			}
+		}
+		tr {
+			display: grid;
+			inline-size: 100%;
+			grid-template-columns: repeat(7, 1fr);
+			grid-gap: 2px;
+			margin-block-end: 2px;
+		}
 	}
 }
 
-
 .calendar-table-wrapper {
-    inline-size: 298px;
-    block-size: 298px;
-    position: relative;
-    contain: layout;
-    overflow: hidden;
-    background-color: var(--layer-on-acrylic-background-default);
+	inline-size: 298px;
+	block-size: 298px;
+	position: relative;
+	contain: layout;
+	overflow: hidden;
+	background-color: var(--layer-on-acrylic-background-default);
 }

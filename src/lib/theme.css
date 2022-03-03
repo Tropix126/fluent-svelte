@@ -10,7 +10,8 @@
 	--fds-accent-dark-3: 226, 100%, 20%;
 
 	/* Font Families */
-	--fds-font-family-fallback: "Segoe UI", -apple-system, ui-sans-serif, system-ui, BlinkMacSystemFont, sans-serif;
+	--fds-font-family-fallback: "Segoe UI", -apple-system, ui-sans-serif, system-ui,
+		BlinkMacSystemFont, sans-serif;
 	--fds-font-family-text: "Segoe UI Variable Text", "Seoge UI Variable Static Text",
 		var(--fds-font-family-fallback);
 	--fds-font-family-small: "Segoe UI Variable Small", "Seoge UI Variable Static Small",
