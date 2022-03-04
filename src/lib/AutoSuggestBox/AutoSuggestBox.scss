@@ -18,6 +18,10 @@
 	max-block-size: 472px;
 }
 
+.auto-suggest-flyout-wrapper {
+	display: contents;
+}
+
 :global {
 	.auto-suggest-box.open {
 		background-color: var(--control-fill-input-active) !important;

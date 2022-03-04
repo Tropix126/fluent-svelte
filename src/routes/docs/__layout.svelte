@@ -89,6 +89,7 @@
 					<svelte:fragment slot="item-template" let:matches let:index let:id let:item>
 						<ListItem
 							on:click={() => handleSelection(index)}
+							tabindex={-1}
 							selected={searchSelection === index}
 							href="/docs{docsPages.filter(page =>
 								matches.some(match => page.name === match)

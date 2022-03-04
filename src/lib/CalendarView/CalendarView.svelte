@@ -64,22 +64,17 @@
 	/** Obtains a bound DOM reference to the calendar's outer container element. */
 	export let element: HTMLDivElement = null;
 
-	const firstValue = Array.isArray(value) ? value[0] : value;
 	const dispatch = createEventDispatcher();
 	const bodyElementBinding = node => (bodyElement = node); // bind:this breaks with our page transition for some reason
 
 	let header = "";
-	let page = new Date(
-		(firstValue ?? new Date()).getFullYear(),
-		(firstValue ?? new Date()).getMonth(),
-		1
-	);
 	let viewAnimationDirection: AnimationDirection = "neutral";
 	let pageAnimationDirection: AnimationDirection = "neutral";
 	let pageAnimationDuration = 0;
 	let bodyElement: HTMLTableSectionElement = null;
 
 	$: dispatch("change", value);
+	$: firstValue = Array.isArray(value) ? value[0] : value;
 	$: view, updatePage(0);
 	$: nextPage = getPageByOffset(1, page, view);
 	$: if (view === "days") {
@@ -100,6 +95,12 @@
 			year: "numeric"
 		})).formatRange(new Date(decadeStart, 0, 1), new Date(decadeEnd, 0, 1));
 	}
+
+	let page = new Date(
+		(firstValue ?? new Date()).getFullYear(),
+		(firstValue ?? new Date()).getMonth(),
+		1
+	);
 
 	onMount(() => {
 		pageAnimationDuration = getCSSDuration("--fds-control-slow-duration");
@@ -246,8 +247,12 @@
 		}
 	}
 
-	function updatePage(amount: number = 0) {
+	function updatePage(amount: number = 0, directionOverride: AnimationDirection = undefined) {
 		page = new Date(getPageByOffset(amount, page, view));
+		if (directionOverride) {
+			pageAnimationDirection = directionOverride;
+			return;
+		}
 		if (amount <= -1) {
 			pageAnimationDirection = "up";
 		} else if (amount >= 1) {
@@ -305,7 +310,7 @@
 				ArrowRight: 1
 			};
 
-			if (!focusIncrementAmount[key]) return;
+			if (!focusIncrementAmount[key] || event.shiftKey) return;
 
 			focusedDate = new Date(
 				new Date(focusedDate).setDate(focusedDate.getDate() + focusIncrementAmount[key])
@@ -324,9 +329,9 @@
 
 			if (focusedDate.getMonth() !== page.getMonth()) {
 				if (key === "ArrowLeft" || key === "ArrowUp") {
-					updatePage(-1);
+					updatePage(-1, "neutral");
 				} else if (key === "ArrowRight" || key === "ArrowDown") {
-					updatePage(1);
+					updatePage(1, "neutral");
 				}
 
 				await tick();
@@ -349,7 +354,7 @@
 				ArrowRight: 1
 			};
 
-			if (!focusIncrementAmount[key]) return;
+			if (!focusIncrementAmount[key] || event.shiftKey) return;
 
 			if (view === "months") {
 				focusedDate = new Date(
@@ -388,9 +393,9 @@
 				!compareDates(focusedDate, page, view === "months" ? "year" : "decade")
 			) {
 				if (key === "ArrowLeft" || key === "ArrowUp") {
-					updatePage(-1);
+					updatePage(-1, "neutral");
 				} else if (key === "ArrowRight" || key === "ArrowDown") {
-					updatePage(1);
+					updatePage(1, "neutral");
 				}
 
 				await tick();
@@ -556,13 +561,18 @@
 											(Array.isArray(value)
 												? indexOfDate(value, day, "day") > -1
 												: compareDates(value, day, "day"))}
-										{@const inMonth = day.getMonth() === page.getMonth()}
+										{@const inMonth = compareDates(day, page, "month")}
+										{@const firstFocusableDay = getCalendarDays(page).find(
+											d =>
+												compareDates(d, page, "month") &&
+												indexOfDate(blackout, d, "day") === -1 &&
+												(!min || min < d || !max || max > d)
+										)}
 
 										<td role="gridcell">
 											<CalendarViewItem
 												on:click={() => selectDay(day)}
 												on:keydown={e => handleKeyDown(e, day)}
-												tabindex={-1}
 												outOfRange={!inMonth}
 												current={compareDates(day, new Date(), "day")}
 												disabled={min > day || max < day}
@@ -575,6 +585,10 @@
 														locale,
 														format: "short"
 													})}
+												tabindex={firstFocusableDay &&
+												compareDates(firstFocusableDay, day, "day")
+													? 0
+													: -1}
 												{selected}
 											>
 												{day.getDate()}
@@ -595,13 +609,19 @@
 													: compareDates(value, month, "month"))}
 											{@const inYear =
 												month.getFullYear() === page.getFullYear()}
+											{@const firstFocusableMonth = getCalendarMonths(
+												page
+											).find(
+												d =>
+													compareDates(d, page, "year") &&
+													(!min || min < d || !max || max > d)
+											)}
 
 											<td role="gridcell">
 												<CalendarViewItem
 													on:click={() => selectMonth(month)}
 													on:keydown={e => handleKeyDown(e, month)}
 													variant="monthYear"
-													tabindex={-1}
 													outOfRange={!inYear}
 													current={compareDates(
 														month,
@@ -617,6 +637,10 @@
 														month.getMonth() === 0 &&
 														month.getFullYear().toString()}
 													{selected}
+													tabindex={firstFocusableMonth &&
+													compareDates(firstFocusableMonth, month, "month")
+														? 0
+														: -1}
 												>
 													{getMonthLocale(month.getMonth(), {
 														locale,
@@ -633,18 +657,28 @@
 													? indexOfDate(value, year, "year") > -1
 													: compareDates(value, year, "year"))}
 											{@const inDecade = compareDates(year, page, "decade")}
+											{@const firstFocusableYear = getCalendarYears(
+												page
+											).find(
+												d =>
+													compareDates(d, page, "decade") &&
+													(!min || min < d || !max || max > d)
+											)}
 
 											<td role="gridcell">
 												<CalendarViewItem
 													on:click={() => selectYear(year)}
 													on:keydown={e => handleKeyDown(e, year)}
 													variant="monthYear"
-													tabindex={-1}
 													outOfRange={!inDecade}
 													current={compareDates(year, new Date(), "year")}
 													disabled={min?.getFullYear() >
 														year.getFullYear() || max < year}
 													{selected}
+													tabindex={firstFocusableYear &&
+													compareDates(firstFocusableYear, year, "year")
+														? 0
+														: -1}
 												>
 													{year.getFullYear()}
 												</CalendarViewItem>

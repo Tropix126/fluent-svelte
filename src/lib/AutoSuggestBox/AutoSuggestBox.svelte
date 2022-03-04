@@ -39,6 +39,8 @@
 	/** Obtains a bound DOM reference to the AutoSuggestBox's search button element. Only available if `type` is set to `search`. */
 	export let searchButtonElement: HTMLButtonElement = null;
 
+	export let flyoutElement: HTMLUListElement = null;
+
 	let focused = false;
 	let typedValue = "";
 
@@ -60,7 +62,7 @@
 		if (focused && value && items.length > 0) open = true;
 	}
 
-	function handleKeyboardNavigation(event: KeyboardEvent) {
+	function handleKeyDown(event: KeyboardEvent) {
 		const { key } = event;
 		if (open && matches.length > 0) {
 			if (key === "ArrowDown") {
@@ -75,7 +77,10 @@
 			if (key === "Enter" || key === "ArrowDown" || key === "ArrowUp") {
 				event.preventDefault();
 				value = matches[selection];
+				flyoutElement?.children[selection].scrollIntoView({ block: "nearest" });
 			}
+		} else if (!open && matches.length > 0 && (key === "ArrowDown" || key === "ArrowUp")) {
+			open = true;
 		}
 	}
 </script>
@@ -100,7 +105,7 @@
 	on:focus
 	on:blur={() => (focused = false)}
 	on:blur
-	on:keydown={handleKeyboardNavigation}
+	on:keydown={handleKeyDown}
 	on:keydown
 	on:change
 	on:beforeinput
@@ -129,28 +134,31 @@
 	{...$$restProps}
 >
 	{#if open && matches.length > 0}
-		<ul id={flyoutId} role="listbox" class="auto-suggest-box-flyout">
+		<ul id={flyoutId} role="listbox" class="auto-suggest-box-flyout" bind:this={flyoutElement}>
 			{#each matches as item, index (item)}
-				<slot
-					name="item-template"
-					id="{flyoutId}-item-{index}"
-					{value}
-					{matches}
-					{selection}
-					{item}
-					{index}
-				>
-					<ListItem
+				<div class="auto-suggest-item-wrapper">
+					<slot
+						name="item-template"
 						id="{flyoutId}-item-{index}"
-						role="option"
-						on:click={() => {
-							value = matches[selection];
-							selection = index;
-							open = false;
-						}}
-						selected={selection === index}>{item}</ListItem
+						{value}
+						{matches}
+						{selection}
+						{item}
+						{index}
 					>
-				</slot>
+						<ListItem
+							tabindex={-1}
+							id="{flyoutId}-item-{index}"
+							role="option"
+							on:click={() => {
+								value = matches[selection];
+								selection = index;
+								open = false;
+							}}
+							selected={selection === index}>{item}</ListItem
+						>
+					</slot>
+				</div>
 			{/each}
 		</ul>
 	{/if}
