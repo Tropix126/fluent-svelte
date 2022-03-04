@@ -389,7 +389,6 @@
 				return;
 
 			if (
-				view === "months" &&
 				!compareDates(focusedDate, page, view === "months" ? "year" : "decade")
 			) {
 				if (key === "ArrowLeft" || key === "ArrowUp") {
@@ -399,6 +398,7 @@
 				}
 
 				await tick();
+
 				focusedDate = newFocusedDate;
 				focusOrder = bodyElement.querySelectorAll("button");
 				focusOrder?.[calendar.indexOf(newFocusedDate)].focus();
@@ -566,7 +566,7 @@
 											d =>
 												compareDates(d, page, "month") &&
 												indexOfDate(blackout, d, "day") === -1 &&
-												((!min || min < d) && (!max || max > d))
+												((!min || min <= d) && (!max || max >= d))
 										)}
 
 										<td role="gridcell">
@@ -614,7 +614,7 @@
 											).find(
 												d =>
 													compareDates(d, page, "year") &&
-													((!min || (min.getMonth() <= d.getMonth() && min.getFullYear() === d.getFullYear())) && (!max || max > d))
+													((!min || (min.getMonth() <= d.getMonth() && min.getFullYear() === d.getFullYear())) && (!max || max >= d))
                                                 )}
 
 											<td role="gridcell">
@@ -662,7 +662,7 @@
 											).find(
 												d =>
 													compareDates(d, page, "decade") &&
-													(!min || (min.getFullYear() <= d.getFullYear())) && (!max || (max > d))
+													(!min || (min.getFullYear() <= d.getFullYear())) && (!max || max >= d)
 											)}
 
 											<td role="gridcell">

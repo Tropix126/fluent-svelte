@@ -131,9 +131,7 @@
 		}
 		thead {
 			position: relative;
-			z-index: 10;
-			inset-inline-start: 0;
-			inset-block-start: 0;
+			z-index: 1;
 		}
 		tbody {
 			position: absolute;
