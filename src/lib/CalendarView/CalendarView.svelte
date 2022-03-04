@@ -57,6 +57,13 @@
 	/** Number representing the day that the calendar week starts on. 0 is sunday, 6 is saturday. */
 	export let weekStart = 0;
 
+    /** Specifies a custom class name for the calendar's outer container element. */
+	let className = "";
+	export { className as class };
+
+    /** Obtains a bound DOM reference to the calendar's outer container element. */
+    export let element: HTMLDivElement = null;
+
 	const firstValue = Array.isArray(value) ? value[0] : value;
 	const dispatch = createEventDispatcher();
 	const bodyElementBinding = node => bodyElement = node; // bind:this breaks with our page transition for some reason
@@ -451,15 +458,15 @@
 	}
 </script>
 
-<div class="calendar-view">
-	<header>
-		<div class="header-text" role="heading" aria-live="polite">
+<div class="calendar-view {className}" bind:this={element} {...$$restProps}>
+	<header class="calendar-view-header">
+		<div class="calendar-view-header-text" role="heading" aria-live="polite">
 			<button
 				on:click={() => updateView(view === "days" ? "months" : "years")}
 				disabled={view === "years"}>{header}</button
 			>
 		</div>
-		<div class="page-controls">
+		<div class="calendar-view-pagination-controls">
 			<button disabled={view && min > page} on:click={() => updatePage(-1)}>
 				<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
 					<path
@@ -476,10 +483,10 @@
 			</button>
 		</div>
 	</header>
-	<div class="calendar-table-wrapper">
+	<div class="calendar-view-table-wrapper">
 		{#key view}
 			<table
-				class="calendar-table view-{view}"
+				class="calendar-view-table view-{view}"
 				role="grid"
 				in:fadeScale={{
 					duration: 500,
