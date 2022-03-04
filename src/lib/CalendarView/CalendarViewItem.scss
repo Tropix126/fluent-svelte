@@ -28,6 +28,12 @@
 		background-color: var(--subtle-fill-tertiary);
 		color: var(--text-secondary);
 	}
+	&.out-of-range {
+		color: var(--text-secondary);
+		&:active {
+			color: var(--text-tertiary);
+		}
+	}
 	&.disabled {
 		background-color: var(--subtle-fill-disabled);
 		color: var(--text-disabled);
@@ -61,12 +67,6 @@
 			small {
 				top: 9.58px; // figma toolkit is weird idk
 			}
-		}
-	}
-	&.out-of-range {
-		color: var(--text-secondary);
-		&:active {
-			color: var(--text-tertiary);
 		}
 	}
 	&.selected {

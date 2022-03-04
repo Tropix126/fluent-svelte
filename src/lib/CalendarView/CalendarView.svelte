@@ -614,7 +614,7 @@
 											).find(
 												d =>
 													compareDates(d, page, "year") &&
-                                                    ((min?.getMonth() < d.getMonth() && min?.getFullYear() === d.getFullYear()) || (!max || max > d))
+													((!min || (min.getMonth() <= d.getMonth() && min.getFullYear() === d.getFullYear())) && (!max || max > d))
                                                 )}
 
 											<td role="gridcell">
@@ -662,7 +662,7 @@
 											).find(
 												d =>
 													compareDates(d, page, "decade") &&
-													(min?.getFullYear() < d.getFullYear() || (!max || max > d))
+													(!min || (min.getFullYear() <= d.getFullYear())) && (!max || (max > d))
 											)}
 
 											<td role="gridcell">
@@ -681,6 +681,7 @@
 														: -1}
 												>
 													{year.getFullYear()}
+													{firstFocusableYear.getFullYear()}
 												</CalendarViewItem>
 											</td>
 										{/each}
