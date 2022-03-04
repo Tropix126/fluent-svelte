@@ -265,8 +265,8 @@
 		--fds-control-fill-input-active: hsla(0, 0%, 12%, 70%);
 
 		/* Control Strong Fill */
-		--fds-control-strong-fill-default: hsla(0, 0%, 100%, 0.544);
-		--fds-control-strong-fill-disabled: hsla(0, 0%, 0%, 0.1);
+		--fds-control-strong-fill-default: hsla(0, 0%, 100%, 54.42%);
+		--fds-control-strong-fill-disabled: hsla(0, 0%, 100%, 24.65%);
 
 		/* Control Solid Fill */
 		--fds-control-solid-fill-default: hsl(0, 0%, 27%);

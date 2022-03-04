@@ -10,4 +10,4 @@
 
 <br /><br />
 
-<CalendarView headers blackout={[new Date(2022, 2, 1)]} bind:value />
+<CalendarView headers min={new Date()} blackout={[new Date(2022, 2, 1)]} bind:value />

@@ -566,7 +566,7 @@
 											d =>
 												compareDates(d, page, "month") &&
 												indexOfDate(blackout, d, "day") === -1 &&
-												(!min || min < d || !max || max > d)
+												((!min || min < d) && (!max || max > d))
 										)}
 
 										<td role="gridcell">
@@ -614,8 +614,8 @@
 											).find(
 												d =>
 													compareDates(d, page, "year") &&
-													(!min || min < d || !max || max > d)
-											)}
+                                                    ((min?.getMonth() < d.getMonth() && min?.getFullYear() === d.getFullYear()) || (!max || max > d))
+                                                )}
 
 											<td role="gridcell">
 												<CalendarViewItem
@@ -662,7 +662,7 @@
 											).find(
 												d =>
 													compareDates(d, page, "decade") &&
-													(!min || min < d || !max || max > d)
+													(min?.getFullYear() < d.getFullYear() || (!max || max > d))
 											)}
 
 											<td role="gridcell">
