@@ -2,10 +2,10 @@
 
 .calendar-view {
 	@include flex($inline: true, $direction: column);
-    text-align: start;
-    inline-size: 300px;
-    block-size: 347px;
-    position: relative;
+	text-align: start;
+	inline-size: 300px;
+	block-size: 347px;
+	position: relative;
 	user-select: none;
 	color: var(--text-primary);
 	background-clip: padding-box;
@@ -13,15 +13,14 @@
 	border-radius: var(--control-corner-radius);
 	border: 1px solid var(--surface-stroke-flyout);
 	font-family: var(--font-family-text);
-	header,
+	&-header,
 	&-pagination-controls {
-		display: flex;
-		align-items: center;
-        button {
-            padding: 0;
-			inline-size: 30px;
-			margin-inline-start: 4px;
-        }
+		@include flex($align: center);
+	}
+	&-pagination-controls button {
+		padding: 0;
+		inline-size: 30px;
+		margin-inline-start: 4px;
 	}
 	&-header {
 		box-sizing: border-box;
@@ -62,47 +61,47 @@
 				color: var(--control-strong-fill-default);
 			}
 		}
-        &-text {
-            flex: 1 1 auto;
-            button {
-                inline-size: 100%;
-                padding-inline: 9px;
-                justify-content: flex-start;
-                flex: 1 1 auto;
-            }
-        }
+		&-text {
+			flex: 1 1 auto;
+			button {
+				inline-size: 100%;
+				padding-inline: 9px;
+				justify-content: flex-start;
+				flex: 1 1 auto;
+			}
+		}
 	}
 	&-table {
-        inset: 0;
-        display: block;
-        overflow: hidden;
-        position: absolute;
+		inset: 0;
+		display: block;
+		overflow: hidden;
+		position: absolute;
 		box-sizing: border-box;
 		inline-size: calc(100% - 6px);
 		block-size: calc(100% - 6px);
 		margin: 3px;
 		font-size: 14px;
-        &-wrapper {
-            inline-size: 298px;
-            block-size: 298px;
-            position: relative;
-            contain: layout;
-            overflow: hidden;
-            background-color: var(--layer-on-acrylic-background-default);
-        }
-        &.view- {
-            &months,
-            &years {
-                margin: 11px;
-                inline-size: calc(100% - 22px);
-                block-size: calc(100% - 22px);
-                tr {
-                    grid-template-columns: repeat(4, 1fr);
-                    grid-gap: calc(52px / 3);
-                    margin-block-end: calc(52px / 3);
-                }
-            }
-        }
+		&-wrapper {
+			inline-size: 298px;
+			block-size: 298px;
+			position: relative;
+			contain: layout;
+			overflow: hidden;
+			background-color: var(--layer-on-acrylic-background-default);
+		}
+		&.view- {
+			&months,
+			&years {
+				margin: 11px;
+				inline-size: calc(100% - 22px);
+				block-size: calc(100% - 22px);
+				tr {
+					grid-template-columns: repeat(4, 1fr);
+					grid-gap: calc(52px / 3);
+					margin-block-end: calc(52px / 3);
+				}
+			}
+		}
 		td,
 		th {
 			padding: 0;
@@ -119,7 +118,6 @@
 		thead,
 		tbody {
 			inline-size: 100%;
-			position: absolute;
 			display: flex;
 			flex-direction: column;
 		}
@@ -129,11 +127,13 @@
 			box-shadow: inset 0 0 0 100vmax var(--fds-layer-on-acrylic-background-default);
 		}
 		thead {
-			z-index: 1;
+			position: relative;
+			z-index: 10;
 			inset-inline-start: 0;
 			inset-block-start: 0;
 		}
 		tbody {
+			position: absolute;
 			will-change: transform;
 			inset-inline-start: 0;
 			inset-block-end: 0;

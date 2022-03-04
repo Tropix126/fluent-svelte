@@ -57,16 +57,16 @@
 	/** Number representing the day that the calendar week starts on. 0 is sunday, 6 is saturday. */
 	export let weekStart = 0;
 
-    /** Specifies a custom class name for the calendar's outer container element. */
+	/** Specifies a custom class name for the calendar's outer container element. */
 	let className = "";
 	export { className as class };
 
-    /** Obtains a bound DOM reference to the calendar's outer container element. */
-    export let element: HTMLDivElement = null;
+	/** Obtains a bound DOM reference to the calendar's outer container element. */
+	export let element: HTMLDivElement = null;
 
 	const firstValue = Array.isArray(value) ? value[0] : value;
 	const dispatch = createEventDispatcher();
-	const bodyElementBinding = node => bodyElement = node; // bind:this breaks with our page transition for some reason
+	const bodyElementBinding = node => (bodyElement = node); // bind:this breaks with our page transition for some reason
 
 	let header = "";
 	let page = new Date(
