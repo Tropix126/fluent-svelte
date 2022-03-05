@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
-	import { uid, focusTrap } from "$lib/internal";
+	import { uid, focusTrap, getCSSDuration } from "$lib/internal";
+    import { fade } from "svelte/transition";
+	import { circOut } from "svelte/easing";
 
 	import FlyoutSurface from "./FlyoutSurface.svelte";
 
@@ -96,6 +98,7 @@ Flyouts represent a control that displays lightweight UI that is either informat
 			class="flyout-anchor placement-{placement} alignment-{alignment}"
 			style="--fds-flyout-offset: {offset}px;"
 			use:_focusTrap
+            out:fade|local={{ duration: getCSSDuration("--fds-control-faster-duration"), easing: circOut }}
 			bind:this={anchorElement}
 			on:click={e => e.stopPropagation()}
 		>
@@ -105,7 +108,7 @@ Flyouts represent a control that displays lightweight UI that is either informat
 				</FlyoutSurface>
 			</slot>
 		</div>
-		<div class="flyout-backdrop" bind:this={backdropElement} on:mousedown={closeFlyout} />
+		<div class="flyout-backdrop" bind:this={backdropElement} on:click={e => e.stopPropagation()} on:mousedown={closeFlyout} />
 	{/if}
 </div>
 

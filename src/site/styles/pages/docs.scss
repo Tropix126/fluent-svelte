@@ -51,7 +51,7 @@
 aside {
 	@include flex($direction: column);
 	overflow: auto;
-	padding-inline: 4px;
+	padding-inline: 12px 4px;
 	position: sticky;
 	align-self: start;
 	inset-block-start: 56px;

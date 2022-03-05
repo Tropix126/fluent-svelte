@@ -1,9 +1,6 @@
 <script lang="ts">
-	import { fade } from "svelte/transition";
-	import { circOut } from "svelte/easing";
-
 	import { get_current_component } from "svelte/internal";
-	import { getCSSDuration, createEventForwarder } from "$lib/internal";
+	import { createEventForwarder } from "$lib/internal";
 
 	/** Specifies a custom class name for the surface. */
 	let className = "";
@@ -18,7 +15,6 @@
 <div
 	class="flyout {className}"
 	use:forwardEvents
-	out:fade|local={{ duration: getCSSDuration("--fds-control-faster-duration"), easing: circOut }}
 	bind:this={element}
 	{...$$restProps}
 >
