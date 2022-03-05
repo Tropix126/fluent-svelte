@@ -439,7 +439,7 @@
 	}
 
 	function selectMonth(month: Date) {
-		page.setMonth(month.getMonth(), 1);
+        page = new Date(new Date(month.setDate(1)));
 		updateView("days");
 	}
 
@@ -461,8 +461,6 @@
 			}
 		};
 	}
-
-    $: console.log(view === "years" ? page : "");
 </script>
 
 <div class="calendar-view {className}" bind:this={element} {...$$restProps}>
@@ -496,13 +494,13 @@
 				class="calendar-view-table view-{view}"
 				role="grid"
 				in:fadeScale={{
-					duration: 500,
+					duration: viewAnimationDirection !== "neutral" ? 500 : 0,
 					easing: circOut,
 					baseScale: viewAnimationDirection === "up" ? 1.29 : 0.84,
 					delay: 150
 				}}
-				out:fadeScale={{
-					duration: 150,
+				out:fadeScale|local={{
+					duration: viewAnimationDirection !== "neutral" ? 150 : 0,
 					easing: circOut,
 					baseScale: viewAnimationDirection === "up" ? 0.84 : 1.29,
 					delay: 0
@@ -542,7 +540,7 @@
 									? -198
 									: 198
 						}}
-						out:fly={{
+						out:fly|local={{
 							opacity: 1,
 							duration: pageAnimationDuration,
 							easing: circOut,
