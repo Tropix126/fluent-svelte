@@ -243,12 +243,12 @@
 		} else if (view === "months") {
 			return new Date(page.getFullYear() + offset, 0, 1);
 		} else if (view === "years") {
-			return new Date(page.getFullYear() + offset * 10, 0, 1);
+			return new Date((Math.floor(page.getFullYear() / 10) * 10) + (offset * 10), 0, 1);
 		}
 	}
 
 	function updatePage(amount: number = 0, directionOverride: AnimationDirection = undefined) {
-		page = new Date(getPageByOffset(amount, page, view));
+		page = getPageByOffset(amount, page, view);
 		if (directionOverride) {
 			pageAnimationDirection = directionOverride;
 			return;
@@ -461,6 +461,8 @@
 			}
 		};
 	}
+
+    $: console.log(view === "years" ? page : "");
 </script>
 
 <div class="calendar-view {className}" bind:this={element} {...$$restProps}>
@@ -681,7 +683,6 @@
 														: -1}
 												>
 													{year.getFullYear()}
-													{firstFocusableYear.getFullYear()}
 												</CalendarViewItem>
 											</td>
 										{/each}
