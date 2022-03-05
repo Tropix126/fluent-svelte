@@ -614,7 +614,7 @@
 											).find(
 												d =>
 													compareDates(d, page, "year") &&
-													((!min || (min.getMonth() <= d.getMonth() && min.getFullYear() === d.getFullYear())) && (!max || max >= d))
+													(!min || (new Date(min.getFullYear(), min.getMonth(), 1) <= new Date(d.getFullYear() ,d.getMonth(), 1))) && (!max || max >= d)
                                                 )}
 
 											<td role="gridcell">
