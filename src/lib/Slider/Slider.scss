@@ -213,7 +213,7 @@
 	&-thumb {
 		@include flex($justify: center, $align: center);
 		position: absolute;
-		z-index: 100;
+		z-index: 10;
 		border-radius: 100%;
 		background-color: var(--control-solid-fill-default);
 		box-shadow: 0 0 0 1px var(--control-stroke-default);
