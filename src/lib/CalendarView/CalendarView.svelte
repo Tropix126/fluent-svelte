@@ -565,7 +565,7 @@
 										{@const firstFocusableDay = getCalendarDays(page).find(
 											d =>
 												compareDates(d, page, "month") &&
-												indexOfDate(blackout, d, "day") === -1 &&
+												(blackout && indexOfDate(blackout, d, "day")) === -1 &&
 												((!min || min <= d) && (!max || max >= d))
 										)}
 
