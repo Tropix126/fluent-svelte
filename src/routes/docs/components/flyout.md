@@ -82,15 +82,15 @@ There are three aspects to the positioning system of flyouts - `placement`, `ali
         <div class="example-flyout"></div>
     </div>
     <ComboBox placeholder="Placements" bind:value={placement} items={[
-        { name: "top" },
-        { name: "bottom" },
-        { name: "left" },
-        { name: "right" }
+        { name: "top", value: "top" },
+        { name: "bottom", value: "bottom" },
+        { name: "left", value: "left" },
+        { name: "right", value: "right" }
     ]} />
     <ComboBox placeholder="Alignments" bind:value={alignment} items={[
-        { name: "start" },
-        { name: "center" },
-        { name: "end" }
+        { name: "start", value: "start" },
+        { name: "center", value: "start" },
+        { name: "end", value: "start" }
     ]} />
     <Slider bind:value={offset} />
 </div>
