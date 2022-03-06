@@ -29,7 +29,6 @@ const config = {
 		})
 	],
 	kit: {
-		target: "body",
 		adapter: vercel(),
 		vite: {
 			plugins: [sveld()],
