@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
 
-	import { TextBox, ListItem } from "..";
+	import { TextBox, ListItem } from "$lib/index";
 	import { uid } from "$lib/internal";
 
 	/** @extends {"../TextBox/TextBox.svelte"} */

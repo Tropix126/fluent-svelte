@@ -11,8 +11,8 @@ A calendar view lets a user view and interact with a calendar that they can navi
 import { CalendarView } from "fluent-svelte";
 ```
 
-<Showcase>
-    <CalendarView on:dblclick={e => e.stopPropagation()} on:mousedown={e => e.stopPropagation()} />
+<Showcase style="block-size: 480px">
+    <CalendarView on:keydown={e => e.stopPropagation()} on:dblclick={e => e.stopPropagation()} on:mousedown={e => e.stopPropagation()} />
 </Showcase>
 
 ## Usage

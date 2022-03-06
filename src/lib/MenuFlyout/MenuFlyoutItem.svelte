@@ -6,7 +6,7 @@
 
 	import { MenuFlyoutSurface, arrowNavigation, uid, createEventForwarder } from "$lib/internal";
 	import { tabbable } from "tabbable";
-	import { TextBlock } from "..";
+	import { TextBlock } from "$lib/index";
 
 	/** Specifies an input type for the item. */
 	export let variant: "standard" | "radio" | "toggle" = "standard";

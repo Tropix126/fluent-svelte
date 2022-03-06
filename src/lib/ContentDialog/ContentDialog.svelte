@@ -5,7 +5,7 @@
 	import { circOut } from "svelte/easing";
 	import { uid, focusTrap, getCSSDuration, createEventForwarder } from "$lib/internal";
 
-	import { TextBlock } from "..";
+	import { TextBlock } from "$lib/index";
 
 	/** Determines whether the dialog is open or not. */
 	export let open: boolean = false;
