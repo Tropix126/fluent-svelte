@@ -95,7 +95,7 @@
 			border-top-color: var(--accent-tertiary);
 		}
 	}
-	&.current:not(.out-of-range) {
+	&.current {
 		color: var(--text-on-accent-primary);
 		background-color: var(--accent-default);
 		&:hover {
