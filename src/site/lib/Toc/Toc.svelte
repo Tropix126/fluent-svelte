@@ -23,11 +23,13 @@
 				.find(heading => heading.offsetTop <= window.scrollY);
 	}
 
-	function handleSelect(index: number, id: string) {
-		const { top } = headings[index].getBoundingClientRect();
-
+	function handleClick(event, index: number, id: string) {
 		if (id) history.pushState({}, "", `#${id}`);
-		window.scrollTo({ top: top + window.scrollY - 55, behavior: "smooth" });
+
+		window.scrollTo({
+            top: headings[index].offsetTop + 1,
+            behavior: "smooth"
+        });
 	}
 
 	onMount(() => {
@@ -41,7 +43,7 @@
 			{#each headings as { tagName, innerText, id }, i}
 				<li style="--fds-depth: {+tagName[1] - 1};">
 					<ListItem
-						on:click={() => handleSelect(i, id)}
+						on:click={e => handleClick(e, i, id)}
 						selected={activeHeading === headings[i]}
 					>
 						{innerText}
