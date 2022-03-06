@@ -209,7 +209,7 @@
 	}
 
 	// Tables
-	table {
+	table:not(.calendar-view-table) {
 		display: inline-block;
 		max-inline-size: 100%;
 		border: 1px solid var(--card-stroke-default);
