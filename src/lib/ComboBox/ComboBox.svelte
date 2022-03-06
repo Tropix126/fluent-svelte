@@ -1,17 +1,21 @@
 <script lang="ts">
 	import { createEventDispatcher, tick } from "svelte";
-	import { get_current_component } from "svelte/internal";
+	import { get_current_component, onMount } from "svelte/internal";
 
-	import { Button, TextBox, TextBoxButton } from "$lib/index";
+	import { Button, TextBox, TextBoxButton } from "..";
 	import { ComboBoxItem, createEventForwarder, externalMouseEvents, uid } from "$lib/internal";
 
 	interface Item {
 		name: string;
+        value: any;
 		disabled?: boolean;
 	}
 
 	/** Determines which specified item is selected. Correspond's to a given item's `value` key. */
 	export let value: any = undefined;
+
+    /** Current value of the ComboBox's search box. Only applicable if `searchable` is set to `true`. */
+    export let searchValue: any = undefined;
 
 	/** The initial placeholder text displayed if no item is currently selected. */
 	export let placeholder = "";
@@ -32,8 +36,11 @@
 	let className = "";
 	export { className as class };
 
-	/** Obtains a bound DOM reference to the ComboBox's input element. If the combobox is not editable, this input will not be visible to the user. */
+	/** Obtains a bound DOM reference to the ComboBox's value input element. */
 	export let inputElement: HTMLInputElement = null;
+
+    /** Obtains a bound DOM reference to the ComboBox's searchbox input element. Only applicable if `searchable` is set to `true`. */
+	export let searchInputElement: HTMLInputElement = null;
 
 	/** Obtains a bound DOM reference to the ComboBox's outer container element. */
 	export let containerElement: HTMLDivElement = null;
@@ -58,7 +65,7 @@
 	const dropdownId = uid("fds-combo-box-dropdown-");
 
 	$: selectableItems = items.filter(item => !item.disabled);
-	$: selection = items.find(i => i.name === value);
+	$: selection = items.find(i => i.value === value);
 	$: if (menuElement && menuElement.children.length > 0 && !editable) {
 		if (selection) {
 			(<HTMLLIElement>menuElement.children[items.indexOf(selection)]).focus();
@@ -86,6 +93,10 @@
 	let menuOffset =
 		itemHeight * -(selection ? items.indexOf(selection) : Math.floor(items.length / 2));
 
+    onMount(() => {
+        if (!searchValue) searchValue = value;
+    });
+
 	function updateOffset(target: HTMLElement) {
 		menuOffset = -(
 			target.offsetTop - parseInt(getComputedStyle(target).getPropertyValue("margin-top"))
@@ -94,8 +105,8 @@
 
 	function selectItem(item: Item) {
 		if (item.disabled) return;
-
-		value = item.name;
+        
+		value = item.value;
 		open = false;
 		if (containerElement && !editable) (<HTMLElement>containerElement.children[0]).focus();
 	}
@@ -103,13 +114,13 @@
 	async function openMenu() {
 		open = !open;
 		await tick();
-		if (editable && inputElement) inputElement.focus();
+		if (editable && searchInputElement) searchInputElement.focus();
 		if (menuElement && selection)
 			updateOffset(<HTMLElement>menuElement.children[items.indexOf(selection)]);
 	}
 
-	async function handleKeyboardNavigation(event: KeyboardEvent) {
-		const { key } = event;
+	async function handleKeyboardNavigation(event: KeyboardEvent | CustomEvent) {
+		const { key } = <KeyboardEvent>event;
 		event.stopPropagation();
 
 		const editableClosed = editable && !open;
@@ -123,37 +134,42 @@
 			!editableClosed &&
 			!(items.indexOf(selection) >= items.length - 1)
 		) {
-			value = selectableItems[selectableItems.indexOf(selection) + 1].name; // If down arrow is pressed, check current selection and move to next non-disabled item.
+			value = selectableItems[selectableItems.indexOf(selection) + 1].value; // If down arrow is pressed, check current selection and move to next non-disabled item.
+            searchValue = selectableItems[selectableItems.indexOf(selection) + 1].name;
 		} else if (key === "ArrowUp" && !editableClosed && !(items.indexOf(selection) <= 0)) {
-			value = selectableItems[selectableItems.indexOf(selection) - 1].name; // Do the same with up arrow.
-		} else if (menuElement && selection && key === "Enter") {
+			value = selectableItems[selectableItems.indexOf(selection) - 1].value; // Do the same with up arrow.
+            searchValue = selectableItems[selectableItems.indexOf(selection) - 1].name;
+		} else if (key === "Home") {
+            value = selectableItems[0].value; // If home is pressed, move to first non-disabled item.
+            searchValue = selectableItems[0].name;
+        } else if (key === "End") {
+            value = selectableItems[selectableItems.length - 1].value; // If end is pressed, move to last non-disabled item.
+            searchValue = selectableItems[selectableItems.length - 1].name;
+        } else if (menuElement && selection && key === "Enter") {
 			event.preventDefault();
 			selectItem(selection); // Select item when the enter key is pressed and the menu is open
 		} else if (!menuElement && selection && key === "Enter") {
 			openMenu(); // Open the menu when the enter key is pressed and the menu is closed
-		} else if (inputElement && document.activeElement !== inputElement) {
-			inputElement.focus(); // If the input element has lost focus, regain it.
+		} else if (searchInputElement && document.activeElement !== searchInputElement) {
+			searchInputElement.focus(); // If the input element has lost focus, regain it.
 		}
 
-		// Prevent page scrolling behavior when using up/down arrow.
-		if (key === "ArrowDown" || key === "ArrowUp") {
-			event.preventDefault();
-			if (editable) {
-				if (open) {
-					await tick();
-					inputElement?.select(); // Select text when an item is chosen.
-				} else {
-					open = true;
-				}
-			}
-			if (editable && !open) {
-				open = true; // Open the menu if in editable mode.
-			}
+        // Prevent the browser's default scrolling behavior for these keys
+        if (key === "ArrowDown" || key === "ArrowUp" || key === "Home" || key === "End" )event.preventDefault();
+
+		// Keybindings for opening the menu when in editable mode using arrow keys
+		if (key === "ArrowDown" || key === "ArrowUp" && editable) {
+            if (open) {
+                await tick();
+                searchInputElement?.select(); // Select text when an item is chosen.
+            } else {
+                open = true;
+            }
 		}
 	}
 
 	function handleInputFocus() {
-		inputElement.select();
+		searchInputElement.select();
 		inputFocused = true;
 	}
 
@@ -161,17 +177,21 @@
 		inputFocused = false;
 	}
 
-	function handleInput({ inputType }: InputEvent) {
+	function handleInput(event: InputEvent | CustomEvent) {
+
 		const match = selectableItems.find(i =>
-			i.name.toLowerCase().startsWith(value.toLowerCase())
+			i.name.toLowerCase().startsWith(searchValue.toLowerCase())
 		);
 
-		if (match && inputType === "insertText" && value.trim() !== "") {
-			inputElement.value = match.name;
-			inputElement.setSelectionRange(value.length, match.name.length);
+        if (!match) value = null;
+
+		if (match && (<InputEvent>event).inputType === "insertText" && searchValue.trim() !== "") {
+			searchInputElement.value = match.name;
+			searchInputElement.setSelectionRange(searchValue.length, match.name.length);
 		}
 
-		value = inputElement.value;
+        if (match && !match.disabled) value = match.value;
+        searchValue = searchInputElement.value;
 	}
 </script>
 
@@ -185,9 +205,9 @@ When the combo box is closed, it either displays the current selection or is emp
 - Usage:
     ```tsx
     <ComboBox items={[
-		{ name: "Item 1" },
-		{ name: "Item 2" },
-		{ name: "Item 3" },
+		{ name: "Item 0", value: 0 },
+		{ name: "Item 1", value: 1 },
+		{ name: "Item 2", value: 2 },
 	]} />
     ```
 -->
@@ -214,8 +234,8 @@ When the combo box is closed, it either displays the current selection or is emp
 			aria-controls={dropdownId}
 			aria-expanded={open}
 			aria-haspopup={open ? "listbox" : undefined}
-			bind:value
-			bind:inputElement
+			bind:value={searchValue}
+			bind:inputElement={searchInputElement}
 			on:keydown={handleKeyboardNavigation}
 			on:input={handleInput}
 			on:focus={handleInputFocus}
@@ -266,7 +286,7 @@ When the combo box is closed, it either displays the current selection or is emp
 			{disabled}
 		>
 			<span class="combo-box-label" class:placeholder={!selection}>
-				{value || placeholder}
+				{selection?.name || placeholder}
 			</span>
 			<svg
 				aria-hidden="true"
@@ -302,7 +322,7 @@ When the combo box is closed, it either displays the current selection or is emp
 				{#each items as item, i}
 					<ComboBoxItem
 						role="option"
-						selected={item.name === value}
+						selected={item.value === value}
 						disabled={item.disabled}
 						id="{dropdownId}-item-{i}"
 						on:keydown={handleKeyboardNavigation}
@@ -314,17 +334,15 @@ When the combo box is closed, it either displays the current selection or is emp
 			</ul>
 		{/if}
 
-		{#if !editable}
-			<input
-				type="hidden"
-				aria-hidden="true"
-				bind:this={inputElement}
-				bind:value
-				on:change
-				on:input
-				on:beforeinput
-			/>
-		{/if}
+        <input
+            type="hidden"
+            aria-hidden="true"
+            bind:this={inputElement}
+            bind:value
+            on:change
+            on:input
+            on:beforeinput
+        />
 		<slot />
 	{/if}
 </div>

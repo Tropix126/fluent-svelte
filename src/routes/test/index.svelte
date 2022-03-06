@@ -121,27 +121,31 @@
 	<ComboBox
 		placeholder="ComboBox"
 		items={[
-			{ name: "Item 1" },
-			{ name: "Item 2" },
+			{ name: "Item 0", value: 0 },
+			{ name: "Item 1", value: 1 },
 			{
-				name: "Item 3",
+				name: "Item 2",
+                value: 2,
 				disabled: true
 			},
-			{ name: "Item 4" }
+			{ name: "Item 3", value: 3 }
 		]}
 	/>
 
 	<ComboBox
+        value={1}
+        searchValue="asdasd"
 		editable
 		placeholder="ComboBox"
 		items={[
+			{ name: "Item 0", value: 0 },
+			{ name: "Item 1", value: 1 },
 			{
-				name: "Item 1",
+				name: "Item 2",
+                value: 2,
 				disabled: true
 			},
-			{ name: "Item 2" },
-			{ name: "Item 3" },
-			{ name: "Item 4" }
+			{ name: "Item 3", value: 3 }
 		]}
 	/>
 

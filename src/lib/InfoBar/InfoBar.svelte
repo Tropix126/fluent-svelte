@@ -3,7 +3,7 @@
 	import { get_current_component } from "svelte/internal";
 	import { createEventForwarder } from "$lib/internal";
 
-	import { InfoBadge } from "$lib/index";
+	import { InfoBadge } from "..";
 
 	/** Determines whether the bar is open (rendered). */
 	export let open = true;
