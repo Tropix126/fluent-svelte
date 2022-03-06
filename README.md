@@ -21,3 +21,14 @@
 -   Reduced motion support.
 -   Easy setup. Just install the library, add some base styles, and you're ready to go.
 -   Minimal CSS overhead. Styles are included and scoped alongside their respective components, only bundling the CSS you need.
+
+### Undocumented Components
+
+The documentation site (https://fluent-svelte.vercel.app/) is still not entirely finished. Many components exported in the library are not yet documented. That progress can be tracked [here](https://github.com/Tropix126/fluent-svelte/issues/13). For now, i've setup a testing page with every component included in the library that is viewable [here](https://fluent-svelte.vercel.app/test). It's source can be viewed [here](https://github.com/Tropix126/fluent-svelte/blob/main/src/routes/test/index.svelte).
+
+Please keep in mind that any undocumented component is *considered to be in the 0.x phase of development*. This means that they could potentially recieve breaking API changes or be heavily updated before being finalized.
+
+
+### Changelog?
+
+Adding a changelog to future releases is a priority to me, although there isn't one yet.
