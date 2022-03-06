@@ -12,7 +12,7 @@ import { CalendarView } from "fluent-svelte";
 ```
 
 <Showcase>
-    <CalendarView />
+    <CalendarView on:dblclick={e => e.stopPropagation()} on:mousedown={e => e.stopPropagation()} />
 </Showcase>
 
 ## Usage

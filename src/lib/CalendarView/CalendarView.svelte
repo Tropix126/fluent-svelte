@@ -2,7 +2,8 @@
 	import { createEventDispatcher, onMount, tick } from "svelte";
 	import { fly } from "svelte/transition";
 	import { circOut } from "svelte/easing";
-	import { getCSSDuration } from "../internal";
+    import { get_current_component } from "svelte/internal";
+	import { createEventForwarder, getCSSDuration } from "../internal";
 
 	import CalendarViewItem from "./CalendarViewItem.svelte";
 
@@ -65,6 +66,7 @@
 	export let element: HTMLDivElement = null;
 
 	const dispatch = createEventDispatcher();
+    const forwardEvents = createEventForwarder(get_current_component());
 	const bodyElementBinding = node => (bodyElement = node); // bind:this breaks with our page transition for some reason
 
 	let header = "";
@@ -463,7 +465,7 @@
 	}
 </script>
 
-<div class="calendar-view {className}" bind:this={element} {...$$restProps}>
+<div class="calendar-view {className}" use:forwardEvents bind:this={element} {...$$restProps}>
 	<header class="calendar-view-header">
 		<div class="calendar-view-header-text" role="heading" aria-live="polite">
 			<button
