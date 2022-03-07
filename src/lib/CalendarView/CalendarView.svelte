@@ -466,8 +466,6 @@
 			}
 		};
 	}
-
-	$: console.log(viewAnimationDirection);
 </script>
 
 <div class="calendar-view {className}" class:floating={__floating} use:forwardEvents bind:this={element} {...$$restProps}>

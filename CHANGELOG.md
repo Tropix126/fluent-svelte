@@ -1,0 +1,21 @@
+## Unreleased
+- Added `CalendarDatePicker` component.
+- CalendarView now forwards DOM events to it's outer container.
+- Reverted a change that broke resolving internal components from `$lib/index.ts`. This mainly affects the REPL.
+- `className` on `Flyout` and `MenuFlyout` is now placed on the wrapper element rather than the flyout surface.
+- Fixed a minor bug where the user could momentarily click the `MenuFlyout` trigger button when closing the flyout, which would immediately reopen it.
+- The fly animation for `Flyout` is no longer tied to the surface element, making it present when the `override` slot is used.
+- Fixed a minor bug where the `CalendarView` table element would not appear until 150ms after it's initial rendering.
+
+## 1.4.1
+- **Breaking**: ComboBox now handles `value` differently. For more information, see [issue #25](https://github.com/Tropix126/fluent-svelte/issues/25).
+- Fixed a bug where `CalendarView` would throw an error if it wasn't initialized with a value.
+
+## 1.4.0
+- Sliders now correctly dispatch `change` events.
+- Slider thumbs are now bound within the track contents, rather than overflowing by half their width.
+- Added `CalendarView` component.
+- Fallback font stack now includes `ui-sans-serif`, `-apple-system`, and `BlinkMacSystemFont`.
+
+## Start of Changelog
+Past releases do not have a documented changelog.

@@ -16,13 +16,13 @@
         {value?.toLocaleDateString()}
     </Button>
     <CalendarView
-        on:keydown={handleKeyDown}
-        class="calendar-date-picker-calendar"
-        bind:value
         slot="override"
+        class="calendar-date-picker-calendar"
         multiple={false}
         __floating
+        on:keydown={handleKeyDown}
         on:change
+        bind:value
         {...$$restProps}
     />
 </Flyout>
