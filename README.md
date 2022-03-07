@@ -29,6 +29,6 @@ The documentation site (https://fluent-svelte.vercel.app/) is still not entirely
 Please keep in mind that any undocumented component is *considered to be in the 0.x phase of development*. This means that they could potentially recieve breaking API changes or be heavily updated before being finalized.
 
 
-### Changelog?
+### Changelog
 
-Adding a changelog to future releases is a priority to me, although there isn't one yet.
+See [CHANGELOG.md](https://github.com/Tropix126/fluent-svelte/blob/main/CHANGELOG.md).
