@@ -24,7 +24,7 @@
 	/** Determines if keyboard focus should be locked to the dialog's contents. */
 	export let trapFocus = true;
 
-	/** Specifies a custom class name for the flyout. */
+	/** Specifies a custom class name for the content wrapper. */
 	let className = "";
 	export { className as class };
 
@@ -83,7 +83,7 @@ Flyouts represent a control that displays lightweight UI that is either informat
 <svelte:window on:keydown={handleEscapeKey} />
 
 <div
-	class="flyout-wrapper"
+	class="flyout-wrapper {className}"
 	aria-expanded={open}
 	aria-haspopup={open}
 	aria-controls={menuId}
@@ -101,9 +101,10 @@ Flyouts represent a control that displays lightweight UI that is either informat
             out:fade|local={{ duration: getCSSDuration("--fds-control-faster-duration"), easing: circOut }}
 			bind:this={anchorElement}
 			on:click={e => e.stopPropagation()}
+			{...$$restProps}
 		>
 			<slot name="override">
-				<FlyoutSurface bind:element={menuElement} class={className ?? ""} {...$$restProps}>
+				<FlyoutSurface bind:element={menuElement}>
 					<slot name="flyout" />
 				</FlyoutSurface>
 			</slot>

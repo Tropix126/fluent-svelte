@@ -13,6 +13,10 @@
 	border-radius: var(--control-corner-radius);
 	border: 1px solid var(--surface-stroke-flyout);
 	font-family: var(--font-family-text);
+	&.floating {
+		border-radius: var(--overlay-corner-radius);
+		box-shadow: var(--flyout-shadow);
+	}
 	&-header,
 	&-pagination-controls {
 		@include flex($align: center);

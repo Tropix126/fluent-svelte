@@ -58,6 +58,9 @@
 	/** Number representing the day that the calendar week starts on. 0 is sunday, 6 is saturday. */
 	export let weekStart = 0;
 
+	/** INTERNAL USE ONLY: Applies flyout styles to the outer CalendarView container. */
+	export let __floating = false;
+
 	/** Specifies a custom class name for the calendar's outer container element. */
 	let className = "";
 	export { className as class };
@@ -450,7 +453,7 @@
 		updateView("months");
 	}
 
-	function fadeScale(node, { delay = 0, duration = 200, easing = x => x, baseScale = 0 }) {
+	function fadeScale(node, { delay = 0, duration = 0, easing = x => x, baseScale = 0 }) {
 		const o = +getComputedStyle(node).opacity;
 		const is = 1 - baseScale;
 
@@ -463,9 +466,11 @@
 			}
 		};
 	}
+
+	$: console.log(viewAnimationDirection);
 </script>
 
-<div class="calendar-view {className}" use:forwardEvents bind:this={element} {...$$restProps}>
+<div class="calendar-view {className}" class:floating={__floating} use:forwardEvents bind:this={element} {...$$restProps}>
 	<header class="calendar-view-header">
 		<div class="calendar-view-header-text" role="heading" aria-live="polite">
 			<button
@@ -499,7 +504,7 @@
 					duration: viewAnimationDirection !== "neutral" ? 500 : 0,
 					easing: circOut,
 					baseScale: viewAnimationDirection === "up" ? 1.29 : 0.84,
-					delay: 150
+					delay: viewAnimationDirection !== "neutral" ? 150 : 0
 				}}
 				out:fadeScale|local={{
 					duration: viewAnimationDirection !== "neutral" ? 150 : 0,
@@ -567,7 +572,7 @@
 										{@const firstFocusableDay = getCalendarDays(page).find(
 											d =>
 												compareDates(d, page, "month") &&
-												(blackout && indexOfDate(blackout, d, "day")) === -1 &&
+												(!blackout || indexOfDate(blackout, d, "day") === -1) &&
 												((!min || min <= d) && (!max || max >= d))
 										)}
 
