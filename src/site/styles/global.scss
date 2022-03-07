@@ -11,9 +11,7 @@
 
 	:root {
 		--font-family-monospace: "Cascadia Code", "Fira Code", "Consolas", monospace;
-		@media (prefers-color-scheme: dark) {
-			color-scheme: dark;
-		}
+		color-scheme: light dark;
 	}
 
 	html {

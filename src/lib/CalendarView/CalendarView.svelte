@@ -289,6 +289,10 @@
 	async function handleKeyDown(event: KeyboardEvent, date: Date) {
 		const { key } = event;
 
+		if (key === "ArrowUp" || key === "ArrowDown" || key === "ArrowLeft" || key === "ArrowRight" || key === "Home" || key === "End") {
+			event.preventDefault();
+		}
+
 		if (event.ctrlKey && (key === "ArrowUp" || key === "ArrowDown")) {
 			if (key === "ArrowUp") {
 				updateView(view === "days" ? "months" : "years");
