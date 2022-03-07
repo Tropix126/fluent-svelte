@@ -5,6 +5,8 @@
     
     export let open = false;
 
+    export let locale: string = undefined;
+
     function handleKeyDown(event) {
         event.stopPropagation();
         if (event.key === "Escape") open = false;
@@ -13,7 +15,7 @@
 
 <Flyout placement="bottom" class="calendar-date-picker-container" bind:open>
     <Button class="calendar-date-picker-button">
-        {value?.toLocaleDateString()}
+        {value?.toLocaleDateString(locale)}
     </Button>
     <CalendarView
         slot="override"

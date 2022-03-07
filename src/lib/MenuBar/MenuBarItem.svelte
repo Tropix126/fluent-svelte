@@ -77,7 +77,10 @@
 	}
 
 	function handleKeyDown({ key }) {
-		if (key === "Enter" || key === " ") open = !open;
+		if (key === "Enter" || key === " ") {
+			event.preventDefault();
+			open = !open;
+		}
 	}
 
 	function handleFocus() {

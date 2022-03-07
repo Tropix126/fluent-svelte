@@ -80,7 +80,10 @@
 
 	function handleKeyDown(event) {
 		const { key, target } = event;
-		if (key === "Enter" || key === " ") target.click();
+		if (key === "Enter" || key === " ") {
+			event.preventDefault();
+			target.click();
+		}
 		if (cascading) {
 			if (key === "ArrowRight") {
 				event.stopPropagation();
