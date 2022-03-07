@@ -11,7 +11,7 @@
     }
 </script>
 
-<Flyout position="bottom" class="calendar-date-picker-container" bind:open>
+<Flyout placement="bottom" class="calendar-date-picker-container" bind:open>
     <Button class="calendar-date-picker-button">
         {value?.toLocaleDateString()}
     </Button>
