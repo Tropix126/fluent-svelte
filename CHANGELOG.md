@@ -1,3 +1,5 @@
+# fluent-svelte Changelog
+
 ## Unreleased
 - Added `CalendarDatePicker` component.
 - CalendarView now forwards DOM events to it's outer container.
