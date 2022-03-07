@@ -71,7 +71,7 @@
 <svelte:window on:keydown={handleEscapeKey} />
 
 <div
-	class="menu-flyout-wrapper"
+	class="menu-flyout-wrapper {className}"
 	aria-expanded={open}
 	aria-haspopup={open}
 	aria-controls={menuId}
@@ -92,13 +92,12 @@
 			<MenuFlyoutSurface
 				bind:element={menuElement}
 				bind:this={menu}
-				class={className ?? ""}
 				{...$$restProps}
 			>
 				<slot name="flyout" />
 			</MenuFlyoutSurface>
 		</div>
-		<div class="menu-flyout-backdrop" bind:this={backdropElement} on:mousedown={closeFlyout} />
+		<div class="menu-flyout-backdrop" bind:this={backdropElement} on:click={e => e.stopPropagation()} on:mousedown={closeFlyout} />
 	{/if}
 </div>
 
