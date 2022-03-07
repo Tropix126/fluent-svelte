@@ -8,6 +8,7 @@
 - Fixed a minor bug where the user could momentarily click the `MenuFlyout` trigger button when closing the flyout, which would immediately reopen it.
 - The fly animation for `Flyout` is no longer tied to the surface element, making it present when the `override` slot is used.
 - Fixed a minor bug where the `CalendarView` table element would not appear until 150ms after it's initial rendering.
+- `MenuFlyout` and `ContextMenu` now correctly handle the <kbd>Home</kbd> and <kbd>End</kbd> keys when navigating items.
 
 ## 1.4.1
 - **Breaking**: ComboBox now handles `value` differently. For more information, see [issue #25](https://github.com/Tropix126/fluent-svelte/issues/25).
