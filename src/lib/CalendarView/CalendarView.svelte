@@ -77,6 +77,7 @@
 	let pageAnimationDirection: AnimationDirection = "neutral";
 	let pageAnimationDuration = 0;
 	let bodyElement: HTMLTableSectionElement = null;
+	let firstValue = Array.isArray(value) ? value[0] : value;
 
 	$: dispatch("change", value);
 	$: firstValue = Array.isArray(value) ? value[0] : value;
@@ -101,11 +102,11 @@
 		})).formatRange(new Date(decadeStart, 0, 1), new Date(decadeEnd, 0, 1));
 	}
 
-	let page = new Date(
+	let page = ((!min || firstValue >= min) && (!max || firstValue < max)) ? new Date(
 		(firstValue ?? new Date()).getFullYear(),
 		(firstValue ?? new Date()).getMonth(),
 		1
-	);
+	) : (firstValue < min ? new Date(min.getFullYear(), min.getMonth() , 1) : new Date(max.getFullYear(), max.getMonth() , 1));
 
 	onMount(() => {
 		pageAnimationDuration = getCSSDuration("--fds-control-slow-duration");
@@ -481,7 +482,7 @@
 			>
 		</div>
 		<div class="calendar-view-pagination-controls">
-			<button disabled={view && min > page} on:click={() => updatePage(-1)}>
+			<button disabled={view && min >= page} on:click={() => updatePage(-1)}>
 				<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M4.95681 10.998C4.14912 10.998 3.67466 10.09 4.13591 9.42698L6.76854 5.64257C7.36532 4.78469 8.63448 4.7847 9.23126 5.64257L11.8639 9.42698C12.3251 10.09 11.8507 10.998 11.043 10.998H4.95681Z"
