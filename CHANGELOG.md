@@ -3,6 +3,7 @@
 ## Unreleased
 - Added `CalendarDatePicker` component.
 - CalendarView now forwards DOM events to it's outer container.
+- CalendarView pages will no longer start out of bounds if the first `value` provided is less than the `min` property or greater than the `max` property.
 - Reverted a change that broke resolving internal components from `$lib/index.ts`. This mainly affects the REPL.
 - `className` on `Flyout` and `MenuFlyout` is now placed on the wrapper element rather than the flyout surface.
 - Fixed a minor bug where the user could momentarily click the `MenuFlyout` trigger button when closing the flyout, which would immediately reopen it.
