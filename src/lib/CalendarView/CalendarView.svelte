@@ -78,6 +78,11 @@
 	let pageAnimationDuration = 0;
 	let bodyElement: HTMLTableSectionElement = null;
 	let firstValue = Array.isArray(value) ? value[0] : value;
+	let page = ((!min || firstValue >= min) && (!max || firstValue < max)) ? new Date(
+		(firstValue ?? new Date()).getFullYear(),
+		(firstValue ?? new Date()).getMonth(),
+		1
+	) : (firstValue < min ? new Date(min.getFullYear(), min.getMonth() , 1) : new Date(max.getFullYear(), max.getMonth() , 1));
 
 	$: dispatch("change", value);
 	$: firstValue = Array.isArray(value) ? value[0] : value;
@@ -101,12 +106,6 @@
 			year: "numeric"
 		})).formatRange(new Date(decadeStart, 0, 1), new Date(decadeEnd, 0, 1));
 	}
-
-	let page = ((!min || firstValue >= min) && (!max || firstValue < max)) ? new Date(
-		(firstValue ?? new Date()).getFullYear(),
-		(firstValue ?? new Date()).getMonth(),
-		1
-	) : (firstValue < min ? new Date(min.getFullYear(), min.getMonth() , 1) : new Date(max.getFullYear(), max.getMonth() , 1));
 
 	onMount(() => {
 		pageAnimationDuration = getCSSDuration("--fds-control-slow-duration");
