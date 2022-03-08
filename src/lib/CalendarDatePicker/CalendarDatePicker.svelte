@@ -23,7 +23,7 @@
         multiple={false}
         __floating
         on:keydown={handleKeyDown}
-        on:change
+        on:change={() => open = false}
         bind:value
         {...$$restProps}
     />

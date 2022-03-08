@@ -69,7 +69,7 @@
 	export let element: HTMLDivElement = null;
 
 	const dispatch = createEventDispatcher();
-    const forwardEvents = createEventForwarder(get_current_component());
+    const forwardEvents = createEventForwarder(get_current_component(), ["change"]);
 	const bodyElementBinding = node => (bodyElement = node); // bind:this breaks with our page transition for some reason
 
 	let header = "";
@@ -84,7 +84,6 @@
 		1
 	) : (firstValue < min ? new Date(min.getFullYear(), min.getMonth() , 1) : new Date(max.getFullYear(), max.getMonth() , 1));
 
-	$: dispatch("change", value);
 	$: firstValue = Array.isArray(value) ? value[0] : value;
 	$: view, updatePage(0);
 	$: nextPage = getPageByOffset(1, page, view);
@@ -445,6 +444,7 @@
 				value = day;
 			}
 		}
+		dispatch("change", value);
 	}
 
 	function selectMonth(month: Date) {
