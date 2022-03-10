@@ -15,7 +15,7 @@
 
 <Flyout placement="bottom" class="calendar-date-picker-container" bind:open>
     <Button class="calendar-date-picker-button">
-        {value?.toLocaleDateString(locale)}
+        {value?.toLocaleDateString(locale) ?? "Select a date"}
     </Button>
     <CalendarView
         slot="override"
