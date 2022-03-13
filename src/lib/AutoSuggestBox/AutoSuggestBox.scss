@@ -1,3 +1,5 @@
+@use "../mixins" as *;
+
 .auto-suggest-box-flyout {
 	z-index: 100;
 	overflow: auto;
@@ -12,8 +14,8 @@
 	color: var(--text-primary);
 	border-radius: 0 0 var(--overlay-corner-radius) var(--overlay-corner-radius);
 	border: 1px solid var(--surface-stroke-flyout);
+    background-color: var(--solid-background-quarternary);
 	background-clip: padding-box;
-	background-color: var(--flyout-fallback-background-default);
 	box-shadow: var(--flyout-shadow);
 	max-block-size: 472px;
 }
