@@ -75,7 +75,9 @@
 	$: if (open && menu && tabbable(subMenuElement).length > 0) tabbable(subMenuElement)[0].focus();
 
 	function close(event) {
-		if (!cascading && closeFlyout && variant === "standard") closeFlyout(event);
+        setTimeout(() => {
+            if (!cascading && closeFlyout) closeFlyout(event);
+        });
 	}
 
 	function handleKeyDown(event) {
