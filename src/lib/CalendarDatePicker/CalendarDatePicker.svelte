@@ -1,14 +1,19 @@
 <script lang="ts">
     import { CalendarView, Flyout, Button } from "$lib/index";
 
+	/** The currently selected calendar date. */
     export let value: Date | null;
     
+	/** Determines the calendar's flyout's visibility. */
     export let open = false;
 
+	/** Locale code used for specifying the language of the calendar. If unset, the locale will be automatically inferred from `navigator.language`. */
     export let locale: string = undefined;
 
+    /** Placeholder text that will be displayed on the calendar's input field if no value is specified. This string is not localized and will be displayed in english if no property is set. */
     export let placeholder = "Pick a date";
 
+	/** Controls whether the picker is intended for user interaction, and styles it accordingly. */
     export let disabled = false;
 
     function handleKeyDown(event) {
