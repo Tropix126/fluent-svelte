@@ -44,19 +44,5 @@
 </Flyout>
 
 <style lang="scss">
-    @use "../mixins" as *;
-
-    .calendar-date-picker- {
-        &label {
-            padding-inline-end: 2px;
-            &.placeholder:not(.disabled) {
-                color: var(--text-secondary);
-            }
-        }
-        &icon {
-            @include icon($size: 12px);
-            margin-inline-start: 8px;
-            color: currentColor;            
-        }
-    }
+    @use "./CalendarDatePicker";
 </style>
