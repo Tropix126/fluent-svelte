@@ -99,13 +99,5 @@
 </div>
 
 <style lang="scss">
-	.context-menu- {
-		&wrapper {
-			display: contents;
-		}
-		&anchor {
-			position: fixed;
-			z-index: 10000;
-		}
-	}
+	@use "./ContextMenu";
 </style>

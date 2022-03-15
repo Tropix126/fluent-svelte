@@ -11,7 +11,7 @@
 - The fly animation for `Flyout` is no longer tied to the surface element, making it present when the `override` slot is used.
 - Fixed a minor bug where the `CalendarView` table element would not appear until 150ms after it's initial rendering.
 - `MenuFlyout` and `ContextMenu` now correctly handle the <kbd>Home</kbd> and <kbd>End</kbd> keys when navigating items.
-- Updated the system font stack to include Roboto and Helvetica.
+- Updated the system font stack to include Helvetica.
 
 ## 1.4.1
 - **Breaking**: ComboBox now handles `value` differently. For more information, see [issue #25](https://github.com/Tropix126/fluent-svelte/issues/25).

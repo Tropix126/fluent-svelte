@@ -11,7 +11,7 @@
 
 	/* Font Families */
 	--fds-font-family-fallback: "Segoe UI", -apple-system, ui-sans-serif, system-ui,
-		BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+		BlinkMacSystemFont, Helvetica, Arial, sans-serif;
 	--fds-font-family-text: "Segoe UI Variable Text", "Seoge UI Variable Static Text",
 		var(--fds-font-family-fallback);
 	--fds-font-family-small: "Segoe UI Variable Small", "Seoge UI Variable Static Small",
