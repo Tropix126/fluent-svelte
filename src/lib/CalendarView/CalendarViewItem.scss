@@ -50,7 +50,7 @@
 			block-size: 1px;
 			position: absolute;
 			transform: matrix(-0.71, -0.71, -0.71, 0.71, 0, 0);
-			border-top: 1px solid var(--control-strong-stroke-default);
+			border-block-start: 1px solid var(--control-strong-stroke-default);
 		}
 	}
 	&.type- {
@@ -58,14 +58,14 @@
 			inline-size: 40px;
 			block-size: 40px;
 			small {
-				top: 2px;
+				inset-block-start: 2px;
 			}
 		}
 		&month-year {
 			inline-size: 56px;
 			block-size: 56px;
 			small {
-				top: 9.58px; // figma toolkit is weird idk
+				inset-block-start: 9.58px; // figma toolkit is weird idk
 			}
 		}
 	}
@@ -92,7 +92,7 @@
 			}
 		}
 		&.blackout::after {
-			border-top-color: var(--accent-tertiary);
+			border-block-start-color: var(--accent-tertiary);
 		}
 	}
 	&.current {
@@ -109,7 +109,7 @@
 			background-color: var(--accent-disabled);
 		}
 		&.blackout::after {
-			border-top-color: var(--text-on-accent-primary);
+			border-block-start-color: var(--text-on-accent-primary);
 		}
 	}
 	small {

@@ -113,7 +113,7 @@
 					&::after {
 						width: 4px;
 						height: 1px;
-						border-top: 1px solid var(--control-strong-fill-default);
+						border-block-start: 1px solid var(--control-strong-fill-default);
 					}
 				}
 			}

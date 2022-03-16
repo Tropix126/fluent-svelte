@@ -28,3 +28,4 @@ export { default as MenuFlyoutDivider } from "./MenuFlyout/MenuFlyoutDivider.sve
 export { default as ContextMenu } from "./ContextMenu/ContextMenu.svelte";
 export { default as CalendarView } from "./CalendarView/CalendarView.svelte";
 export { default as CalendarDatePicker } from "./CalendarDatePicker/CalendarDatePicker.svelte";
+export { default as NavigationView } from "./NavigationView/NavigationView.svelte";
