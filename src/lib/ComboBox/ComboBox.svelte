@@ -107,6 +107,7 @@
 		if (item.disabled) return;
         
 		value = item.value;
+		searchValue = item.name;
 		open = false;
 		if (containerElement && !editable) (<HTMLElement>containerElement.children[0]).focus();
 	}

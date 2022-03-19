@@ -472,6 +472,14 @@
 	}
 </script>
 
+<!--
+@component
+A calendar view lets a user view and interact with a calendar that they can navigate by month, year, or decade. A user can select a single date or multiple dates. [Docs](https://fluent-svelte.vercel.app/docs/components/calendarview)
+- Usage:
+    ```tsx
+    <CalendarView value={new Date(2022, 2, 14)} />
+    ```
+-->
 <div class="calendar-view {className}" class:floating={__floating} use:forwardEvents bind:this={element} {...$$restProps}>
 	<header class="calendar-view-header">
 		<div class="calendar-view-header-text" role="heading" aria-live="polite">

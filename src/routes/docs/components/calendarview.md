@@ -160,4 +160,4 @@ You can choose display indicator labels for the first day of a month, or first m
 
 ## Component API
 
-<APIDocs {data} />
+<APIDocs manualForward {data} />

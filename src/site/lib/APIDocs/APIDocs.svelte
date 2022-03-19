@@ -41,7 +41,7 @@ and
 							{#if typeof type !== "undefined"}
 								<code>{type}</code>
 							{:else}
-								Unknown
+								<code>any</code>
 							{/if}
 						</td>
 						<td>

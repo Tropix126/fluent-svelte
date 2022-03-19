@@ -9,7 +9,7 @@
 	user-select: none;
 	color: var(--text-primary);
 	background-clip: padding-box;
-	background-color: var(--flyout-fallback-background-default);
+	background-color: var(--fds-solid-background-quarternary);
 	border-radius: var(--control-corner-radius);
 	border: 1px solid var(--surface-stroke-flyout);
 	font-family: var(--font-family-text);
@@ -130,7 +130,7 @@
 		}
 		thead tr,
 		tbody {
-			background-color: var(--flyout-fallback-background-default);
+			background-color: var(--fds-solid-background-quarternary);
 			box-shadow: inset 0 0 0 100vmax var(--fds-layer-on-acrylic-background-default);
 		}
 		thead {

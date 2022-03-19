@@ -46,6 +46,7 @@
 	const menuId = uid("fds-menu-flyout-anchor-");
 
 	let menu: SvelteComponentTyped = null;
+	let previousFocus: Element = null;
 
 	$: dispatch(open ? "open" : "close");
 
@@ -53,6 +54,12 @@
 
 	function handleEscapeKey({ key }: KeyboardEvent) {
 		if (key === "Escape" && closable) open = false;
+		(<HTMLElement>previousFocus)?.focus();
+	}
+
+	function toggleFlyout() {
+		previousFocus = document.activeElement;
+		open = !open;
 	}
 
 	function closeFlyout() {
@@ -75,7 +82,7 @@
 	aria-expanded={open}
 	aria-haspopup={open}
 	aria-controls={menuId}
-	on:click={() => (open = !open)}
+	on:click={toggleFlyout}
 	bind:this={wrapperElement}
 >
 	<slot />

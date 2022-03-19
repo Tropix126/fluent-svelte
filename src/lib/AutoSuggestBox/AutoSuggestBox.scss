@@ -1,3 +1,5 @@
+@use "../mixins" as *;
+
 .auto-suggest-box-flyout {
 	z-index: 100;
 	overflow: auto;
@@ -10,16 +12,18 @@
 	padding-block: 2px;
 	box-sizing: border-box;
 	color: var(--text-primary);
-	border-radius: 0 0 var(--overlay-corner-radius) var(--overlay-corner-radius);
+	border-radius: var(--overlay-corner-radius);
+	border-end-start-radius: 0;
+	border-end-end-radius: 0;
 	border: 1px solid var(--surface-stroke-flyout);
+    background-color: var(--solid-background-quarternary);
 	background-clip: padding-box;
-	background-color: var(--flyout-fallback-background-default);
 	box-shadow: var(--flyout-shadow);
 	max-block-size: 472px;
 }
 
 .auto-suggest-item-wrapper {
-	display: contents;
+	display: block;
 }
 
 :global {
