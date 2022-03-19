@@ -215,7 +215,7 @@ The TextBox control lets a user type text into an app. The text displays on the 
 				</TextBoxButton>
 			{/if}
 		{/if}
-		<slot name="buttons" />
+		<slot name="buttons" {value} />
 	</div>
 	<slot />
 </div>
