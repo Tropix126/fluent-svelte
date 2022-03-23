@@ -9,25 +9,33 @@
 	&.direction- {
 		&down {
 			.expander-content {
-				border-top: none;
-				border-radius: 0 0 var(--control-corner-radius) var(--control-corner-radius);
+				border-block-start: none;
+				border-radius: var(--control-corner-radius);
+				border-start-start-radius: 0;
+				border-start-end-radius: 0;
 				transform: translateY(-100%);
 			}
 			&.expanded .expander-header {
-				border-radius: var(--control-corner-radius) var(--control-corner-radius) 0 0;
+				border-radius: var(--control-corner-radius);
+				border-end-start-radius: 0;
+				border-end-end-radius: 0;
 			}
 		}
 		&up {
 			.expander-content {
 				border-bottom: none;
-				border-radius: var(--control-corner-radius) var(--control-corner-radius) 0 0;
+				border-radius: var(--control-corner-radius);
+				border-end-start-radius: 0;
+				border-end-end-radius: 0;
 				transform: translateY(100%);
 				&-anchor {
 					order: -1;
 				}
 			}
 			&.expanded .expander-header {
-				border-radius: 0 0 var(--control-corner-radius) var(--control-corner-radius);
+				border-radius: var(--control-corner-radius);
+				border-start-start-radius: 0;
+				border-start-end-radius: 0;
 			}
 		}
 	}
