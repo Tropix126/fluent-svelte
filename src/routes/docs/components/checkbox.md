@@ -28,22 +28,22 @@ import { Checkbox } from "fluent-svelte";
 
 You can programmatically control if the checkbox is in it's checked state by setting the `checked` property.
 
-```html
+```svelte
 <Checkbox checked />
 ```
 
 Additionally, you can use svelte's two-way binding syntax to bind the checked state to a variable.
 
-```html
+```svelte example
 <script>
 	import { Checkbox } from "fluent-svelte";
 
 	let checked = false;
 </script>
 
-<Checkbox bind:checked />
-
-Current state: {checked ? "checked" : "unchecked"}
+<Checkbox bind:checked>
+    Current state: {checked ? "checked" : "unchecked"}
+</Checkbox>
 ```
 
 ### Indeterminate States

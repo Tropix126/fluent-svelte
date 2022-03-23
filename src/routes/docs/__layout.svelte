@@ -1,6 +1,5 @@
 <script context="module" lang="ts">
 	import type { Load } from "@sveltejs/kit";
-	import { DocsExamples, loadExampleModules } from "$site/data/examples";
 	import { docsPages } from "$site/data/docs";
 
 	export const prerender = true;
@@ -12,17 +11,6 @@
 
 		const currentPage = docsPages.find(p => p.path === path);
 
-		if (currentPage?.examples) {
-			const examples: DocsExamples[] = await loadExampleModules(currentPage.path);
-
-			return {
-				props: {
-					currentPage,
-					examples
-				}
-			};
-		}
-
 		return {
 			props: {
 				currentPage
@@ -32,8 +20,6 @@
 </script>
 
 <script lang="ts">
-	import type { DocsExamples, DocsMap } from "$site/data/examples";
-
 	import { goto } from "$app/navigation";
 
 	import { Metadata, TreeView, Toc } from "$site/lib";
@@ -42,7 +28,6 @@
 	import { Button, TextBlock, AutoSuggestBox, ListItem } from "$lib";
 
 	export let currentPage: DocsMap;
-	export let examples: DocsExamples[] = [];
 
 	let article;
 	let searchMatches = [];
@@ -123,22 +108,6 @@
 				>
 			</header>
 			<slot />
-			{#if currentPage?.examples}
-				<h2>Examples</h2>
-				{#each examples as example (example.name)}
-					<h4>{example.name}</h4>
-					<div class="code-example">
-						<div class="example-preview">
-							<svelte:component this={example.mod} />
-						</div>
-						<pre>
-							<code>
-							{@html example.src}
-							</code>
-						</pre>
-					</div>
-				{/each}
-			{/if}
 		</article>
 
 		<aside>

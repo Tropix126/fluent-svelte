@@ -1,0 +1,22 @@
+@use "src/lib/mixins" as *;
+
+.example {
+	@include flex($direction: column);
+	pre,
+	.example-preview {
+		padding: 12px;
+	}
+	.example-preview {
+		background-color: var(--solid-background-tertiary);
+		background-clip: padding-box;
+		border-radius: var(--overlay-corner-radius) var(--overlay-corner-radius) 0 0;
+		border: 1px solid var(--card-stroke-default);
+		border-block-end: none;
+	}
+    code {
+        display: contents;
+    }
+	pre {
+		border-radius: 0 0 var(--overlay-corner-radius) var(--overlay-corner-radius);
+	}
+}
