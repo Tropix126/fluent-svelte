@@ -1,5 +1,9 @@
 # fluent-svelte Changelog
 
+# Unreleased
+
+- CalendarDatePicker now correctly resolves `../Flyout/FlyoutWrapper.svelte`.
+
 ## 1.5.0
 
 -   Added `CalendarDatePicker` component.
