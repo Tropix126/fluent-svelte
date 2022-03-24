@@ -36,8 +36,12 @@ import { ProgressRing } from "fluent-svelte";
 
 The `value` property takes in a number between `0` to `100` that represents the percentage of a task that is completed.
 
-```html
-<ProgressRing value="{50}" />
+```svelte example
+<script>
+	import { ProgressRing } from "fluent-svelte";
+</script>
+
+<ProgressRing value={50} />
 ```
 
 ProgressRings have two primary states - _determinate_ and _indeterminate_.
@@ -53,8 +57,12 @@ A determinate ProgressRing displays a completion percentage by filling the ring 
 
 You can control the diameter of the ring in pixels by setting the `size` property. The default size is `32`.
 
-```html
-<ProgressRing size="{64}" />
+```svelte example
+<script>
+	import { ProgressRing } from "fluent-svelte";
+</script>
+
+<ProgressRing size={64} />
 ```
 
 ## Component API
