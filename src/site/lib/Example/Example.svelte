@@ -1,5 +1,7 @@
 <script lang="ts">
 	export let src = "";
+
+    $: src = src.trim();
 </script>
 
 <div class="example">
@@ -7,9 +9,7 @@
         <slot name="example" />
     </div>
     <code>
-        <pre class="language-svelte">
-            <slot name="code" />
-        </pre>
+        <pre class="language-svelte"><slot name="code" /></pre>
     </code>
 </div>
 

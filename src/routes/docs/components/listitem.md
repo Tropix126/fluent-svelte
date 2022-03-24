@@ -35,7 +35,11 @@ A ListItem is either a general-purpose item or a link. By default, an item will 
 
 An item can be marked as _selected_ to indicate that it a currently active option. To do this, use the `selected` property.
 
-```html
+```svelte example
+<script>
+    import { ListItem } from "fluent-svelte";
+</script>
+
 <ListItem selected>Text</ListItem>
 ```
 
@@ -45,7 +49,11 @@ You can also listen to the `select` event, which is dispatched when the `selecte
 
 If the item is not meant to be clicked, you can use the `disabled` property to visually indicate this. If an item is disabled, it will be unclickable and the `href` prop will be ignored.
 
-```html
+```svelte example
+<script>
+    import { ListItem } from "fluent-svelte";
+</script>
+
 <ListItem disabled>Text</ListItem>
 ```
 
@@ -53,7 +61,11 @@ If the item is not meant to be clicked, you can use the `disabled` property to v
 
 You can easily add an icon to an item using the `icon` slot. Passing in an SVG element will render it before any contents with 16x16 dimensions.
 
-```html
+```svelte example
+<script>
+    import { ListItem } from "fluent-svelte";
+</script>
+
 <ListItem>
 	<!-- https://github.com/microsoft/fluentui-system-icons -->
 	<svg slot="icon" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">

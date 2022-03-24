@@ -163,10 +163,10 @@
 		border-radius: var(--control-corner-radius);
 		background-color: var(--card-background-default);
 		background-clip: padding-box;
-		font-size: 1em;
 		overflow: auto;
 
 		code {
+            font-family: var(--fds-font-family-monospace);
 			padding: 0;
 			border: none;
 			background-color: transparent;

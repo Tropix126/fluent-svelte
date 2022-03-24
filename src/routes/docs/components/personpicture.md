@@ -39,13 +39,21 @@ import { PersonPicture } from "fluent-svelte";
 
 Similarly to HTML's [`<img />`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element, you can set the `src` property to a URL of an image.
 
-```html
+```svelte example
+<script>
+    import { PersonPicture } from "fluent-svelte";
+</script>
+
 <PersonPicture src="https://source.unsplash.com/random" />
 ```
 
 It's recommended for both accessibility and fallback purposes that you provide an `alt` property for the image as well. The `alt` attribute is used by screen readers to provide a description of the image to visually impaired users.
 
-```html
+```svelte example
+<script>
+    import { PersonPicture } from "fluent-svelte";
+</script>
+
 <PersonPicture
 	alt="Dog runs through the snow"
 	src="https://images.unsplash.com/photo-1530126483408-aa533e55bdb2"
@@ -54,7 +62,11 @@ It's recommended for both accessibility and fallback purposes that you provide a
 
 Additionally, if `src` is invalid and no slot text is inserted, the alt text will be converted to initials format as a fallback.
 
-```html
+```svelte example
+<script>
+    import { PersonPicture } from "fluent-svelte";
+</script>
+
 <PersonPicture src="not-a-real-domain" alt="John Smith" />
 ```
 
@@ -66,15 +78,22 @@ If no `src` is provided, you can provide your own text to be displayed in the co
 2. If the `src` attribute fails to display or is invalid, the text or HTML is passed into the default slot will be displayed.
 3. If `src` is invalid, no slots are used, but an `alt` property is provided, the alt text will be converted to initials format and displayed.
 
-```html
-<PersonPicture>RDJ</PersonPicture> <PersonPicture src="not-a-real-domain" alt="Robert Downey Jr." />
+```svelte example
+<script>
+    import { PersonPicture } from "fluent-svelte";
+</script>
+
+<div style="display: flex; gap: 12px;">
+   <PersonPicture>RDJ</PersonPicture>
+   <PersonPicture src="not-a-real-domain" alt="Robert Downey Jr." />
+</div>
 ```
 
 ### Badges
 
 You can use the component's `badge` slot to insert an offset element at the top of the picture. It's recommended that you use the [`InfoBadge`](infobadge) component for this.
 
-```html
+```svelte example
 <script>
 	import { InfoBadge, PersonPicture } from "fluent-svelte";
 
@@ -90,8 +109,15 @@ You can use the component's `badge` slot to insert an offset element at the top 
 
 You can control the dimensions of the picture in pixels by setting the `size` property. The default size is `72`.
 
-```html
-<PersonPicture size="{64}" />
+```svelte example
+<script>
+ import { PersonPicture } from "fluent-svelte";
+ </script>
+
+<PersonPicture size={8} />
+<PersonPicture size={16} />
+<PersonPicture size={32} />
+<PersonPicture size={64} />
 ```
 
 ## Component API

@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
-
-	import { TextBox, ListItem } from "$lib/index";
 	import { uid } from "$lib/internal";
+
+    import TextBox from "../TextBox/TextBox.svelte";
+    import ListItem from "../ListItem/ListItem.svelte";
 
 	/** @extends {"../TextBox/TextBox.svelte"} */
 	/** The input's current value. */

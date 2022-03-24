@@ -28,7 +28,11 @@ import { Checkbox } from "fluent-svelte";
 
 You can programmatically control if the checkbox is in it's checked state by setting the `checked` property.
 
-```svelte
+```svelte example
+<script>
+    import { Checkbox } from "fluent-svelte";
+</script>
+
 <Checkbox checked />
 ```
 
@@ -41,16 +45,20 @@ Additionally, you can use svelte's two-way binding syntax to bind the checked st
 	let checked = false;
 </script>
 
-<Checkbox bind:checked>
-    Current state: {checked ? "checked" : "unchecked"}
-</Checkbox>
+<Checkbox bind:checked />
+
+Current state: {checked ? "checked" : "unchecked"}
 ```
 
 ### Indeterminate States
 
 If the checkbox cannot be represented as either checked or unchecked, it can be marked as _indeterminate_ using the `indeterminate` property.
 
-```html
+```svelte example
+<script>
+	import { Checkbox } from "fluent-svelte";
+</script>
+
 <Checkbox indeterminate />
 ```
 
@@ -58,7 +66,11 @@ If the checkbox cannot be represented as either checked or unchecked, it can be 
 
 Passing in content to the checkbox's slot will cause that content to be rendered into a label for the control.
 
-```html
+```svelte example
+<script>
+	import { Checkbox } from "fluent-svelte";
+</script>
+
 <Checkbox>I have a label!</Checkbox>
 ```
 
