@@ -42,23 +42,24 @@ import { ContentDialog } from "fluent-svelte";
 
 Dialogs are not rendered into the DOM initially. They need to be _opened_ first, by setting the `open` property.
 
-```html
-<ContentDialog open> This dialog is open by default. </ContentDialog>
+```svelte
+<ContentDialog open>This dialog is open by default.</ContentDialog>
 ```
 
 If you wish to control a dialog opening from a trigger button, you can two-way bind the `open` property to a variable.
 
-```html
+```svelte example
 <script>
     import { ContentDialog, Button } from "fluent-svelte";
 
     let open = false;
 </script>
 
-<Button on:click={() => open = true}>Open</Button>
+<Button on:click={() => open = true}>Open Dialog</Button>
 
 <ContentDialog bind:open>
     I have been opened by a button click.
+    <Button on:click={() => open = false}>Close</Button>
 </ContentDialog>
 ```
 
@@ -68,7 +69,7 @@ Additionally, dialogs can be closed by pressing the escape key. If you wish to d
 
 While not strictly required, it is recommended that you give the dialog a title to describe it's purpose using the `title` property. This both visually adds a title at the top of the content area, and adds an accessible label through ARIA attributes for usage with assistive technologies.
 
-```html
+```svelte
 <ContentDialog title="I have a title." />
 ```
 
@@ -80,7 +81,7 @@ While not strictly required, it is recommended that you give the dialog a title 
 
 You can use the `footer` slot to insert various actions at the bottom of the dialog.
 
-```html
+```svelte
 <script>
     import { ContentDialog, Button } from "fluent-svelte";
 
@@ -122,7 +123,7 @@ There are some situations where you might want the dialog's elements to open app
 
 To do this, you can set the `append` property to any valid [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement). This will append the dialog to the specified element when opened, rather than the position specified in your markup.
 
-```html
+```svelte
 <ContentDialog title="Appended Dialog" append={document.body}>
     When opened, I will be appended to this page's <body> tag.
 </ContentDialog>

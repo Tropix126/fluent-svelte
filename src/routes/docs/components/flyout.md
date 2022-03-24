@@ -33,10 +33,16 @@ import { Flyout } from "fluent-svelte";
 
 `Flyout` is a wrapper component. Items placed into the default slot will open the flyout when clicked. To insert contents into the flyout itself, you use the `flyout` slot.
 
-```html
+```svelte example
+<script>
+    import { Flyout, Button } from "fluent-svelte";
+</script>
+
 <Flyout>
-	<button>Trigger Button</button>
-	<svelte:fragment slot="flyout"> Flyout Contents </svelte:fragment>
+	<Button>Trigger Button</Button>
+	<svelte:fragment slot="flyout">
+        Flyout Contents
+    </svelte:fragment>
 </Flyout>
 ```
 
@@ -46,15 +52,17 @@ Flyouts will not be rendered into the DOM until they are opened. A flyout can be
 
 You can control if the flyout is open using the `open` property.
 
-```html
+```svelte
 <Flyout open>
-	<svelte:fragment slot="flyout"> This flyout is open by default. </svelte:fragment>
+	<svelte:fragment slot="flyout">
+        This flyout is open by default.
+    </svelte:fragment>
 </Flyout>
 ```
 
 You can also use Svelte's two-way binding syntax to programatically open/close a flyout.
 
-```html
+```svelte example
 <script>
     import { Flyout, Button } from "fluent-svelte";
 
@@ -85,11 +93,15 @@ Flyouts utilize a focus trap, which restricts keyboard navigation focus to only 
 
 For more niche use cases, you can completely override the flyout element with your own container using the `override` slot.
 
-```html
+```svelte example
+<script>
+    import { Flyout, Button } from "fluent-svelte";
+</script>
+
 <Flyout>
-	<button>Open</button>
-	<div slot="override" style="background-color: red; padding: 24px;">
-		<h1>Custom flyout containers!</h1>
+	<Button>Open</Button>
+	<div slot="override" style="background-color: red; padding: 24px; min-inline-size: 240px;">
+		Custom flyout containers! <button>Hello World!</button>
 	</div>
 </Flyout>
 ```

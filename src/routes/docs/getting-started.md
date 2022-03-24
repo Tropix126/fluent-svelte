@@ -36,7 +36,7 @@ Fluent Svelte components use a set of common resources to style their elements. 
 
 `src/App.svelte` (or `src/routes/__layout.svelte` if using SvelteKit)
 
-```html
+```svelte
 <script>
 	import "fluent-svelte/theme.css";
 </script>
@@ -48,7 +48,7 @@ Fluent Svelte components use a set of common resources to style their elements. 
 
 Alternatively, you can import the theme file from a CDN (though this generally isn't recommended).
 
-```html
+```svelte
 <style>
 	@import url("https://unpkg.com/fluent-svelte/theme.css");
 	/* ...or @import url("https://cdn.jsdelivr.net/npm/fluent-svelte/theme.css"); */
@@ -59,18 +59,18 @@ Alternatively, you can import the theme file from a CDN (though this generally i
 
 Components are exported from a single index file in the library. They can be imported and used in your project like so:
 
-```html
+```svelte example
 <script>
 	import { Button, Checkbox } from "fluent-svelte";
 </script>
 
-<button>Click me!</button>
+<Button>Click me!</Button>
 <Checkbox>Check me!</Checkbox>
 ```
 
 Alternatively you can import under a namespace:
 
-```html
+```svelte
 <script>
 	import * as Fluent from "fluent-svelte";
 </script>
@@ -85,7 +85,7 @@ Alternatively you can import under a namespace:
 
 In the REPL, packages are automatically installed by name when using an `import` statement, so the installation step can be skipped. Because the REPL doesn't support importing CSS in `node_modules`, we'll need to import the theme file through a CDN.
 
-```html
+```svelte
 <script>
 	import { Button, Checkbox } from "fluent-svelte";
 </script>

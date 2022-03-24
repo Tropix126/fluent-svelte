@@ -202,7 +202,7 @@ A slider is a control that lets the user select from a range of values by moving
 -->
 <div
 	use:forwardEvents
-	on:mousedown={() => {
+	on:mousedown|preventDefault={() => {
 		holding = true;
 		dragging = true;
 	}}
