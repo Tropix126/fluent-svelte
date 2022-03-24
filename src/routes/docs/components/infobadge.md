@@ -40,8 +40,13 @@ InfoBadges can take in a `severity` prop, which represent the type of informatio
 
 The default badge glyph can be overrided with your own content. This can be useful if you wish display text, or an alert count. Passing HTML content into the default slot will override the glyph with said content.
 
-```html
-<InfoBadge>99</InfoBadge> <InfoBadge severity="critical">bazinga</InfoBadge>
+```svelte example
+<script>
+    import { InfoBadge } from "fluent-svelte";
+</script>
+
+<InfoBadge>99</InfoBadge>
+<InfoBadge severity="critical">bazinga</InfoBadge>
 ```
 
 ## Component API

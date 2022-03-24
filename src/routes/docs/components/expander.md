@@ -41,10 +41,16 @@ import { Expander } from "fluent-svelte";
 
 A basic expander expects a header and contents. The expander's default slot will be rendered into the header, while content can be rendered into the `content` slot.
 
-```html
+```svelte example
+<script>
+    import { Expander } from "fluent-svelte";
+</script>
+
 <Expander>
 	Header
-	<svelte:fragment slot="content"> Content </svelte:fragment>
+	<svelte:fragment slot="content">
+        Content
+    </svelte:fragment>
 </Expander>
 ```
 
@@ -52,23 +58,45 @@ A basic expander expects a header and contents. The expander's default slot will
 
 Expanders can be either expanded or collapsed. This can be controlled by setting the `expanded` property.
 
-```html
-<Expander expanded> I am expanded by default. </Expander>
+```svelte example
+<script>
+    import { Expander } from "fluent-svelte";
+</script>
+
+<Expander expanded>
+    I am expanded by default.
+    <svelte:fragment slot="content">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+	</svelte:fragment>
+</Expander>
 ```
 
 ### Directions
 
 An expander doesn't have to expand downwards. You can control an expander's expansion direction using the `direction` property. To create an upwards-expanding expander, set `direction` to `up`.
 
-```html
-<Expander direction="up"> This expander will expand upwards. </Expander>
+```svelte example
+<script>
+    import { Expander } from "fluent-svelte";
+</script>
+
+<Expander direction="up">
+    This expander will expand upwards.
+    <svelte:fragment slot="content">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+	</svelte:fragment>
+</Expander>
 ```
 
 ### Adding an Icon
 
 You can easily add an icon to an expander's header using the `icon` slot. Passing in an SVG element will render it into the header with 16x16 dimensions.
 
-```html
+```svelte example
+<script>
+    import { Expander } from "fluent-svelte";
+</script>
+
 <Expander>
 	<!-- https://github.com/microsoft/fluentui-system-icons -->
 	<svg slot="icon" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">

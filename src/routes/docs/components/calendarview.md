@@ -41,11 +41,9 @@ You can also use two-way binding to programatically work with the value of the c
 
 <CalendarView bind:value />
 
-<div>
-    Current value: {value?.toLocaleDateString()}
+Current value: {value?.toLocaleDateString()}
 
-    <Button on:click={() => value = null}>Clear Value</Button>
-</div>
+<Button on:click={() => value = null}>Clear Value</Button>
 ```
 
 ### Multiple Selections

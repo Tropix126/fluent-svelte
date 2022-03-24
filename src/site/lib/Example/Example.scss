@@ -7,12 +7,16 @@
         padding: 12px;
 	}
 	.example-preview {
-        @include flex($direction: column, $gap: 12px);
+        display: grid;
+        grid-gap: 12px;
 		background-color: var(--card-background-secondary);
 		background-clip: padding-box;
 		border-radius: var(--control-corner-radius) var(--control-corner-radius) 0 0;
 		border: 1px solid var(--card-stroke-default);
 		border-block-end: none;
+        :global(.info-bar) {
+            margin-block-end: 0;
+        }
 	}
     code {
         display: contents;
@@ -22,4 +26,8 @@
         font-family: var(--fds-font-family-monospace);
 		border-radius: 0 0 var(--control-corner-radius) var(--control-corner-radius);
 	}
+}
+
+:global(.example-preview > *) {
+    inline-size: fit-content;
 }

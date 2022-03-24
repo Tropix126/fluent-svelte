@@ -77,24 +77,6 @@ There are three aspects to the positioning system of flyouts - `placement`, `ali
 -   The `placement` property is the direction that the flyout will be opened from. This can be either `top`, `bottom`, `left`, or `right`.
 -   The `alignment` property controls either the vertical or horizontal alignment of the flyout along a given placement axis. This can be either `start`, `center`, or `end`.
 
-<div class="positioning-chart placement-{placement} alignment-{alignment}" style:--fds-example-offset={offset}>
-    <div class="example-flyout-wrapper">
-        <div class="example-flyout"></div>
-    </div>
-    <ComboBox placeholder="Placements" bind:value={placement} items={[
-        { name: "top", value: "top" },
-        { name: "bottom", value: "bottom" },
-        { name: "left", value: "left" },
-        { name: "right", value: "right" }
-    ]} />
-    <ComboBox placeholder="Alignments" bind:value={alignment} items={[
-        { name: "start", value: "start" },
-        { name: "center", value: "start" },
-        { name: "end", value: "start" }
-    ]} />
-    <Slider bind:value={offset} />
-</div>
-
 ### Focus Behavior
 
 Flyouts utilize a focus trap, which restricts keyboard navigation focus to only the flyout's content. If you wish to disable this behavior, you can set the `trapFocus` property to `false`.
