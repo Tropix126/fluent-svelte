@@ -12,6 +12,7 @@
 - Fixed a minor bug where the `CalendarView` table element would not appear until 150ms after it's initial rendering.
 - `MenuFlyout` and `ContextMenu` now correctly handle the <kbd>Home</kbd> and <kbd>End</kbd> keys when navigating items.
 - Updated the system font stack to include Helvetica.
+- Fixed some weirdness with native slider events.
 
 ## 1.4.1
 - **Breaking**: ComboBox now handles `value` differently. For more information, see [issue #25](https://github.com/Tropix126/fluent-svelte/issues/25).
