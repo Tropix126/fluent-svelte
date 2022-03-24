@@ -101,29 +101,30 @@
 
 // can't use this until chromium fixes their compositor
 @mixin acrylic-brush {
-    background-color: var(--fds-solid-background-quarternary);
-    @supports (backdrop-filter: var(--fds-acrylic-blur-factor)) {
-        background-color: transparent;
-        &::before, &::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            inline-size: 100%;
-            block-size: 100%;
-        }
-        &::after {
-            content: "";
-            background: var(--acrylic-noise-asset) center/256px repeat;
-            inset: 0;
-            z-index: -1;
-            opacity: 0.02;
-        }
-        &::before {
-            z-index: 0;
-            mix-blend-mode: luminosity;
-            background: var(--fds-acrylic-background-default);
-            background-blend-mode: color, luminosity;
-            backdrop-filter: var(--fds-acrylic-blur-factor);
-        }
-    }
+	background-color: var(--fds-solid-background-quarternary);
+	@supports (backdrop-filter: var(--fds-acrylic-blur-factor)) {
+		background-color: transparent;
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			inline-size: 100%;
+			block-size: 100%;
+		}
+		&::after {
+			content: "";
+			background: var(--acrylic-noise-asset) center/256px repeat;
+			inset: 0;
+			z-index: -1;
+			opacity: 0.02;
+		}
+		&::before {
+			z-index: 0;
+			mix-blend-mode: luminosity;
+			background: var(--fds-acrylic-background-default);
+			background-blend-mode: color, luminosity;
+			backdrop-filter: var(--fds-acrylic-blur-factor);
+		}
+	}
 }

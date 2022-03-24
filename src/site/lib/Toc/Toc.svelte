@@ -27,9 +27,9 @@
 		if (id) history.pushState({}, "", `#${id}`);
 
 		window.scrollTo({
-            top: headings[index].offsetTop + 1,
-            behavior: "smooth"
-        });
+			top: headings[index].offsetTop + 1,
+			behavior: "smooth"
+		});
 	}
 
 	onMount(() => {

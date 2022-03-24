@@ -12,12 +12,7 @@
 	const forwardEvents = createEventForwarder(get_current_component());
 </script>
 
-<div
-	class="flyout {className}"
-	use:forwardEvents
-	bind:this={element}
-	{...$$restProps}
->
+<div class="flyout {className}" use:forwardEvents bind:this={element} {...$$restProps}>
 	<slot />
 </div>
 

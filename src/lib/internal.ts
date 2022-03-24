@@ -83,7 +83,13 @@ export function arrowNavigation(
 		const activeIndex = tabOrder.indexOf(document.activeElement as HTMLElement);
 
 		if (tabOrder.length < 0) return;
-		if (key === "ArrowUp" || key === "ArrowDown" || key === "Home" || key === "End" || (key === "Tab" && options.preventTab)) {
+		if (
+			key === "ArrowUp" ||
+			key === "ArrowDown" ||
+			key === "Home" ||
+			key === "End" ||
+			(key === "Tab" && options.preventTab)
+		) {
 			event.preventDefault();
 			if (options.stopPropagation) event.stopPropagation();
 		}

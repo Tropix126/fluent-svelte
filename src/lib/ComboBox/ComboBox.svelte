@@ -2,20 +2,24 @@
 	import { createEventDispatcher, tick } from "svelte";
 	import { get_current_component, onMount } from "svelte/internal";
 
-	import { Button, TextBox, TextBoxButton } from "$lib/index";
-	import { ComboBoxItem, createEventForwarder, externalMouseEvents, uid } from "$lib/internal";
+	import { createEventForwarder, externalMouseEvents, uid } from "$lib/internal";
+
+    import ComboBoxItem from "./ComboBoxItem.svelte";
+    import Button from "../Button/Button.svelte";
+    import TextBox from "../TextBox/TextBoxButton.svelte";
+    import TextBoxButton from "../TextBox/TextBoxButton.svelte";
 
 	interface Item {
 		name: string;
-        value: any;
+		value: any;
 		disabled?: boolean;
 	}
 
 	/** Determines which specified item is selected. Correspond's to a given item's `value` key. */
 	export let value: any = undefined;
 
-    /** Current value of the ComboBox's search box. Only applicable if `searchable` is set to `true`. */
-    export let searchValue: any = undefined;
+	/** Current value of the ComboBox's search box. Only applicable if `searchable` is set to `true`. */
+	export let searchValue: any = undefined;
 
 	/** The initial placeholder text displayed if no item is currently selected. */
 	export let placeholder = "";
@@ -39,7 +43,7 @@
 	/** Obtains a bound DOM reference to the ComboBox's value input element. */
 	export let inputElement: HTMLInputElement = null;
 
-    /** Obtains a bound DOM reference to the ComboBox's searchbox input element. Only applicable if `searchable` is set to `true`. */
+	/** Obtains a bound DOM reference to the ComboBox's searchbox input element. Only applicable if `searchable` is set to `true`. */
 	export let searchInputElement: HTMLInputElement = null;
 
 	/** Obtains a bound DOM reference to the ComboBox's outer container element. */
@@ -93,9 +97,9 @@
 	let menuOffset =
 		itemHeight * -(selection ? items.indexOf(selection) : Math.floor(items.length / 2));
 
-    onMount(() => {
-        if (!searchValue) searchValue = value;
-    });
+	onMount(() => {
+		if (!searchValue) searchValue = value;
+	});
 
 	function updateOffset(target: HTMLElement) {
 		menuOffset = -(
@@ -105,7 +109,7 @@
 
 	function selectItem(item: Item) {
 		if (item.disabled) return;
-        
+
 		value = item.value;
 		searchValue = item.name;
 		open = false;
@@ -136,17 +140,17 @@
 			!(items.indexOf(selection) >= items.length - 1)
 		) {
 			value = selectableItems[selectableItems.indexOf(selection) + 1].value; // If down arrow is pressed, check current selection and move to next non-disabled item.
-            searchValue = selectableItems[selectableItems.indexOf(selection) + 1].name;
+			searchValue = selectableItems[selectableItems.indexOf(selection) + 1].name;
 		} else if (key === "ArrowUp" && !editableClosed && !(items.indexOf(selection) <= 0)) {
 			value = selectableItems[selectableItems.indexOf(selection) - 1].value; // Do the same with up arrow.
-            searchValue = selectableItems[selectableItems.indexOf(selection) - 1].name;
+			searchValue = selectableItems[selectableItems.indexOf(selection) - 1].name;
 		} else if (key === "Home") {
-            value = selectableItems[0].value; // If home is pressed, move to first non-disabled item.
-            searchValue = selectableItems[0].name;
-        } else if (key === "End") {
-            value = selectableItems[selectableItems.length - 1].value; // If end is pressed, move to last non-disabled item.
-            searchValue = selectableItems[selectableItems.length - 1].name;
-        } else if (menuElement && selection && key === "Enter") {
+			value = selectableItems[0].value; // If home is pressed, move to first non-disabled item.
+			searchValue = selectableItems[0].name;
+		} else if (key === "End") {
+			value = selectableItems[selectableItems.length - 1].value; // If end is pressed, move to last non-disabled item.
+			searchValue = selectableItems[selectableItems.length - 1].name;
+		} else if (menuElement && selection && key === "Enter") {
 			event.preventDefault();
 			selectItem(selection); // Select item when the enter key is pressed and the menu is open
 		} else if (!menuElement && selection && key === "Enter") {
@@ -155,17 +159,18 @@
 			searchInputElement.focus(); // If the input element has lost focus, regain it.
 		}
 
-        // Prevent the browser's default scrolling behavior for these keys
-        if (key === "ArrowDown" || key === "ArrowUp" || key === "Home" || key === "End" )event.preventDefault();
+		// Prevent the browser's default scrolling behavior for these keys
+		if (key === "ArrowDown" || key === "ArrowUp" || key === "Home" || key === "End")
+			event.preventDefault();
 
 		// Keybindings for opening the menu when in editable mode using arrow keys
-		if (key === "ArrowDown" || key === "ArrowUp" && editable) {
-            if (open) {
-                await tick();
-                searchInputElement?.select(); // Select text when an item is chosen.
-            } else {
-                open = true;
-            }
+		if (key === "ArrowDown" || (key === "ArrowUp" && editable)) {
+			if (open) {
+				await tick();
+				searchInputElement?.select(); // Select text when an item is chosen.
+			} else {
+				open = true;
+			}
 		}
 	}
 
@@ -179,20 +184,19 @@
 	}
 
 	function handleInput(event: InputEvent | CustomEvent) {
-
 		const match = selectableItems.find(i =>
 			i.name.toLowerCase().startsWith(searchValue.toLowerCase())
 		);
 
-        if (!match) value = null;
+		if (!match) value = null;
 
 		if (match && (<InputEvent>event).inputType === "insertText" && searchValue.trim() !== "") {
 			searchInputElement.value = match.name;
 			searchInputElement.setSelectionRange(searchValue.length, match.name.length);
 		}
 
-        if (match && !match.disabled) value = match.value;
-        searchValue = searchInputElement.value;
+		if (match && !match.disabled) value = match.value;
+		searchValue = searchInputElement.value;
 	}
 </script>
 
@@ -335,15 +339,15 @@ When the combo box is closed, it either displays the current selection or is emp
 			</ul>
 		{/if}
 
-        <input
-            type="hidden"
-            aria-hidden="true"
-            bind:this={inputElement}
-            bind:value
-            on:change
-            on:input
-            on:beforeinput
-        />
+		<input
+			type="hidden"
+			aria-hidden="true"
+			bind:this={inputElement}
+			bind:value
+			on:change
+			on:input
+			on:beforeinput
+		/>
 		<slot />
 	{/if}
 </div>

@@ -34,7 +34,7 @@ By default, sliders are created with a value of `0`. This starts the slider thum
 
 ```svelte example
 <script>
-    import { Slider } from "fluent-svelte";
+	import { Slider } from "fluent-svelte";
 </script>
 
 <Slider value={20} />
@@ -60,7 +60,7 @@ Sliders can normally only take in `value`s ranging from `0` to `100`. This can b
 
 ```svelte example
 <script>
-    import { Slider } from "fluent-svelte";
+	import { Slider } from "fluent-svelte";
 </script>
 
 <Slider min={100} max={500} value={250} />
@@ -72,7 +72,7 @@ A `step` property can be set to control the granularity of the slider. For examp
 
 ```svelte example
 <script>
-    import { Slider } from "fluent-svelte";
+	import { Slider } from "fluent-svelte";
 </script>
 
 <Slider step={10} />
@@ -84,7 +84,7 @@ Slider ticks are small markers along the slider rail that mark a significant val
 
 ```svelte example
 <script>
-    import { Slider } from "fluent-svelte";
+	import { Slider } from "fluent-svelte";
 </script>
 
 <Slider ticks={[0, 50, 100]} />
@@ -104,7 +104,7 @@ Tooltip text can also be customized through the `prefix` and `suffix` properties
 
 ```svelte example
 <script>
-    import { Slider } from "fluent-svelte";
+	import { Slider } from "fluent-svelte";
 </script>
 
 <Slider prefix="$" />
@@ -117,7 +117,7 @@ The `tooltip` slot has three slot props: `value`, `prefix` and `suffix` which gr
 
 ```svelte example
 <script>
-    import { Slider } from "fluent-svelte";
+	import { Slider } from "fluent-svelte";
 </script>
 
 <Slider>
@@ -134,11 +134,11 @@ Sliders can be displayed in either a horizontal (left and right) or vertical ori
 
 ```svelte example
 <script>
-    import { Slider } from "fluent-svelte";
+	import { Slider } from "fluent-svelte";
 </script>
 
 <div style="block-size: 120px;">
-    <Slider orientation="vertical" />
+	<Slider orientation="vertical" />
 </div>
 ```
 
@@ -146,7 +146,7 @@ Slider tracks can also be reversed using the `reverse` property. This will chang
 
 ```svelte example
 <script>
-    import { Slider } from "fluent-svelte";
+	import { Slider } from "fluent-svelte";
 </script>
 
 <Slider reverse />

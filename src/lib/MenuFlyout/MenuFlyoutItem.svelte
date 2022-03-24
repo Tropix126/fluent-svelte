@@ -4,9 +4,11 @@
 	import { createEventDispatcher, getContext } from "svelte";
 	import { get_current_component } from "svelte/internal";
 
-	import { MenuFlyoutSurface, arrowNavigation, uid, createEventForwarder } from "$lib/internal";
+	import { arrowNavigation, uid, createEventForwarder } from "$lib/internal";
 	import { tabbable } from "tabbable";
-	import { TextBlock } from "$lib/index";
+
+    import MenuFlyoutSurface from "../MenuFlyout/MenuFlyoutSurface.svelte";
+    import TextBlock from "../TextBlock/TextBlock.svelte";
 
 	/** Specifies an input type for the item. */
 	export let variant: "standard" | "radio" | "toggle" = "standard";
@@ -75,9 +77,9 @@
 	$: if (open && menu && tabbable(subMenuElement).length > 0) tabbable(subMenuElement)[0].focus();
 
 	function close(event) {
-        setTimeout(() => {
-            if (!cascading && closeFlyout) closeFlyout(event);
-        });
+		setTimeout(() => {
+			if (!cascading && closeFlyout) closeFlyout(event);
+		});
 	}
 
 	function handleKeyDown(event) {

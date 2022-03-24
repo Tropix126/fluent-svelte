@@ -50,16 +50,16 @@ If you wish to control a dialog opening from a trigger button, you can two-way b
 
 ```svelte example
 <script>
-    import { ContentDialog, Button } from "fluent-svelte";
+	import { ContentDialog, Button } from "fluent-svelte";
 
-    let open = false;
+	let open = false;
 </script>
 
-<Button on:click={() => open = true}>Open Dialog</Button>
+<Button on:click={() => (open = true)}>Open Dialog</Button>
 
 <ContentDialog bind:open>
-    I have been opened by a button click.
-    <Button on:click={() => open = false}>Close</Button>
+	I have been opened by a button click.
+	<Button on:click={() => (open = false)}>Close</Button>
 </ContentDialog>
 ```
 
@@ -83,13 +83,13 @@ You can use the `footer` slot to insert various actions at the bottom of the dia
 
 ```svelte
 <script>
-    import { ContentDialog, Button } from "fluent-svelte";
+	import { ContentDialog, Button } from "fluent-svelte";
 
-    let open = true;
+	let open = true;
 </script>
 
 <ContentDialog bind:open title="Dialog with action">
-    <Button slot="footer" on:click={() => open = false}>Close Dialog</Button>
+	<Button slot="footer" on:click={() => (open = false)}>Close Dialog</Button>
 </ContentDialog>
 ```
 
@@ -125,8 +125,8 @@ To do this, you can set the `append` property to any valid [HTMLElement](https:/
 
 ```svelte
 <ContentDialog title="Appended Dialog" append={document.body}>
-    When opened, I will be appended to this page's <body> tag.
-</ContentDialog>
+	When opened, I will be appended to this page's <body> tag. </body></ContentDialog
+>
 ```
 
 <InfoBar severity="information" title="Information">

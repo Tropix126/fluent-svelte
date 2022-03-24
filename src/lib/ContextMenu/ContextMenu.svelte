@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { createEventDispatcher, setContext } from "svelte";
-
-	import { MenuFlyoutSurface, externalMouseEvents, arrowNavigation } from "$lib/internal";
+	import { externalMouseEvents, arrowNavigation } from "$lib/internal";
 	import { tabbable } from "tabbable";
+
+    import MenuFlyoutSurface from "../MenuFlyout/MenuFlyoutSurface.svelte";
 
 	/** Controls if the flyout will be closed when clicking a standard variant item. Only applies if `closable` is set to `true`. */
 	export let closeOnSelect = true;

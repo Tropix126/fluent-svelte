@@ -9,7 +9,7 @@ import a11yEmoji from "@fec/remark-a11y-emoji";
 import slug from "rehype-slug";
 import github from "remark-github";
 import examples from "mdsvexamples";
-import examplesVite from 'mdsvexamples/vite'
+import examplesVite from "mdsvexamples/vite";
 
 import sveld from "vite-plugin-sveld";
 
@@ -22,15 +22,15 @@ const config = {
 		mdsvex({
 			extensions: [".svx", ".md"],
 			remarkPlugins: [
-                github,
-                a11yEmoji,
-                [
-                    examples,
-                    {
-                        ExampleComponent: "/src/site/lib/Example/Example.svelte"
-                    }
-                ]
-            ],
+				github,
+				a11yEmoji,
+				[
+					examples,
+					{
+						ExampleComponent: "/src/site/lib/Example/Example.svelte"
+					}
+				]
+			],
 			rehypePlugins: [slug]
 		}),
 		preprocess({

@@ -2,7 +2,7 @@
 	import { createEventDispatcher, onMount, tick } from "svelte";
 	import { fly } from "svelte/transition";
 	import { circOut } from "svelte/easing";
-    import { get_current_component } from "svelte/internal";
+	import { get_current_component } from "svelte/internal";
 	import { createEventForwarder, getCSSDuration } from "../internal";
 
 	import CalendarViewItem from "./CalendarViewItem.svelte";
@@ -69,7 +69,7 @@
 	export let element: HTMLDivElement = null;
 
 	const dispatch = createEventDispatcher();
-    const forwardEvents = createEventForwarder(get_current_component(), ["change"]);
+	const forwardEvents = createEventForwarder(get_current_component(), ["change"]);
 	const bodyElementBinding = node => (bodyElement = node); // bind:this breaks with our page transition for some reason
 
 	let header = "";
@@ -78,11 +78,16 @@
 	let pageAnimationDuration = 0;
 	let bodyElement: HTMLTableSectionElement = null;
 	let firstValue = Array.isArray(value) ? value[0] : value;
-	let page = ((!min || firstValue >= min) && (!max || firstValue < max)) ? new Date(
-		(firstValue ?? new Date()).getFullYear(),
-		(firstValue ?? new Date()).getMonth(),
-		1
-	) : (firstValue < min ? new Date(min.getFullYear(), min.getMonth() , 1) : new Date(max.getFullYear(), max.getMonth() , 1));
+	let page =
+		(!min || firstValue >= min) && (!max || firstValue < max)
+			? new Date(
+					(firstValue ?? new Date()).getFullYear(),
+					(firstValue ?? new Date()).getMonth(),
+					1
+			  )
+			: firstValue < min
+			? new Date(min.getFullYear(), min.getMonth(), 1)
+			: new Date(max.getFullYear(), max.getMonth(), 1);
 
 	$: firstValue = Array.isArray(value) ? value[0] : value;
 	$: view, updatePage(0);
@@ -247,7 +252,7 @@
 		} else if (view === "months") {
 			return new Date(page.getFullYear() + offset, 0, 1);
 		} else if (view === "years") {
-			return new Date((Math.floor(page.getFullYear() / 10) * 10) + (offset * 10), 0, 1);
+			return new Date(Math.floor(page.getFullYear() / 10) * 10 + offset * 10, 0, 1);
 		}
 	}
 
@@ -288,7 +293,14 @@
 	async function handleKeyDown(event: KeyboardEvent, date: Date) {
 		const { key } = event;
 
-		if (key === "ArrowUp" || key === "ArrowDown" || key === "ArrowLeft" || key === "ArrowRight" || key === "Home" || key === "End") {
+		if (
+			key === "ArrowUp" ||
+			key === "ArrowDown" ||
+			key === "ArrowLeft" ||
+			key === "ArrowRight" ||
+			key === "Home" ||
+			key === "End"
+		) {
 			event.preventDefault();
 		}
 
@@ -396,9 +408,7 @@
 			)
 				return;
 
-			if (
-				!compareDates(focusedDate, page, view === "months" ? "year" : "decade")
-			) {
+			if (!compareDates(focusedDate, page, view === "months" ? "year" : "decade")) {
 				if (key === "ArrowLeft" || key === "ArrowUp") {
 					updatePage(-1, "neutral");
 				} else if (key === "ArrowRight" || key === "ArrowDown") {
@@ -448,7 +458,7 @@
 	}
 
 	function selectMonth(month: Date) {
-        page = new Date(new Date(month.setDate(1)));
+		page = new Date(new Date(month.setDate(1)));
 		updateView("days");
 	}
 
@@ -480,7 +490,13 @@ A calendar view lets a user view and interact with a calendar that they can navi
     <CalendarView value={new Date(2022, 2, 14)} />
     ```
 -->
-<div class="calendar-view {className}" class:floating={__floating} use:forwardEvents bind:this={element} {...$$restProps}>
+<div
+	class="calendar-view {className}"
+	class:floating={__floating}
+	use:forwardEvents
+	bind:this={element}
+	{...$$restProps}
+>
 	<header class="calendar-view-header">
 		<div class="calendar-view-header-text" role="heading" aria-live="polite">
 			<button
@@ -582,8 +598,10 @@ A calendar view lets a user view and interact with a calendar that they can navi
 										{@const firstFocusableDay = getCalendarDays(page).find(
 											d =>
 												compareDates(d, page, "month") &&
-												(!blackout || indexOfDate(blackout, d, "day") === -1) &&
-												((!min || min <= d) && (!max || max >= d))
+												(!blackout ||
+													indexOfDate(blackout, d, "day") === -1) &&
+												(!min || min <= d) &&
+												(!max || max >= d)
 										)}
 
 										<td role="gridcell">
@@ -631,8 +649,19 @@ A calendar view lets a user view and interact with a calendar that they can navi
 											).find(
 												d =>
 													compareDates(d, page, "year") &&
-													(!min || (new Date(min.getFullYear(), min.getMonth(), 1) <= new Date(d.getFullYear() ,d.getMonth(), 1))) && (!max || max >= d)
-                                                )}
+													(!min ||
+														new Date(
+															min.getFullYear(),
+															min.getMonth(),
+															1
+														) <=
+															new Date(
+																d.getFullYear(),
+																d.getMonth(),
+																1
+															)) &&
+													(!max || max >= d)
+											)}
 
 											<td role="gridcell">
 												<CalendarViewItem
@@ -655,7 +684,11 @@ A calendar view lets a user view and interact with a calendar that they can navi
 														month.getFullYear().toString()}
 													{selected}
 													tabindex={firstFocusableMonth &&
-													compareDates(firstFocusableMonth, month, "month")
+													compareDates(
+														firstFocusableMonth,
+														month,
+														"month"
+													)
 														? 0
 														: -1}
 												>
@@ -679,7 +712,9 @@ A calendar view lets a user view and interact with a calendar that they can navi
 											).find(
 												d =>
 													compareDates(d, page, "decade") &&
-													(!min || (min.getFullYear() <= d.getFullYear())) && (!max || max >= d)
+													(!min ||
+														min.getFullYear() <= d.getFullYear()) &&
+													(!max || max >= d)
 											)}
 
 											<td role="gridcell">

@@ -125,7 +125,7 @@
 			{ name: "Item 1", value: 1 },
 			{
 				name: "Item 2",
-                value: 2,
+				value: 2,
 				disabled: true
 			},
 			{ name: "Item 3", value: 3 }
@@ -133,8 +133,8 @@
 	/>
 
 	<ComboBox
-        value={1}
-        searchValue="asdasd"
+		value={1}
+		searchValue="asdasd"
 		editable
 		placeholder="ComboBox"
 		items={[
@@ -142,7 +142,7 @@
 			{ name: "Item 1", value: 1 },
 			{
 				name: "Item 2",
-                value: 2,
+				value: 2,
 				disabled: true
 			},
 			{ name: "Item 3", value: 3 }

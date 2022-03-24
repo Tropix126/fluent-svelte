@@ -2,8 +2,8 @@
 	import { createEventDispatcher } from "svelte";
 	import { uid } from "$lib/internal";
 
-    import TextBox from "../TextBox/TextBox.svelte";
-    import ListItem from "../ListItem/ListItem.svelte";
+	import TextBox from "../TextBox/TextBox.svelte";
+	import ListItem from "../ListItem/ListItem.svelte";
 
 	/** @extends {"../TextBox/TextBox.svelte"} */
 	/** The input's current value. */

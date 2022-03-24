@@ -41,7 +41,7 @@ Similarly to HTML's [`<img />`](https://developer.mozilla.org/en-US/docs/Web/HTM
 
 ```svelte example
 <script>
-    import { PersonPicture } from "fluent-svelte";
+	import { PersonPicture } from "fluent-svelte";
 </script>
 
 <PersonPicture src="https://source.unsplash.com/random" />
@@ -51,7 +51,7 @@ It's recommended for both accessibility and fallback purposes that you provide a
 
 ```svelte example
 <script>
-    import { PersonPicture } from "fluent-svelte";
+	import { PersonPicture } from "fluent-svelte";
 </script>
 
 <PersonPicture
@@ -64,7 +64,7 @@ Additionally, if `src` is invalid and no slot text is inserted, the alt text wil
 
 ```svelte example
 <script>
-    import { PersonPicture } from "fluent-svelte";
+	import { PersonPicture } from "fluent-svelte";
 </script>
 
 <PersonPicture src="not-a-real-domain" alt="John Smith" />
@@ -80,12 +80,12 @@ If no `src` is provided, you can provide your own text to be displayed in the co
 
 ```svelte example
 <script>
-    import { PersonPicture } from "fluent-svelte";
+	import { PersonPicture } from "fluent-svelte";
 </script>
 
 <div style="display: flex; gap: 12px;">
-   <PersonPicture>RDJ</PersonPicture>
-   <PersonPicture src="not-a-real-domain" alt="Robert Downey Jr." />
+	<PersonPicture>RDJ</PersonPicture>
+	<PersonPicture src="not-a-real-domain" alt="Robert Downey Jr." />
 </div>
 ```
 
@@ -101,7 +101,7 @@ You can use the component's `badge` slot to insert an offset element at the top 
 </script>
 
 <PersonPicture src="https://thispersondoesnotexist.com/image" alt="John Smith">
-	<InfoBadge slot="badge"> {messages} </InfoBadge>
+	<InfoBadge slot="badge">{messages}</InfoBadge>
 </PersonPicture>
 ```
 
@@ -111,8 +111,8 @@ You can control the dimensions of the picture in pixels by setting the `size` pr
 
 ```svelte example
 <script>
- import { PersonPicture } from "fluent-svelte";
- </script>
+	import { PersonPicture } from "fluent-svelte";
+</script>
 
 <PersonPicture size={8} />
 <PersonPicture size={16} />

@@ -32,7 +32,7 @@ Passing in content to the RadioButton's slot will cause that content to be rende
 
 ```svelte example
 <script>
-    import { RadioButton } from "fluent-svelte";
+	import { RadioButton } from "fluent-svelte";
 </script>
 
 <RadioButton>I have a label!</RadioButton>
@@ -47,7 +47,7 @@ The `value` property is used to determine the piece of data that is associated w
 
 ```svelte example
 <script>
-    import { RadioButton } from "fluent-svelte";
+	import { RadioButton } from "fluent-svelte";
 </script>
 
 <RadioButton value={1}>Option 1</RadioButton>
@@ -77,7 +77,7 @@ If `group` is not set, you also have access to a `checked` property that allows 
 
 ```svelte example
 <script>
-    import { RadioButton } from "fluent-svelte";
+	import { RadioButton } from "fluent-svelte";
 </script>
 
 <RadioButton checked>I am checked by default.</RadioButton>

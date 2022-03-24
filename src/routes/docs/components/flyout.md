@@ -35,14 +35,12 @@ import { Flyout } from "fluent-svelte";
 
 ```svelte example
 <script>
-    import { Flyout, Button } from "fluent-svelte";
+	import { Flyout, Button } from "fluent-svelte";
 </script>
 
 <Flyout>
 	<Button>Trigger Button</Button>
-	<svelte:fragment slot="flyout">
-        Flyout Contents
-    </svelte:fragment>
+	<svelte:fragment slot="flyout">Flyout Contents</svelte:fragment>
 </Flyout>
 ```
 
@@ -54,9 +52,7 @@ You can control if the flyout is open using the `open` property.
 
 ```svelte
 <Flyout open>
-	<svelte:fragment slot="flyout">
-        This flyout is open by default.
-    </svelte:fragment>
+	<svelte:fragment slot="flyout">This flyout is open by default.</svelte:fragment>
 </Flyout>
 ```
 
@@ -64,14 +60,14 @@ You can also use Svelte's two-way binding syntax to programatically open/close a
 
 ```svelte example
 <script>
-    import { Flyout, Button } from "fluent-svelte";
+	import { Flyout, Button } from "fluent-svelte";
 
-    let open = false;
+	let open = false;
 </script>
 
 <Flyout bind:open>
-    <Button>Open</Button>
-    <Button on:click={() => open = false} slot="flyout">Close</Button>
+	<Button>Open</Button>
+	<Button on:click={() => (open = false)} slot="flyout">Close</Button>
 </Flyout>
 ```
 
@@ -95,7 +91,7 @@ For more niche use cases, you can completely override the flyout element with yo
 
 ```svelte example
 <script>
-    import { Flyout, Button } from "fluent-svelte";
+	import { Flyout, Button } from "fluent-svelte";
 </script>
 
 <Flyout>

@@ -35,7 +35,7 @@ There are two areas of text that can be customized - the title and the message. 
 
 ```svelte example
 <script>
-    import { InfoBar } from "fluent-svelte";
+	import { InfoBar } from "fluent-svelte";
 </script>
 
 <InfoBar title="Title" message="Message" />
@@ -45,12 +45,11 @@ If you need to include HTML content into the message, you can also just use the 
 
 ```svelte example
 <script>
-    import { InfoBar } from "fluent-svelte";
+	import { InfoBar } from "fluent-svelte";
 </script>
 
 <InfoBar>
-	Visit <a href="https://fluent-svelte.vercel.app">Fluent Svelte</a> for some neat fluent design
-	components!
+	Visit <a href="https://fluent-svelte.vercel.app">Fluent Svelte</a> for some neat fluent design components!
 </InfoBar>
 ```
 
@@ -72,7 +71,7 @@ An action button can be passed in using the `action` slot. It's recommended that
 
 ```svelte example
 <script>
-    import { InfoBar, Button } from "fluent-svelte";
+	import { InfoBar, Button } from "fluent-svelte";
 </script>
 
 <InfoBar title="Title" message="Message">
@@ -82,17 +81,17 @@ An action button can be passed in using the `action` slot. It's recommended that
 
 ### Controlling Visibility
 
-InfoBars by default are `open`. This means that they are rendered into the DOM. When the close button is pressed, they will be removed from the DOM and the `open` property will be set back to `false`. 
+InfoBars by default are `open`. This means that they are rendered into the DOM. When the close button is pressed, they will be removed from the DOM and the `open` property will be set back to `false`.
 
 ```svelte example
 <script>
-    import { InfoBar, Button } from "fluent-svelte";
+	import { InfoBar, Button } from "fluent-svelte";
 
-    let open = false;
+	let open = false;
 </script>
 
-<Button on:click={() => open = !open}>
-    {open ? "Close" : "Open"}
+<Button on:click={() => (open = !open)}>
+	{open ? "Close" : "Open"}
 </Button>
 
 <InfoBar title="Title" message="Message" bind:open />

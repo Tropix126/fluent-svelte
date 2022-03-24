@@ -30,7 +30,7 @@ You can programmatically control if the checkbox is in it's checked state by set
 
 ```svelte example
 <script>
-    import { Checkbox } from "fluent-svelte";
+	import { Checkbox } from "fluent-svelte";
 </script>
 
 <Checkbox checked />

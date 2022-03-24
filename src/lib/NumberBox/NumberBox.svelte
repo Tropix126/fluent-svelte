@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { TextBox, TextBoxButton } from "$lib/index";
+    import TextBox from "../TextBox/TextBox.svelte";
+    import TextBoxButton from "../TextBox/TextBoxButton.svelte";
 
 	/** @extends {"../TextBox/TextBox.svelte"} */
 	/** Determines whether the spinner buttons will be placed in an inline layout. */

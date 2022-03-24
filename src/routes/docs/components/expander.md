@@ -43,14 +43,12 @@ A basic expander expects a header and contents. The expander's default slot will
 
 ```svelte example
 <script>
-    import { Expander } from "fluent-svelte";
+	import { Expander } from "fluent-svelte";
 </script>
 
 <Expander>
 	Header
-	<svelte:fragment slot="content">
-        Content
-    </svelte:fragment>
+	<svelte:fragment slot="content">Content</svelte:fragment>
 </Expander>
 ```
 
@@ -60,12 +58,12 @@ Expanders can be either expanded or collapsed. This can be controlled by setting
 
 ```svelte example
 <script>
-    import { Expander } from "fluent-svelte";
+	import { Expander } from "fluent-svelte";
 </script>
 
 <Expander expanded>
-    I am expanded by default.
-    <svelte:fragment slot="content">
+	I am expanded by default.
+	<svelte:fragment slot="content">
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 	</svelte:fragment>
 </Expander>
@@ -77,12 +75,12 @@ An expander doesn't have to expand downwards. You can control an expander's expa
 
 ```svelte example
 <script>
-    import { Expander } from "fluent-svelte";
+	import { Expander } from "fluent-svelte";
 </script>
 
 <Expander direction="up">
-    This expander will expand upwards.
-    <svelte:fragment slot="content">
+	This expander will expand upwards.
+	<svelte:fragment slot="content">
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 	</svelte:fragment>
 </Expander>
@@ -94,7 +92,7 @@ You can easily add an icon to an expander's header using the `icon` slot. Passin
 
 ```svelte example
 <script>
-    import { Expander } from "fluent-svelte";
+	import { Expander } from "fluent-svelte";
 </script>
 
 <Expander>

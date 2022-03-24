@@ -59,9 +59,9 @@
 			&:disabled {
 				background-color: var(--sutble-fill-disabled);
 				color: var(--text-disabled);
-                svg {
-                    color: var(--control-strong-fill-disabled);
-                }
+				svg {
+					color: var(--control-strong-fill-disabled);
+				}
 			}
 			svg {
 				@include icon($size: 16px);

@@ -3,7 +3,7 @@
 	import { get_current_component } from "svelte/internal";
 	import { createEventForwarder } from "$lib/internal";
 
-	import { TextBlock } from "$lib/index";
+    import TextBlock from "../TextBlock/TextBlock.svelte";
 
 	/** @restProps {button | a} */
 	/** Controls whether the item is selected or not. */

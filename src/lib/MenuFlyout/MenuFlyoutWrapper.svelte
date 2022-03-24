@@ -96,15 +96,16 @@
 			use:arrowNavigation={{ preventTab: true }}
 			on:click={e => e.stopPropagation()}
 		>
-			<MenuFlyoutSurface
-				bind:element={menuElement}
-				bind:this={menu}
-				{...$$restProps}
-			>
+			<MenuFlyoutSurface bind:element={menuElement} bind:this={menu} {...$$restProps}>
 				<slot name="flyout" />
 			</MenuFlyoutSurface>
 		</div>
-		<div class="menu-flyout-backdrop" bind:this={backdropElement} on:click={e => e.stopPropagation()} on:mousedown={closeFlyout} />
+		<div
+			class="menu-flyout-backdrop"
+			bind:this={backdropElement}
+			on:click={e => e.stopPropagation()}
+			on:mousedown={closeFlyout}
+		/>
 	{/if}
 </div>
 

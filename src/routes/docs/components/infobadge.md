@@ -42,7 +42,7 @@ The default badge glyph can be overrided with your own content. This can be usef
 
 ```svelte example
 <script>
-    import { InfoBadge } from "fluent-svelte";
+	import { InfoBadge } from "fluent-svelte";
 </script>
 
 <InfoBadge>99</InfoBadge>

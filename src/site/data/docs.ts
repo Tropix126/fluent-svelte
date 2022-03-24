@@ -127,7 +127,7 @@ export const docsMap: DocsMap[] = [
 					<path d="M8 16.5C8 16.2239 8.22386 16 8.5 16H17.5C17.7761 16 18 16.2239 18 16.5C18 16.7761 17.7761 17 17.5 17H8.5C8.22386 17 8 16.7761 8 16.5Z"/>
 				</svg>`
 			},
-            {
+			{
 				name: "CalendarView",
 				path: "/components/calendarview",
 				// Calendar LTR 16

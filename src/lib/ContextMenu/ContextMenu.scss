@@ -1,11 +1,11 @@
 @use "../mixins" as *;
 
 .context-menu- {
-    &wrapper {
-        display: contents;
-    }
-    &anchor {
-        position: fixed;
-        z-index: 10000;
-    }
+	&wrapper {
+		display: contents;
+	}
+	&anchor {
+		position: fixed;
+		z-index: 10000;
+	}
 }

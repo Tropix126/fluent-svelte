@@ -34,16 +34,16 @@ You can also use two-way binding to programatically work with the value of the c
 
 ```svelte example
 <script>
-    import { Button, CalendarView } from "fluent-svelte";
+	import { Button, CalendarView } from "fluent-svelte";
 
-    let value = new Date(); // The current date
+	let value = new Date(); // The current date
 </script>
 
 <CalendarView bind:value />
 
 Current value: {value?.toLocaleDateString()}
 
-<Button on:click={() => value = null}>Clear Value</Button>
+<Button on:click={() => (value = null)}>Clear Value</Button>
 ```
 
 ### Multiple Selections
@@ -60,7 +60,7 @@ To allow the user to pick multiple dates at once, set the `multiple` property to
 
 ```svelte example
 <script>
-    import { CalendarView } from "fluent-svelte";
+	import { CalendarView } from "fluent-svelte";
 </script>
 
 <CalendarView multiple value={[new Date(2022, 2, 3), new Date(2022, 2, 4)]} />
@@ -78,7 +78,7 @@ In this example, the user will only be able to select dates in the year of 2020.
 
 ```svelte example
 <script>
-    import { CalendarView } from "fluent-svelte";
+	import { CalendarView } from "fluent-svelte";
 </script>
 
 <CalendarView min={new Date(2020, 0, 1)} max={new Date(2020, 11, 31)} />
@@ -92,17 +92,17 @@ If you only want the calendar to render in a specific locale, you can pass in a 
 
 ```svelte example
 <script>
-    import { CalendarView } from "fluent-svelte";
+	import { CalendarView } from "fluent-svelte";
 </script>
 
 <CalendarView locale="ja-JP" />
 ```
 
-Many places additionally have different starting days of the week. The JavaScript `Date` object starts it's weeks on Sunday, but you can customize the starting day of the calendar's week using the `weekStart` property. `weekStart`  accepts a number between 0 and 6 (zero is sunday, six is saturday).
+Many places additionally have different starting days of the week. The JavaScript `Date` object starts it's weeks on Sunday, but you can customize the starting day of the calendar's week using the `weekStart` property. `weekStart` accepts a number between 0 and 6 (zero is sunday, six is saturday).
 
 ```svelte example
 <script>
-    import { CalendarView } from "fluent-svelte";
+	import { CalendarView } from "fluent-svelte";
 </script>
 
 <!-- Week will start on Monday (1) instead of Sunday (0). -->
@@ -117,36 +117,36 @@ In some cases, it might be desirable to prevent the user from selecting a specif
     Dates excluded using the <code>blackout</code> property do not affect <i>you</i>, the developer from manually setting values to those dates. This propertly only prevents the user from conventionally picking excluded dates themselves.
 </InfoBar>
 
-In this example, the user will be able to select all dates *except* for March 7, 2022 and March 9, 2022.
+In this example, the user will be able to select all dates _except_ for March 7, 2022 and March 9, 2022.
 
 ```svelte example
 <script>
-    import { CalendarView } from "fluent-svelte";
+	import { CalendarView } from "fluent-svelte";
 </script>
 
 <CalendarView
-    value={new Date(2022, 2, 1)}
-    blackout={[new Date(2022, 2, 7), new Date(2022, 2, 9)]}
+	value={new Date(2022, 2, 1)}
+	blackout={[new Date(2022, 2, 7), new Date(2022, 2, 9)]}
 />
 ```
 
 ### Views
 
-To aid with navigating long ranges of dates, a user can click the CalendarView's main header to switch the *view*. This lets the user quickly navigate through days, months, or years.
+To aid with navigating long ranges of dates, a user can click the CalendarView's main header to switch the _view_. This lets the user quickly navigate through days, months, or years.
 
 <ComboBox style="margin-block-end: 12px; min-inline-size: 100px;" bind:value={viewExample} placeholder="View" items={[
-    {
-        name: "days",
-        value: "days"
-    },
-    {
-        name: "months",
-        value: "months"
-    },
-    {
-        name: "years",
-        value: "years"
-    }
+{
+name: "days",
+value: "days"
+},
+{
+name: "months",
+value: "months"
+},
+{
+name: "years",
+value: "years"
+}
 ]} />
 
 <br />
@@ -166,12 +166,13 @@ For example, this will start the calendar in the `months` view:
 ### Item Headers
 
 You can choose display indicator labels for the first day of a month, or first month of a year (depending on the current view) by setting the `headers` property.
-- When in days view, the first day of a given month will have a header with the month's name above it.
-- When in months view, the first month of a given year will have the year labeled above it.
+
+-   When in days view, the first day of a given month will have a header with the month's name above it.
+-   When in months view, the first month of a given year will have the year labeled above it.
 
 ```svelte example
 <script>
-    import { CalendarView } from "fluent-svelte";
+	import { CalendarView } from "fluent-svelte";
 </script>
 
 <CalendarView headers />

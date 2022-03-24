@@ -37,7 +37,7 @@ An item can be marked as _selected_ to indicate that it a currently active optio
 
 ```svelte example
 <script>
-    import { ListItem } from "fluent-svelte";
+	import { ListItem } from "fluent-svelte";
 </script>
 
 <ListItem selected>Text</ListItem>
@@ -51,7 +51,7 @@ If the item is not meant to be clicked, you can use the `disabled` property to v
 
 ```svelte example
 <script>
-    import { ListItem } from "fluent-svelte";
+	import { ListItem } from "fluent-svelte";
 </script>
 
 <ListItem disabled>Text</ListItem>
@@ -63,7 +63,7 @@ You can easily add an icon to an item using the `icon` slot. Passing in an SVG e
 
 ```svelte example
 <script>
-    import { ListItem } from "fluent-svelte";
+	import { ListItem } from "fluent-svelte";
 </script>
 
 <ListItem>
