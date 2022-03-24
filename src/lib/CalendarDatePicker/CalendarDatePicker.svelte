@@ -1,6 +1,6 @@
 <script lang="ts">
     import CalendarView from "../CalendarView/CalendarView.svelte";
-    import Flyout from "../Flyout/Flyout.svelte";
+    import Flyout from "../Flyout/FlyoutWrapper.svelte";
     import Button from "../Button/Button.svelte";
 
 	/** The currently selected calendar date. */
