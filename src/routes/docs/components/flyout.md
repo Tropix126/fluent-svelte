@@ -33,7 +33,7 @@ import { Flyout } from "fluent-svelte";
 
 `Flyout` is a wrapper component. Items placed into the default slot will open the flyout when clicked. To insert contents into the flyout itself, you use the `flyout` slot.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { Flyout, Button } from "fluent-svelte";
 </script>
@@ -89,7 +89,7 @@ Flyouts utilize a focus trap, which restricts keyboard navigation focus to only 
 
 For more niche use cases, you can completely override the flyout element with your own container using the `override` slot.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { Flyout, Button } from "fluent-svelte";
 </script>

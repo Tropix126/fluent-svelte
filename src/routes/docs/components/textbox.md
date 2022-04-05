@@ -28,7 +28,7 @@ TextBox is an extension of [HTML's native `<input />` element](https://developer
 
 A TextBox's current text content can be set with the `value` property.
 
-```svelte
+```svelte hideScript
 <TextBox value="Default value" />
 ```
 
@@ -65,7 +65,7 @@ Most of these types will simply set the `type` attribute of the TextBox's input 
 
 TextBox supports a `placeholder` property that will be displayed as text in lower emphasis when it's value is empty. These can be used to describe the purpose or type of value the TextBox is meant to accept.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { TextBox } from "fluent-svelte";
 </script>
@@ -81,7 +81,7 @@ Most TextBox types will feature a clear button. This button will clear the TextB
 
 Along with the builtin action buttons, you can also add your own buttons to the end of the TextBox using the `TextBoxButton` component and the TextBox's `buttons` slot:
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { TextBox, TextBoxButton } from "fluent-svelte";
 </script>
@@ -110,7 +110,7 @@ There are two methods to (completely) restrict manual input on a TextBox: the `d
     It should be noted that while using either of these modes that the clear button will not be displayed, in order to prevent users from modifying the TextBox's content. The <code>clearButton</code> property will have no effect on this behavior. Additionally, when the TextBox is <code>disabled</code>, the search and password reveal buttons will not be rendered into their respective types either.
 </InfoBar>
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { TextBox } from "fluent-svelte";
 </script>

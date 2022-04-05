@@ -26,7 +26,7 @@ import { ToggleSwitch } from "fluent-svelte";
 
 You can programmatically control if the ToggleSwitch is in it's checked state by setting the `checked` property.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { ToggleSwitch } from "fluent-svelte";
 </script>
@@ -52,7 +52,7 @@ Current state: {checked ? "checked" : "unchecked"}
 
 Passing in content to the ToggleSwitch's slot will cause that content to be rendered into a label for the control.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { ToggleSwitch } from "fluent-svelte";
 </script>

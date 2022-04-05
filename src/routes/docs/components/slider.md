@@ -32,7 +32,7 @@ import { Slider } from "fluent-svelte";
 
 By default, sliders are created with a value of `0`. This starts the slider thumb at 0% of the track. You can set the initial value of the slider by setting the `value` property.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { Slider } from "fluent-svelte";
 </script>
@@ -58,7 +58,7 @@ Current value: {value}
 
 Sliders can normally only take in `value`s ranging from `0` to `100`. This can be changed by setting the `min` and `max` properties.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { Slider } from "fluent-svelte";
 </script>
@@ -70,7 +70,7 @@ Sliders can normally only take in `value`s ranging from `0` to `100`. This can b
 
 A `step` property can be set to control the granularity of the slider. For example, if you set the `step` to `10`, the slider will only allow values that are multiples of `10`. The default step of `1` means that the slider can take any whole-number value.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { Slider } from "fluent-svelte";
 </script>
@@ -82,7 +82,7 @@ A `step` property can be set to control the granularity of the slider. For examp
 
 Slider ticks are small markers along the slider rail that mark a significant value. Ticks are purely visual, and do not alter user interaction. You can add slider ticks by passing an array of numbers within the slider's value range into the `ticks` property:
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { Slider } from "fluent-svelte";
 </script>
@@ -96,13 +96,13 @@ You can also customize the appearance of the slider's ticks. The `tickPlacement`
 
 All sliders are accompanied by a tooltip that displays the current value of the slider. If you do not wish to display a tooltip, you can set the `tooltip` property to `false`.
 
-```svelte
+```svelte hideScript
 <Slider tooltip={false} />
 ```
 
 Tooltip text can also be customized through the `prefix` and `suffix` properties, which will add a string respectively before or after the tooltip's text. This is useful if you want to convey units of measurement or other information about the slider's value.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { Slider } from "fluent-svelte";
 </script>
@@ -115,7 +115,7 @@ If you require further tooltip configuration, the tooltip's content can also be 
 
 The `tooltip` slot has three slot props: `value`, `prefix` and `suffix` which grant you access to the current value and the prefix/suffix strings respectively.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { Slider } from "fluent-svelte";
 </script>
@@ -132,7 +132,7 @@ The `tooltip` slot has three slot props: `value`, `prefix` and `suffix` which gr
 
 Sliders can be displayed in either a horizontal (left and right) or vertical orientation (up and down). By default, sliders are displayed in a horizontal orientation. You can change this by setting the `orientation` property to `vertical`.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { Slider } from "fluent-svelte";
 </script>
@@ -144,7 +144,7 @@ Sliders can be displayed in either a horizontal (left and right) or vertical ori
 
 Slider tracks can also be reversed using the `reverse` property. This will change the direction of the slider's track. For example, if the slider is horizontal and the `reverse` property is set to `true`, the track will be displayed from right to left.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { Slider } from "fluent-svelte";
 </script>

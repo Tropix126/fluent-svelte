@@ -28,7 +28,7 @@ import { Checkbox } from "fluent-svelte";
 
 You can programmatically control if the checkbox is in it's checked state by setting the `checked` property.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { Checkbox } from "fluent-svelte";
 </script>
@@ -54,7 +54,7 @@ Current state: {checked ? "checked" : "unchecked"}
 
 If the checkbox cannot be represented as either checked or unchecked, it can be marked as _indeterminate_ using the `indeterminate` property.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { Checkbox } from "fluent-svelte";
 </script>
@@ -66,7 +66,7 @@ If the checkbox cannot be represented as either checked or unchecked, it can be 
 
 Passing in content to the checkbox's slot will cause that content to be rendered into a label for the control.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { Checkbox } from "fluent-svelte";
 </script>

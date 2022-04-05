@@ -30,7 +30,7 @@ import { RadioButton } from "fluent-svelte";
 
 Passing in content to the RadioButton's slot will cause that content to be rendered into a label for the control.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { RadioButton } from "fluent-svelte";
 </script>
@@ -45,7 +45,7 @@ The `value` property is used to determine the piece of data that is associated w
 -   For usage in forms, this [value](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#value) is submitted with the form as [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
 -   If a [group binding](#radio-groups) is used, the radio's `value` will be used to determine which radio in the group is currently selected.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { RadioButton } from "fluent-svelte";
 </script>
@@ -75,7 +75,7 @@ When a RadioButton is selected, it will deselect all other RadioButtons in the s
 
 If `group` is not set, you also have access to a `checked` property that allows you to manually set the initial state of the Radio.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { RadioButton } from "fluent-svelte";
 </script>

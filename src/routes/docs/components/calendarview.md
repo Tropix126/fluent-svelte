@@ -26,7 +26,7 @@ Selections made in the calendar can be controlled using the `value` property, wh
 
 This CalendarView will be initialized with a value of March 3, 2020.
 
-```svelte
+```svelte hideScript
 <CalendarView value={new Date(2020, 2, 3)} />
 ```
 
@@ -58,7 +58,7 @@ This will render the calendar with March 3 and 4 selected, but as soon as the us
 
 To allow the user to pick multiple dates at once, set the `multiple` property to `true`.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { CalendarView } from "fluent-svelte";
 </script>
@@ -76,7 +76,7 @@ You can limit the range of dates that can be selected by the user using the `min
 
 In this example, the user will only be able to select dates in the year of 2020.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { CalendarView } from "fluent-svelte";
 </script>
@@ -90,7 +90,7 @@ Many elements of a calendar need to vary across languages. By default, the calen
 
 If you only want the calendar to render in a specific locale, you can pass in a locale string to the `locale` property.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { CalendarView } from "fluent-svelte";
 </script>
@@ -100,7 +100,7 @@ If you only want the calendar to render in a specific locale, you can pass in a 
 
 Many places additionally have different starting days of the week. The JavaScript `Date` object starts it's weeks on Sunday, but you can customize the starting day of the calendar's week using the `weekStart` property. `weekStart` accepts a number between 0 and 6 (zero is sunday, six is saturday).
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { CalendarView } from "fluent-svelte";
 </script>
@@ -119,7 +119,7 @@ In some cases, it might be desirable to prevent the user from selecting a specif
 
 In this example, the user will be able to select all dates _except_ for March 7, 2022 and March 9, 2022.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { CalendarView } from "fluent-svelte";
 </script>
@@ -170,7 +170,7 @@ You can choose display indicator labels for the first day of a month, or first m
 -   When in days view, the first day of a given month will have a header with the month's name above it.
 -   When in months view, the first month of a given year will have the year labeled above it.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { CalendarView } from "fluent-svelte";
 </script>

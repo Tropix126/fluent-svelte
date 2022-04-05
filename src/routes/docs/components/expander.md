@@ -90,7 +90,7 @@ An expander doesn't have to expand downwards. You can control an expander's expa
 
 You can easily add an icon to an expander's header using the `icon` slot. Passing in an SVG element will render it into the header with 16x16 dimensions.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { Expander } from "fluent-svelte";
 </script>

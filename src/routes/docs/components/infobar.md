@@ -33,7 +33,7 @@ There are two areas of text that can be customized - the title and the message. 
 -   You can specify a title for the InfoBar using `title` property.
 -   You can set the InfoBar's message using the `message` property.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { InfoBar } from "fluent-svelte";
 </script>
@@ -43,7 +43,7 @@ There are two areas of text that can be customized - the title and the message. 
 
 If you need to include HTML content into the message, you can also just use the default slot.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { InfoBar } from "fluent-svelte";
 </script>
@@ -69,7 +69,7 @@ InfoBars can take in a `severity` prop, which represent the type of information 
 
 An action button can be passed in using the `action` slot. It's recommended that you use the [Button](/docs/components/button) component for this, but any HTML element is valid.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { InfoBar, Button } from "fluent-svelte";
 </script>

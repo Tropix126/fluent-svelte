@@ -39,7 +39,7 @@ import { PersonPicture } from "fluent-svelte";
 
 Similarly to HTML's [`<img />`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element, you can set the `src` property to a URL of an image.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { PersonPicture } from "fluent-svelte";
 </script>
@@ -49,7 +49,7 @@ Similarly to HTML's [`<img />`](https://developer.mozilla.org/en-US/docs/Web/HTM
 
 It's recommended for both accessibility and fallback purposes that you provide an `alt` property for the image as well. The `alt` attribute is used by screen readers to provide a description of the image to visually impaired users.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { PersonPicture } from "fluent-svelte";
 </script>
@@ -62,7 +62,7 @@ It's recommended for both accessibility and fallback purposes that you provide a
 
 Additionally, if `src` is invalid and no slot text is inserted, the alt text will be converted to initials format as a fallback.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { PersonPicture } from "fluent-svelte";
 </script>
@@ -78,7 +78,7 @@ If no `src` is provided, you can provide your own text to be displayed in the co
 2. If the `src` attribute fails to display or is invalid, the text or HTML is passed into the default slot will be displayed.
 3. If `src` is invalid, no slots are used, but an `alt` property is provided, the alt text will be converted to initials format and displayed.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { PersonPicture } from "fluent-svelte";
 </script>
@@ -109,7 +109,7 @@ You can use the component's `badge` slot to insert an offset element at the top 
 
 You can control the dimensions of the picture in pixels by setting the `size` property. The default size is `72`.
 
-```svelte example
+```svelte example hideScript
 <script>
 	import { PersonPicture } from "fluent-svelte";
 </script>
