@@ -20,19 +20,48 @@
 	/** Obtains a bound DOM reference to the text's element. */
 	export let element: HTMLElement = null;
 
-    const tags = {
-        caption: "span",
-        body: "span",
-        bodyStrong: "h6",
-        bodyLarge: "h5",
-        subtitle: "h4",
-        title: "h3",
-        titleLarge: "h2",
-        display: "h1"
+    const map = {
+        caption: {
+            tag: "span",
+            name: "caption"
+        },
+        body: {
+            tag: "span",
+            name: "body"
+        },
+        bodyStrong: {
+            tag: "h5",
+            name: "body-strong"
+        },
+        bodyLarge: {
+            tag: "h5",
+            name: "body-large"
+        },
+        subtitle: {
+            tag: "h4",
+            name: "subtitle"
+        },
+        title: {
+            tag: "h3",
+            name: "title"
+        },
+        titleLarge: {
+            tag: "h2",
+            name: "title-large"
+        },
+        display: {
+            tag: "h1",
+            name: "display"
+        }
     }
 </script>
 
-<svelte:element this={tag ? tag : tags[variant]} class="text-block type-{variant} {className}" bind:this={element} {...$$restProps}>
+<svelte:element
+    this={tag ? tag : map[variant].tag}
+    class="text-block type-{map[variant].name} {className}"
+    bind:this={element}
+    {...$$restProps}
+>
     <slot />
 </svelte:element>
 
