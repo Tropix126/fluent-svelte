@@ -21,14 +21,14 @@
 	export let element: HTMLElement = null;
 
     const tags = {
-        caption: "caption",
-        body: "body",
-        bodyStrong: "bodyStrong",
-        bodyLarge: "bodyLarge",
-        subtitle: "subtitle",
-        title: "title",
-        titleLarge: "titleLarge",
-        display: "display",
+        caption: "span",
+        body: "span",
+        bodyStrong: "h6",
+        bodyLarge: "h5",
+        subtitle: "h4",
+        title: "h3",
+        titleLarge: "h2",
+        display: "h1"
     }
 </script>
 
