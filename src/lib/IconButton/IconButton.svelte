@@ -14,7 +14,7 @@
 	export { className as class };
 
 	/** Obtains a bound DOM reference to the button or anchor element. */
-	export let element: HTMLButtonElement | HTMLAnchorElement = null;
+	export let element: HTMLElement = null;
 
 	const forwardEvents = createEventForwarder(get_current_component());
 </script>
@@ -31,28 +31,18 @@ An Icon Button is a clickable control that triggers an immediate action. Unlike 
     </IconButton>
     ```
 -->
-{#if href && !disabled}
-	<a
-		use:forwardEvents
-		bind:this={element}
-		class="icon-button {className}"
-		class:disabled
-		{href}
-		{...$$restProps}
-	>
-		<slot />
-	</a>
-{:else}
-	<button
-		use:forwardEvents
-		class="icon-button {className}"
-		class:disabled
-		{disabled}
-		{...$$restProps}
-	>
-		<slot />
-	</button>
-{/if}
+<svelte:element
+    use:forwardEvents
+    bind:this={element}
+    this={href && !disabled ? "a" : "button"}
+    role={(href && !disabled) ? "button" : undefined}
+    href={(href && !disabled) ? href : undefined}
+    class="icon-button {className}"
+    class:disabled
+    {...$$restProps}
+>
+    <slot />
+</svelte:element>
 
 <style lang="scss">
 	@use "./IconButton";
