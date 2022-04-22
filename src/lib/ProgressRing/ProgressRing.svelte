@@ -68,4 +68,6 @@ ProgressRing provides visual feedback to to the user that a long-running operati
 	/>
 </svg>
 
-<style lang="scss" src="./ProgressRing.scss"></style>
+<style lang="scss">
+	@use "./ProgressRing";
+</style>
