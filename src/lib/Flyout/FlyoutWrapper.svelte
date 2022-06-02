@@ -58,12 +58,6 @@
 		if (closable) open = false;
 	}
 
-	function handleKeyDown(event: KeyboardEvent) {
-		if (event.key === " " || event.key === "Enter") {
-			event.preventDefault();
-			open = !open;
-		}
-	}
 </script>
 
 <!--
@@ -88,7 +82,6 @@ Flyouts represent a control that displays lightweight UI that is either informat
 	aria-haspopup={open}
 	aria-controls={menuId}
 	on:click={() => (open = !open)}
-	on:keydown={handleKeyDown}
 	bind:this={wrapperElement}
 >
 	<slot />
