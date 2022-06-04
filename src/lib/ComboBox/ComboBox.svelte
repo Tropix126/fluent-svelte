@@ -94,17 +94,34 @@
 
 	let inputFocused = false;
 	let itemHeight = 36;
+	const maxItems = 14; // 504 (`max-block-size` in ComboBox.scss) / 36 (itemHeight)
 	let menuOffset =
-		itemHeight * -(selection ? items.indexOf(selection) : Math.floor(items.length / 2));
+		itemHeight * -(selection ? items.indexOf(selection) : Math.floor(items.length > maxItems ? (maxItems / 2) : items.length / 2));
 
 	onMount(() => {
 		if (!searchValue) searchValue = value;
 	});
 
 	function updateOffset(target: HTMLElement) {
-		menuOffset = -(
-			target.offsetTop - parseInt(getComputedStyle(target).getPropertyValue("margin-top"))
-		);
+		requestAnimationFrame(() => {
+			// this literally moves the menu so that the `containerElement` matches `target`
+			let { top: containerTop } = containerElement.getBoundingClientRect();
+			let { top: targetTop } = target.getBoundingClientRect();
+	
+			menuOffset += containerTop - targetTop;
+
+			/* This will also make sure that the `menuElement` can't go beyond the top of the page
+			requestAnimationFrame(() => {
+				let { top } = menuElement.getBoundingClientRect()
+
+				if (top < 0) {
+					menuOffset += -top
+				}
+
+				// Not sure how to do this for bottom
+			})
+			*/
+		})
 	}
 
 	function selectItem(item: Item) {
