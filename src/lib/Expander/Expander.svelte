@@ -90,6 +90,7 @@ Expanders are controls that display a header and a collapsable content area. The
 			</span>
 			<button
 				class="expander-chevron"
+                type="button"
 				tabindex="-1"
 				id={contentId}
 				aria-labelledby={headerId}
