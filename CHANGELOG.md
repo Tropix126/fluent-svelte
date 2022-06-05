@@ -1,8 +1,14 @@
 # fluent-svelte Changelog
 
+# 1.6.0
+- Corrected an issue with styling usage in `ProgressRing`.
+- Minor improvements and interaction fixes in `ComboBox`.
+- Exposed `<Flyout>` props to `CalendarDatePicker`.
+- Use `<svelte:element>` in areas that are applicable.
+
 # 1.5.1
 
--   CalendarDatePicker now correctly resolves `../Flyout/FlyoutWrapper.svelte`.
+- CalendarDatePicker now correctly resolves `../Flyout/FlyoutWrapper.svelte`.
 
 ## 1.5.0
 
