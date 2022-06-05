@@ -103,25 +103,10 @@
 	});
 
 	function updateOffset(target: HTMLElement) {
-		requestAnimationFrame(() => {
-			// this literally moves the menu so that the `containerElement` matches `target`
-			let { top: containerTop } = containerElement.getBoundingClientRect();
-			let { top: targetTop } = target.getBoundingClientRect();
-	
-			menuOffset += containerTop - targetTop;
+        const { top: containerTop } = containerElement.getBoundingClientRect();
+        const { top: targetTop } = target.getBoundingClientRect();
 
-			/* This will also make sure that the `menuElement` can't go beyond the top of the page
-			requestAnimationFrame(() => {
-				let { top } = menuElement.getBoundingClientRect()
-
-				if (top < 0) {
-					menuOffset += -top
-				}
-
-				// Not sure how to do this for bottom
-			})
-			*/
-		})
+        menuOffset += containerTop - targetTop;
 	}
 
 	function selectItem(item: Item) {
@@ -135,10 +120,9 @@
 
 	async function openMenu() {
 		open = !open;
-		await tick();
+        await tick();
 		if (editable && searchInputElement) searchInputElement.focus();
-		if (menuElement && selection)
-			updateOffset(<HTMLElement>menuElement.children[items.indexOf(selection)]);
+		if (menuElement && selection) updateOffset(<HTMLElement>menuElement.children[items.indexOf(selection)]);
 	}
 
 	async function handleKeyboardNavigation(event: KeyboardEvent | CustomEvent) {
@@ -167,11 +151,9 @@
 		} else if (key === "End") {
 			value = selectableItems[selectableItems.length - 1].value; // If end is pressed, move to last non-disabled item.
 			searchValue = selectableItems[selectableItems.length - 1].name;
-		} else if (menuElement && selection && key === "Enter") {
+		} else if (open && (key === "Enter" || key === " ")) {
 			event.preventDefault();
-			selectItem(selection); // Select item when the enter key is pressed and the menu is open
-		} else if (!menuElement && selection && key === "Enter") {
-			openMenu(); // Open the menu when the enter key is pressed and the menu is closed
+			selectItem(selection); // Select item when the enter/space key is pressed and the menu is open
 		} else if (searchInputElement && document.activeElement !== searchInputElement) {
 			searchInputElement.focus(); // If the input element has lost focus, regain it.
 		}
