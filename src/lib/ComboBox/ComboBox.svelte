@@ -6,7 +6,7 @@
 
     import ComboBoxItem from "./ComboBoxItem.svelte";
     import Button from "../Button/Button.svelte";
-    import TextBox from "../TextBox/TextBoxButton.svelte";
+    import TextBox from "../TextBox/TextBox.svelte";
     import TextBoxButton from "../TextBox/TextBoxButton.svelte";
 
 	interface Item {
@@ -249,7 +249,7 @@ When the combo box is closed, it either displays the current selection or is emp
 	{#if editable}
 		<TextBox
 			clearButton={false}
-			class="combo-box-textbox"
+			class="combo-box-text-box"
 			role="combobox"
 			aria-activedescendant={inputFocused}
 			aria-autocomplete="both"
@@ -293,7 +293,7 @@ When the combo box is closed, it either displays the current selection or is emp
 				</svg>
 			</TextBoxButton>
 		</TextBox>
-	{:else}
+        {:else}
 		<Button
 			type="button"
 			class="combo-box-button"

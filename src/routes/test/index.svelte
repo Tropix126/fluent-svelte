@@ -134,8 +134,8 @@
 
 	<ComboBox
 		value={1}
-		searchValue="asdasd"
 		editable
+		searchValue="asdasd"
 		placeholder="ComboBox"
 		items={[
 			{ name: "Item 0", value: 0 },
