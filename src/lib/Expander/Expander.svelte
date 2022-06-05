@@ -11,9 +11,9 @@
 	/** Determines the direction that the expander will extend to. */
 	export let direction: "down" | "up" = "down";
 
-    // svelte-ignore unused-export-let
-    /** Determines the expander header's semantic HTML heading tag (h1-h6). */
-    export let headingLevel: 1 | 2 | 3 | 4 | 5 | 6 = 3;
+	// svelte-ignore unused-export-let
+	/** Determines the expander header's semantic HTML heading tag (h1-h6). */
+	export let headingLevel: 1 | 2 | 3 | 4 | 5 | 6 = 3;
 
 	/** Specifies a custom class name for the expander. */
 	let className = "";
@@ -68,7 +68,7 @@ Expanders are controls that display a header and a collapsable content area. The
 	bind:this={containerElement}
 	{...$$restProps}
 >
-	<svelte:element this="h{headingLevel}">
+	<svelte:element this="h">
 		<div
 			role="button"
 			id={headerId}

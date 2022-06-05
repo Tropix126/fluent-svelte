@@ -3,7 +3,7 @@
 	import { get_current_component } from "svelte/internal";
 	import { externalMouseEvents, createEventForwarder } from "$lib/internal";
 
-    import TextBoxButton from "../TextBox/TextBoxButton.svelte";
+	import TextBoxButton from "../TextBox/TextBoxButton.svelte";
 
 	type TextInputTypes =
 		| "text"

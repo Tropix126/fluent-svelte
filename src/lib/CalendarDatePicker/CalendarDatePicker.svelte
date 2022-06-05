@@ -1,7 +1,7 @@
 <script lang="ts">
-    import CalendarView from "../CalendarView/CalendarView.svelte";
-    import Flyout from "../Flyout/FlyoutWrapper.svelte";
-    import Button from "../Button/Button.svelte";
+	import CalendarView from "../CalendarView/CalendarView.svelte";
+	import Flyout from "../Flyout/FlyoutWrapper.svelte";
+	import Button from "../Button/Button.svelte";
 
 	/** The currently selected calendar date. */
 	export let value: Date | null;
@@ -18,13 +18,36 @@
 	/** Controls whether the picker is intended for user interaction, and styles it accordingly. */
 	export let disabled = false;
 
+	/** Determines if the flyout can be closed using conventional user interaction. */
+	export let closable = true;
+
+	/** Direction that the flyout will be opened from. */
+	export let placement: "top" | "bottom" | "left" | "right" = "bottom";
+
+	/** Alignment of the menu along the clickable target's given axis. */
+	export let alignment: "start" | "center" | "end" = "center";
+
+	/** Distance of the flyout from the control button in pixels. */
+	export let offset = 4;
+
+	/** Determines if keyboard focus should be locked to the flyout's contents. */
+	export let trapFocus = true;
+
 	function handleKeyDown(event) {
 		event.stopPropagation();
 		if (event.key === "Escape") open = false;
 	}
 </script>
 
-<Flyout placement="bottom" class="calendar-date-picker-container" bind:open>
+<Flyout
+	class="calendar-date-picker-container"
+	bind:open
+	{closable}
+	{placement}
+	{alignment}
+	{offset}
+	{trapFocus}
+>
 	<Button class="calendar-date-picker-button" {disabled}>
 		<span
 			class="calendar-date-picker-label"

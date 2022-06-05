@@ -3,7 +3,7 @@
 	import { fade } from "svelte/transition";
 	import { getCSSDuration } from "$lib/internal";
 
-    import TooltipSurface from "./TooltipSurface.svelte";
+	import TooltipSurface from "./TooltipSurface.svelte";
 
 	/** Specifies the tooltip's text content. */
 	export let text = "";

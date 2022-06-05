@@ -31,16 +31,16 @@ A button gives the user a way to trigger an immediate action. Some buttons are s
     ```
 -->
 <svelte:element
-    use:forwardEvents
-    bind:this={element}
-    this={href && !disabled ? "a" : "button"}
-    role={(href && !disabled) ? "button" : undefined}
-    href={(href && !disabled) ? href : undefined}
-    class="button style-{variant} {className}"
-    class:disabled
-    {...$$restProps}
+	this={href && !disabled ? "a" : "button"}
+	use:forwardEvents
+	bind:this={element}
+	role={href && !disabled ? "button" : undefined}
+	href={href && !disabled ? href : undefined}
+	class="button style-{variant} {className}"
+	class:disabled
+	{...$$restProps}
 >
-    <slot />
+	<slot />
 </svelte:element>
 
 <style lang="scss">

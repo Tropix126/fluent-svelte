@@ -2,7 +2,7 @@
 
 # 1.5.1
 
-- CalendarDatePicker now correctly resolves `../Flyout/FlyoutWrapper.svelte`.
+-   CalendarDatePicker now correctly resolves `../Flyout/FlyoutWrapper.svelte`.
 
 ## 1.5.0
 

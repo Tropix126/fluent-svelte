@@ -4,10 +4,10 @@
 
 	import { createEventForwarder, externalMouseEvents, uid } from "$lib/internal";
 
-    import ComboBoxItem from "./ComboBoxItem.svelte";
-    import Button from "../Button/Button.svelte";
-    import TextBox from "../TextBox/TextBox.svelte";
-    import TextBoxButton from "../TextBox/TextBoxButton.svelte";
+	import ComboBoxItem from "./ComboBoxItem.svelte";
+	import Button from "../Button/Button.svelte";
+	import TextBox from "../TextBox/TextBox.svelte";
+	import TextBoxButton from "../TextBox/TextBoxButton.svelte";
 
 	interface Item {
 		name: string;
@@ -96,17 +96,20 @@
 	let itemHeight = 36;
 	const maxItems = 14; // 504 (`max-block-size` in ComboBox.scss) / 36 (itemHeight)
 	let menuOffset =
-		itemHeight * -(selection ? items.indexOf(selection) : Math.floor(items.length > maxItems ? (maxItems / 2) : items.length / 2));
+		itemHeight *
+		-(selection
+			? items.indexOf(selection)
+			: Math.floor(items.length > maxItems ? maxItems / 2 : items.length / 2));
 
 	onMount(() => {
 		if (!searchValue) searchValue = value;
 	});
 
 	function updateOffset(target: HTMLElement) {
-        const { top: containerTop } = containerElement.getBoundingClientRect();
-        const { top: targetTop } = target.getBoundingClientRect();
+		const { top: containerTop } = containerElement.getBoundingClientRect();
+		const { top: targetTop } = target.getBoundingClientRect();
 
-        menuOffset += containerTop - targetTop;
+		menuOffset += containerTop - targetTop;
 	}
 
 	function selectItem(item: Item) {
@@ -120,9 +123,10 @@
 
 	async function openMenu() {
 		open = !open;
-        await tick();
+		await tick();
 		if (editable && searchInputElement) searchInputElement.focus();
-		if (menuElement && selection) updateOffset(<HTMLElement>menuElement.children[items.indexOf(selection)]);
+		if (menuElement && selection)
+			updateOffset(<HTMLElement>menuElement.children[items.indexOf(selection)]);
 	}
 
 	async function handleKeyboardNavigation(event: KeyboardEvent | CustomEvent) {
@@ -275,7 +279,7 @@ When the combo box is closed, it either displays the current selection or is emp
 				</svg>
 			</TextBoxButton>
 		</TextBox>
-        {:else}
+	{:else}
 		<Button
 			type="button"
 			class="combo-box-button"

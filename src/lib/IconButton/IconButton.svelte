@@ -32,16 +32,16 @@ An Icon Button is a clickable control that triggers an immediate action. Unlike 
     ```
 -->
 <svelte:element
-    use:forwardEvents
-    bind:this={element}
-    this={href && !disabled ? "a" : "button"}
-    role={(href && !disabled) ? "button" : undefined}
-    href={(href && !disabled) ? href : undefined}
-    class="icon-button {className}"
-    class:disabled
-    {...$$restProps}
+	this={href && !disabled ? "a" : "button"}
+	use:forwardEvents
+	bind:this={element}
+	role={href && !disabled ? "button" : undefined}
+	href={href && !disabled ? href : undefined}
+	class="icon-button {className}"
+	class:disabled
+	{...$$restProps}
 >
-    <slot />
+	<slot />
 </svelte:element>
 
 <style lang="scss">

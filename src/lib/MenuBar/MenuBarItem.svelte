@@ -6,14 +6,9 @@
 	import { tabbable } from "tabbable";
 	import { createEventDispatcher, getContext, setContext } from "svelte";
 	import { get_current_component } from "svelte/internal";
-	import {
-		createEventForwarder,
-		arrowNavigation,
-		externalMouseEvents,
-		uid
-	} from "$lib/internal";
+	import { createEventForwarder, arrowNavigation, externalMouseEvents, uid } from "$lib/internal";
 
-    import MenuFlyoutSurface from "../MenuFlyout/MenuFlyoutSurface.svelte";
+	import MenuFlyoutSurface from "../MenuFlyout/MenuFlyoutSurface.svelte";
 
 	/** The current visibility state of the item's menu. */
 	export let open = false;

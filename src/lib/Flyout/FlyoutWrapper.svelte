@@ -21,7 +21,7 @@
 	/** Distance of the flyout from the control button in pixels. */
 	export let offset = 4;
 
-	/** Determines if keyboard focus should be locked to the dialog's contents. */
+	/** Determines if keyboard focus should be locked to the flyout's contents. */
 	export let trapFocus = true;
 
 	/** Specifies a custom class name for the content wrapper. */
