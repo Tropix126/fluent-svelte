@@ -215,7 +215,31 @@
 	>
 		<Flyout placement="top" bind:open={flyoutTopOpen}>
 			<Button variant="accent">Top Flyout</Button>
-			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
+			<svelte:fragment slot="flyout"
+				><AutoSuggestBox
+					on:select={(e) => console.log("Selected!", e)}
+					on:input={(e) => console.log("Input!", e)}
+					on:search={(e) => console.log("Search!", e)}
+					on:cleear={(e) => console.log("Clear!", e)}
+					on:change={(e) => console.log("Change!", e)}
+					placeholder="Search fruits"
+					items={[
+						"Apple",
+						"Orange",
+						"Grape",
+						"Mango",
+						"Pear",
+						"Banana",
+						"Strawberry",
+						"Watermelon",
+						"Cherry"
+					]}
+				/></svelte:fragment
+			>
+		</Flyout>
+		<Flyout placement="top" bind:open={flyoutTopOpen}>
+			<Button variant="accent">Top Flyout</Button>
+			<svelte:fragment slot="flyout" />
 		</Flyout>
 		<Flyout placement="bottom" bind:open={flyoutBottomOpen}>
 			<Button variant="accent">Bottom Flyout</Button>

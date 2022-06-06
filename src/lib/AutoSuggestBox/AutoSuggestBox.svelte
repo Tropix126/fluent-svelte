@@ -16,7 +16,7 @@
 	export let open = false;
 
 	/** Bindable index of the currently selected item. */
-	export let selection = 0;
+	export let selection = -1;
 
 	/** Bindable array of currently suggested items. */
 	export let matches: string[] = [];
@@ -49,7 +49,7 @@
 	const flyoutId = uid("fds-auto-suggest-flyout-");
 
 	$: matches = items.filter(item => item.toLowerCase().includes(typedValue.toLowerCase()));
-	$: selection, dispatchSelect();
+	$: selection;
 
 	function dispatchSelect() {
 		dispatch("select", {
@@ -75,10 +75,14 @@
 			} else if (key === "Enter" || key === "Escape") {
 				open = false;
 			}
-			if (key === "Enter" || key === "ArrowDown" || key === "ArrowUp") {
+			if (key === "ArrowDown" || key === "ArrowUp") {
+				event.preventDefault();
+				flyoutElement?.children[selection].scrollIntoView({ block: "nearest" });
+			}
+			if (key === "Enter") {
 				event.preventDefault();
 				value = matches[selection];
-				flyoutElement?.children[selection].scrollIntoView({ block: "nearest" });
+				dispatchSelect();
 			}
 		} else if (!open && matches.length > 0 && (key === "ArrowDown" || key === "ArrowUp")) {
 			open = true;
@@ -126,6 +130,10 @@
 		if (items.length > 0) open = true;
 	}}
 	on:clear
+	on:select={() => {
+		if (open && matches.length > 0) value = matches[selection];
+	}}
+	on:select
 	bind:inputElement
 	bind:containerElement
 	bind:clearButtonElement
@@ -152,8 +160,8 @@
 							id="{flyoutId}-item-{index}"
 							role="option"
 							on:click={() => {
-								value = matches[selection];
 								selection = index;
+								value = matches[selection];
 								open = false;
 							}}
 							selected={selection === index}>{item}</ListItem

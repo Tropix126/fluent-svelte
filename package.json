@@ -48,7 +48,7 @@
 		"@fluentui/svg-icons": "^1.1.166",
 		"@sveltejs/adapter-vercel": "next",
 		"@sveltejs/kit": "^1.0.0-next.310",
-		"@sveltejs/svelte-repl": "^0.2.2",
+		"@sveltejs/svelte-repl": "^0.4.1",
 		"@types/prismjs": "^1.26.0",
 		"autoprefixer": "^10.4.4",
 		"cssnano": "^5.1.7",
