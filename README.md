@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://raw.githubusercontent.com/Tropix126/fluent-svelte/e78982fb9fa48a6ea0b7cc61f4ff8fae9df88db3/static/logo.svg" width="72" height="128" />
+  <img src="https://avatars.githubusercontent.com/u/62830040" width="72" height="128" />
   <br />
   Fluent Svelte
 </h1>
