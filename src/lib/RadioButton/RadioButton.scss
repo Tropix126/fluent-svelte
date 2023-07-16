@@ -66,8 +66,7 @@
 			visibility: visible;
 			transition: var(--control-normal-duration) var(--control-fast-out-slow-in-easing);
 			box-shadow: 0 0 0 1px var(--control-stroke-default);
-			inline-size: 12px;
-			block-size: 12px;
+			transform: scale(1.2);
 		}
 
 		&:hover {
